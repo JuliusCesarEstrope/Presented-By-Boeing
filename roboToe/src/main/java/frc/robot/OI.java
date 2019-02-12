@@ -1,34 +1,42 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.RobotMap;
-public class OI {
-  //// CREATING BUTTONS
-  // One type of button is a joystick button which is any button on a
-  //// joystick.
-  // You create one by telling it which joystick it's on and which button
-  // number it is.
-  // Joystick stick = new Joystick(port);
-  // Button button = new JoystickButton(stick, buttonNumber);
-  // There are a few additional built in buttons you can use. Additionally,
-  // by subclassing Button you can create custom triggers and bind those to
-  // commands the same as any other Button.
-  Joystick leftJoyStick = new Joystick(RobotMap.leftJoystick);
-  Joystick rightJoyStick = new Joystick(RobotMap.rightJoystick);
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.Constants;
+public class OI{
+  Joystick leftJoyStick = new Joystick(Constants.leftJoystick);
+  Joystick rightJoyStick = new Joystick(Constants.rightJoystick);
+  Joystick gamePad = new Joystick(Constants.rightJoystick);
+  JoystickButton rollerButtonIn = new JoystickButton(gamePad, 7);
+  JoystickButton rollerButtonOut = new JoystickButton(gamePad, 8);
+  JoystickButton swapButton = new JoystickButton(rightJoyStick, 6);
+  JoystickButton booperButton = new JoystickButton(gamePad, 9);
 
-  
-  //// TRIGGERING COMMANDS WITH BUTTONS
-  // Once you have a button, it's trivial to bind it to a button in one of
-  // three ways:
-
-  // Start the command when the button is pressed and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenPressed(new ExampleCommand());
-
-  // Run the command while the button is being held down and interrupt it once
-  // the button is released.
-  // button.whileHeld(new ExampleCommand());
- 
-  // Start the command when the button is released and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenReleased(new ExampleCommand());
+  public boolean getbooperButton(){ 
+    return booperButton.get();
+  } 
+  public double getleftYAxis(){
+    //return Math.pow(-leftJoyStick.getY(), 3.0);
+    return -leftJoyStick.getY();
+  }
+  public double getrightYAxis(){
+    //return -Math.pow(-rightJoyStick.getY(), 3.0);
+    return -rightJoyStick.getY();
+  }
+  public double getleftXAxis(){
+    //return Math.pow(-leftJoyStick.getX(), 3.0);
+    return leftJoyStick.getX();
+  }
+  public double getrightXAxis(){
+    //return Math.pow(-rightJoyStick.getX(), 3.0);
+    return rightJoyStick.getX();
+  }
+  public boolean getSwapButton(){
+    return swapButton.get();
+  }
+  public boolean getRollerButtonIn(){
+    return rollerButtonIn.get();
+  }
+  public boolean getRollerButtonOut(){
+    return rollerButtonOut.get();
+  }
 }
