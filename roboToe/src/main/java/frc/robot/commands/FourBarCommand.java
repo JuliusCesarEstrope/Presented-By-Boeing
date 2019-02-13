@@ -43,11 +43,8 @@ public class FourBarCommand extends CommandBase {
 
   if(barDown) {
     fourBar.setDownpoint(downPoint);
+    fourBar.setBothFourBarMotor(0.5, 0.5);
   }
-
-  //else if(!barDown) {
-    
- // }
 
   //low button
   if(oi.getBarLowButton()&&buttonReleased) {
@@ -61,12 +58,10 @@ public class FourBarCommand extends CommandBase {
 
   if(barLow) {
     fourBar.setLowpoint(lowPoint);
+    fourBar.setBothFourBarMotor(0.5, 0.5);
   }
 
- // else if(!barLow) {
-    
- // }
-
+  
   //high button
 if(oi.getBarHighButton()&&buttonReleased) {
     barHigh =!barHigh;
@@ -79,10 +74,8 @@ if(oi.getBarHighButton()&&buttonReleased) {
 
   if(barHigh) {
   fourBar.setHighpoint(highPoint);
+  fourBar.setBothFourBarMotor(0.5, 0.5);
   }
-
-  //else if(!barHigh) {
-  //}
   
   }
 
