@@ -32,9 +32,17 @@ public class Constants {
 
   //FourBar PID
   public static final double[] fourBarPIDValues = {0.1, 0.1, 0.01, 0};
-  public static final int setDownPoint = 5;
-  public static final int setLowPoint = 6;
-  public static final int setHighPoint = 7;
+  public static final int setStartPoint = 5;
+  public static final int setFloorGatherPoint = 6;
+  public static final int setHatchLvlTwoPoint = 7;
+  public static final int setRocketLvlTwoPoint = 8;
+  public static final int setRocketLvlOnePoint = 9;
+  public static final int setClimbPoint = 10;
+  public static final int setBallLvlOnePoint = 11;
+  public static final int setBallLvlTwoPoint = 12;
+
+
+  
 
 
 

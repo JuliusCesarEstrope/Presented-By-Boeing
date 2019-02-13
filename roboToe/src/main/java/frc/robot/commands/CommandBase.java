@@ -15,7 +15,7 @@ public abstract class CommandBase extends Command{
   public static void init(){
     oi = new OI();
     drive = new DriveSubsystem(Constants.motorPortsLeft, Constants.motorPortsRight, Constants.gyroPort, Constants.encoderPortLeft, Constants.encoderPortRight);
-    fourBar = new FourBarSubsystem(Constants.leftFourBarMotorPort, Constants.rightFourBarMotorPort, Constants.rightBarEncoderPort, Constants.leftBarEncoderPort, Constants.gyroPort, Constants.fourBarPIDValues, Constants.setDownPoint, Constants.setLowPoint, Constants.setHighPoint);
+    fourBar = new FourBarSubsystem(Constants.leftFourBarMotorPort, Constants.rightFourBarMotorPort, Constants.rightBarEncoderPort, Constants.leftBarEncoderPort, Constants.gyroPort, Constants.fourBarPIDValues, Constants.setStartPoint, Constants.setFloorGatherPoint, Constants.setHatchLvlTwoPoint, Constants.setRocketLvlTwoPoint, Constants.setRocketLvlOnePoint, Constants.setClimbPoint, Constants.setBallLvlOnePoint, Constants.setBallLvlTwoPoint);
     //roller = new RollerSubsystem(Constants.rollerMotor);
   }
   public static void disable(){

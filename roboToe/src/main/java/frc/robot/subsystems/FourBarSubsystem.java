@@ -17,9 +17,9 @@ public class FourBarSubsystem extends Subsystem {
   static AnalogGyro gyro;
   private static PIDController fourBarPID;
   private static PIDOutput pidOutput;
-  private static int downPoint, lowPoint, highPoint;
+  private static int startPoint, floorGatherPoint, highPoint;
 
-  public FourBarSubsystem(int leftFourBarMotorPort, int rightFourBarMotorPort, int[] leftBarEncoderPort, int[] rightBarEncoderPort, int gyroPort, double[] fourBarPIDValues, int setDownPoint, int setLowPoint, int setHighPoint) {
+  public FourBarSubsystem(int leftFourBarMotorPort, int rightFourBarMotorPort, int[] leftBarEncoderPort, int[] rightBarEncoderPort, int gyroPort, double[] fourBarPIDValues, int setStartPoint, int setFloorGatherPoint) {
     leftFourBarMotor = new WPI_TalonSRX(leftFourBarMotorPort);
     rightFourBarMotor = new WPI_TalonSRX(rightFourBarMotorPort);
 
@@ -81,12 +81,12 @@ public class FourBarSubsystem extends Subsystem {
     fourBarPID.setPID(p, i, d, f);
   }
 
-  public static void setLowpoint(int lowPoint) {
-    fourBarPID.setSetpoint(lowPoint);
+  public static void setFloorGatherPoint(int floorGatherPoint) {
+    fourBarPID.setSetpoint(floorGatherPoint);
   }
 
-  public static void setDownpoint(int downPoint) {
-    fourBarPID.setSetpoint(downPoint);
+  public static void setStartpoint(int startPoint) {
+    fourBarPID.setSetpoint(startPoint);
   }
 
   public static void setHighpoint(int highPoint) {

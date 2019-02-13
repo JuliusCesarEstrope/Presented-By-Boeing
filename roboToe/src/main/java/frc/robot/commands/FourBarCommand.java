@@ -2,9 +2,9 @@
 package frc.robot.commands;
 
 public class FourBarCommand extends CommandBase {
-  boolean buttonReleased, barDown, barLow, barHigh;
+  boolean buttonReleased, fourBarStart, floorGather, barHigh;
   int leftBarEncoder, rightBarEncoder;
-  int downPoint = 5, lowPoint = 6, highPoint = 7;  
+  int startPoint = 5, floorGatherPoint = 6, highPoint = 7;  
 
   public FourBarCommand() {
   // Use requires() here to declare subsystem dependencies
@@ -21,7 +21,7 @@ public class FourBarCommand extends CommandBase {
     fourBar.setBothFourBarMotor(0, 0);
     fourBar.resetEncoders();
     buttonReleased = true;
-    barDown = false;
+    fourBarStart = false;
 
   }
 
@@ -29,55 +29,42 @@ public class FourBarCommand extends CommandBase {
   @Override
   protected void execute() {
   
-  //three positions: down (cargo), low (rocket level 1), high (rocket level 2)
+  //Eight positions: starting/lvl 1 hatch, floor gather, hatch lvl 2, rocket lvl 2, rocket lvl 1, climb position, lvl 1 ball, lvl 2 ball
 
-  //down button
-  if(oi.getBarDownButton()&&buttonReleased) {
-    barDown =!barDown;
-    buttonReleased = !oi.getBarDownButton(); 
+  //starting position button (getBarStartingButton)
+  if(oi.getBarStartingButton()&&buttonReleased) {
+    fourBarStart =!fourBarStart;
+    buttonReleased = !oi.getBarStartingButton(); 
   }
 
-  if(!oi.getBarDownButton()) {
+  if(!oi.getBarStartingButton()) {
     buttonReleased = true;
   }
 
-  if(barDown) {
-    fourBar.setDownpoint(downPoint);
+  if(fourBarStart) {
+    fourBar.setStartpoint(startPoint);
     fourBar.setBothFourBarMotor(0.5, 0.5);
   }
 
-  //low button
-  if(oi.getBarLowButton()&&buttonReleased) {
-    barLow =!barLow;
-    buttonReleased = !oi.getBarLowButton(); 
+  //floor gather button
+  if(oi.getFloorGatherButton()&&buttonReleased) {
+  floorGather =!floorGather;
+    buttonReleased = !oi.getFloorGatherButton(); 
   }
 
-  if(!oi.getBarLowButton()) {
+  if(!oi.getFloorGatherButton()) {
     buttonReleased = true;
   }
 
-  if(barLow) {
-    fourBar.setLowpoint(lowPoint);
+  if(floorGather) {
+    fourBar.setFloorGatherPoint(floorGatherPoint);
     fourBar.setBothFourBarMotor(0.5, 0.5);
+   }
   }
 
-  
-  //high button
-if(oi.getBarHighButton()&&buttonReleased) {
-    barHigh =!barHigh;
-    buttonReleased = !oi.getBarHighButton(); 
-  }
 
-  if(!oi.getBarHighButton()) {
-    buttonReleased = true;
-  }
+  //hatch level 2 button- also gather + cargo ship level
 
-  if(barHigh) {
-  fourBar.setHighpoint(highPoint);
-  fourBar.setBothFourBarMotor(0.5, 0.5);
-  }
-  
-  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override

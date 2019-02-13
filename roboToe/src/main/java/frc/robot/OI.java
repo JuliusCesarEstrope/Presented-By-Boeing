@@ -10,9 +10,10 @@ public class OI{
   JoystickButton rollerButtonOut = new JoystickButton(gamePad, 8);
   JoystickButton swapButton = new JoystickButton(rightJoyStick, 6);
   JoystickButton booperButton = new JoystickButton(gamePad, 9);
-  JoystickButton barDownButton = new JoystickButton(gamePad, 4);
-  JoystickButton barLowButton = new JoystickButton(gamePad, 1);
-  JoystickButton barHighButton = new JoystickButton(gamePad, 2);
+  JoystickButton barStartingButton = new JoystickButton(gamePad, 4);
+  JoystickButton floorGatherButton = new JoystickButton(gamePad, 1);
+  JoystickButton hatchLvlTwoButton = new JoystickButton(gamePad, 2);
+  JoystickButton rocketLvlTwoButton = new JoystickButton(gamePad, 2);
 
   public boolean getbooperButton(){ 
     return booperButton.get();
@@ -42,15 +43,19 @@ public class OI{
   public boolean getRollerButtonOut(){
     return rollerButtonOut.get();
   }
-  public boolean getBarLowButton() {
-    return barLowButton.get();
+  public boolean getFloorGatherButton() {
+    return floorGatherButton.get();
   }
 
-  public boolean getBarHighButton() {
-    return barHighButton.get();
+  public boolean getBarStartingButton() {
+    return barStartingButton.get();
   }
 
-  public boolean getBarDownButton() {
-    return barDownButton.get();
+  public boolean getHatchLvlTwoButton() {
+    return hatchLvlTwoButton.get();
+  }
+
+  public boolean getRocketLvlTwoButton() {
+    return rocketLvlTwoButton.get();
   }
 }
