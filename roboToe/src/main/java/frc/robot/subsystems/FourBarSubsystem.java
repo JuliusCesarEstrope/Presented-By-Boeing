@@ -19,7 +19,7 @@ public class FourBarSubsystem extends Subsystem {
   private static PIDOutput pidOutput;
   private static int startPoint, floorGatherPoint, highPoint;
 
-  public FourBarSubsystem(int leftFourBarMotorPort, int rightFourBarMotorPort, int[] leftBarEncoderPort, int[] rightBarEncoderPort, int gyroPort, double[] fourBarPIDValues, int setStartPoint, int setFloorGatherPoint) {
+  public FourBarSubsystem(int leftFourBarMotorPort, int rightFourBarMotorPort, int[] leftBarEncoderPort, int[] rightBarEncoderPort, int gyroPort, double[] fourBarPIDValues, int setStartPoint, int setFloorGatherPoint, int setHatchLvlTwoPoint, int setRocketLvlTwoPoint, int setRocketLvlOnePoint, int setClimbPoint, int setBallLvlOnePoint, int setBallLvlTwoPoint) {
     leftFourBarMotor = new WPI_TalonSRX(leftFourBarMotorPort);
     rightFourBarMotor = new WPI_TalonSRX(rightFourBarMotorPort);
 
