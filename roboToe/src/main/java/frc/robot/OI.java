@@ -11,7 +11,7 @@ public class OI{
   JoystickButton swapButton = new JoystickButton(rightJoyStick, 6);
   JoystickButton booperButton = new JoystickButton(gamePad, 9);
 
-  public boolean getbooperButton(){ 
+  public boolean getBooperButton(){ 
     return booperButton.get();
   } 
   public double getleftYAxis(){
