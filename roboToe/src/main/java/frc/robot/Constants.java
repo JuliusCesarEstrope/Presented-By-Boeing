@@ -1,5 +1,4 @@
 package frc.robot;
-import edu.wpi.first.wpilibj.AnalogGyro;
 public class Constants {
   //Motors
   public static final int[] motorPortsLeft = {4, 5, 6};

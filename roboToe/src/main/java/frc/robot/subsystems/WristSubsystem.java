@@ -69,29 +69,29 @@ leftWristPID.setEnabled(true);
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public static void setLeftWristPIDValues(double p, double i, double d) {
+  public void setLeftWristPIDValues(double p, double i, double d) {
     leftWristPID.setPID(p, i, d);
   }
 
-  public static void setLeftWristPIDValues(double p, double i, double d, double f) {
+  public void setLeftWristPIDValues(double p, double i, double d, double f) {
     leftWristPID.setPID(p, i, d, f);
   }
 
   
 
-  public static void setRightWristPIDValues(double p, double i, double d) {
+  public void setRightWristPIDValues(double p, double i, double d) {
     leftWristPID.setPID(p, i, d);
   }
 
-  public static void setWristRightPIDValues(double p, double i, double d, double f) {
+  public void setWristRightPIDValues(double p, double i, double d, double f) {
     leftWristPID.setPID(p, i, d, f);
   }
 
-  public static void setWristDownSetpoint(int wristDownSetPoint) {
+  public void setWristDownSetpoint(int wristDownSetPoint) {
     leftWristPID.setSetpoint(wristDownSetPoint);
   }
 
-  public static void setWristUpSetpoint(int wristUpSetPoint) {
+  public void setWristUpSetpoint(int wristUpSetPoint) {
     leftWristPID.setSetpoint(wristUpSetPoint);
   }
 

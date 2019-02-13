@@ -10,7 +10,7 @@ public class OI{
   JoystickButton rollerButtonOut = new JoystickButton(gamePad, 8);
   JoystickButton swapButton = new JoystickButton(rightJoyStick, 6);
   JoystickButton booperButton = new JoystickButton(gamePad, 9);
-  JoystickButton wristMovement = new JoystickButton(gamepad, 3);
+  JoystickButton wristMovement = new JoystickButton(gamePad, 3);
 
   public boolean getbooperButton(){ 
     return booperButton.get();

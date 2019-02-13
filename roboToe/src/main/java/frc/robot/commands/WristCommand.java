@@ -6,7 +6,6 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-import org.junit.experimental.theories.internal.SpecificDataPointsSupplier;
 
 public class WristCommand extends CommandBase {
     boolean buttonReleased;
@@ -34,8 +33,6 @@ public class WristCommand extends CommandBase {
 
     buttonReleased = true;
     moveWrist = false;
-    boolean wristUp = false;
-    boolean wristDown = false;
     
     wrist.ResetEncoder();
     wrist.getLeftWristPIDOutput();
@@ -66,12 +63,13 @@ public class WristCommand extends CommandBase {
       wrist.setBothWristMotor(0.70, -0.70);
     }
 
-    if(wristUp) {
+    if(wristUp && leftWristEncoder >=0 && rightWristEncoder <= 0) {
       wrist.setWristUpSetpoint(wristUpSetPoint);
+      
     }
 
-    if(wristDown) {
-      wrist.setWristUpSetpoint(wristUpSetPoint);
+    if(wristDown && rightWristEncoder >=0 && leftWristEncoder <= 0) {
+      wrist.setWristDownSetpoint(wristDownSetPoint);
     }
   }
 
