@@ -10,9 +10,9 @@ public abstract class CommandBase extends Command{
   public static RollerSubsystem roller;
   public static void init(){
     oi = new OI();
-    drive = new DriveSubsystem(Constants.motorPortsLeft, Constants.motorPortsRight, Constants.gyroPort, Constants.encoderPortLeft, Constants.encoderPortRight);
+    drive = new DriveSubsystem(Constants.motorPortsLeft, Constants.motorPortsRight, Constants.gyroPort, Constants.encoderPortLeft, Constants.encoderPortRight, Constants.leftSensor, Constants.frontSensor, Constants.rightSensor , Constants.backSensor );
     //roller = new RollerSubsystem(Constants.rollerMotor);
-  }
+  }    
   public static void disable(){
 
   }

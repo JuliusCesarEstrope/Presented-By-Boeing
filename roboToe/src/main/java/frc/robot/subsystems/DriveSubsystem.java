@@ -13,7 +13,13 @@ public class DriveSubsystem extends Subsystem {
   VictorSPX[] victorsLeft, victorsRight;
   AnalogGyro gyroDrive;
   Encoder encoderLeft, encoderRight;
-public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int encoderPortLeft[], int encoderPortRight[]){
+  static AnalogGyro gyro;
+  static DigitalInput leftSensor;
+  static DigitalInput frontSensor;
+  static DigitalInput rightSensor;
+  static DigitalInput backSensor;
+
+public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int encoderPortLeft[], int encoderPortRight[],int frontSensor, int rightSensor, int backSensor, int leftSensor, int[] leftEncoderPorts, int[] rightEncoderPorts, double circumferanceOfWheels, double ticksOfEncoder){
   gyroDrive = new AnalogGyro(gyroPort);
   encoderLeft = new Encoder(encoderPortLeft[0],encoderPortLeft[1]);
   encoderRight = new Encoder(encoderPortRight[0],encoderPortRight[1]);
@@ -25,7 +31,21 @@ public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort,
     victorsLeft[i] = new WPI_VictorSPX(motorPortsLeft[i]); 
   for(int i = 0; i < victorsRight.length; i++)
     victorsRight[i] = new WPI_VictorSPX(motorPortsRight[i]);
-}
+  
+    for (int i = 0; i < leftMotors.length; i++) {
+
+      leftMotors[i] = new Talon(leftMotorPort[i]);
+    }
+    for (int i = 0; i < rightMotors.length; i++) {
+
+      rightMotors[i] = new Talon(rightMotorPort[i]);
+    }
+      leftEncoder.setDistancePerPulse(circumferanceOfWheels/ticksOfEncoder);
+      
+  }
+  }
+
+
 public void setLeft(double speed){
   talonLeft.set(ControlMode.PercentOutput, Math.max(Math.min(speed, -1), 1));
   for(VictorSPX i: victorsLeft)
@@ -68,5 +88,40 @@ public int getEncderRight(){
 @Override
 public void initDefaultCommand() {
   setDefaultCommand(new TankDrive());
+  }
+
+  public double getAngle(){
+    return gyro.getAngle();
+  }
+// gives Gyro degree
+
+public void resetAngle() {
+  gyro.reset();
+}
+
+public double getWheelDistanceLeft() {
+  return leftEncoder.getDistance();
+}
+
+public double getWheelDistanceRight() {
+  return rightEncoder.getDistance();
+}
+
+public boolean getLeftSensor(){
+  return leftSensor.get();
+}
+//sets leftSensor to a boolean value of true being it is seeing the tape 
+public boolean getFrontSensor(){
+  return frontSensor.get();
+}
+//sets frontSensor to a boolean value of true being it is seeing the tape
+public boolean getRightSensor(){
+  return rightSensor.get();
+}
+//sets rightSensor to a boolean value of true being it is seeing the tape
+  @Override
+  public void initDefaultCommand() {
+    // Set the default command for a subsystem here.
+    // setDefaultCommand(new MySpecialCommand());
   }
 }
