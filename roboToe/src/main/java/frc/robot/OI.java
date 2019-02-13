@@ -12,7 +12,7 @@ public class OI{
   JoystickButton booperButton = new JoystickButton(gamePad, 9);
   JoystickButton wristMovement = new JoystickButton(gamePad, 3);
 
-  public boolean getbooperButton(){ 
+  public boolean getBooperButton(){ 
     return booperButton.get();
   } 
   public double getleftYAxis(){
