@@ -16,6 +16,7 @@ public abstract class CommandBase extends Command {
   public static FourBarSubsystem fourBar;
   public static BooperSubsystem booper;
   public static RollerSubsystem roller;
+  public static ElevatorSubsystem elevator;
   
   public static void init(){
     oi = new OI();
@@ -24,8 +25,10 @@ public abstract class CommandBase extends Command {
     roller = new RollerSubsystem(Constants.rollerMotor);
     booper = new BooperSubsystem(Constants.booperPort);
     wrist = new WristSubsystem(Constants.leftWristMotor, Constants.rightWristMotor, Constants.leftWristEncoder, Constants.rightWristEncoder,  Constants.driveRotationPIDValues);
+    elevator = new ElevatorSubsystem(Constants.leftVerticalElevatorMotor, Constants.rightVerticalElevatorMotor, Constants.leftHorizontalElevatorMotor, Constants.rightHorizontalElevatorMotor, Constants.fastSlowStopSensor, Constants.verticalHeightSensor);
 
   }
+  
   public static void disable(){
 
   }
