@@ -30,7 +30,7 @@ public class ElevatorCommand extends CommandBase {
     if((elevator.getLeftElevatorEncoder && elevator.getRightElevatorEncoder) == distanceYToTravel){
       elevator.setYElevatorMotors(0);
       // make sure it stays in PLACE!
-    } else if {
+    } else if{
       elevator.setYElevatorMotors(.2);
       elevator.setleftElevatorEncoderSetpoint(leftElevatorEncoderTick + distanceYToTravel);
       elevator.setrightElevatorEncoderSetpoint(rightElevatorEncoderTick + distanceYToTravel);
