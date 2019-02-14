@@ -2,9 +2,9 @@
 package frc.robot.commands;
 
 public class FourBarCommand extends CommandBase {
-  boolean buttonReleased, fourBarStart, floorGather, barHigh;
+  boolean buttonReleased, fourBarStart, floorGather, hatchLvlTwo, rocketLvlTwo, rocketLvlOne, climb, ballLvlOne, ballLvlTwo;
   int leftBarEncoder, rightBarEncoder;
-  int startPoint = 5, floorGatherPoint = 6, highPoint = 7;  
+  int startPoint = 5, floorGatherPoint = 6, hatchLvlTwoPoint = 7, rocketLvlTwoPoint = 8, rocketLvlOnePoint = 9, climbPoint = 10, ballLvlOnePoint = 11, ballLvlTwoPoint = 12;  
 
   public FourBarCommand() {
   // Use requires() here to declare subsystem dependencies
@@ -42,7 +42,7 @@ public class FourBarCommand extends CommandBase {
   }
 
   if(fourBarStart) {
-    fourBar.setStartpoint(startPoint);
+    fourBar.setStartPoint(startPoint);
     fourBar.setBothFourBarMotor(0.5, 0.5);
   }
 
@@ -60,10 +60,43 @@ public class FourBarCommand extends CommandBase {
     fourBar.setFloorGatherPoint(floorGatherPoint);
     fourBar.setBothFourBarMotor(0.5, 0.5);
    }
+
+   //hatch level 2 button- also gather + cargo ship level
+   if(oi.getHatchLvlTwoButton()&&buttonReleased) {
+    hatchLvlTwo =!hatchLvlTwo;
+      buttonReleased = !oi.getHatchLvlTwoButton(); 
+    }
+  
+    if(!oi.getHatchLvlTwoButton()) {
+      buttonReleased = true;
+    }
+  
+    if(hatchLvlTwo) {
+      fourBar.setHatchLvlTwoPoint(hatchLvlTwoPoint);
+      fourBar.setBothFourBarMotor(0.5, 0.5);
+     }
+
+    //rocket level 2 button
+   if(oi.getRocketLvlTwoButton()&&buttonReleased) {
+    rocketLvlTwo =!rocketLvlTwo;
+      buttonReleased = !oi.getRocketLvlTwoButton(); 
+    }
+  
+    if(!oi.getRocketLvlTwoButton()) {
+      buttonReleased = true;
+    }
+  
+    if(hatchLvlTwo) {
+      fourBar.setRocketLvlTwoPoint(rocketLvlTwoPoint);
+      fourBar.setBothFourBarMotor(0.5, 0.5);
+     }
+
+
+
+
   }
 
-
-  //hatch level 2 button- also gather + cargo ship level
+ 
 
 
   // Make this return true when this Command no longer needs to run execute()

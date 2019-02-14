@@ -4,7 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -14,6 +14,7 @@ public class FourBarSubsystem extends Subsystem {
 
   static TalonSRX leftFourBarMotor, rightFourBarMotor;
   static Encoder leftBarEncoder, rightBarEncoder;
+    static int hatchLvlTwoPoint, rocketLvlTwoPoint, rocketLvlOnePoint, ballLvlTwoPoint, ballLvlOnePoint;
 
   private static PIDController fourBarPID;
   private static PIDOutput pidOutput;
@@ -74,14 +75,34 @@ public class FourBarSubsystem extends Subsystem {
     fourBarPID.setSetpoint(floorGatherPoint);
   }
 
-  public static void setStartpoint(int startPoint) {
+  public static void setStartPoint(int startPoint) {
     fourBarPID.setSetpoint(startPoint);
   }
 
-  public static void setHighpoint(int highPoint) {
-    fourBarPID.setSetpoint(highPoint);
+  public static void setHatchLvlTwoPoint(int hatchlvlTwoPoint) {
+    fourBarPID.setSetpoint(hatchLvlTwoPoint);
   }
 
+  public static void setRocketLvlTwoPoint(int rocketlvlTwoPoint) {
+    fourBarPID.setSetpoint(rocketLvlTwoPoint);
+  }
+
+  public static void setRocketLvlOnePoint(int rocketlvlOnePoint) {
+    fourBarPID.setSetpoint(rocketLvlOnePoint);
+  }
+
+  public static void setClimbPoint(int climbPoint) {
+    fourBarPID.setSetpoint(climbPoint);
+  }
+
+  public static void setBallLvlOnePoint(int balllvlOnePoint) {
+    fourBarPID.setSetpoint(ballLvlOnePoint);
+  }
+
+  public static void setBallLvlTwoPoint(int balllvlTwoPoint) {
+    fourBarPID.setSetpoint(ballLvlTwoPoint);
+  }
+ 
  
 
   @Override
