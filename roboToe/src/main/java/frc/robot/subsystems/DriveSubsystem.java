@@ -35,15 +35,15 @@ public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort,
   for(int i = 0; i < victorsRight.length; i++)
     victorsRight[i] = new WPI_VictorSPX(motorPortsRight[i]);
   
-    for (int i = 0; i < leftMotors.length; i++) {
+    for (int i = 0; i < victorsLeft.length; i++) {
 
-      leftMotors[i] = new Talon(leftMotorPort[i]);
+      victorsLeft[i] = new Talon(leftMotorPort[i]);
     }
-    for (int i = 0; i < rightMotors.length; i++) {
+    for (int i = 0; i < victorsRight.length; i++) {
 
-      rightMotors[i] = new Talon(rightMotorPort[i]);
+      victorsRight[i] = new Talon(rightMotorPort[i]);
     }
-      leftEncoder.setDistancePerPulse(circumferanceOfWheels/ticksOfEncoder);
+      encoderLeft.setDistancePerPulse(circumferanceOfWheels/ticksOfEncoder);
       
   }
   }
@@ -122,9 +122,5 @@ public boolean getRightSensor(){
   return rightSensor.get();
 }
 //sets rightSensor to a boolean value of true being it is seeing the tape
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-  }
+
 }
