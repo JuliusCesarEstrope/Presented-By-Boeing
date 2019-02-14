@@ -86,11 +86,72 @@ public class FourBarCommand extends CommandBase {
       buttonReleased = true;
     }
   
-    if(hatchLvlTwo) {
+    if(rocketLvlTwo) {
       fourBar.setRocketLvlTwoPoint(rocketLvlTwoPoint);
       fourBar.setBothFourBarMotor(0.5, 0.5);
      }
 
+     //rocket level 1 button
+   if(oi.getRocketLvlOneButton()&&buttonReleased) {
+    rocketLvlOne =!rocketLvlOne;
+      buttonReleased = !oi.getRocketLvlOneButton(); 
+    }
+  
+    if(!oi.getRocketLvlOneButton()) {
+      buttonReleased = true;
+    }
+  
+    if(rocketLvlOne) {
+      fourBar.setRocketLvlOnePoint(rocketLvlOnePoint);
+      fourBar.setBothFourBarMotor(0.5, 0.5);
+     }
+
+     //fourbar climb position button
+   if(oi.getBarClimbPositionButton()&&buttonReleased) {
+    climb =!climb;
+      buttonReleased = !oi.getBarClimbPositionButton(); 
+    }
+  
+    if(!oi.getBarClimbPositionButton()) {
+      buttonReleased = true;
+    }
+  
+    if(climb) {
+      fourBar.setClimbPoint(climbPoint);
+      fourBar.setBothFourBarMotor(0.5, 0.5);
+     }
+
+     //ball level 1 button
+   if(oi.getBallLvlOneButton()&&buttonReleased) {
+    ballLvlOne =!ballLvlOne;
+      buttonReleased = !oi.getBallLvlOneButton(); 
+    }
+  
+    if(!oi.getBallLvlOneButton()) {
+      buttonReleased = true;
+    }
+  
+    if(ballLvlOne) {
+      fourBar.setBallLvlOnePoint(ballLvlOnePoint);
+      fourBar.setBothFourBarMotor(0.5, 0.5);
+     }
+
+     //ball level 2 button
+   if(oi.getBallLvlTwoButton()&&buttonReleased) {
+    ballLvlTwo =!ballLvlTwo;
+      buttonReleased = !oi.getBallLvlTwoButton(); 
+    }
+  
+    if(!oi.getBallLvlTwoButton()) {
+      buttonReleased = true;
+    }
+  
+    if(ballLvlTwo) {
+      fourBar.setBallLvlTwoPoint(ballLvlTwoPoint);
+      fourBar.setBothFourBarMotor(0.5, 0.5);
+     }
+     
+     
 
 
 
