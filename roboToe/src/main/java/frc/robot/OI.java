@@ -48,6 +48,7 @@ public class OI{
     //return Math.pow(-rightJoyStick.getX(), 3.0);
     return rightJoyStick.getX();
   }
+  
   public boolean getRollerButtonIn(){
     return rollerButtonIn.get();
   }
