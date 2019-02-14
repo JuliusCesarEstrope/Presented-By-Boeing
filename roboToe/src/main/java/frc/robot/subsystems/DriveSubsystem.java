@@ -5,7 +5,9 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.TankDrive;
 public class DriveSubsystem extends Subsystem {
@@ -19,30 +21,25 @@ public class DriveSubsystem extends Subsystem {
   static DigitalInput rightSensor;
   static DigitalInput backSensor;
 
-public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int encoderPortLeft[], int encoderPortRight[],int frontSensor, int rightSensor, int backSensor, int leftSensor, int[] leftEncoderPorts, int[] rightEncoderPorts, double circumferanceOfWheels, double ticksOfEncoder){
+public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int driveEncoderPortLeft[], int driveEncoderPortRight[],int leftSensor, int frontSensor, int rightSensor, int backSensor, int[] leftEncoderPorts, int[] rightEncoderPorts, double circumferanceOfWheels, double ticksOfEncoder){
   gyroDrive = new AnalogGyro(gyroPort);
-  encoderLeft = new Encoder(encoderPortLeft[0],encoderPortLeft[1]);
-  encoderRight = new Encoder(encoderPortRight[0],encoderPortRight[1]);
+  encoderLeft = new Encoder(driveEncoderPortLeft[0],driveEncoderPortLeft[1]);
+  encoderRight = new Encoder(driveEncoderPortRight[0],driveEncoderPortRight[1]);
   talonLeft = new WPI_TalonSRX(motorPortsLeft[0]);
   talonRight = new WPI_TalonSRX(motorPortsRight[0]);
   victorsLeft = new WPI_VictorSPX[motorPortsLeft.length - 1];
   victorsRight = new WPI_VictorSPX[motorPortsRight.length - 1];
-  for(int i = 0; i < victorsLeft.length; i++)
+  for(int i = 0; i < victorsLeft.length; i++){
     victorsLeft[i] = new WPI_VictorSPX(motorPortsLeft[i]); 
-  for(int i = 0; i < victorsRight.length; i++)
+  for(i = 0; i < victorsRight.length; i++){
     victorsRight[i] = new WPI_VictorSPX(motorPortsRight[i]);
   
-    for (int i = 0; i < leftMotors.length; i++) {
-
-      leftMotors[i] = new Talon(leftMotorPort[i]);
+    talonLeft = new WPI_TalonSRX(motorPortsLeft[0]);
     }
-    for (int i = 0; i < rightMotors.length; i++) {
-
-      rightMotors[i] = new Talon(rightMotorPort[i]);
+    talonRight = new WPI_TalonSRX(motorPortsRight[0]);
     }
-      leftEncoder.setDistancePerPulse(circumferanceOfWheels/ticksOfEncoder);
+      encoderLeft.setDistancePerPulse(circumferanceOfWheels/ticksOfEncoder);
       
-  }
   }
 
 
@@ -90,9 +87,6 @@ public void initDefaultCommand() {
   setDefaultCommand(new TankDrive());
   }
 
-  public double getAngle(){
-    return gyro.getAngle();
-  }
 // gives Gyro degree
 
 public void resetAngle() {
@@ -100,11 +94,11 @@ public void resetAngle() {
 }
 
 public double getWheelDistanceLeft() {
-  return leftEncoder.getDistance();
+  return encoderLeft.getDistance();
 }
 
 public double getWheelDistanceRight() {
-  return rightEncoder.getDistance();
+  return encoderRight.getDistance();
 }
 
 public boolean getLeftSensor(){
@@ -119,9 +113,4 @@ public boolean getRightSensor(){
   return rightSensor.get();
 }
 //sets rightSensor to a boolean value of true being it is seeing the tape
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-  }
 }

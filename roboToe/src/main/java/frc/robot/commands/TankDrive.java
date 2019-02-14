@@ -13,7 +13,7 @@ public class TankDrive extends CommandBase {
   }
   @Override
   protected void execute() {
-    if(oi.getSwapButton()&&buttonUp) {
+    /*if(oi.getSwapButton()&&buttonUp) {
       swap = !swap;
       buttonUp = !oi.getSwapButton();
     }
@@ -22,10 +22,10 @@ public class TankDrive extends CommandBase {
     }
     if(swap) {
       drive.setBoth(oi.getleftYAxis()*Math.abs(oi.getleftYAxis()), oi.getrightYAxis()*Math.abs(oi.getrightYAxis()));
-    }
-    else if(!swap) {
+    }*/
+    //else if(!swap) {
       drive.setBoth(oi.getleftYAxis(), oi.getrightYAxis());
-    }
+    //}
   }
   @Override
   protected boolean isFinished() {

@@ -48,9 +48,6 @@ public class OI{
     //return Math.pow(-rightJoyStick.getX(), 3.0);
     return rightJoyStick.getX();
   }
-  public boolean getSwapButton(){
-    return swapButton.get();
-  }
   public boolean getRollerButtonIn(){
     return rollerButtonIn.get();
   }
@@ -60,7 +57,6 @@ public class OI{
   public boolean getRightTrigger() {
     return alignButton.get();
   }
-}
   
   //fourbar position buttons
   public boolean getFloorGatherButton() {
