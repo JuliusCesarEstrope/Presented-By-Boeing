@@ -14,10 +14,9 @@ public class FourBarSubsystem extends Subsystem {
 
   static TalonSRX leftFourBarMotor, rightFourBarMotor;
   static Encoder leftBarEncoder, rightBarEncoder;
-  static AnalogGyro gyro;
+
   private static PIDController fourBarPID;
   private static PIDOutput pidOutput;
-  private static int startPoint, floorGatherPoint, highPoint;
 
   public FourBarSubsystem(int leftFourBarMotorPort, int rightFourBarMotorPort, int[] leftBarEncoderPort, int[] rightBarEncoderPort, int gyroPort, double[] fourBarPIDValues, int setStartPoint, int setFloorGatherPoint, int setHatchLvlTwoPoint, int setRocketLvlTwoPoint, int setRocketLvlOnePoint, int setClimbPoint, int setBallLvlOnePoint, int setBallLvlTwoPoint) {
     leftFourBarMotor = new WPI_TalonSRX(leftFourBarMotorPort);
@@ -25,8 +24,6 @@ public class FourBarSubsystem extends Subsystem {
 
     leftBarEncoder = new Encoder(leftBarEncoderPort[0], leftBarEncoderPort[1]);
     rightBarEncoder = new Encoder(rightBarEncoderPort[0], rightBarEncoderPort[1]);
-
-    gyro = new AnalogGyro(gyroPort);
 
     leftFourBarMotor.follow(rightFourBarMotor);
     leftFourBarMotor.setInverted(true);
@@ -48,14 +45,6 @@ public class FourBarSubsystem extends Subsystem {
     public void setBothFourBarMotor(double leftFourBarSpeed, double rightFourBarSpeed) {
       setLeftFourBarMotor(leftFourBarSpeed);
       setRightFourBarMotor(rightFourBarSpeed);
-    }
-
-    //gyro
-    public double getAngle() {
-      return gyro.getAngle();
-    }
-
-    public void resetAngle() {
     }
 
     //encoder
