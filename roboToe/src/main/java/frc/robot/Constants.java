@@ -16,9 +16,6 @@ public class Constants {
   public static final int gamePad = 2;
   
   //Buttons
-  public static final int barDownButton = 4;
-  public static final int barLowButton = 1;
-  public static final int barHighButton = 3;
   public static final int gamepad = 16;
   
   //Gyros
