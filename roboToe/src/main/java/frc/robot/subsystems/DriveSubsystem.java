@@ -37,16 +37,16 @@ public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort,
   
     for (int i = 0; i < victorsLeft.length; i++) {
 
-      victorsLeft[i] = new Talon(leftMotorPort[i]);
+      victorsLeft[i] = new VictorSPX(motorPortsLeft[i]);
     }
     for (int i = 0; i < victorsRight.length; i++) {
 
-      victorsRight[i] = new Talon(rightMotorPort[i]);
+      victorsRight[i] = new VictorSPX(motorPortsRight[i]);
     }
       encoderLeft.setDistancePerPulse(circumferanceOfWheels/ticksOfEncoder);
       
   }
-  }
+  
 
 
 public void setLeft(double speed){
@@ -103,11 +103,11 @@ public void resetAngle() {
 }
 
 public double getWheelDistanceLeft() {
-  return leftEncoder.getDistance();
+  return encoderLeft.getDistance();
 }
 
 public double getWheelDistanceRight() {
-  return rightEncoder.getDistance();
+  return encoderRight.getDistance();
 }
 
 public boolean getLeftSensor(){
