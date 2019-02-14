@@ -23,10 +23,13 @@ public class Constants {
   
   //Gyros
   public static final int gyroPort = 0;
-
-  //Encoders
+  
+  //Drive Encoders
   public static final int[] driveEncoderPortLeft = {0, 1};
   public static final int[] driveEncoderPortRight = {2, 3};
+  public static double ticksOfEncoder = 360;
+  
+  //Fourbar Encoders
   public static final int[] leftBarEncoderPort = {10, 11};
   public static final int[] rightBarEncoderPort = {12, 13};
 
@@ -59,4 +62,21 @@ public class Constants {
   //Drive PID
   public static double[] driveRotationPIDValues = { 0.1, 0, 0, 0 };
   
+  //Sensor
+  public static final int leftSensor = 3;
+  public static final int rightSensor = 4;
+  public static final int frontSensor = 5;
+  public static final int backSensor = 6;
+  
+  //Wheel Constants
+  public static double diameterOfWheels = 7.8025;
+  public static double circumferanceOfWheels = diameterOfWheels*Math.PI;
+  
+  //Sensor Constants
+  public static double leftSensorToRightSensor = 7;
+  public static double leftSensorToFrontSensor = 3.5;
+  public static double frontSensorToBackSensor = 7;
+  public static double rightSensorToBackSensor = 3.5;
+  public static double rightSensorToCenterSensor = 1;
+  public static double leftSensorToCenterSensor = 1;
 }

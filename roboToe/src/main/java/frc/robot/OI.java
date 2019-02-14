@@ -16,6 +16,9 @@ public class OI{
   //Gather Buttons
   JoystickButton booperButton = new JoystickButton(gamePad, 9);
   
+  //Tape Alignment Button
+  JoystickButton alignButton;
+  
   //Fourbar and Wrist button positions
   JoystickButton barStartingButton = new JoystickButton(gamePad, 4);
   JoystickButton floorGatherButton = new JoystickButton(gamePad, 1);
@@ -54,6 +57,10 @@ public class OI{
   public boolean getRollerButtonOut(){
     return rollerButtonOut.get();
   }
+  public boolean getRightTrigger() {
+    return alignButton.get();
+  }
+}
   
   //fourbar position buttons
   public boolean getFloorGatherButton() {

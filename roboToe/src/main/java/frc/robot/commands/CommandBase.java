@@ -20,7 +20,7 @@ public abstract class CommandBase extends Command {
   
   public static void init(){
     oi = new OI();
-    drive = new DriveSubsystem(Constants.motorPortsLeft, Constants.motorPortsRight, Constants.gyroPort, Constants.encoderPortLeft, Constants.encoderPortRight);
+    drive = new DriveSubsystem(Constants.motorPortsLeft, Constants.motorPortsRight, Constants.gyroPort, Constants.encoderPortLeft, Constants.encoderPortRight, Constants.leftSensor, Constants.frontSensor, Constants.rightSensor , Constants.backSensor );
     fourBar = new FourBarSubsystem(Constants.leftFourBarMotorPort, Constants.rightFourBarMotorPort, Constants.rightBarEncoderPort, Constants.leftBarEncoderPort, Constants.gyroPort, Constants.fourBarPIDValues, Constants.setStartPoint, Constants.setFloorGatherPoint, Constants.setHatchLvlTwoPoint, Constants.setRocketLvlTwoPoint, Constants.setRocketLvlOnePoint, Constants.setClimbPoint, Constants.setBallLvlOnePoint, Constants.setBallLvlTwoPoint);
     roller = new RollerSubsystem(Constants.rollerMotor);
     booper = new BooperSubsystem(Constants.booperPort);
