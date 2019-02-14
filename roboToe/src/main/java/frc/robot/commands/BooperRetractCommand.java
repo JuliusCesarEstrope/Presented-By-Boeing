@@ -1,24 +1,19 @@
 package frc.robot.commands;
-public class BooperCommand extends CommandBase {
-  public BooperCommand() {
+public class BooperRetractCommand extends CommandBase {
+  public BooperRetractCommand() {
     requires(booper);
   }
   @Override
   protected void initialize() {
-    booper.setBooperReverse();
+     booper.setBooperReverse();
   }
   @Override
   protected void execute() {
-    if(oi.getBooperButton()){
-      booper.setBooperForward();
-    }
-    else{
-      booper.setBooperReverse();
-    }
+     
   }
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
   @Override
   protected void end() {

@@ -6,7 +6,6 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-import frc.robot.OI;
 import edu.wpi.first.wpilibj.RobotBase;
 
 /**
