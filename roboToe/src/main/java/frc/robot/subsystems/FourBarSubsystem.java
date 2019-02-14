@@ -17,9 +17,12 @@ public class FourBarSubsystem extends Subsystem {
   static AnalogGyro gyro;
   private static PIDController fourBarPID;
   private static PIDOutput pidOutput;
-  private static int startPoint, floorGatherPoint, highPoint;
+  private static int startingPoint, floorGatherPoint, highPoint;
 
-  public FourBarSubsystem(int leftFourBarMotorPort, int rightFourBarMotorPort, int[] leftBarEncoderPort, int[] rightBarEncoderPort, int gyroPort, double[] fourBarPIDValues, int setStartPoint, int setFloorGatherPoint, int setHatchLvlTwoPoint, int setRocketLvlTwoPoint, int setRocketLvlOnePoint, int setClimbPoint, int setBallLvlOnePoint, int setBallLvlTwoPoint) {
+  public FourBarSubsystem(int leftFourBarMotorPort, int rightFourBarMotorPort, int[] leftBarEncoderPort,
+      int[] rightBarEncoderPort, int gyroPort, double[] fourBarPIDValues, int setStartPoint, int setFloorGatherPoint,
+      int setHatchLvlTwoPoint, int setRocketLvlTwoPoint, int setRocketLvlOnePoint, int setClimbPoint,
+      int setBallLvlOnePoint, int setBallLvlTwoPoint) {
     leftFourBarMotor = new WPI_TalonSRX(leftFourBarMotorPort);
     rightFourBarMotor = new WPI_TalonSRX(rightFourBarMotorPort);
 
@@ -32,47 +35,48 @@ public class FourBarSubsystem extends Subsystem {
     leftFourBarMotor.setInverted(true);
 
     /** PID **/
-    fourBarPID = new PIDController(fourBarPIDValues[0], fourBarPIDValues[1], fourBarPIDValues[2], leftBarEncoder, pidOutput);
+    fourBarPID = new PIDController(fourBarPIDValues[0], fourBarPIDValues[1], fourBarPIDValues[2], leftBarEncoder,
+        pidOutput);
     fourBarPID.setEnabled(true);
   }
-  
-   //set motors
-    public void setLeftFourBarMotor(double leftFourBarSpeed) {
-      leftFourBarMotor.set(ControlMode.PercentOutput, leftFourBarSpeed); 
-    }
 
-    public void setRightFourBarMotor(double rightFourBarSpeed) {
-      rightFourBarMotor.set(ControlMode.PercentOutput, rightFourBarSpeed); 
-    }
+  // set motors
+  public void setLeftFourBarMotor(double leftFourBarSpeed) {
+    leftFourBarMotor.set(ControlMode.PercentOutput, leftFourBarSpeed);
+  }
 
-    public void setBothFourBarMotor(double leftFourBarSpeed, double rightFourBarSpeed) {
-      setLeftFourBarMotor(leftFourBarSpeed);
-      setRightFourBarMotor(rightFourBarSpeed);
-    }
+  public void setRightFourBarMotor(double rightFourBarSpeed) {
+    rightFourBarMotor.set(ControlMode.PercentOutput, rightFourBarSpeed);
+  }
 
-    //gyro
-    public double getAngle() {
-      return gyro.getAngle();
-    }
+  public void setBothFourBarMotor(double leftFourBarSpeed, double rightFourBarSpeed) {
+    setLeftFourBarMotor(leftFourBarSpeed);
+    setRightFourBarMotor(rightFourBarSpeed);
+  }
 
-    public void resetAngle() {
-    }
+  // gyro
+  public double getAngle() {
+    return gyro.getAngle();
+  }
 
-    //encoder
-    public int getLeftBarEncoder() {
-      return leftBarEncoder.get();
-    }
+  public void resetAngle() {
+  }
 
-    public int getRightBarEncoder() {
-      return rightBarEncoder.get();
-    }
+  // encoder
+  public int getLeftBarEncoder() {
+    return leftBarEncoder.get();
+  }
 
-    public void resetEncoders() {
-      rightBarEncoder.reset();
-      leftBarEncoder.reset();
-    }
+  public int getRightBarEncoder() {
+    return rightBarEncoder.get();
+  }
 
-     /** PID RELATED METHODS **/
+  public void resetEncoders() {
+    rightBarEncoder.reset();
+    leftBarEncoder.reset();
+  }
+
+  /** PID RELATED METHODS **/
   public static void setFourBarPIDValues(double p, double i, double d) {
     fourBarPID.setPID(p, i, d);
   }
@@ -89,11 +93,29 @@ public class FourBarSubsystem extends Subsystem {
     fourBarPID.setSetpoint(startPoint);
   }
 
-  public static void setHighpoint(int highPoint) {
-    fourBarPID.setSetpoint(highPoint);
+  public static void setHatchLvlTwopoint(int hatchLvlTwoPoint) {
+    fourBarPID.setSetpoint(hatchLvlTwoPoint);
   }
 
- 
+  public static void setRocketLvlTwopoint(int rocketLvlTwoPoint) {
+    fourBarPID.setSetpoint(rocketLvlTwoPoint);
+  }
+
+  public static void setRocketLvlOnepoint(int rocketLvlOnePoint) {
+    fourBarPID.setSetpoint(rocketLvlOnePoint);
+  }
+
+  public static void setClimbpoint(int climbPoint) {
+    fourBarPID.setSetpoint(climbPoint);
+  }
+
+  public static void setBallLvlOnepoint(int ballLvlOnePoint) {
+    fourBarPID.setSetpoint(ballLvlOnePoint);
+  }
+
+  public static void setBallLvlTwopoint(int ballLvlTwoPoint) {
+    fourBarPID.setSetpoint(ballLvlTwoPoint);
+  }
 
   @Override
   public void initDefaultCommand() {

@@ -55,7 +55,7 @@ public class OI{
     return floorGatherButton.get();
   }
 
-  public boolean getBarStartingButton() {
+  public boolean getBarStartButton() {
     return barStartingButton.get();
   }
 

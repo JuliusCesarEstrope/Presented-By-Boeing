@@ -1,14 +1,13 @@
 package frc.robot;
 
 public class Constants {
+
   //Motors
   public static final int[] motorPortsLeft = {4, 5, 6};
   public static final int[] motorPortsRight = {1, 2, 3};
   public static final int rollerMotor = 7;
   public static final int leftFourBarMotorPort = 7;
   public static final int rightFourBarMotorPort = 8;
-
-
 
   //Joysticks
   public static final int leftJoystick = 0;
