@@ -6,7 +6,7 @@ public class FourBarCommand extends CommandBase {
       ballLvlTwo;
   int leftBarEncoder, rightBarEncoder;
   int startPoint = 5, floorGatherPoint = 6, hatchLvlTwoPoint = 7, rocketLvlTwoPoint = 8, rocketLvlOnePoint = 9,
-      climbPoint = 10, ballLvlOnePoint = 11, ballLvlTwoPoint = 12;
+      climbPoint = 10, ballLvlOnePoint = 11, ballLvlTwoPoint = 12, wristDownSetPoint = 70;
 
   public FourBarCommand() {
     // Use requires() here to declare subsystem dependencies
@@ -63,6 +63,8 @@ public class FourBarCommand extends CommandBase {
     if (floorGather) {
       fourBar.setFloorGatherPoint(floorGatherPoint);
       fourBar.setBothFourBarMotor(0.5, 0.5);
+      wrist.setWristDownSetpoint(wristDownSetPoint);
+      wrist.setBothWristMotor(0.5, 0.5);
     }
 
     // hatch level 2 button- also gather + cargo ship level
@@ -129,6 +131,7 @@ public class FourBarCommand extends CommandBase {
     if (oi.getBallLvlOneButton() && buttonReleased) {
       ballLvlOne = !ballLvlOne;
       buttonReleased = !oi.getBallLvlOneButton();
+      
     }
 
     if (!oi.getBallLvlOneButton()) {
@@ -138,6 +141,8 @@ public class FourBarCommand extends CommandBase {
     if (ballLvlOne) {
       fourBar.setBallLvlOnePoint(ballLvlOnePoint);
       fourBar.setBothFourBarMotor(0.5, 0.5);
+      wrist.setWristDownSetpoint(wristDownSetPoint);
+      wrist.setBothWristMotor(0.5, 0.5);
     }
 
     // ball level 2 button
@@ -153,6 +158,8 @@ public class FourBarCommand extends CommandBase {
     if (ballLvlTwo) {
       fourBar.setBallLvlTwoPoint(ballLvlTwoPoint);
       fourBar.setBothFourBarMotor(0.5, 0.5);
+      wrist.setWristDownSetpoint(wristDownSetPoint);
+      wrist.setBothWristMotor(0.5, 0.5);
     }
 
   }
