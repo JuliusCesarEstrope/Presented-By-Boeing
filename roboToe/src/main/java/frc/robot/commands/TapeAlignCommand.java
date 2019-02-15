@@ -25,6 +25,29 @@ public class TapeAlignCommand extends CommandBase {
 
     drive.getWheelDistanceLeft();
     Utilities.AngleFinder(drive.getWheelDistanceLeft());
+
+
+    if(drive.getLeftSensor()&&drive.getFrontSensor()&&drive.getRightSensor()){
+        endCommand = true;
+    } 
+    else if (drive.getLeftSensor()&&drive.getFrontSensor()&&!drive.getRightSensor()) { 
+      drive.setBoth(0.1, 0);
+    } 
+    else if (!drive.getLeftSensor()&&drive.getFrontSensor()&&drive.getRightSensor()) { 
+      drive.setBoth(0, 0.1);
+    } 
+    else if (!drive.getLeftSensor()&&!drive.getFrontSensor()&&drive.getRightSensor()) { 
+      drive.setBoth(.1, 0);
+    } 
+    else if (drive.getLeftSensor()&&!drive.getFrontSensor()&&!drive.getRightSensor()) { 
+      drive.setBoth(0, .1);
+    } 
+    else if (!drive.getLeftSensor()&&!drive.getFrontSensor()&&!drive.getRightSensor()) { 
+      endCommand = true;
+    }
+    else if (!drive.getLeftSensor()&&drive.getFrontSensor()&&!drive.getRightSensor()) { 
+      drive.setBoth(.1, .1);
+    } 
   }
   // Make this return true when this Command no longer needs to run execute()
   @Override

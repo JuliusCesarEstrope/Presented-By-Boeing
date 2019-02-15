@@ -16,9 +16,6 @@ public class Constants {
   public static final int gamePad = 2;
   
   //Buttons
-  public static final int barDownButton = 4;
-  public static final int barLowButton = 1;
-  public static final int barHighButton = 3;
   public static final int gamepad = 16;
   
   //Gyros
@@ -32,9 +29,6 @@ public class Constants {
   //Fourbar Encoders
   public static final int[] leftBarEncoderPort = {10, 11};
   public static final int[] rightBarEncoderPort = {12, 13};
-
-  //Pneumatics
-  public static final int[] booperPort = {0, 1};
 
   //FourBar PID
   public static final double[] fourBarPIDValues = {0.1, 0.1, 0.01, 0};
@@ -97,7 +91,7 @@ public class Constants {
   
   //Wheel Constants
   public static double diameterOfWheels = 7.8025;
-  public static double circumferanceOfWheels = diameterOfWheels*Math.PI;
+  public static double circumferenceOfWheels = diameterOfWheels*Math.PI;
   
   //Sensor Constants
   public static double leftSensorToRightSensor = 7;

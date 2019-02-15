@@ -5,29 +5,53 @@ import frc.robot.Constants;
 public class OI{
   
   //Joysticks
-  Joystick leftJoyStick = new Joystick(Constants.leftJoystick);
-  Joystick rightJoyStick = new Joystick(Constants.rightJoystick);
-  Joystick gamePad = new Joystick(Constants.rightJoystick);
+  Joystick leftJoyStick;
+  Joystick rightJoyStick;
+
+  Joystick gamePad;
   
   //Roller Buttons
-  JoystickButton rollerButtonIn = new JoystickButton(gamePad, 7);
-  JoystickButton rollerButtonOut = new JoystickButton(gamePad, 8);
+  JoystickButton rollerButtonIn;
+  JoystickButton rollerButtonOut;
   
   //Gather Buttons
-  JoystickButton booperButton = new JoystickButton(gamePad, 9);
+  JoystickButton booperButton;
   
   //Tape Alignment Button
   JoystickButton alignButton;
   
   //Fourbar and Wrist button positions
-  JoystickButton barStartingButton = new JoystickButton(gamePad, 4);
-  JoystickButton floorGatherButton = new JoystickButton(gamePad, 1);
-  JoystickButton hatchLvlTwoButton = new JoystickButton(gamePad, 2);
-  JoystickButton rocketLvlTwoButton = new JoystickButton(gamePad, 3);
-  JoystickButton rocketLvlOneButton = new JoystickButton(gamePad, 5);
-  JoystickButton barClimbPositionButton = new JoystickButton(gamePad, 6);
-  JoystickButton ballLvlOneButton = new JoystickButton(gamePad, 10);
-  JoystickButton ballLvlTwoButton = new JoystickButton(gamePad, 11);
+  JoystickButton barStartingButton;
+  JoystickButton floorGatherButton;
+  JoystickButton hatchLvlTwoButton;
+  JoystickButton rocketLvlTwoButton;
+  JoystickButton rocketLvlOneButton;
+  JoystickButton barClimbPositionButton;
+  JoystickButton ballLvlOneButton;
+  JoystickButton ballLvlTwoButton;
+
+  public OI(){
+    leftJoyStick = new Joystick(Constants.leftJoystick);
+    rightJoyStick = new Joystick(Constants.rightJoystick);
+    gamePad = new Joystick(Constants.rightJoystick);
+  
+  //Roller Buttons
+  rollerButtonIn = new JoystickButton(gamePad, 7);
+  rollerButtonOut = new JoystickButton(gamePad, 8);
+  
+  //Gather Buttons
+  booperButton = new JoystickButton(gamePad, 9);
+  
+  //Fourbar and Wrist button positions
+  barStartingButton = new JoystickButton(gamePad, 4);
+  floorGatherButton = new JoystickButton(gamePad, 1);
+  hatchLvlTwoButton = new JoystickButton(gamePad, 2);
+  rocketLvlTwoButton = new JoystickButton(gamePad, 3);
+  rocketLvlOneButton = new JoystickButton(gamePad, 5);
+  barClimbPositionButton = new JoystickButton(gamePad, 6);
+  ballLvlOneButton = new JoystickButton(gamePad, 10);
+  ballLvlTwoButton = new JoystickButton(gamePad, 11);
+  }
   
   public boolean getBooperButton(){ 
     return booperButton.get();
@@ -48,6 +72,7 @@ public class OI{
     //return Math.pow(-rightJoyStick.getX(), 3.0);
     return rightJoyStick.getX();
   }
+  
   public boolean getRollerButtonIn(){
     return rollerButtonIn.get();
   }
@@ -91,3 +116,5 @@ public class OI{
     return ballLvlTwoButton.get();
   }
 }
+
+

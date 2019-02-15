@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
@@ -21,7 +22,7 @@ public class DriveSubsystem extends Subsystem {
   static DigitalInput rightSensor;
   static DigitalInput backSensor;
 
-public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int driveEncoderPortLeft[], int driveEncoderPortRight[],int leftSensor, int frontSensor, int rightSensor, int backSensor, int[] leftEncoderPorts, int[] rightEncoderPorts, double circumferanceOfWheels, double ticksOfEncoder){
+public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int[] driveEncoderPortLeft, int[] driveEncoderPortRight,int frontSensor, int rightSensor, int backSensor, int leftSensor, double circumferenceOfWheels, double ticksOfEncoder){
   gyroDrive = new AnalogGyro(gyroPort);
   encoderLeft = new Encoder(driveEncoderPortLeft[0],driveEncoderPortLeft[1]);
   encoderRight = new Encoder(driveEncoderPortRight[0],driveEncoderPortRight[1]);
@@ -34,15 +35,18 @@ public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort,
   for(i = 0; i < victorsRight.length; i++){
     victorsRight[i] = new WPI_VictorSPX(motorPortsRight[i]);
   
-    talonLeft = new WPI_TalonSRX(motorPortsLeft[0]);
+    for (int i = 0; i < victorsLeft.length; i++) {
+
+      victorsLeft[i] = new VictorSPX(motorPortsLeft[i]);
     }
-    talonRight = new WPI_TalonSRX(motorPortsRight[0]);
+    for (int i = 0; i < victorsRight.length; i++) {
+
+      victorsRight[i] = new VictorSPX(motorPortsRight[i]);
     }
-      encoderLeft.setDistancePerPulse(circumferanceOfWheels/ticksOfEncoder);
+      encoderLeft.setDistancePerPulse(circumferenceOfWheels/ticksOfEncoder);
       
   }
-
-
+  
 public void setLeft(double speed){
   talonLeft.set(ControlMode.PercentOutput, Math.max(Math.min(speed, -1), 1));
   for(VictorSPX i: victorsLeft)

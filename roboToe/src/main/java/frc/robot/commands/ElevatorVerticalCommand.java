@@ -2,14 +2,14 @@ package frc.robot.commands;
 
 // 6 motors for driving wheels in COMMAND, 2 motors for vertical motion of elevator, 2 horizontal motion (TalonSRX)
 
-public class ElevatorCommand extends CommandBase {
+public class ElevatorVerticalCommand extends CommandBase {
   int tapeHit;
   int leftElevatorEncoderTick;
   int rightElevatorEncoderTick;
   double distanceYToTravel;
   double distanceYInch;
 
-  public ElevatorCommand() {
+  public ElevatorVerticalCommand() {
     requires(elevator);
     requires(drive);
   }
@@ -30,7 +30,7 @@ public class ElevatorCommand extends CommandBase {
     if((elevator.getLeftElevatorEncoder && elevator.getRightElevatorEncoder) == distanceYToTravel){
       elevator.setYElevatorMotors(0);
       // make sure it stays in PLACE!
-    } else if {
+    } else if{
       elevator.setYElevatorMotors(.2);
       elevator.setleftElevatorEncoderSetpoint(leftElevatorEncoderTick + distanceYToTravel);
       elevator.setrightElevatorEncoderSetpoint(rightElevatorEncoderTick + distanceYToTravel);
@@ -66,7 +66,7 @@ public class ElevatorCommand extends CommandBase {
     
     }
 
-  }
+  
 
   // Make this return true when this Command no longer needs to run execute()
   @Override

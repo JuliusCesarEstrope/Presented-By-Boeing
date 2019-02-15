@@ -4,7 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -14,10 +14,10 @@ public class FourBarSubsystem extends Subsystem {
 
   static TalonSRX leftFourBarMotor, rightFourBarMotor;
   static Encoder leftBarEncoder, rightBarEncoder;
-  static AnalogGyro gyro;
+    static int hatchLvlTwoPoint, rocketLvlTwoPoint, rocketLvlOnePoint, ballLvlTwoPoint, ballLvlOnePoint;
+
   private static PIDController fourBarPID;
   private static PIDOutput pidOutput;
-  private static int startPoint, floorGatherPoint, highPoint;
 
   public FourBarSubsystem(int leftFourBarMotorPort, int rightFourBarMotorPort, int[] leftBarEncoderPort, int[] rightBarEncoderPort, int gyroPort, double[] fourBarPIDValues, int setStartPoint, int setFloorGatherPoint, int setHatchLvlTwoPoint, int setRocketLvlTwoPoint, int setRocketLvlOnePoint, int setClimbPoint, int setBallLvlOnePoint, int setBallLvlTwoPoint) {
     leftFourBarMotor = new WPI_TalonSRX(leftFourBarMotorPort);
@@ -25,8 +25,6 @@ public class FourBarSubsystem extends Subsystem {
 
     leftBarEncoder = new Encoder(leftBarEncoderPort[0], leftBarEncoderPort[1]);
     rightBarEncoder = new Encoder(rightBarEncoderPort[0], rightBarEncoderPort[1]);
-
-    gyro = new AnalogGyro(gyroPort);
 
     leftFourBarMotor.follow(rightFourBarMotor);
     leftFourBarMotor.setInverted(true);
@@ -50,14 +48,6 @@ public class FourBarSubsystem extends Subsystem {
       setRightFourBarMotor(rightFourBarSpeed);
     }
 
-    //gyro
-    public double getAngle() {
-      return gyro.getAngle();
-    }
-
-    public void resetAngle() {
-    }
-
     //encoder
     public int getLeftBarEncoder() {
       return leftBarEncoder.get();
@@ -73,26 +63,46 @@ public class FourBarSubsystem extends Subsystem {
     }
 
      /** PID RELATED METHODS **/
-  public static void setFourBarPIDValues(double p, double i, double d) {
+  public void setFourBarPIDValues(double p, double i, double d) {
     fourBarPID.setPID(p, i, d);
   }
 
-  public static void setFourBarPIDValues(double p, double i, double d, double f) {
+  public void setFourBarPIDValues(double p, double i, double d, double f) {
     fourBarPID.setPID(p, i, d, f);
   }
 
-  public static void setFloorGatherPoint(int floorGatherPoint) {
+  public void setFloorGatherPoint(int floorGatherPoint) {
     fourBarPID.setSetpoint(floorGatherPoint);
   }
 
-  public static void setStartpoint(int startPoint) {
+  public void setStartPoint(int startPoint) {
     fourBarPID.setSetpoint(startPoint);
   }
 
-  public static void setHighpoint(int highPoint) {
-    fourBarPID.setSetpoint(highPoint);
+  public void setHatchLvlTwoPoint(int hatchlvlTwoPoint) {
+    fourBarPID.setSetpoint(hatchLvlTwoPoint);
   }
 
+  public void setRocketLvlTwoPoint(int rocketlvlTwoPoint) {
+    fourBarPID.setSetpoint(rocketLvlTwoPoint);
+  }
+
+  public void setRocketLvlOnePoint(int rocketlvlOnePoint) {
+    fourBarPID.setSetpoint(rocketLvlOnePoint);
+  }
+
+  public void setClimbPoint(int climbPoint) {
+    fourBarPID.setSetpoint(climbPoint);
+  }
+
+  public void setBallLvlOnePoint(int balllvlOnePoint) {
+    fourBarPID.setSetpoint(ballLvlOnePoint);
+  }
+
+  public void setBallLvlTwoPoint(int balllvlTwoPoint) {
+    fourBarPID.setSetpoint(ballLvlTwoPoint);
+  }
+ 
  
 
   @Override

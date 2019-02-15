@@ -44,14 +44,7 @@ public class WristCommand extends CommandBase {
   @Override
   protected void execute() {
     //Two Positions (Up, Down)
-    if(oi.getWristMovement()&&buttonReleased) {
-      moveWrist = !moveWrist;
-      buttonReleased = !oi.getWristMovement();
-    }
-
-    if(!oi.getWristMovement()) {
-      buttonReleased = true;
-    }
+  
 
     if(moveWrist && leftWristEncoder <= 0 && rightWristEncoder >= 0) {
       wrist.setBothWristMotor(-0.70, 0.70);
