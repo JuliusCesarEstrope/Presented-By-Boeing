@@ -12,10 +12,13 @@ import frc.robot.subsystems.RollerSubsystem;
 import frc.robot.subsystems.WristSubsystem;
 
 public abstract class CommandBase extends Command {
+
   public static OI oi;
   public static DriveSubsystem drive;
   public static WristSubsystem wrist;
   public static FourBarSubsystem fourBar;
+
+
   public static BooperSubsystem booper;
   public static RollerSubsystem roller;
   public static ElevatorSubsystem elevator;
@@ -37,7 +40,6 @@ public abstract class CommandBase extends Command {
     elevator = new ElevatorSubsystem(Constants.leftVerticalElevatorMotor, Constants.rightVerticalElevatorMotor,
         Constants.leftHorizontalElevatorMotor, Constants.rightHorizontalElevatorMotor, Constants.fastSlowStopSensor,
         Constants.verticalHeightSensor);
-
   }
 
   public static void disable() {
