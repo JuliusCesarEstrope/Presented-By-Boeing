@@ -15,12 +15,12 @@ public class ElevatorSetpointCommand extends CommandBase {
   protected void initialize() {
     drive.setBothMotor(0, 0);
     elevatorVertical.enableBothElevatorEncoderPIDValues();
-    elevatorVertical.setleftElevatorEncoderSetpoint(elevatorVerticalSetpoint);
-    elevatorVertical.setrightElevatorEncoderSetpoint(elevatorVerticalSetpoint);
+    elevatorVertical.setLeftElevatorEncoderSetpoint(elevatorVerticalSetpoint);
+    elevatorVertical.setRightElevatorEncoderSetpoint(elevatorVerticalSetpoint);
   }
 
   protected void execute() {
-    elevatorVertical.setYElevatorMotors(elevatorVertical.getleftElevatorEncoderPIDOutput());
+    elevatorVertical.setYElevatorMotors(elevatorVertical.getLeftElevatorEncoderPIDOutput());
   }
 
   protected boolean isFinished() {
