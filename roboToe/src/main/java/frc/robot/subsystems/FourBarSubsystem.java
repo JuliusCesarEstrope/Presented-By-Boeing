@@ -63,43 +63,43 @@ public class FourBarSubsystem extends Subsystem {
     }
 
      /** PID RELATED METHODS **/
-  public static void setFourBarPIDValues(double p, double i, double d) {
+  public void setFourBarPIDValues(double p, double i, double d) {
     fourBarPID.setPID(p, i, d);
   }
 
-  public static void setFourBarPIDValues(double p, double i, double d, double f) {
+  public void setFourBarPIDValues(double p, double i, double d, double f) {
     fourBarPID.setPID(p, i, d, f);
   }
 
-  public static void setFloorGatherPoint(int floorGatherPoint) {
+  public void setFloorGatherPoint(int floorGatherPoint) {
     fourBarPID.setSetpoint(floorGatherPoint);
   }
 
-  public static void setStartPoint(int startPoint) {
+  public void setStartPoint(int startPoint) {
     fourBarPID.setSetpoint(startPoint);
   }
 
-  public static void setHatchLvlTwoPoint(int hatchlvlTwoPoint) {
+  public void setHatchLvlTwoPoint(int hatchlvlTwoPoint) {
     fourBarPID.setSetpoint(hatchLvlTwoPoint);
   }
 
-  public static void setRocketLvlTwoPoint(int rocketlvlTwoPoint) {
+  public void setRocketLvlTwoPoint(int rocketlvlTwoPoint) {
     fourBarPID.setSetpoint(rocketLvlTwoPoint);
   }
 
-  public static void setRocketLvlOnePoint(int rocketlvlOnePoint) {
+  public void setRocketLvlOnePoint(int rocketlvlOnePoint) {
     fourBarPID.setSetpoint(rocketLvlOnePoint);
   }
 
-  public static void setClimbPoint(int climbPoint) {
+  public void setClimbPoint(int climbPoint) {
     fourBarPID.setSetpoint(climbPoint);
   }
 
-  public static void setBallLvlOnePoint(int balllvlOnePoint) {
+  public void setBallLvlOnePoint(int balllvlOnePoint) {
     fourBarPID.setSetpoint(ballLvlOnePoint);
   }
 
-  public static void setBallLvlTwoPoint(int balllvlTwoPoint) {
+  public void setBallLvlTwoPoint(int balllvlTwoPoint) {
     fourBarPID.setSetpoint(ballLvlTwoPoint);
   }
  
