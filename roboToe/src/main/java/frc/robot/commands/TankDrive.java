@@ -15,8 +15,7 @@ public class TankDrive extends CommandBase {
 
   @Override
   protected void execute() {
-    drive.setBoth(oi.getleftYAxis(), oi.getrightYAxis());
-    //drive.setBoth(oi.getleftYAxis() * Math.abs(oi.getleftYAxis()), oi.getrightYAxis() * Math.abs(oi.getrightYAxis()));
+      drive.setBoth(oi.getleftYAxis(), oi.getrightYAxis());
   }
 
   @Override

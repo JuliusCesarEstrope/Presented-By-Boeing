@@ -1,4 +1,5 @@
 package frc.robot.subsystems;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -11,12 +12,12 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.TankDrive;
+
 public class DriveSubsystem extends Subsystem {
   TalonSRX talonLeft, talonRight;
   VictorSPX[] victorsLeft, victorsRight;
   AnalogGyro gyroDrive;
   Encoder encoderLeft, encoderRight;
-  static AnalogGyro gyro;
   static DigitalInput leftSensor;
   static DigitalInput frontSensor;
   static DigitalInput rightSensor;
@@ -70,25 +71,28 @@ public void calibrateGyro(){
 }
 public void resetGyro(){
     gyroDrive.reset();
-}
-public double getAngle(){
+  }
+
+  public double getAngle() {
     return gyroDrive.getAngle() % 360;
-}
-public void resetEncoder(){
-  encoderLeft.reset();
-  encoderRight.reset();
-}
-public int getEncderLeft(){
-  return encoderLeft.get();
-}
+  }
 
-public int getEncderRight(){
-  return encoderRight.get();
-}
+  public void resetEncoder() {
+    encoderLeft.reset();
+    encoderRight.reset();
+  }
 
-@Override
-public void initDefaultCommand() {
-  setDefaultCommand(new TankDrive());
+  public int getEncderLeft() {
+    return encoderLeft.get();
+  }
+
+  public int getEncderRight() {
+    return encoderRight.get();
+  }
+
+  @Override
+  public void initDefaultCommand() {
+    setDefaultCommand(new TankDrive());
   }
 
 // gives Gyro degree
