@@ -22,7 +22,7 @@ public class DriveSubsystem extends Subsystem {
   static DigitalInput rightSensor;
   static DigitalInput backSensor;
 
-public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int[] encoderPortLeft, int[] encoderPortRight,int frontSensor, int rightSensor, int backSensor, int leftSensor, int[] leftEncoderPorts, int[] rightEncoderPorts, double circumferanceOfWheels, double ticksOfEncoder){
+public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int[] encoderPortLeft, int[] encoderPortRight,int frontSensor, int rightSensor, int backSensor, int leftSensor, double circumferanceOfWheels, double ticksOfEncoder){
   gyroDrive = new AnalogGyro(gyroPort);
   encoderLeft = new Encoder(encoderPortLeft[0],encoderPortLeft[1]);
   encoderRight = new Encoder(encoderPortRight[0],encoderPortRight[1]);
