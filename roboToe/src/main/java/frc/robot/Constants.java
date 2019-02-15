@@ -94,7 +94,7 @@ public class Constants {
   
   //Wheel Constants
   public static double diameterOfWheels = 7.8025;
-  public static double circumferanceOfWheels = diameterOfWheels*Math.PI;
+  public static double circumferenceOfWheels = diameterOfWheels*Math.PI;
   
   //Sensor Constants
   public static double leftSensorToRightSensor = 7;

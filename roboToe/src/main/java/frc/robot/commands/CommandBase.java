@@ -23,7 +23,7 @@ public abstract class CommandBase extends Command {
     oi = new OI();
     drive = new DriveSubsystem(Constants.motorPortsLeft, Constants.motorPortsRight, Constants.gyroPort,
         Constants.driveEncoderPortLeft, Constants.driveEncoderPortRight, Constants.leftSensor, Constants.frontSensor,
-        Constants.rightSensor, Constants.backSensor);
+        Constants.rightSensor, Constants.backSensor, Constants.circumferenceOfWheels, Constants.ticksOfEncoder);
     fourBar = new FourBarSubsystem(Constants.leftFourBarMotorPort, Constants.rightFourBarMotorPort,
         Constants.rightBarEncoderPort, Constants.leftBarEncoderPort, Constants.gyroPort, Constants.fourBarPIDValues,
         Constants.setStartPoint, Constants.setFloorGatherPoint, Constants.setHatchLvlTwoPoint,

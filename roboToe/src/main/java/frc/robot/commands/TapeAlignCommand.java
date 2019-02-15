@@ -14,7 +14,7 @@ public class TapeAlignCommand extends CommandBase {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() { 
-    drive.setboth(0, 0);
+    drive.setBoth(0, 0);
     endCommand = false;
 
   }
@@ -31,22 +31,22 @@ public class TapeAlignCommand extends CommandBase {
         endCommand = true;
     } 
     else if (drive.getLeftSensor()&&drive.getFrontSensor()&&!drive.getRightSensor()) { 
-      drive.setboth(0.1, 0);
+      drive.setBoth(0.1, 0);
     } 
     else if (!drive.getLeftSensor()&&drive.getFrontSensor()&&drive.getRightSensor()) { 
-      drive.setboth(0, 0.1);
+      drive.setBoth(0, 0.1);
     } 
     else if (!drive.getLeftSensor()&&!drive.getFrontSensor()&&drive.getRightSensor()) { 
-      drive.setboth(.1, 0);
+      drive.setBoth(.1, 0);
     } 
     else if (drive.getLeftSensor()&&!drive.getFrontSensor()&&!drive.getRightSensor()) { 
-      drive.setboth(0, .1);
+      drive.setBoth(0, .1);
     } 
     else if (!drive.getLeftSensor()&&!drive.getFrontSensor()&&!drive.getRightSensor()) { 
       endCommand = true;
     }
     else if (!drive.getLeftSensor()&&drive.getFrontSensor()&&!drive.getRightSensor()) { 
-      drive.setboth(.1, .1);
+      drive.setBoth(.1, .1);
     } 
   }
 
@@ -59,7 +59,7 @@ public class TapeAlignCommand extends CommandBase {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    drive.setboth(0, 0);
+    drive.setBoth(0, 0);
    
   }
 
@@ -67,7 +67,7 @@ public class TapeAlignCommand extends CommandBase {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    drive.setboth(0, 0);
+    drive.setBoth(0, 0);
     
   }
 }

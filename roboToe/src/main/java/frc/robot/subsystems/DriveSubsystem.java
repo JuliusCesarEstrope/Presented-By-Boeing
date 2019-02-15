@@ -22,10 +22,10 @@ public class DriveSubsystem extends Subsystem {
   static DigitalInput rightSensor;
   static DigitalInput backSensor;
 
-public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int[] encoderPortLeft, int[] encoderPortRight,int frontSensor, int rightSensor, int backSensor, int leftSensor, double circumferanceOfWheels, double ticksOfEncoder){
+public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int[] driveEncoderPortLeft, int[] driveEncoderPortRight,int frontSensor, int rightSensor, int backSensor, int leftSensor, double circumferenceOfWheels, double ticksOfEncoder){
   gyroDrive = new AnalogGyro(gyroPort);
-  encoderLeft = new Encoder(encoderPortLeft[0],encoderPortLeft[1]);
-  encoderRight = new Encoder(encoderPortRight[0],encoderPortRight[1]);
+  encoderLeft = new Encoder(driveEncoderPortLeft[0],driveEncoderPortLeft[1]);
+  encoderRight = new Encoder(driveEncoderPortRight[0],driveEncoderPortRight[1]);
   talonLeft = new WPI_TalonSRX(motorPortsLeft[0]);
   talonRight = new WPI_TalonSRX(motorPortsRight[0]);
   victorsLeft = new WPI_VictorSPX[motorPortsLeft.length - 1];
@@ -43,12 +43,10 @@ public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort,
 
       victorsRight[i] = new VictorSPX(motorPortsRight[i]);
     }
-      encoderLeft.setDistancePerPulse(circumferanceOfWheels/ticksOfEncoder);
+      encoderLeft.setDistancePerPulse(circumferenceOfWheels/ticksOfEncoder);
       
   }
   
-
-
 public void setLeft(double speed){
   talonLeft.set(ControlMode.PercentOutput, Math.max(Math.min(speed, -1), 1));
   for(VictorSPX i: victorsLeft)
