@@ -9,9 +9,8 @@ public class FourBarStartGroup extends CommandGroup{
     
     int startPoint = 5;
 
-
-    
-  
+      addSequential(new (Constants.level2Length));
+      addSequential(new Drive4Time(0.25, -0.5));
       //addSequential(new Drive4Distance(Constants.level2Length));
       //addSequential(new Drive4Time(0.25, -0.5));
 

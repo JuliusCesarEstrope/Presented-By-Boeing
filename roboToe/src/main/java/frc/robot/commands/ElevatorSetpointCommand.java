@@ -1,21 +1,22 @@
 package frc.robot.commands;
 
-import frc.robot.Constants;
+import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
+import frc.robot.subsystems.ElevatorVerticalSubsystem;
 
-public class ElevatorVerticalCommand extends CommandBase {
+public class ElevatorSetpointCommand extends CommandBase {
   double elevatorVerticalSetpoint;
-  double elevatorDistance;
 
-  public ElevatorVerticalCommand(double elevatorDistance) {
+  public ElevatorSetpointCommand(double elevatorVerticalSetpoint) {
     requires(elevatorVertical);
-    this.elevatorDistance = elevatorDistance;
+    requires(drive);
   }
 
   protected void initialize() {
-    elevatorVertical.enableBothElevatorEncoderPIDValues();
     drive.setBothMotor(0, 0);
-    elevatorVertical.setleftElevatorEncoderSetpoint(elevatorDistance + Constants.defaultElevatorPosition);
-    elevatorVertical.setrightElevatorEncoderSetpoint(elevatorDistance + Constants.defaultElevatorPosition);
+    elevatorVertical.enableBothElevatorEncoderPIDValues();
+    elevatorVertical.setleftElevatorEncoderSetpoint(elevatorVerticalSetpoint);
+    elevatorVertical.setrightElevatorEncoderSetpoint(elevatorVerticalSetpoint);
   }
 
   protected void execute() {
@@ -23,7 +24,7 @@ public class ElevatorVerticalCommand extends CommandBase {
   }
 
   protected boolean isFinished() {
-    return elevatorVertical.checkOnTargetSetpoint();
+    return false;
   }
 
   protected void end() {

@@ -1,6 +1,7 @@
 package frc.robot;
 
 public class Constants {
+
   //Motors
   public static final int[] motorPortsLeft = {4, 5, 6};
   public static final int[] motorPortsRight = {1, 2, 3};
@@ -9,7 +10,12 @@ public class Constants {
   public static final int rightWristMotor = 9;
   public static final int leftFourBarMotorPort = 10;
   public static final int rightFourBarMotorPort = 11;
+  public static final int leftVerticalElevatorMotor = 12;
+  public static final int rightVerticalElevatorMotor = 13;
+  public static final int leftHorizontalElevatorMotor = 14;
+  public static final int rightHorizontalElevatorMotor = 15;
   
+
   //Joysticks
   public static final int leftJoystick = 0;
   public static final int rightJoystick = 1;
@@ -20,6 +26,9 @@ public class Constants {
   
   //Gyros
   public static final int gyroPort = 0;
+
+  // Sensor
+  public static final int fastSlowStopSensor = 1;
   
   //Drive Encoders
   public static final int[] driveEncoderPortLeft = {0, 1};
@@ -29,6 +38,8 @@ public class Constants {
   //Fourbar Encoders
   public static final int[] leftBarEncoderPort = {10, 11};
   public static final int[] rightBarEncoderPort = {12, 13};
+  public static final int[] leftElevatorEncoder = {1, 2};
+  public static final int[] rightElevatorEncoder = {3, 4};
 
   //FourBar PID
   public static final double[] fourBarPIDValues = {0.1, 0.1, 0.01, 0};
@@ -53,6 +64,18 @@ public class Constants {
   //Drive PID
   public static double[] driveRotationPIDValues = { 0.1, 0, 0, 0 };
 
+  // PID
+  public static final double[] leftElevatorEncoderPIDValues = {0, 0, 0, 0};
+  public static final double[] rightElevatorEncoderPIDValues = {0, 0, 0, 0};
+  // Constant Number
+  public static final double defaultElevatorPosition = 0;
+      // FIGURE OUT WHAT VALUE IS SUPPOSED TO BE
+  public static final double distanceToTicks = (360 / (Math.PI*1.432));
+  public static final double distanceYToTravel = distanceToTicks * 22;
+  public static final double distanceYInch = distanceToTicks * 1;
+  public static final double distanceYFiveInch = distanceToTicks * 5;
+  
+}
   //Auton Constants
   public static final double level2Length = 48;
   public static final double level1Length = 47.25;

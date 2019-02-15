@@ -1,6 +1,9 @@
 package frc.robot;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.Constants;
+import frc.robot.commands.ElevatorCommandGroup;
 import frc.robot.commands.FourBarCommand;
 public class OI{
   
@@ -63,32 +66,41 @@ public class OI{
 
   }
   
+  //Elevator Buttons
+  JoystickButton elevatorButton = new JoystickButton(gamePad, 10);
+
+  public OI(){
+
+    elevatorButton.whenPressed(new ElevatorCommandGroup());
+  }
+
   public boolean getBooperButton(){ 
     return booperButton.get();
   } 
-  public double getleftYAxis(){
-    //return Math.pow(-leftJoyStick.getY(), 3.0);
-    return -leftJoyStick.getY();
+
+  public double getleftYAxis() {
+    // return Math.pow(-leftJoyStick.getY(), 3.0);
+    return -leftJoyStick.getY() * Math.abs(leftJoyStick.getY());
   }
-  public double getrightYAxis(){
-    //return -Math.pow(-rightJoyStick.getY(), 3.0);
-    return -rightJoyStick.getY();
+
+  public double getrightYAxis() {
+    // return -Math.pow(-rightJoyStick.getY(), 3.0);
+    return -rightJoyStick.getY() * Math.abs(rightJoyStick.getY());
   }
-  public double getleftXAxis(){
-    //return Math.pow(-leftJoyStick.getX(), 3.0);
-    return leftJoyStick.getX();
-  }
-  public double getrightXAxis(){
-    //return Math.pow(-rightJoyStick.getX(), 3.0);
-    return rightJoyStick.getX();
-  }
+
+  public double getleftXAxis() {
+    // return Math.pow(-leftJoyStick.getX(), 3.0);
+    return -leftJoyStick.getX() * Math.abs(leftJoyStick.getX());
   
   public boolean getRollerButtonIn(){
     return rollerButtonIn.get();
   }
-  public boolean getRollerButtonOut(){
-    return rollerButtonOut.get();
+
+  public double getrightXAxis() {
+    // return Math.pow(-rightJoyStick.getX(), 3.0);
+    return -rightJoyStick.getX() * Math.abs(rightJoyStick.getX());
   }
+  
   public boolean getRightTrigger() {
     return alignButton.get();
   }
