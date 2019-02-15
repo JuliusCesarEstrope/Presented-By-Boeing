@@ -53,10 +53,7 @@ public class FourBarSubsystem extends Subsystem {
     setRightFourBarMotor(rightFourBarSpeed);
   }
 
-  // gyro
-  public double getAngle() {
-    return gyro.getAngle();
-  }
+
 
   public void resetAngle() {
   }
@@ -92,27 +89,27 @@ public class FourBarSubsystem extends Subsystem {
     fourBarPID.setSetpoint(startPoint);
   }
 
-  public static void setHatchLvlTwopoint(int hatchLvlTwoPoint) {
+  public static void setHatchLvlTwoPoint(int hatchLvlTwoPoint) {
     fourBarPID.setSetpoint(hatchLvlTwoPoint);
   }
 
-  public static void setRocketLvlTwopoint(int rocketLvlTwoPoint) {
+  public static void setRocketLvlTwoPoint(int rocketLvlTwoPoint) {
     fourBarPID.setSetpoint(rocketLvlTwoPoint);
   }
 
-  public static void setRocketLvlOnepoint(int rocketLvlOnePoint) {
+  public static void setRocketLvlOnePoint(int rocketLvlOnePoint) {
     fourBarPID.setSetpoint(rocketLvlOnePoint);
   }
 
-  public static void setClimbpoint(int climbPoint) {
+  public static void setClimbPoint(int climbPoint) {
     fourBarPID.setSetpoint(climbPoint);
   }
 
-  public static void setBallLvlOnepoint(int ballLvlOnePoint) {
+  public static void setBallLvlOnePoint(int ballLvlOnePoint) {
     fourBarPID.setSetpoint(ballLvlOnePoint);
   }
 
-  public static void setBallLvlTwopoint(int ballLvlTwoPoint) {
+  public static void setBallLvlTwoPoint(int ballLvlTwoPoint) {
     fourBarPID.setSetpoint(ballLvlTwoPoint);
   }
 
