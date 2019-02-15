@@ -15,6 +15,7 @@ public class WristCommand extends CommandBase {
     int wristUpSetPoint = 0; /////////////////////////////////////////
     boolean wristUp = false;
     boolean wristDown = false;
+    boolean moveWrist;
   
   public WristCommand() {
     // Use requires() here to declare subsystem dependencies
