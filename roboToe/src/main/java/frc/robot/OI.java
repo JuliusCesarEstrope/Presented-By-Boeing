@@ -1,7 +1,7 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.Constants;
+import frc.robot.commands.FourBarCommand;
 public class OI{
   
   //Joysticks
@@ -51,6 +51,16 @@ public class OI{
   barClimbPositionButton = new JoystickButton(gamePad, 6);
   ballLvlOneButton = new JoystickButton(gamePad, 10);
   ballLvlTwoButton = new JoystickButton(gamePad, 11);
+
+  barStartingButton.whenPressed(new FourBarCommand());
+  floorGatherButton.whenPressed(new FourBarCommand());
+  hatchLvlTwoButton.whenPressed(new FourBarCommand());
+  rocketLvlTwoButton.whenPressed(new FourBarCommand());
+  rocketLvlOneButton.whenPressed(new FourBarCommand());
+  barClimbPositionButton.whenPressed(new FourBarCommand());
+  ballLvlOneButton.whenPressed(new FourBarCommand());
+  ballLvlTwoButton.whenPressed(new FourBarCommand());
+
   }
   
   public boolean getBooperButton(){ 
