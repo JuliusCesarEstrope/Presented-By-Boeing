@@ -9,7 +9,6 @@ package frc.robot.commands;
 
 public class WristCommand extends CommandBase {
     boolean buttonReleased;
-    boolean moveWrist;
     int leftWristEncoder;
     int rightWristEncoder;
     int wristDownSetPoint = 70;   ////////////////////////////////////

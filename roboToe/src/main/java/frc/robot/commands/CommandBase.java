@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Constants;
 import frc.robot.OI;
 import frc.robot.subsystems.BooperSubsystem;
+import frc.robot.subsystems.Camera;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.FourBarSubsystem;
@@ -18,6 +19,7 @@ public abstract class CommandBase extends Command {
   public static BooperSubsystem booper;
   public static RollerSubsystem roller;
   public static ElevatorSubsystem elevator;
+  public static Camera camera;
   
   public static void init(){
     oi = new OI();
@@ -27,7 +29,7 @@ public abstract class CommandBase extends Command {
     booper = new BooperSubsystem(Constants.booperPort);
     wrist = new WristSubsystem(Constants.leftWristMotor, Constants.rightWristMotor, Constants.leftWristEncoder, Constants.rightWristEncoder,  Constants.driveRotationPIDValues);
     elevator = new ElevatorSubsystem(Constants.leftVerticalElevatorMotor, Constants.rightVerticalElevatorMotor, Constants.leftHorizontalElevatorMotor, Constants.rightHorizontalElevatorMotor, Constants.fastSlowStopSensor, Constants.verticalHeightSensor);
-
+    camera = new Camera();
   }
   
   public static void disable(){
