@@ -6,6 +6,7 @@ public class OI{
   
   //Joysticks
   Joystick leftJoyStick;
+  Joystick rightJoyStick;
 
   Joystick gamePad;
   
