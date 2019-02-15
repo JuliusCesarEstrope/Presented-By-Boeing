@@ -60,6 +60,7 @@ public class OI{
   barClimbPositionButton.whenPressed(new FourBarCommand());
   ballLvlOneButton.whenPressed(new FourBarCommand());
   ballLvlTwoButton.whenPressed(new FourBarCommand());
+
   }
   
   public boolean getBooperButton(){ 
@@ -91,7 +92,6 @@ public class OI{
   public boolean getRightTrigger() {
     return alignButton.get();
   }
-
   
   //fourbar position buttons
   public boolean getFloorGatherButton() {

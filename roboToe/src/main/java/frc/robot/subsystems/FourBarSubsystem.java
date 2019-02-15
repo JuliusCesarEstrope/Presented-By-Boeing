@@ -4,7 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -14,7 +14,8 @@ public class FourBarSubsystem extends Subsystem {
 
   static TalonSRX leftFourBarMotor, rightFourBarMotor;
   static Encoder leftBarEncoder, rightBarEncoder;
-  static AnalogGyro gyro;
+    static int hatchLvlTwoPoint, rocketLvlTwoPoint, rocketLvlOnePoint, ballLvlTwoPoint, ballLvlOnePoint;
+
   private static PIDController fourBarPID;
   private static PIDOutput pidOutput;
   private static int startingPoint, floorGatherPoint, highPoint;
@@ -28,8 +29,6 @@ public class FourBarSubsystem extends Subsystem {
 
     leftBarEncoder = new Encoder(leftBarEncoderPort[0], leftBarEncoderPort[1]);
     rightBarEncoder = new Encoder(rightBarEncoderPort[0], rightBarEncoderPort[1]);
-
-    gyro = new AnalogGyro(gyroPort);
 
     leftFourBarMotor.follow(rightFourBarMotor);
     leftFourBarMotor.setInverted(true);
@@ -61,7 +60,7 @@ public class FourBarSubsystem extends Subsystem {
 
   public void resetAngle() {
   }
-
+  
   // encoder
   public int getLeftBarEncoder() {
     return leftBarEncoder.get();
@@ -81,15 +80,15 @@ public class FourBarSubsystem extends Subsystem {
     fourBarPID.setPID(p, i, d);
   }
 
-  public static void setFourBarPIDValues(double p, double i, double d, double f) {
+  public void setFourBarPIDValues(double p, double i, double d, double f) {
     fourBarPID.setPID(p, i, d, f);
   }
 
-  public static void setFloorGatherPoint(int floorGatherPoint) {
+  public void setFloorGatherPoint(int floorGatherPoint) {
     fourBarPID.setSetpoint(floorGatherPoint);
   }
 
-  public static void setStartpoint(int startPoint) {
+  public void setStartPoint(int startPoint) {
     fourBarPID.setSetpoint(startPoint);
   }
 
