@@ -4,7 +4,6 @@ import frc.robot.utilities.RobotLog;
 
 public class TurnAngleCommand extends CommandBase {
   public double angle;
-  private double speed;
 
   public TurnAngleCommand(double angle) {
     requires(drive);

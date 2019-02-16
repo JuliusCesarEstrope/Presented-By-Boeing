@@ -7,8 +7,6 @@ import frc.robot.subsystems.BooperSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ElevatorHorizontalSubsystem;
 import frc.robot.subsystems.ElevatorVerticalSubsystem;
-import frc.robot.subsystems.ElevatorHorizontalSubsystem;
-import frc.robot.subsystems.ElevatorVerticalSubsystem;
 import frc.robot.subsystems.FourBarSubsystem;
 import frc.robot.subsystems.RollerSubsystem;
 import frc.robot.subsystems.WristSubsystem;

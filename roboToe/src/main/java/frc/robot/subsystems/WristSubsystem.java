@@ -104,10 +104,6 @@ public class WristSubsystem extends Subsystem {
     leftWristPID.setSetpoint(wristSetPoint);
   }
 
-  public void setWristUpSetpoint(int wristUpSetPoint) {
-    leftWristPID.setSetpoint(wristUpSetPoint);
-  }
-
   public double getLeftWristPIDOutput() {
     return leftWristPID.get();
 
