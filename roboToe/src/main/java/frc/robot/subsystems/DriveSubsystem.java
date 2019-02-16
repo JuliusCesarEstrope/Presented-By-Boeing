@@ -2,14 +2,13 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import edu.wpi.first.wpilibj.AnalogGyro;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.TankDrive;
 
@@ -31,23 +30,21 @@ public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort,
   talonRight = new WPI_TalonSRX(motorPortsRight[0]);
   victorsLeft = new WPI_VictorSPX[motorPortsLeft.length - 1];
   victorsRight = new WPI_VictorSPX[motorPortsRight.length - 1];
-  for(int i = 0; i < victorsLeft.length; i++){
+
+  for(int i = 0; i < victorsLeft.length; i++)
     victorsLeft[i] = new WPI_VictorSPX(motorPortsLeft[i]); 
-  for(i = 0; i < victorsRight.length; i++){
+
+  for(int i = 0; i < victorsRight.length; i++)
     victorsRight[i] = new WPI_VictorSPX(motorPortsRight[i]);
   
-    for (int i = 0; i < victorsLeft.length; i++) {
+  for (int i = 0; i < victorsLeft.length; i++) 
+    victorsLeft[i] = new VictorSPX(motorPortsLeft[i]);
 
-      victorsLeft[i] = new VictorSPX(motorPortsLeft[i]);
-    }
-    for (int i = 0; i < victorsRight.length; i++) {
-
-      victorsRight[i] = new VictorSPX(motorPortsRight[i]);
-    }
-      encoderLeft.setDistancePerPulse(circumferenceOfWheels/ticksOfEncoder);
-      
-  }
-  
+  for (int i = 0; i < victorsRight.length; i++) 
+    victorsRight[i] = new VictorSPX(motorPortsRight[i]);
+    
+  encoderLeft.setDistancePerPulse(circumferenceOfWheels/ticksOfEncoder);
+}
 public void setLeft(double speed){
   talonLeft.set(ControlMode.PercentOutput, Math.max(Math.min(speed, -1), 1));
   for(VictorSPX i: victorsLeft)
@@ -98,7 +95,7 @@ public void resetGyro(){
 // gives Gyro degree
 
 public void resetAngle() {
-  gyro.reset();
+  gyroDrive.reset();
 }
 
 public double getWheelDistanceLeft() {

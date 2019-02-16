@@ -1,17 +1,27 @@
 package frc.robot;
 
-public class Utilities {              
+public class Utilities {            
 
-    public static double AngleFinder(double distance, double leftSensorToRightSensor, double leftSensorToFrontSensor, double frontSensorToBackSensor, double rightSensorToBackSensor, double rightSensorToCenter, double leftSensorToCenterSensor){
-        set.lengthOfTapeFromFrontSensorToRightSensor to new lengthOfTapeFromFrontSensorToRightSensor;
+    static double angleOfTapeFromFrontSensorToRightSensor;
+    static double lengthOfTapeFromFrontSensorToRightSensor;
+    static double lengthOfTapeFromFrontSensorToLeftSensor;
+    static double angleOfTapeFromFrontSensorToLeftSensor;
+
+    public static double AngleFinderFromFrontSensorToRightSensor(double distance, double rightSensorToCenterSensor){
         
-        lengthOfTapeFromFrontSensorToRightSensor = Math.sqrt(((distance*distance)+(rightSensorToCenter*rightSensorToCenter))-(2*distance*rightSensorToCenter*(Math.cos(45))));
-        Math.acos(((distance*distance)-(lengthOfTapeFromFrontSensorToRightSensor*lengthOfTapeFromFrontSensorToRightSensor)-(rightSensorToCenter*rightSensorToCenter))/(-2*lengthOfTapeFromFrontSensorToRight*rightSensorToCenter));
+        lengthOfTapeFromFrontSensorToRightSensor = Math.sqrt(((distance*distance)+(rightSensorToCenterSensor*rightSensorToCenterSensor))-(2*distance*rightSensorToCenterSensor*(Math.cos(45))));
+        angleOfTapeFromFrontSensorToRightSensor = Math.acos(((distance*distance)-(lengthOfTapeFromFrontSensorToRightSensor*lengthOfTapeFromFrontSensorToRightSensor)-(rightSensorToCenterSensor*rightSensorToCenterSensor))/(-2*lengthOfTapeFromFrontSensorToRightSensor*rightSensorToCenterSensor));
     
-        lengthOfTapeFromFrontSensorToLeftSensor = Math.sqrt(((distance*distance)+(leftSensorToCenterSensor*leftSensorToCenterSensor))-(2*distance*leftSensorToCenterSensor*(Math.cos(45))));
-        Math.acos(((distance*distance)-(lengthOfTapeFromFrontSensorToLeftSensor*lengthOfTapeFromFrontSensorToLeftSensor)-(leftSensorToCenterSensor*leftSensorToCenterSensor))/(-2*lengthOfTapeFromFrontSensorToRight*leftSensorToCenterSensor));
-
-        Math.atan(distance/Constants.distanceBetweenSensors);    
+        return  angleOfTapeFromFrontSensorToRightSensor;
     } 
-  
+
+    public static double AngleFinderFromFrontSensorToLeftSensor(double distance, double leftSensorToCenterSensor){
+        
+        lengthOfTapeFromFrontSensorToLeftSensor = Math.sqrt(((distance*distance)+(leftSensorToCenterSensor*leftSensorToCenterSensor))-(2*distance*leftSensorToCenterSensor*(Math.cos(45))));
+        angleOfTapeFromFrontSensorToLeftSensor = Math.acos(((distance*distance)-(lengthOfTapeFromFrontSensorToLeftSensor*lengthOfTapeFromFrontSensorToLeftSensor)-(leftSensorToCenterSensor*leftSensorToCenterSensor))/(-2*lengthOfTapeFromFrontSensorToLeftSensor*leftSensorToCenterSensor));
+    
+        return  angleOfTapeFromFrontSensorToLeftSensor;
+    } 
+   
+      
 }

@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Encoder;
@@ -24,6 +25,8 @@ public class WristSubsystem extends Subsystem {
     rightWristEncoder = new Encoder(rightWristEncoderPort[0], rightWristEncoderPort[1]);
     leftWristMotor.follow(rightWristMotor);  //:)
     leftWristMotor.setInverted(true);
+    leftWristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
+    rightWristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
 
     leftWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3], leftWristEncoder, pidWristOutput);
 leftWristPID.setEnabled(true);
@@ -46,11 +49,13 @@ leftWristPID.setEnabled(true);
   }
 
   public int getLeftWristEncoder() {
-    return leftWristEncoder.get();
+    return leftWristMotor.getSelectedSensorPosition();
+    //return leftWristEncoder.get();
   }
 
   public int getRightWristEncoder() {
-    return rightWristEncoder.get();
+    return rightWristMotor.getSelectedSensorPosition();
+    //return rightWristEncoder.get();
   }
 
   public void setBothWristMotor(double pidWristOutput) {

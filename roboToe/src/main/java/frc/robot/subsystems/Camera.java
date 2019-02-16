@@ -1,5 +1,4 @@
 package frc.robot.subsystems;
-
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.command.Subsystem;
 public class Camera extends Subsystem {

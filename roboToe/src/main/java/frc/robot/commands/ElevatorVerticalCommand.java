@@ -13,7 +13,7 @@ public class ElevatorVerticalCommand extends CommandBase {
 
   protected void initialize() {
     elevatorVertical.enableBothElevatorEncoderPIDValues();
-    drive.setBothMotor(0, 0);
+    drive.setBoth(0, 0);
     elevatorVertical.setLeftElevatorEncoderSetpoint(elevatorDistance + Constants.defaultElevatorPosition);
     elevatorVertical.setRightElevatorEncoderSetpoint(elevatorDistance + Constants.defaultElevatorPosition);
   }
@@ -27,12 +27,12 @@ public class ElevatorVerticalCommand extends CommandBase {
   }
 
   protected void end() {
-    drive.setBothMotor(0, 0);
+    drive.setBoth(0, 0);
     elevatorVertical.disableBothElevatorEncoderPIDValues();
   }
 
   protected void interrupted() {
-    drive.setBothMotor(0, 0);
+    drive.setBoth(0, 0);
     elevatorVertical.disableBothElevatorEncoderPIDValues();
     // elevatorButton.whenPressed(new ElevatorCommandGroup());
   }

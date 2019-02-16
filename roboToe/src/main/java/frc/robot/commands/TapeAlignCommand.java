@@ -24,7 +24,7 @@ public class TapeAlignCommand extends CommandBase {
   protected void execute() {
 
     drive.getWheelDistanceLeft();
-    Utilities.AngleFinder(drive.getWheelDistanceLeft());
+    //Utilities.AngleFinder(drive.getWheelDistanceLeft());
 
 
     if(drive.getLeftSensor()&&drive.getFrontSensor()&&drive.getRightSensor()){

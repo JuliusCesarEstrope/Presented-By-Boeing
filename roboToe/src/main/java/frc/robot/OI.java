@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.ElevatorCommandGroup;
 import frc.robot.commands.FourBarCommand;
-import frc.robot.commands.FourBarStartGroup;
 
 public class OI {
 
@@ -23,6 +22,10 @@ public class OI {
 
   // Tape Alignment Button
   JoystickButton alignButton;
+  
+  //Elevator Buttons
+  JoystickButton elevatorButton;
+  JoystickButton elevatorEmergencyStopButton;
 
   // Fourbar and Wrist button positions
   JoystickButton barStartingButton;
@@ -45,6 +48,10 @@ public class OI {
   
   //Gather Buttons
   booperButton = new JoystickButton(gamePad, 9);
+
+  //Elevator Buttons
+  elevatorButton = new JoystickButton(gamePad, 10);
+  elevatorEmergencyStopButton = new JoystickButton(leftJoyStick,  9);
   
   //Fourbar and Wrist button positions
   barStartingButton = new JoystickButton(gamePad, 4);
@@ -64,31 +71,8 @@ public class OI {
   barClimbPositionButton.whenPressed(new FourBarCommand());
   ballLvlOneButton.whenPressed(new FourBarCommand());
   ballLvlTwoButton.whenPressed(new FourBarCommand());
+  elevatorButton.whenPressed(new ElevatorCommandGroup());
 
-  }
-  
-  //Elevator Buttons
-  JoystickButton elevatorButton = new JoystickButton(gamePad, 10);
-
-public class OI {
-  Joystick leftJoyStick;
-  Joystick rightJoyStick;
-  Joystick gamePad;
-  JoystickButton elevatorButton;
-  JoystickButton elevatorEmergencyStopButton;
-  
-  public OI(){
-    leftJoyStick = new Joystick(Constants.leftJoystick);
-    rightJoyStick = new Joystick(Constants.rightJoystick);
-    gamePad = new Joystick(Constants.gamePad);
-    elevatorButton = new JoystickButton(gamePad, 10);
-    elevatorEmergencyStopButton = new JoystickButton(leftJoyStick,  9);
-    
-    elevatorButton.whenPressed(new ElevatorCommandGroup());
-  }
-
-  public boolean getElevatorEmergencyStopButton(){
-    return elevatorEmergencyStopButton.get();
   }
 
   public double getleftYAxis() {
@@ -104,9 +88,18 @@ public class OI {
   public double getleftXAxis() {
     // return Math.pow(-leftJoyStick.getX(), 3.0);
     return -leftJoyStick.getX() * Math.abs(leftJoyStick.getX());
+  }
   
   public boolean getRollerButtonIn(){
     return rollerButtonIn.get();
+  }
+  
+  public boolean getRollerButtonOut(){
+    return rollerButtonOut.get();
+  }
+
+  public boolean getBooperButton(){
+    return booperButton.get();
   }
 
   public double getrightXAxis() {
@@ -150,4 +143,9 @@ public class OI {
   public boolean getBallLvlTwoButton() {
     return ballLvlTwoButton.get();
   }
+
+  public boolean getElevatorEmergencyStopButton(){
+    return elevatorEmergencyStopButton.get();
+  }
+
 }
