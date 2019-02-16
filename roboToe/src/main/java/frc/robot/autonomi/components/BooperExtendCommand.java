@@ -1,6 +1,12 @@
+<<<<<<< HEAD:roboToe/src/main/java/frc/robot/commands/BooperExtendCommand.java
 package frc.robot.commands;
 
 import frc.robot.utilities.RobotLog;
+=======
+package frc.robot.autonomi.components;
+
+import frc.robot.commands.CommandBase;
+>>>>>>> Salvatore:roboToe/src/main/java/frc/robot/autonomi/components/BooperExtendCommand.java
 
 public class BooperExtendCommand extends CommandBase {
   public BooperExtendCommand() {

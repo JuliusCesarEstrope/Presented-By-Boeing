@@ -12,9 +12,13 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+<<<<<<< HEAD
 import frc.robot.Constants;
 import frc.robot.commands.TankDriveCommand;
 import frc.robot.utilities.RobotLog;
+=======
+import frc.robot.commands.TankDriveCommand;
+>>>>>>> Salvatore
 
 public class DriveSubsystem extends Subsystem {
   TalonSRX talonLeft, talonRight;
@@ -31,6 +35,7 @@ public class DriveSubsystem extends Subsystem {
   private static PIDController rightEncoderPIDController;
   private static PIDOutput gyroPIDOutput, rightEncoderControllerPidOutput, leftEncoderControllerPidOutput; 
 
+<<<<<<< HEAD
   public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int encoderPortLeft[], int encoderPortRight[],int frontSensor, int rightSensor, 
       int backSensor, int leftSensor, int[] driveEncoderPortLeft, int[] driveEncoderPortRight, double circumferanceOfWheels, double ticksOfEncoder){
 
@@ -124,6 +129,57 @@ public class DriveSubsystem extends Subsystem {
   
   public void disableRightEncoderPIDController(){
     rightEncoderPIDController.disable();
+=======
+public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int[] driveEncoderPortLeft, int[] driveEncoderPortRight,int frontSensor, int rightSensor, int backSensor, int leftSensor, double circumferenceOfWheels, double ticksOfEncoder){
+  gyroDrive = new AnalogGyro(gyroPort);
+  encoderLeft = new Encoder(driveEncoderPortLeft[0],driveEncoderPortLeft[1]);
+  encoderRight = new Encoder(driveEncoderPortRight[0],driveEncoderPortRight[1]);
+  talonLeft = new WPI_TalonSRX(motorPortsLeft[0]);
+  talonRight = new WPI_TalonSRX(motorPortsRight[0]);
+
+  
+
+  victorsLeft = new WPI_VictorSPX[motorPortsLeft.length - 1];
+  victorsRight = new WPI_VictorSPX[motorPortsRight.length - 1];
+
+  for(int i = 0; i < victorsLeft.length; i++)
+    victorsLeft[i] = new WPI_VictorSPX(motorPortsLeft[i]); 
+
+  for(int i = 0; i < victorsRight.length; i++)
+    victorsRight[i] = new WPI_VictorSPX(motorPortsRight[i+1]);
+  
+  for (int i = 0; i < victorsLeft.length; i++) 
+    victorsLeft[i] = new VictorSPX(motorPortsLeft[i]);
+
+  for (int i = 0; i < victorsRight.length; i++) 
+    victorsRight[i] = new VictorSPX(motorPortsRight[i]);
+    
+  encoderLeft.setDistancePerPulse(circumferenceOfWheels/ticksOfEncoder);
+}
+public void setLeft(double speed){
+  talonLeft.set(ControlMode.PercentOutput, Math.max(Math.min(speed, -1), 1));
+  for(VictorSPX i: victorsLeft)
+    i.set(ControlMode.PercentOutput, Math.max(Math.min(speed, -1), 1));
+}
+public void setRight(double speed){
+  talonRight.set(ControlMode.PercentOutput, Math.max(Math.min(-speed, -1), 1));
+  for(VictorSPX i: victorsRight)
+    i.set(ControlMode.PercentOutput, Math.max(Math.min(-speed, -1), 1));
+}
+public void setBoth(double speedLeft, double speedRight){
+  setLeft(speedLeft);
+  setRight(speedRight);
+}
+public void setBoth(double speed){
+  setLeft(speed);
+  setRight(speed);    
+}
+public void calibrateGyro(){
+  gyroDrive.calibrate();
+}
+public void resetGyro(){
+    gyroDrive.reset();
+>>>>>>> Salvatore
   }
 
   public void disableGyroPID(){
@@ -169,14 +225,30 @@ public class DriveSubsystem extends Subsystem {
     return encoderRight.get();
   }
 
+<<<<<<< HEAD
     @Override
+=======
+  @Override
+>>>>>>> Salvatore
   public void initDefaultCommand() {
     setDefaultCommand(new TankDriveCommand());
   }
 
+<<<<<<< HEAD
   public double getWheelDistanceLeft() {
     return encoderLeft.getDistance();
   }
+=======
+// gives Gyro degree
+
+public void resetAngle() {
+  gyroDrive.reset();
+}
+
+public double getWheelDistanceLeft() {
+  return encoderLeft.getDistance();
+}
+>>>>>>> Salvatore
 
   public double getWheelDistanceRight() {
     return encoderRight.getDistance();
