@@ -31,23 +31,21 @@ public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort,
   talonRight = new WPI_TalonSRX(motorPortsRight[0]);
   victorsLeft = new WPI_VictorSPX[motorPortsLeft.length - 1];
   victorsRight = new WPI_VictorSPX[motorPortsRight.length - 1];
-  for(int i = 0; i < victorsLeft.length; i++){
+
+  for(int i = 0; i < victorsLeft.length; i++)
     victorsLeft[i] = new WPI_VictorSPX(motorPortsLeft[i]); 
-  for(i = 0; i < victorsRight.length; i++){
+
+  for(int i = 0; i < victorsRight.length; i++)
     victorsRight[i] = new WPI_VictorSPX(motorPortsRight[i]);
   
-    for (int i = 0; i < victorsLeft.length; i++) {
+  for (int i = 0; i < victorsLeft.length; i++) 
+    victorsLeft[i] = new VictorSPX(motorPortsLeft[i]);
 
-      victorsLeft[i] = new VictorSPX(motorPortsLeft[i]);
-    }
-    for (int i = 0; i < victorsRight.length; i++) {
-
-      victorsRight[i] = new VictorSPX(motorPortsRight[i]);
-    }
-      encoderLeft.setDistancePerPulse(circumferenceOfWheels/ticksOfEncoder);
-      
-  }
-  
+  for (int i = 0; i < victorsRight.length; i++) 
+    victorsRight[i] = new VictorSPX(motorPortsRight[i]);
+    
+  encoderLeft.setDistancePerPulse(circumferenceOfWheels/ticksOfEncoder);
+}
 public void setLeft(double speed){
   talonLeft.set(ControlMode.PercentOutput, Math.max(Math.min(speed, -1), 1));
   for(VictorSPX i: victorsLeft)
