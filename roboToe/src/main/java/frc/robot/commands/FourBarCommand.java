@@ -7,6 +7,9 @@ public class FourBarCommand extends CommandBase {
   double fourBarSetPoint;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Emily
   public FourBarCommand(int fourBarSetPoint) {
     // Use requires() here to declare subsystem dependencies
 =======
@@ -28,6 +31,7 @@ public class FourBarCommand extends CommandBase {
 <<<<<<< HEAD
     fourBar.setFourBarSetPoint(fourBarSetPoint);
     fourBar.setBothFourBarMotor(fourBar.getFourBarPIDOutput());
+<<<<<<< HEAD
 =======
 
     // Eight positions: starting/lvl 1 hatch, floor gather, hatch lvl 2, rocket lvl
@@ -255,6 +259,12 @@ public class FourBarCommand extends CommandBase {
 >>>>>>> John-Schultz
   }
 
+=======
+  }
+
+  // Make this return true when this Command no longer needs to run execute()
+  @Override
+>>>>>>> Emily
   protected boolean isFinished() {
     return false;
   }
