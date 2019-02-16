@@ -2,18 +2,12 @@
 package frc.robot.commands;
 
 public class FourBarCommand extends CommandBase {
-  boolean buttonReleased, fourBarStart, floorGather, hatchLvlTwo, rocketLvlTwo, rocketLvlOne, climb, ballLvlOne,
-      ballLvlTwo;
-  int leftBarEncoder, rightBarEncoder;//change
+  int leftBarEncoder, rightBarEncoder; //change
   double fourBarSetPoint;
-  /*int startPoint = 5, floorGatherPoint = 6, hatchLvlTwoPoint = 7, rocketLvlTwoPoint = 8, rocketLvlOnePoint = 9,
-      climbPoint = 10, ballLvlOnePoint = 11, ballLvlTwoPoint = 12, wristDownSetPoint = 70;*/
 
-  public FourBarCommand(int fourBarSetPoint/*int setStartPoint, int setFloorGatherPoint, int setHatchLvlTwoPoint, int rocketLevelTwoPoint,
-      int rocketLvlOnePoint, int climbPoint, int ballLvlOnePoint, int ballLvlTwoPoint*/) {
+  public FourBarCommand(int fourBarSetPoint) {
     // Use requires() here to declare subsystem dependencies
     requires(fourBar);
-    requires(wrist);
     leftBarEncoder = fourBar.getLeftBarEncoder();
     rightBarEncoder = fourBar.getRightBarEncoder();
   }
@@ -23,10 +17,7 @@ public class FourBarCommand extends CommandBase {
   protected void initialize() {
     // send pid to correct motors
     fourBar.setBothFourBarMotor(0, 0);
-    fourBar.resetEncoders();
-    buttonReleased = true;
-    fourBarStart = false;
-
+    //fourBar.resetEncoders();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -34,8 +25,8 @@ public class FourBarCommand extends CommandBase {
   protected void execute() {
     fourBar.setFourBarSetPoint(fourBarSetPoint);
     fourBar.setBothFourBarMotor(fourBar.getFourBarPIDOutput());
-
   }
+
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
