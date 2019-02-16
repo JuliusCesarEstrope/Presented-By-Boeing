@@ -66,6 +66,9 @@ public class Constants {
   /** BEGIN PID CONSTANTS**/
   //Drive PID
   public static double[] driveRotationPIDValues = { 0.1, 0, 0, 0 };
+  public static double[] rightEncoderPIDValues = {0,0,0,0};
+  public static double[] leftEncoderPIDValues = {0,0,0,0};
+
 
   //FourBar PID
   public static final double[] fourBarPIDValues = {0.1, 0.1, 0.01, 0};
@@ -91,15 +94,8 @@ public class Constants {
   public static final int setClimbPoint = 10;
   public static final int setBallLvlOnePoint = 11;
   public static final int setBallLvlTwoPoint = 12;
-<<<<<<< HEAD
-  
-  //Wrist Encoders
-  public static final int[] leftWristEncoder = {6, 7};
-  public static final int[] rightWristEncoder = {8, 9};
-=======
   public static final int setStartPoint = 13;
 
->>>>>>> master
   
   //Wrist Constants
   public static int wristButton = 3;
@@ -120,15 +116,8 @@ public class Constants {
   public static double frontSensorToBackSensor = 7;
   public static double leftSensorToBackSensor = 3.5;
   public static double rightSensorToBackSensor = 3.5;
-<<<<<<< HEAD
   public static double leftSensorToCenterOfRobot = 1;
   public static double frontSensorToCenterOfRobot = 3.5;
-
-
-}
-=======
-  public static double rightSensorToCenterSensor = 1;
-  public static double leftSensorToCenterSensor = 1;
 
   //Auton Constants
   public static final double level2Length = 48;
@@ -160,4 +149,3 @@ public class Constants {
   public static final double setpointToClose = 40.5;
   /** END OTHER CONSTANTS**/
 }
->>>>>>> master

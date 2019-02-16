@@ -10,7 +10,7 @@ public class Drive4Distance extends CommandBase {
 	Timer timer;
 	Timer tarTimer;
   
-  public Drive4Distance() {
+  public Drive4Distance(double distanceToTravel) {
     requires(drive);
 		timer = new Timer();
 		tarTimer = new Timer();
@@ -21,11 +21,11 @@ public class Drive4Distance extends CommandBase {
   @Override
   protected void initialize() {
     
-		RobotLog.putMessage("Running Drive4Distance: " + distanceToTravel);
+		//RobotLog.putMessage("Running Drive4Distance: " + distanceToTravel);
 		
 		distance = distanceToTravel * Constants.ticksToInches;
 		drive.setBoth(0);
-		drive.resetBothEncoders();
+		drive.resetEncoder();
 		drive.resetGyro();
 		timer.start();
 		tarTimer.start();
@@ -33,30 +33,51 @@ public class Drive4Distance extends CommandBase {
 		pLeft = 0;
 		pRight = 0;
 
-		drive.enablePID("driveDistance");
-		drive.setRotatePoint(0);
-		drive.setDistanceSetpoint(distance);
-  }
+    drive.enableGyroPID();
+    drive.enableleftEncoderControllerPID();
+    drive.enablerightEncoderPIDController();
+    drive.setGyroSetpoint(0);
+    drive.setrightEncoderPIDController(distanceToTravel);
+    drive.setleftEncoderPIDController(distanceToTravel);
+    }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    pLeft = drive.getLeftEncoderControllerPIDOutput();
+		pRight = frc.robot.MathUtil.setLimits(drive.getRightEncoderControllerPIDOutput() - drive.getGyroPIDOutput(), -1, 1);
+		drive.setBoth(pLeft * 0.6, pRight * 0.6);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    if (drive.distanceOnTarget()) {
+			return tarTimer.hasPeriodPassed(0.5);
+		} else {
+			tarTimer.reset();
+			return timer.hasPeriodPassed(2);
+		} 
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+
+		//RobotLog.putMessage("Finished Drive4Distance: " + distanceToTravel);
+		//RobotLog.putMessage("Distance traveled: " + leftEndDistance + ", " + rightEndDistance);
+		drive.setBoth(0);
+    drive.disableLeftEncoderPIDController();
+    drive.disableRightEncoderPIDController();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    //RobotLog.putMessage("Interrupted Drive4Distance: " + distanceToTravel);
+		drive.setBoth(0);
+		drive.disableLeftEncoderPIDController();
+    drive.disableRightEncoderPIDController();
   }
 }

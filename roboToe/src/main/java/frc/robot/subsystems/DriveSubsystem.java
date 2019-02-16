@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Constants;
 import frc.robot.commands.TankDrive;
 
 public class DriveSubsystem extends Subsystem {
@@ -26,7 +26,9 @@ public class DriveSubsystem extends Subsystem {
   static DigitalInput backSensor;
   static Encoder enablePID;
   private static PIDController gyroPID;
-  private static PIDOutput gyroPIDOutput;
+  private static PIDController leftEncoderPIDController;
+  private static PIDController rightEncoderPIDController;
+  private static PIDOutput gyroPIDOutput, rightEncoderControllerPidOutput, leftEncoderControllerPidOutput; 
 
   public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int encoderPortLeft[], int encoderPortRight[],int frontSensor, int rightSensor, 
       int backSensor, int leftSensor, int[] driveEncoderPortLeft, int[] driveEncoderPortRight, double circumferanceOfWheels, double ticksOfEncoder){
@@ -51,7 +53,11 @@ public class DriveSubsystem extends Subsystem {
     talonRight = new WPI_TalonSRX(motorPortsRight[0]);
       
     encoderLeft.setDistancePerPulse(circumferanceOfWheels/ticksOfEncoder);
-        
+
+    gyroPID = new PIDController(Constants.driveRotationPIDValues[0], Constants.driveRotationPIDValues[1], Constants.driveRotationPIDValues[2], gyroDrive, gyroPIDOutput);
+    leftEncoderPIDController = new PIDController(Constants.rightEncoderPIDValues[0], Constants.rightEncoderPIDValues[1], Constants.rightEncoderPIDValues[2], gyroDrive, leftEncoderControllerPidOutput);
+    rightEncoderPIDController = new PIDController(Constants.leftEncoderPIDValues[0], Constants.leftEncoderPIDValues[1], Constants.leftEncoderPIDValues[2], gyroDrive, rightEncoderControllerPidOutput);
+
   }
     
    public void resetGyro(){
@@ -62,17 +68,63 @@ public class DriveSubsystem extends Subsystem {
      gyroPID.setPID(p, i, d);
    }
 
+   public void enableGyroPID(){
+      gyroPID.enable();
+   }
+
+   public void enableleftEncoderControllerPID(){
+    gyroPID.enable();
+   }
+
+   public void enablerightEncoderPIDController(){
+   gyroPID.enable();
+   }
+
+
    public void setGyroSetpoint(double setpoint){
      gyroPID.setSetpoint(setpoint);
+  }
+
+  public void setleftEncoderPIDController(double setpoint){
+    leftEncoderPIDController.setSetpoint(setpoint);
+  }
+
+  public void setrightEncoderPIDController(double setpoint){
+    rightEncoderPIDController.setSetpoint(setpoint);
   }
 
   public boolean gyroPIDOnSetpoint(){
     return gyroPID.onTarget();
   }
+  
+  public boolean distanceOnTarget(){
+    return rightEncoderPIDController.onTarget() || leftEncoderPIDController.onTarget();
+  }
 
   public double getGyroPIDOutput(){
     return gyroPID.get();
   }
+
+  public double getRightEncoderControllerPIDOutput(){
+    return rightEncoderPIDController.get();
+  }
+
+  public double getLeftEncoderControllerPIDOutput(){
+    return leftEncoderPIDController.get();
+  }
+
+  public void disableLeftEncoderPIDController(){
+    leftEncoderPIDController.disable();
+  }
+  
+  public void disableRightEncoderPIDController(){
+    rightEncoderPIDController.disable();
+  }
+
+  public void disableGyroPID(){
+    gyroPID.disable();
+  }
+
 
   public void setLeft(double speed){
     talonLeft.set(ControlMode.PercentOutput, Math.max(Math.min(speed, -1), 1));

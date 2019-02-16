@@ -2,8 +2,8 @@ package frc.robot.commands;
 
 public class TurnAngle extends CommandBase {
   public double angle;
-	private double speed;
- 
+
+
 	public TurnAngle(double angle) {
 		requires(drive);
 		this.angle = angle;
