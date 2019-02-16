@@ -1,37 +1,40 @@
 package frc.robot.commands;
 
+import frc.robot.utilities.RobotLog;
+
 public class ElevatorHorizontalCommand extends CommandBase {
   int tapeHit;
-  
+
   public ElevatorHorizontalCommand() {
     requires(elevatorHorizontal);
     requires(drive);
   }
 
   protected void initialize() {
+    RobotLog.putMessage("Running ElevatorHorizontalCommand");
     drive.setBoth(0, 0);
   }
 
   protected void execute() {
-    if(!elevatorHorizontal.getfastSlowStopSensor()){
+    if (!elevatorHorizontal.getfastSlowStopSensor()) {
       elevatorHorizontal.setXElevatorMotors(0.7);
     }
-    
-    if(elevatorHorizontal.getfastSlowStopSensor()){
+
+    if (elevatorHorizontal.getfastSlowStopSensor()) {
       tapeHit++;
     }
 
-    if (tapeHit==0){
+    if (tapeHit == 0) {
       elevatorHorizontal.setXElevatorMotors(.6);
 
-    } else if (tapeHit==1){
+    } else if (tapeHit == 1) {
       elevatorHorizontal.setXElevatorMotors(.4);
 
-    } else if (tapeHit==2){
+    } else if (tapeHit == 2) {
       elevatorHorizontal.setXElevatorMotors(.2);
       drive.setBoth(.4, .4);
 
-    } else if (tapeHit==3){
+    } else if (tapeHit == 3) {
       elevatorHorizontal.setXElevatorMotors(0);
 
     }

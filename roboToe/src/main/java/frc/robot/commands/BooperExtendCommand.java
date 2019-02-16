@@ -1,25 +1,29 @@
 package frc.robot.commands;
+
+import frc.robot.utilities.RobotLog;
+
 public class BooperExtendCommand extends CommandBase {
   public BooperExtendCommand() {
     requires(booper);
   }
-  @Override
+
   protected void initialize() {
+    RobotLog.putMessage("Running BooperExtendCommand");
     booper.setBooperForward();
 
   }
-  @Override
+
   protected void execute() {
-    
+
   }
-  @Override
+
   protected boolean isFinished() {
     return true;
   }
-  @Override
+
   protected void end() {
   }
-  @Override
+
   protected void interrupted() {
   }
 }

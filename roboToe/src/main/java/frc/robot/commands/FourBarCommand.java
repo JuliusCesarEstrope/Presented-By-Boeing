@@ -1,5 +1,6 @@
-
 package frc.robot.commands;
+
+import frc.robot.utilities.RobotLog;
 
 public class FourBarCommand extends CommandBase {
   boolean buttonReleased, fourBarStart, floorGather, hatchLvlTwo, rocketLvlTwo, rocketLvlOne, climb, ballLvlOne,
@@ -9,7 +10,6 @@ public class FourBarCommand extends CommandBase {
       climbPoint = 10, ballLvlOnePoint = 11, ballLvlTwoPoint = 12, wristDownSetPoint = 70;
 
   public FourBarCommand() {
-    // Use requires() here to declare subsystem dependencies
     requires(fourBar);
     requires(wrist);
     leftBarEncoder = fourBar.getLeftBarEncoder();
@@ -17,9 +17,8 @@ public class FourBarCommand extends CommandBase {
 
   }
 
-  // Called just before this Command runs the first time
-  @Override
   protected void initialize() {
+    RobotLog.putMessage("Running FourBarCommand");
     // send pid to correct motors
     fourBar.setBothFourBarMotor(0, 0);
     fourBar.resetEncoders();
@@ -28,8 +27,6 @@ public class FourBarCommand extends CommandBase {
 
   }
 
-  // Called repeatedly when this Command is scheduled to run
-  @Override
   protected void execute() {
 
     // Eight positions: starting/lvl 1 hatch, floor gather, hatch lvl 2, rocket lvl
@@ -65,8 +62,8 @@ public class FourBarCommand extends CommandBase {
       fourBar.setHatchLvlTwoPoint(hatchLvlTwoPoint);
       fourBar.setBothFourBarMotor(0.5, 0.5);
     }
-    
-    //floor gather functionality
+
+    // floor gather functionality
     if (floorGather) {
       fourBar.setFloorGatherPoint(floorGatherPoint);
       fourBar.setBothFourBarMotor(0.5, 0.5);
@@ -156,69 +153,62 @@ public class FourBarCommand extends CommandBase {
     if (oi.getBallLvlOneButton() && buttonReleased) {
       ballLvlOne = !ballLvlOne;
       buttonReleased = !oi.getBallLvlOneButton();
-      
-    if (climb) {
-      fourBar.setClimbPoint(climbPoint);
-      fourBar.setBothFourBarMotor(0.5, 0.5);
-    }
 
-    // ball level 1 button
-    if (oi.getBallLvlOneButton() && buttonReleased) {
-      ballLvlOne = !ballLvlOne;
-      buttonReleased = !oi.getBallLvlOneButton();
+      if (climb) {
+        fourBar.setClimbPoint(climbPoint);
+        fourBar.setBothFourBarMotor(0.5, 0.5);
+      }
 
-    }
+      // ball level 1 button
+      if (oi.getBallLvlOneButton() && buttonReleased) {
+        ballLvlOne = !ballLvlOne;
+        buttonReleased = !oi.getBallLvlOneButton();
 
-    if (!oi.getBallLvlOneButton()) {
-      buttonReleased = true;
-    }
+      }
 
-    // ball level two button
-    if (ballLvlTwo) {
-      fourBar.setBallLvlTwoPoint(ballLvlTwoPoint);
-      fourBar.setBothFourBarMotor(0.5, 0.5);
-    }
+      if (!oi.getBallLvlOneButton()) {
+        buttonReleased = true;
+      }
 
-    if (ballLvlOne) {
-      fourBar.setBallLvlOnePoint(ballLvlOnePoint);
-      fourBar.setBothFourBarMotor(0.5, 0.5);
-      wrist.setWristDownSetpoint(wristDownSetPoint);
-      wrist.setBothWristMotor(0.5, 0.5);
-    }
+      // ball level two button
+      if (ballLvlTwo) {
+        fourBar.setBallLvlTwoPoint(ballLvlTwoPoint);
+        fourBar.setBothFourBarMotor(0.5, 0.5);
+      }
 
-    // ball level 2 button
-    if (oi.getBallLvlTwoButton() && buttonReleased) {
-      ballLvlTwo = !ballLvlTwo;
-      buttonReleased = !oi.getBallLvlTwoButton();
-    }
+      if (ballLvlOne) {
+        fourBar.setBallLvlOnePoint(ballLvlOnePoint);
+        fourBar.setBothFourBarMotor(0.5, 0.5);
+        wrist.setWristDownSetpoint(wristDownSetPoint);
+        wrist.setBothWristMotor(0.5, 0.5);
+      }
 
-    if (!oi.getBallLvlTwoButton()) {
-      buttonReleased = true;
-    }
+      // ball level 2 button
+      if (oi.getBallLvlTwoButton() && buttonReleased) {
+        ballLvlTwo = !ballLvlTwo;
+        buttonReleased = !oi.getBallLvlTwoButton();
+      }
 
-    if (ballLvlTwo) {
-      fourBar.setBallLvlTwoPoint(ballLvlTwoPoint);
-      fourBar.setBothFourBarMotor(0.5, 0.5);
-      wrist.setWristDownSetpoint(wristDownSetPoint);
-      wrist.setBothWristMotor(0.5, 0.5);
+      if (!oi.getBallLvlTwoButton()) {
+        buttonReleased = true;
+      }
+
+      if (ballLvlTwo) {
+        fourBar.setBallLvlTwoPoint(ballLvlTwoPoint);
+        fourBar.setBothFourBarMotor(0.5, 0.5);
+        wrist.setWristDownSetpoint(wristDownSetPoint);
+        wrist.setBothWristMotor(0.5, 0.5);
+      }
     }
   }
-  }
 
-  // Make this return true when this Command no longer needs to run execute()
-  @Override
   protected boolean isFinished() {
     return false;
   }
 
-  // Called once after isFinished returns true
-  @Override
   protected void end() {
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
   protected void interrupted() {
   }
 }

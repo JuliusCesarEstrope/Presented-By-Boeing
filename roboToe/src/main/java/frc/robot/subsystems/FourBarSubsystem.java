@@ -8,22 +8,23 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.utilities.RobotLog;
 
 public class FourBarSubsystem extends Subsystem {
 
   static TalonSRX leftFourBarMotor, rightFourBarMotor;
   static Encoder leftBarEncoder, rightBarEncoder;
-    static int hatchLvlTwoPoint, rocketLvlTwoPoint, rocketLvlOnePoint, ballLvlTwoPoint, ballLvlOnePoint;
+  static int hatchLvlTwoPoint, rocketLvlTwoPoint, rocketLvlOnePoint, ballLvlTwoPoint, ballLvlOnePoint;
 
   private static PIDController fourBarPID;
   private static PIDOutput pidOutput;
-  //private static int startingPoint, floorGatherPoint, highPoint;
+  // private static int startingPoint, floorGatherPoint, highPoint;
 
   public FourBarSubsystem(int leftFourBarMotorPort, int rightFourBarMotorPort, int[] leftBarEncoderPort,
       int[] rightBarEncoderPort, int gyroPort, double[] fourBarPIDValues, int setStartPoint, int setFloorGatherPoint,
       int setHatchLvlTwoPoint, int setRocketLvlTwoPoint, int setRocketLvlOnePoint, int setClimbPoint,
       int setBallLvlOnePoint, int setBallLvlTwoPoint) {
-        
+
     leftFourBarMotor = new WPI_TalonSRX(leftFourBarMotorPort);
     rightFourBarMotor = new WPI_TalonSRX(rightFourBarMotorPort);
 
@@ -37,6 +38,8 @@ public class FourBarSubsystem extends Subsystem {
     fourBarPID = new PIDController(fourBarPIDValues[0], fourBarPIDValues[1], fourBarPIDValues[2], leftBarEncoder,
         pidOutput);
     fourBarPID.setEnabled(true);
+
+    RobotLog.putMessage("Running FourBarSubsystem");
   }
 
   // set motors
@@ -53,11 +56,9 @@ public class FourBarSubsystem extends Subsystem {
     setRightFourBarMotor(rightFourBarSpeed);
   }
 
-
-
   public void resetAngle() {
   }
-  
+
   // encoder
   public int getLeftBarEncoder() {
     return leftBarEncoder.get();
@@ -73,7 +74,7 @@ public class FourBarSubsystem extends Subsystem {
   }
 
   /** PID RELATED METHODS **/
-  public  void setFourBarPIDValues(double p, double i, double d) {
+  public void setFourBarPIDValues(double p, double i, double d) {
     fourBarPID.setPID(p, i, d);
   }
 
@@ -100,7 +101,7 @@ public class FourBarSubsystem extends Subsystem {
   public void setRocketLvlOnePoint(int rocketLvlOnePoint) {
     fourBarPID.setSetpoint(rocketLvlOnePoint);
   }
-  
+
   public void setClimbPoint(int climbPoint) {
     fourBarPID.setSetpoint(climbPoint);
   }
@@ -113,9 +114,7 @@ public class FourBarSubsystem extends Subsystem {
     fourBarPID.setSetpoint(ballLvlTwoPoint);
   }
 
-  @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+
   }
 }

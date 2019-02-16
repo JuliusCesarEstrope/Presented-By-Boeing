@@ -87,15 +87,8 @@ public class Constants {
   public static final int setClimbPoint = 10;
   public static final int setBallLvlOnePoint = 11;
   public static final int setBallLvlTwoPoint = 12;
-<<<<<<< HEAD
-  
-  //Wrist Encoders
-  public static final int[] leftWristEncoder = {6, 7};
-  public static final int[] rightWristEncoder = {8, 9};
-=======
   public static final int setStartPoint = 13;
 
->>>>>>> master
   
   //Wrist Constants
   public static int wristButton = 3;
@@ -116,13 +109,6 @@ public class Constants {
   public static double frontSensorToBackSensor = 7;
   public static double leftSensorToBackSensor = 3.5;
   public static double rightSensorToBackSensor = 3.5;
-<<<<<<< HEAD
-  public static double leftSensorToCenterOfRobot = 1;
-  public static double frontSensorToCenterOfRobot = 3.5;
-
-
-}
-=======
   public static double rightSensorToCenterSensor = 1;
   public static double leftSensorToCenterSensor = 1;
 
@@ -156,4 +142,3 @@ public class Constants {
   public static final double setpointToClose = 40.5;
   /** END OTHER CONSTANTS**/
 }
->>>>>>> master

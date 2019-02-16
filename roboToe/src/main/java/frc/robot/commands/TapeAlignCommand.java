@@ -1,7 +1,7 @@
 package frc.robot.commands;
 
 import frc.robot.Constants;
-import frc.robot.Utilities;
+import frc.robot.utilities.RobotLog;
 
 public class TapeAlignCommand extends CommandBase {
 
@@ -10,16 +10,14 @@ public class TapeAlignCommand extends CommandBase {
   private double start, end;
 
   private double startDistance, newDistanceToMove;
-  
 
   public TapeAlignCommand() {
 
     requires(drive);
   }
 
-  // Called just before this Command runs the first time
-  @Override
   protected void initialize() { 
+    RobotLog.putMessage("Running TapeAlignCommand");
 <<<<<<< HEAD
     startDistance = drive.getWheelDistanceRight();
 =======
@@ -31,8 +29,6 @@ public class TapeAlignCommand extends CommandBase {
     touchSide = false;
   }
 
-  // Called repeatedly when this Command is scheduled to run
-  @Override
   protected void execute() {
   if (!drive.getLeftSensor()&&!drive.getFrontSensor()&&!drive.getRightSensor()&&!drive.getBackSensor()){
     drive.setBoth(0.3, 0.3);
@@ -77,50 +73,44 @@ public class TapeAlignCommand extends CommandBase {
 
       }
     }
-  } 
-
-=======
-    if(drive.getLeftSensor()&&drive.getFrontSensor()&&drive.getRightSensor()){
-        endCommand = true;
-    } 
-    else if (drive.getLeftSensor()&&drive.getFrontSensor()&&!drive.getRightSensor()) { 
-      drive.setBoth(0.1, 0);
-    } 
-    else if (!drive.getLeftSensor()&&drive.getFrontSensor()&&drive.getRightSensor()) { 
-      drive.setBoth(0, 0.1);
-    } 
-    else if (!drive.getLeftSensor()&&!drive.getFrontSensor()&&drive.getRightSensor()) { 
-      drive.setBoth(.1, 0);
-    } 
-    else if (drive.getLeftSensor()&&!drive.getFrontSensor()&&!drive.getRightSensor()) { 
-      drive.setBoth(0, .1);
-    } 
-    else if (!drive.getLeftSensor()&&!drive.getFrontSensor()&&!drive.getRightSensor()) { 
-      endCommand = true;
-    }
-    else if (!drive.getLeftSensor()&&drive.getFrontSensor()&&!drive.getRightSensor()) { 
-      drive.setBoth(.1, .1);
-    } 
   }
->>>>>>> master
-  // Make this return true when this Command no longer needs to run execute()
-  @Override
+
+  =======if(drive.getLeftSensor()&&drive.getFrontSensor()&&drive.getRightSensor())
+
+  {
+    endCommand = true;
+  }else if(drive.getLeftSensor()&&drive.getFrontSensor()&&!drive.getRightSensor())
+  {
+    drive.setBoth(0.1, 0);
+  }else if(!drive.getLeftSensor()&&drive.getFrontSensor()&&drive.getRightSensor())
+  {
+    drive.setBoth(0, 0.1);
+  }else if(!drive.getLeftSensor()&&!drive.getFrontSensor()&&drive.getRightSensor())
+  {
+    drive.setBoth(.1, 0);
+  }else if(drive.getLeftSensor()&&!drive.getFrontSensor()&&!drive.getRightSensor())
+  {
+    drive.setBoth(0, .1);
+  }else if(!drive.getLeftSensor()&&!drive.getFrontSensor()&&!drive.getRightSensor())
+  {
+    endCommand = true;
+  }else if(!drive.getLeftSensor()&&drive.getFrontSensor()&&!drive.getRightSensor())
+  {
+    drive.setBoth(.1, .1);
+  }
+  }>>>>>>>master
+
   protected boolean isFinished() {
     return endCommand;
   }
 
-  // Called once after isFinished returns true
-  @Override
   protected void end() {
     drive.setBoth(0, 0);
-   
+
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
   protected void interrupted() {
     drive.setBoth(0, 0);
-    
+
   }
 }

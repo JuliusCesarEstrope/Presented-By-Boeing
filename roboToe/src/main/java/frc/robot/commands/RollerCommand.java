@@ -1,32 +1,34 @@
 package frc.robot.commands;
-public class Roller extends CommandBase {
-  public Roller() {
+
+import frc.robot.utilities.RobotLog;
+
+public class RollerCommand extends CommandBase {
+  public RollerCommand() {
     requires(roller);
   }
-  @Override
+
   protected void initialize() {
+    RobotLog.putMessage("Running RollerCommand");
     roller.setRollerMotor(0);
   }
-  @Override
+
   protected void execute() {
-    if(oi.getRollerButtonIn()){
+    if (oi.getRollerButtonIn()) {
       roller.setRollerMotor(-0.70);
-    }
-    else if(oi.getRollerButtonOut()) {
+    } else if (oi.getRollerButtonOut()) {
       roller.setRollerMotor(0.70);
-    }
-    else{
+    } else {
       roller.setRollerMotor(0);
     }
   }
-  @Override
+
   protected boolean isFinished() {
     return false;
   }
-  @Override
+
   protected void end() {
   }
-  @Override
+
   protected void interrupted() {
     roller.setRollerMotor(0);
   }
