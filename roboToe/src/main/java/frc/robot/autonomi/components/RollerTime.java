@@ -1,9 +1,10 @@
-package frc.robot.commands;
+package frc.robot.autonomi.components;
 import edu.wpi.first.wpilibj.Timer;
+import frc.robot.commands.CommandBase;
 public class RollerTime extends CommandBase {
   Timer timer;
   double time;
-  public RollerTime(double speed, double time) {
+  public RollerTime(double time){
     requires(roller);
     timer = new Timer();
     this.time = time;
@@ -19,7 +20,7 @@ public class RollerTime extends CommandBase {
   }
   @Override
   protected boolean isFinished() {
-    return timer.get() > time;
+    return timer.get() >= time;
   }
   @Override
   protected void end() {
