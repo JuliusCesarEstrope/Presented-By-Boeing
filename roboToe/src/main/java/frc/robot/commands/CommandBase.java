@@ -24,13 +24,14 @@ public abstract class CommandBase extends Command {
   public static RollerSubsystem roller;
   public static ElevatorVerticalSubsystem elevatorVertical;
   public static ElevatorHorizontalSubsystem elevatorHorizontal;
+  public static double newDistanceToMove;
+  public static double turnAngle;
 
   public static void init() {
     RobotLog.putMessage("Running CommandBase");
     oi = new OI();
-    drive = new DriveSubsystem(Constants.motorPortsLeft, Constants.motorPortsRight, Constants.gyroPort,
-        Constants.driveEncoderPortLeft, Constants.driveEncoderPortRight, Constants.leftSensor, Constants.frontSensor,
-        Constants.rightSensor, Constants.backSensor, Constants.circumferenceOfWheels, Constants.ticksOfEncoder);
+    drive = new DriveSubsystem(Constants.motorPortsLeft, Constants.motorPortsRight, Constants.gyroPort, Constants.driveEncoderPortLeft, Constants.driveEncoderPortRight, Constants.frontSensor, Constants.rightSensor, 
+    Constants.backSensor, Constants.leftSensor, Constants.driveEncoderPortLeft, Constants.driveEncoderPortRight, Constants.circumferenceOfWheels, Constants.ticksOfEncoder);
     fourBar = new FourBarSubsystem(Constants.leftFourBarMotorPort, Constants.rightFourBarMotorPort,
         Constants.rightBarEncoderPort, Constants.leftBarEncoderPort, Constants.gyroPort, Constants.fourBarPIDValues);
     roller = new RollerSubsystem(Constants.rollerMotor);

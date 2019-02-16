@@ -58,11 +58,15 @@ public class Constants {
   
   /** END DIGITAL INPUTS**/
 
-  
+ 
+
   /** BEGIN PID CONSTANTS**/
   //Drive PID
 
   public static double[] driveRotationPIDValues = { 0.1, 0, 0, 0 };
+  public static double[] rightEncoderPIDValues = {0,0,0,0};
+  public static double[] leftEncoderPIDValues = {0,0,0,0};
+
 
   //FourBar PID
   public static final double[] fourBarPIDValues = {0.1, 0.1, 0.01, 0};
@@ -76,7 +80,15 @@ public class Constants {
   //Drive Wheel Constants
   public static double diameterOfWheels = 7.8025;
   public static double circumferenceOfWheels = diameterOfWheels*Math.PI;
+<<<<<<< HEAD
  
+=======
+
+   //Encoder tick to Inches
+   public static double ticksToInches = (ticksOfEncoder/360) *circumferenceOfWheels;
+   
+  //FourBar Constants
+>>>>>>> Josh-Frazier
   public static final int setFloorGatherPoint = 6;
   public static final int setHatchLvlTwoPoint = 7;
   public static final int setRocketLvlTwoPoint = 8;
@@ -84,11 +96,14 @@ public class Constants {
   public static final int setClimbPoint = 10;
   public static final int setBallLvlOnePoint = 11;
   public static final int setBallLvlTwoPoint = 12;
+<<<<<<< HEAD
 
   //Wrist stuff
   public static final int[] leftWristEncoder = {6, 7};
   public static final int[] rightWristEncoder = {8, 9};
   public static final int[] wristPIDValues = {0, 0, 0, 0};
+=======
+>>>>>>> Josh-Frazier
   public static final int setStartPoint = 13;
 
   
@@ -114,8 +129,13 @@ public class Constants {
   public static double frontSensorToBackSensor = 7;
   public static double leftSensorToBackSensor = 3.5;
   public static double rightSensorToBackSensor = 3.5;
+<<<<<<< HEAD
   public static double rightSensorToCenterSensor = 1;
   public static double leftSensorToCenterSensor = 1;
+=======
+  public static double leftSensorToCenterOfRobot = 1;
+  public static double frontSensorToCenterOfRobot = 3.5;
+>>>>>>> Josh-Frazier
 
   //Auton Constants
   public static final double level2Length = 48;
