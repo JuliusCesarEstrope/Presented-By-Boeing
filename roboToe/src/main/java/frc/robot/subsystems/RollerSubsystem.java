@@ -3,7 +3,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import frc.robot.commands.Roller;
+import frc.robot.commands.RollerCommand;
 public class RollerSubsystem extends Subsystem {
   static TalonSRX rollerMotor;
 public RollerSubsystem(int rollerMotorPort){
@@ -15,6 +15,6 @@ public void setRollerMotor(double Speed){
 }
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new Roller());
+    setDefaultCommand(new RollerCommand());
   }
 }

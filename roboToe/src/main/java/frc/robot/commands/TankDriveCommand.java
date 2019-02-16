@@ -1,7 +1,7 @@
 package frc.robot.commands;
 
-public class TankDrive extends CommandBase {
-  public TankDrive() {
+public class TankDriveCommand extends CommandBase {
+  public TankDriveCommand() {
     requires(drive);
   }
 

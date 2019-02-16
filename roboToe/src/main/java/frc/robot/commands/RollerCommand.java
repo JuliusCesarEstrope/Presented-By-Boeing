@@ -1,6 +1,6 @@
 package frc.robot.commands;
-public class Roller extends CommandBase {
-  public Roller() {
+public class RollerCommand extends CommandBase {
+  public RollerCommand() {
     requires(roller);
   }
   @Override

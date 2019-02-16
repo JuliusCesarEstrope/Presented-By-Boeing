@@ -5,7 +5,7 @@ import frc.robot.Constants;
 import frc.robot.OI;
 
 import frc.robot.subsystems.BooperSubsystem;
-import frc.robot.subsystems.Camera;
+import frc.robot.subsystems.CameraSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.FourBarSubsystem;

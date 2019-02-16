@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.commands.TankDrive;
+import frc.robot.commands.TankDriveCommand;
 
 public class DriveSubsystem extends Subsystem {
   TalonSRX talonLeft, talonRight;
@@ -98,7 +98,7 @@ public void resetGyro(){
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new TankDrive());
+    setDefaultCommand(new TankDriveCommand());
   }
 
 // gives Gyro degree

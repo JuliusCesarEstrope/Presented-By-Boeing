@@ -1,12 +1,12 @@
 package frc.robot.autonomi;
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.commands.CommandBase;
-public class DriveForTime extends CommandBase {
+public class DriveForTimeCommand extends CommandBase {
   Timer timer;
   double time;
   double leftSpeed;
   double rightSpeed;
-  public DriveForTime(double time, double leftSpeed, double rightSpeed) {
+  public DriveForTimeCommand(double time, double leftSpeed, double rightSpeed) {
     requires(drive);
     timer = new Timer();
     this.time = time;

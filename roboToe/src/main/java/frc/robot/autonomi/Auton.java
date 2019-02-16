@@ -1,9 +1,8 @@
 
 package frc.robot.autonomi;
-
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Constants;
-import frc.robot.commands.TurnAngle;
+import frc.robot.commands.TurnAngleCommand;
 
 public class Auton extends CommandGroup{
 
@@ -19,7 +18,7 @@ public class Auton extends CommandGroup{
     if(onLevel2){
 
       //addSequential(new Drive4Distance(Constants.level2Length));
-      addSequential(new DriveForTime(0.25, -0.5, -0.5));
+      addSequential(new DriveForTimeCommand(0.25, -0.5, -0.5));
 
     }
 
@@ -32,17 +31,17 @@ public class Auton extends CommandGroup{
         if(distanceToTarget == 1)
         angleModifier = -1;
 
-        addSequential(new TurnAngle(Constants.midToMidAngle * angleModifier));
+        addSequential(new TurnAngleCommand(Constants.midToMidAngle * angleModifier));
         //addSequential(new Drive4Distance(Constants.midToMidDistance));
-        addSequential(new TurnAngle(-Constants.midToMidAngle * angleModifier));
+        addSequential(new TurnAngleCommand(-Constants.midToMidAngle * angleModifier));
 
       } else{
 
-        addSequential(new TurnAngle(Constants.midToSideAngle * angleModifier));
+        addSequential(new TurnAngleCommand(Constants.midToSideAngle * angleModifier));
         //addSequential(new Drive4Distance(Constants.midToSideDistance));
-        addSequential(new TurnAngle(-Constants.midToSideAngle * angleModifier));
+        addSequential(new TurnAngleCommand(-Constants.midToSideAngle * angleModifier));
         //addSequential(new Drive4Distance(distanceToTarget));
-        addSequential(new TurnAngle(90 * angleModifier));
+        addSequential(new TurnAngleCommand(90 * angleModifier));
 
       }
 
@@ -55,15 +54,15 @@ public class Auton extends CommandGroup{
 
         if(distanceToTarget == 0){
 
-          addSequential(new TurnAngle(Constants.sideToCloseMidAngle * angleModifier));
+          addSequential(new TurnAngleCommand(Constants.sideToCloseMidAngle * angleModifier));
           //addSequential(new Drive4Distance(Constants.sideToCloseMidDistance));
-          addSequential(new TurnAngle(-Constants.sideToCloseMidAngle * angleModifier));
+          addSequential(new TurnAngleCommand(-Constants.sideToCloseMidAngle * angleModifier));
 
         } else {
           
-          addSequential(new TurnAngle(Constants.sideToFarMidAngle * angleModifier));
+          addSequential(new TurnAngleCommand(Constants.sideToFarMidAngle * angleModifier));
           //addSequential(new Drive4Distance(Constants.sideToFarMidDistance));
-          addSequential(new TurnAngle(-Constants.sideToFarMidAngle * angleModifier));
+          addSequential(new TurnAngleCommand(-Constants.sideToFarMidAngle * angleModifier));
 
         }
 
@@ -72,28 +71,28 @@ public class Auton extends CommandGroup{
         if(crossField){
 
           angleModifier2 = -1;
-          addSequential(new TurnAngle(Constants.crossAngle * angleModifier));
+          addSequential(new TurnAngleCommand(Constants.crossAngle * angleModifier));
           //addSequential(new Drive4Distance(Constants.crossDistance));
-          addSequential(new TurnAngle(-Constants.crossAngle * angleModifier));
+          addSequential(new TurnAngleCommand(-Constants.crossAngle * angleModifier));
 
         } else {
 
           angleModifier2 = 1;
-          addSequential(new TurnAngle(Constants.sameSideAngle * angleModifier));
+          addSequential(new TurnAngleCommand(Constants.sameSideAngle * angleModifier));
           //addSequential(new Drive4Distance(Constants.sameSidesDistance));
-          addSequential(new TurnAngle(-Constants.sameSideAngle * angleModifier));
+          addSequential(new TurnAngleCommand(-Constants.sameSideAngle * angleModifier));
 
         }
 
         //addSequential(new Drive4Distance(distanceToTarget));
-        addSequential(new TurnAngle(90 * angleModifier * angleModifier2));
+        addSequential(new TurnAngleCommand(90 * angleModifier * angleModifier2));
 
       }
         
     }
 
     //addSequential(new Drive4Distance(Constants.distanceToHatch));
-    addSequential(new BooperAuton());
+    addSequential(new BooperAutonCommand());
 
   }
 

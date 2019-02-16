@@ -1,10 +1,10 @@
 package frc.robot.autonomi;
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.commands.CommandBase;
-public class WaitForTime extends CommandBase {
+public class WaitForTimeCommand extends CommandBase {
   Timer timer;
   double time;
-  public WaitForTime(double time) {
+  public WaitForTimeCommand(double time) {
     timer = new Timer();
     this.time = time;
   }

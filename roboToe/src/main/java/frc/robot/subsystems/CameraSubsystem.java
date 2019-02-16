@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.command.Subsystem;
-public class Camera extends Subsystem {
+public class CameraSubsystem extends Subsystem {
   Thread visionThread;
     public void init(){
         visionThread = new Thread(() -> {
