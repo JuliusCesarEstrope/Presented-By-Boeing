@@ -61,7 +61,8 @@ public class Constants {
   public static final int[] rightWristEncoder = {8, 9};
   /** END DIGITAL INPUTS**/
 
-  
+ 
+
   /** BEGIN PID CONSTANTS**/
   //Drive PID
   public static double[] driveRotationPIDValues = { 0.1, 0, 0, 0 };
@@ -79,6 +80,9 @@ public class Constants {
   public static double diameterOfWheels = 7.8025;
   public static double circumferenceOfWheels = diameterOfWheels*Math.PI;
 
+   //Encoder tick to Inches
+   public static double ticksToInches = (ticksOfEncoder/360) *circumferenceOfWheels;
+   
   //FourBar Constants
   public static final int setFloorGatherPoint = 6;
   public static final int setHatchLvlTwoPoint = 7;
