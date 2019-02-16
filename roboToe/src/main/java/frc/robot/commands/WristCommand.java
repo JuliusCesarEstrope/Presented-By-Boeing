@@ -3,7 +3,10 @@ import frc.robot.Constants;
 
 import frc.robot.utilities.RobotLog;
 
+import frc.robot.utilities.RobotLog;
+
 public class WristCommand extends CommandBase {
+<<<<<<< HEAD
 <<<<<<< HEAD
     boolean buttonReleased;
     int leftWristEncoder;
@@ -23,6 +26,8 @@ public class WristCommand extends CommandBase {
 >>>>>>> John-Schultz
     // Use requires() here to declare subsystem dependencies
 =======
+=======
+>>>>>>> Maggie
   boolean buttonReleased;
   int leftWristEncoder;
   int rightWristEncoder;
@@ -34,11 +39,15 @@ public class WristCommand extends CommandBase {
 
   public WristCommand() {
     RobotLog.putMessage("Running WristCommand");
+<<<<<<< HEAD
+>>>>>>> Maggie
+=======
 >>>>>>> Maggie
     requires(wrist);
 <<<<<<< HEAD
     leftWristEncoder = wrist.getLeftWristEncoder();
     rightWristEncoder = wrist.getRightWristEncoder();
+<<<<<<< HEAD
 =======
     this.wristDistance = wristDistance;
 
@@ -47,10 +56,16 @@ public class WristCommand extends CommandBase {
 
   protected void initialize() {
 <<<<<<< HEAD
+=======
+  }
+
+  protected void initialize() {
+>>>>>>> Maggie
     // Set point
     // Send PID to correct motors
 
     buttonReleased = true;
+<<<<<<< HEAD
 <<<<<<< HEAD
     
     wrist.ResetEncoder();
@@ -75,10 +90,20 @@ public class WristCommand extends CommandBase {
     //wrist.setLeftWristSetpoint(leftWristEncoder);
     //wrist.setRightWristSetpoint(rightWristEncoder);
 >>>>>>> John-Schultz
+=======
+    moveWrist = false;
+
+    wrist.ResetEncoder();
+    wrist.getLeftWristPIDOutput();
+    wrist.getRightWristPIDOutput();
+    // wrist.setLeftWristSetpoint(leftWristEncoder);
+    // wrist.setRightWristSetpoint(rightWristEncoder);
+>>>>>>> Maggie
   }
 
   @Override
   protected void execute() {
+<<<<<<< HEAD
 <<<<<<< HEAD
     // Two Positions (Up, Down)
 
@@ -89,6 +114,15 @@ public class WristCommand extends CommandBase {
 
     else if(leftWristEncoder >= 0 && rightWristEncoder <= 0) {
 =======
+    if (moveWrist && leftWristEncoder <= 0 && rightWristEncoder >= 0) {
+      wrist.setBothWristMotor(-0.70, 0.70);
+    }
+
+    else if (!moveWrist && leftWristEncoder >= 0 && rightWristEncoder <= 0) {
+>>>>>>> Maggie
+=======
+    // Two Positions (Up, Down)
+
     if (moveWrist && leftWristEncoder <= 0 && rightWristEncoder >= 0) {
       wrist.setBothWristMotor(-0.70, 0.70);
     }
@@ -115,6 +149,9 @@ public class WristCommand extends CommandBase {
 
   protected boolean isFinished() {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Maggie
     // if needed to maintain set pont (false) stopping point (true)
     return false;
 =======

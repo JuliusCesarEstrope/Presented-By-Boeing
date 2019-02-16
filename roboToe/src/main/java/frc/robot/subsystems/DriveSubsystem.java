@@ -12,8 +12,11 @@ import edu.wpi.first.wpilibj.Encoder;
 <<<<<<< HEAD
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
+<<<<<<< HEAD
 =======
 >>>>>>> John-Schultz
+=======
+>>>>>>> Maggie
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
 import frc.robot.commands.TankDrive;
@@ -45,7 +48,6 @@ public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort,
   victorsRight = new WPI_VictorSPX[motorPortsRight.length - 1];
 
   for(int i = 0; i < victorsLeft.length; i++)
-<<<<<<< HEAD
     victorsLeft[i] = new WPI_VictorSPX(motorPortsLeft[i+1]); 
   for(int i = 0; i < victorsRight.length; i++)
     victorsRight[i] = new WPI_VictorSPX(motorPortsRight[i+1]);
@@ -74,6 +76,7 @@ public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort,
   public double getGyroPIDOutput(){
     return gyroPID.get();
   }
+<<<<<<< HEAD
 
 =======
     victorsLeft[i] = new WPI_VictorSPX(motorPortsLeft[i]); 
@@ -83,6 +86,8 @@ public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort,
   
   for (int i = 0; i < victorsLeft.length; i++) 
     victorsLeft[i] = new VictorSPX(motorPortsLeft[i]);
+=======
+>>>>>>> Maggie
 
 >>>>>>> John-Schultz
   for (int i = 0; i < victorsRight.length; i++) 

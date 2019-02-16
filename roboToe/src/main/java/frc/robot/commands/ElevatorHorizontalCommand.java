@@ -12,9 +12,13 @@ public class ElevatorHorizontalCommand extends CommandBase {
 
   protected void initialize() {
 <<<<<<< HEAD
+<<<<<<< HEAD
     RobotLog.putMessage("Running ElevatorHorizontalCommand");
 =======
 >>>>>>> John-Schultz
+=======
+    RobotLog.putMessage("Running ElevatorHorizontalCommand");
+>>>>>>> Maggie
     drive.setBoth(0, 0);
   }
 

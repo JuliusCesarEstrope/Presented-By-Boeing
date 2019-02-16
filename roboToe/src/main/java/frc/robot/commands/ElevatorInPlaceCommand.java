@@ -11,9 +11,13 @@ public class ElevatorInPlaceCommand extends CommandBase {
 
   protected void initialize() {
 <<<<<<< HEAD
+<<<<<<< HEAD
     RobotLog.putMessage("Running ElevatorInPlaceCommand");
 =======
 >>>>>>> John-Schultz
+=======
+    RobotLog.putMessage("Running ElevatorInPlaceCommand");
+>>>>>>> Maggie
     drive.setBoth(0, 0);
   }
 

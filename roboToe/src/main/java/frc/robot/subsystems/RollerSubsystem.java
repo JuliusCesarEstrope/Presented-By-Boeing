@@ -5,7 +5,11 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+<<<<<<< HEAD
 import frc.robot.commands.Roller;
+=======
+import frc.robot.commands.RollerCommand;
+>>>>>>> Maggie
 import frc.robot.utilities.RobotLog;
 
 public class RollerSubsystem extends Subsystem {
@@ -22,6 +26,6 @@ public class RollerSubsystem extends Subsystem {
   }
 
   public void initDefaultCommand() {
-    setDefaultCommand(new Roller());
+    setDefaultCommand(new RollerCommand());
   }
 }

@@ -74,6 +74,9 @@ public class ElevatorVerticalSubsystem extends Subsystem {
     leftElevatorEncoderPID.enable();
     rightElevatorEncoderPID.enable();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Maggie
   }
 
   public void setBothElevatorEncoderPIDValues(double p, double i, double d) {
@@ -114,6 +117,7 @@ public class ElevatorVerticalSubsystem extends Subsystem {
   public void initDefaultCommand() {
     setDefaultCommand(new ElevatorSetpointCommand(Constants.defaultElevatorPosition));
   }
+<<<<<<< HEAD
 =======
     }
 
@@ -178,5 +182,7 @@ public class ElevatorVerticalSubsystem extends Subsystem {
       setDefaultCommand(new ElevatorSetpointCommand(Constants.defaultElevatorPosition));
     }
 >>>>>>> John-Schultz
+=======
+>>>>>>> Maggie
 
 }

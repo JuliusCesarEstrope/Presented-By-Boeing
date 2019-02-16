@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import frc.robot.utilities.RobotLog;
+<<<<<<< HEAD
 
 public class FourBarCommand extends CommandBase {
   int leftBarEncoder, rightBarEncoder; //change
@@ -13,6 +14,17 @@ public class FourBarCommand extends CommandBase {
   public FourBarCommand(int fourBarSetPoint) {
     // Use requires() here to declare subsystem dependencies
 =======
+  public FourBarCommand() {
+>>>>>>> Maggie
+=======
+
+public class FourBarCommand extends CommandBase {
+  boolean buttonReleased, fourBarStart, floorGather, hatchLvlTwo, rocketLvlTwo, rocketLvlOne, climb, ballLvlOne,
+      ballLvlTwo;
+  int leftBarEncoder, rightBarEncoder;
+  int startPoint = 5, floorGatherPoint = 6, hatchLvlTwoPoint = 7, rocketLvlTwoPoint = 8, rocketLvlOnePoint = 9,
+      climbPoint = 10, ballLvlOnePoint = 11, ballLvlTwoPoint = 12, wristDownSetPoint = 70;
+
   public FourBarCommand() {
 >>>>>>> Maggie
     requires(fourBar);
@@ -160,6 +172,7 @@ public class FourBarCommand extends CommandBase {
     if (oi.getBallLvlOneButton() && buttonReleased) {
       ballLvlOne = !ballLvlOne;
       buttonReleased = !oi.getBallLvlOneButton();
+<<<<<<< HEAD
       
     if (climb) {
       fourBar.setClimbPoint(climbPoint);
@@ -172,6 +185,9 @@ public class FourBarCommand extends CommandBase {
       buttonReleased = !oi.getBallLvlOneButton();
 
 <<<<<<< HEAD
+=======
+
+>>>>>>> Maggie
       if (climb) {
         fourBar.setClimbPoint(climbPoint);
         fourBar.setBothFourBarMotor(0.5, 0.5);
@@ -217,6 +233,7 @@ public class FourBarCommand extends CommandBase {
         wrist.setWristDownSetpoint(wristDownSetPoint);
         wrist.setBothWristMotor(0.5, 0.5);
       }
+<<<<<<< HEAD
     }
 >>>>>>> Maggie
 =======
@@ -265,6 +282,11 @@ public class FourBarCommand extends CommandBase {
   // Make this return true when this Command no longer needs to run execute()
   @Override
 >>>>>>> Emily
+=======
+    }
+  }
+
+>>>>>>> Maggie
   protected boolean isFinished() {
     return false;
   }
