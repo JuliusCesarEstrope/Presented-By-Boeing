@@ -5,11 +5,12 @@ public class FourBarCommand extends CommandBase {
   boolean buttonReleased, fourBarStart, floorGather, hatchLvlTwo, rocketLvlTwo, rocketLvlOne, climb, ballLvlOne,
       ballLvlTwo;
   int leftBarEncoder, rightBarEncoder;
-  int startPoint = 5, floorGatherPoint = 6, hatchLvlTwoPoint = 7, rocketLvlTwoPoint = 8, rocketLvlOnePoint = 9,
-      climbPoint = 10, ballLvlOnePoint = 11, ballLvlTwoPoint = 12, wristDownSetPoint = 70;
+  double fourBarDistance;
+  /*int startPoint = 5, floorGatherPoint = 6, hatchLvlTwoPoint = 7, rocketLvlTwoPoint = 8, rocketLvlOnePoint = 9,
+      climbPoint = 10, ballLvlOnePoint = 11, ballLvlTwoPoint = 12, wristDownSetPoint = 70;*/
 
-  public FourBarCommand(int setStartPoint, int setFloorGatherPoint, int setHatchLvlTwoPoint, int rocketLevelTwoPoint,
-      int rocketLvlOnePoint, int climbPoint, int ballLvlOnePoint, int ballLvlTwoPoint) {
+  public FourBarCommand(int fourBarDistance/*int setStartPoint, int setFloorGatherPoint, int setHatchLvlTwoPoint, int rocketLevelTwoPoint,
+      int rocketLvlOnePoint, int climbPoint, int ballLvlOnePoint, int ballLvlTwoPoint*/) {
     // Use requires() here to declare subsystem dependencies
     requires(fourBar);
     requires(wrist);
@@ -25,6 +26,7 @@ public class FourBarCommand extends CommandBase {
     fourBar.resetEncoders();
     buttonReleased = true;
     fourBarStart = false;
+    fourBar.set
 
   }
 
@@ -46,7 +48,7 @@ public class FourBarCommand extends CommandBase {
     }
 
     if (fourBarStart) {
-      fourBar.setStartPoint(startPoint);
+      fourBar.setStartPoint(fourBarSetPoint);
       fourBar.setBothFourBarMotor(0.5, 0.5);
     }
 

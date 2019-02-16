@@ -83,10 +83,10 @@ public class FourBarSubsystem extends Subsystem {
     fourBarPID.setPID(p, i, d, f);
   }
 
-  public void setFloorGatherPoint(int floorGatherPoint) {
-    fourBarPID.setSetpoint(floorGatherPoint);
+  public void setFourBarSetPoint(int fourBarSetPoint) {
+    fourBarPID.setSetpoint(Point);
   }
-
+/*
   public void setStartPoint(int startPoint) {
     fourBarPID.setSetpoint(startPoint);
   }
@@ -114,7 +114,7 @@ public class FourBarSubsystem extends Subsystem {
   public void setBallLvlTwoPoint(int ballLvlTwoPoint) {
     fourBarPID.setSetpoint(ballLvlTwoPoint);
   }
-
+*/
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
