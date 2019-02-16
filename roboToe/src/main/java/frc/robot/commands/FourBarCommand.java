@@ -8,7 +8,7 @@ public class FourBarCommand extends CommandBase {
   int startPoint = 5, floorGatherPoint = 6, hatchLvlTwoPoint = 7, rocketLvlTwoPoint = 8, rocketLvlOnePoint = 9,
       climbPoint = 10, ballLvlOnePoint = 11, ballLvlTwoPoint = 12, wristDownSetPoint = 70;
 
-  public FourBarCommand() {
+  public FourBarCommand(int setStartPoint) {
     // Use requires() here to declare subsystem dependencies
     requires(fourBar);
     requires(wrist);

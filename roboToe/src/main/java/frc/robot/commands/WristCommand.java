@@ -16,7 +16,7 @@ public class WristCommand extends CommandBase {
     boolean wristUp = false;
     boolean wristDown = false;
   
-  public WristCommand() {
+  public WristCommand(int wristUpSetPoint) {
     // Use requires() here to declare subsystem dependencies
     requires(wrist);
     leftWristEncoder = wrist.getLeftWristEncoder();
