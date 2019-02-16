@@ -8,7 +8,7 @@ public class ElevatorInPlaceCommand extends CommandBase {
   }
 
   protected void initialize() {
-    drive.setBothMotor(0, 0);
+    drive.setBoth(0, 0);
   }
 
   protected void execute() {
@@ -25,10 +25,10 @@ public class ElevatorInPlaceCommand extends CommandBase {
   }
 
   protected void end() {
-    drive.setBothMotor(0, 0);
+    drive.setBoth(0, 0);
   }
 
   protected void interrupted() {
-    drive.setBothMotor(0, 0);
+    drive.setBoth(0, 0);
   }
 }
