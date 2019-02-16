@@ -31,6 +31,7 @@ leftWristPID.setEnabled(true);
 
     rightWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3], leftWristEncoder, pidWristOutput);
 leftWristPID.setEnabled(true);
+leftWristPID.setAbsoluteTolerance(3);
   }
   
   public void setLeftWristMotor(double Speed) {
@@ -78,7 +79,9 @@ leftWristPID.setEnabled(true);
     leftWristPID.setPID(p, i, d, f);
   }
 
-  
+  public boolean leftWristOnTarget() {
+    return leftWristPID.onTarget();
+  }
 
   public void setRightWristPIDValues(double p, double i, double d) {
     leftWristPID.setPID(p, i, d);
@@ -88,15 +91,9 @@ leftWristPID.setEnabled(true);
     leftWristPID.setPID(p, i, d, f);
   }
 
-  public void setWristDownSetpoint(double wristDownSetPoint) {
-    leftWristPID.setSetpoint(wristDownSetPoint);
+  public void setWristSetpoint(double wristSetPoint) {
+    leftWristPID.setSetpoint(wristSetPoint);
   }
-
-  public void setWristUpSetpoint(double wristUpSetPoint) {
-    leftWristPID.setSetpoint(wristUpSetPoint);
-  }
-
-  
 
   public double getLeftWristPIDOutput() {
     return leftWristPID.get();

@@ -23,8 +23,6 @@ public class WristCommand extends CommandBase {
   public WristCommand(double wristDistance) {
     // Use requires() here to declare subsystem dependencies
     requires(wrist);
-    leftWristEncoder = wrist.getLeftWristEncoder();
-    rightWristEncoder = wrist.getRightWristEncoder();
     this.wristDistance = wristDistance;
 
   }
@@ -34,15 +32,7 @@ public class WristCommand extends CommandBase {
   protected void initialize() {
     //Set point
     //Send PID to correct  motors
-
-    buttonReleased = true;
-    moveWrist = false;
-    
-    wrist.ResetEncoder();
-    wrist.getLeftWristPIDOutput();
-    wrist.getRightWristPIDOutput();
-    wrist.setWristUpSetpoint(wristDistance + Constants.defaultWristPosition);
-    wrist.setWristDownSetpoint(wristDistance + Constants.defaultWristPosition);
+    wrist.setWristSetpoint(wristDistance + Constants.defaultWristPosition);
 
     //wrist.setLeftWristSetpoint(leftWristEncoder);
     //wrist.setRightWristSetpoint(rightWristEncoder);
@@ -52,40 +42,27 @@ public class WristCommand extends CommandBase {
   @Override
   protected void execute() {
     //Two Positions (Up, Down)
-
-    if(moveWrist && leftWristEncoder <= 0 && rightWristEncoder >= 0) {
-      wrist.setBothWristMotor(-0.70, 0.70);
-    }
-
-    else if(!moveWrist && leftWristEncoder >= 0 && rightWristEncoder <= 0) {
-      wrist.setBothWristMotor(0.70, -0.70);
-    }
-
-    if(wristUp && leftWristEncoder >=0 && rightWristEncoder <= 0) {
-      wrist.setWristUpSetpoint(wristUpSetPoint);
-      
-    }
-
-    if(wristDown && rightWristEncoder >=0 && leftWristEncoder <= 0) {
-      wrist.setWristDownSetpoint(wristDownSetPoint);
-    }
+    wrist.setBothWristMotor(wrist.getLeftWristPIDOutput());
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     //if needed to maintain set pont (false) stopping point (true)
-    return false;
+    return wrist.leftWristOnTarget();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    wrist.setBothWristMotor(0, 0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    wrist.setBothWristMotor(0, 0);
   }
 }
