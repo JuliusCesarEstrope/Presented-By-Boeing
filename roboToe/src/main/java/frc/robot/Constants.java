@@ -4,7 +4,7 @@ public class Constants {
   //Motors
   public static final int[] motorPortsLeft = {4, 5, 6};
   public static final int[] motorPortsRight = {1, 2, 3};
-  public static final int rollerMotor = 7
+  public static final int rollerMotor = 7;
   public static final int leftWristMotor = 8;
   public static final int rightWristMotor = 9;
   public static final int leftFourBarMotorPort = 10;
@@ -51,9 +51,6 @@ public class Constants {
   public static final int[] leftWristEncoder = {6, 7};
   public static final int[] rightWristEncoder = {8, 9};
   
-  //Pneumatics
-  public static final int[] booperPort = {0, 1};
-  
   //Wrist Constants
   public static int wristButton = 3;
   public static int wristDownSetPoint = 70;
@@ -75,8 +72,12 @@ public class Constants {
   //Sensor Constants
   public static double leftSensorToRightSensor = 7;
   public static double leftSensorToFrontSensor = 3.5;
+  public static double rightSensorToFrontSensor = 3.5;
   public static double frontSensorToBackSensor = 7;
+  public static double leftSensorToBackSensor = 3.5;
   public static double rightSensorToBackSensor = 3.5;
-  public static double rightSensorToCenterSensor = 1;
-  public static double leftSensorToCenterSensor = 1;
+  public static double leftSensorToCenterOfRobot = 1;
+  public static double frontSensorToCenterOfRobot = 3.5;
+
+
 }
