@@ -15,7 +15,6 @@ public class WristCommand extends CommandBase {
     int wristUpSetPoint = 0; /////////////////////////////////////////
     boolean wristUp = false;
     boolean wristDown = false;
-    boolean moveWrist;
   
   public WristCommand(int wristUpSetPoint) {
     // Use requires() here to declare subsystem dependencies
@@ -32,13 +31,12 @@ public class WristCommand extends CommandBase {
     //Send PID to correct  motors
 
     buttonReleased = true;
-    moveWrist = false;
     
     wrist.ResetEncoder();
     wrist.getLeftWristPIDOutput();
     wrist.getRightWristPIDOutput();
-    //wrist.setLeftWristSetpoint(leftWristEncoder);
-    //wrist.setRightWristSetpoint(rightWristEncoder);
+    wrist.setWristUpSetpoint(wristUpSetPoint);
+    wrist.setWristDownSetpoint(wristDownSetPoint);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -46,11 +44,11 @@ public class WristCommand extends CommandBase {
   protected void execute() {
     //Two Positions (Up, Down)
 
-    if(moveWrist && leftWristEncoder <= 0 && rightWristEncoder >= 0) {
+    if(leftWristEncoder <= 0 && rightWristEncoder >= 0) {
       wrist.setBothWristMotor(-0.70, 0.70);
     }
 
-    else if(!moveWrist && leftWristEncoder >= 0 && rightWristEncoder <= 0) {
+    else if(leftWristEncoder >= 0 && rightWristEncoder <= 0) {
       wrist.setBothWristMotor(0.70, -0.70);
     }
 
@@ -74,6 +72,7 @@ public class WristCommand extends CommandBase {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    drive.setBoth(0, 0);  
   }
 
   // Called when another command which requires one or more of the same
