@@ -1,8 +1,6 @@
 
 package frc.robot.commands;
 
-import frc.robot.Constants;
-
 public class FourBarCommand extends CommandBase {
   boolean buttonReleased, fourBarStart, floorGather, hatchLvlTwo, rocketLvlTwo, rocketLvlOne, climb, ballLvlOne,
       ballLvlTwo;

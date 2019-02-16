@@ -7,7 +7,6 @@ import frc.robot.OI;
 import frc.robot.subsystems.BooperSubsystem;
 import frc.robot.subsystems.Camera;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.FourBarSubsystem;
 import frc.robot.subsystems.RollerSubsystem;
 import frc.robot.subsystems.WristSubsystem;
@@ -20,8 +19,6 @@ public abstract class CommandBase extends Command {
   public static DriveSubsystem drive;
   public static WristSubsystem wrist;
   public static FourBarSubsystem fourBar;
-
-
   public static BooperSubsystem booper;
   public static RollerSubsystem roller;
   public static ElevatorVerticalSubsystem elevatorVertical;
