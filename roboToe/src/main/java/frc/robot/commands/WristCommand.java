@@ -6,6 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
+import frc.robot.Constants;
 
 public class WristCommand extends CommandBase {
     boolean buttonReleased;
@@ -16,12 +17,15 @@ public class WristCommand extends CommandBase {
     boolean wristUp = false;
     boolean wristDown = false;
     boolean moveWrist;
+    double wristDistance;
+
   
-  public WristCommand() {
+  public WristCommand(double wristDistance) {
     // Use requires() here to declare subsystem dependencies
     requires(wrist);
     leftWristEncoder = wrist.getLeftWristEncoder();
     rightWristEncoder = wrist.getRightWristEncoder();
+    this.wristDistance = wristDistance;
 
   }
 
@@ -37,6 +41,9 @@ public class WristCommand extends CommandBase {
     wrist.ResetEncoder();
     wrist.getLeftWristPIDOutput();
     wrist.getRightWristPIDOutput();
+    wrist.setWristUpSetpoint(wristDistance + Constants.defaultWristPosition);
+    wrist.setWristDownSetpoint(wristDistance + Constants.defaultWristPosition);
+
     //wrist.setLeftWristSetpoint(leftWristEncoder);
     //wrist.setRightWristSetpoint(rightWristEncoder);
   }

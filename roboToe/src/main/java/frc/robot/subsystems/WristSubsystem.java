@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+
 public class WristSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -87,11 +88,11 @@ leftWristPID.setEnabled(true);
     leftWristPID.setPID(p, i, d, f);
   }
 
-  public void setWristDownSetpoint(int wristDownSetPoint) {
+  public void setWristDownSetpoint(double wristDownSetPoint) {
     leftWristPID.setSetpoint(wristDownSetPoint);
   }
 
-  public void setWristUpSetpoint(int wristUpSetPoint) {
+  public void setWristUpSetpoint(double wristUpSetPoint) {
     leftWristPID.setSetpoint(wristUpSetPoint);
   }
 

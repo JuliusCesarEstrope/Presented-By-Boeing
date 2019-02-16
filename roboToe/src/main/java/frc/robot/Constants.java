@@ -55,10 +55,6 @@ public class Constants {
   public static final int[] rightBarEncoderPort = {12, 13};
   public static final int[] leftElevatorEncoder = {1, 2};
   public static final int[] rightElevatorEncoder = {3, 4};
-  
-  //Wrist Encoders
-  public static final int[] leftWristEncoder = {6, 7};
-  public static final int[] rightWristEncoder = {8, 9};
   /** END DIGITAL INPUTS**/
 
   
@@ -78,7 +74,7 @@ public class Constants {
   //Drive Wheel Constants
   public static double diameterOfWheels = 7.8025;
   public static double circumferenceOfWheels = diameterOfWheels*Math.PI;
-
+ 
   //FourBar Constants
   public static final int setFloorGatherPoint = 6;
   public static final int setHatchLvlTwoPoint = 7;
@@ -99,6 +95,8 @@ public class Constants {
   public static int wristButton = 3;
   public static int wristDownSetPoint = 70;
   public static int wristUpSetPoint = 0;
+  public static final double defaultWristPosition = 0;
+  
   // Constant Number
   public static final double defaultElevatorPosition = 0;
       // FIGURE OUT WHAT VALUE IS SUPPOSED TO BE
