@@ -7,11 +7,6 @@ import frc.robot.utilities.RobotLog;
 
 public class BooperSubsystem extends Subsystem {
   static DoubleSolenoid booper;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Maggie
 
   public BooperSubsystem(int[] booperPorts) {
     booper = new DoubleSolenoid(booperPorts[0], booperPorts[1]);
@@ -25,24 +20,7 @@ public class BooperSubsystem extends Subsystem {
   public void setBooperReverse() {
     booper.set(DoubleSolenoid.Value.kReverse);
   }
-
-<<<<<<< HEAD
-=======
-=======
->>>>>>> John-Schultz
-public BooperSubsystem(int[] booperPorts){
-  booper = new DoubleSolenoid(booperPorts[0], booperPorts[1]);
-}
-public void setBooperForward(){
-  booper.set(DoubleSolenoid.Value.kForward);
-}  
-public void setBooperReverse(){
-  booper.set(DoubleSolenoid.Value.kReverse);
-}
   @Override
->>>>>>> John-Schultz
-=======
->>>>>>> Maggie
   public void initDefaultCommand() {
     setDefaultCommand(new BooperCommand());
   }

@@ -73,10 +73,6 @@ public class ElevatorVerticalSubsystem extends Subsystem {
   public void enableBothElevatorEncoderPIDValues() {
     leftElevatorEncoderPID.enable();
     rightElevatorEncoderPID.enable();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Maggie
   }
 
   public void setBothElevatorEncoderPIDValues(double p, double i, double d) {
@@ -117,72 +113,5 @@ public class ElevatorVerticalSubsystem extends Subsystem {
   public void initDefaultCommand() {
     setDefaultCommand(new ElevatorSetpointCommand(Constants.defaultElevatorPosition));
   }
-<<<<<<< HEAD
-=======
-    }
-
-    public void setYElevatorMotors(double Speed) {
-     leftYElevatorMotor.set(ControlMode.PercentOutput, Speed);
-    }
-  
-    public int getLeftElevatorEncoder(){
-      return leftElevatorEncoder.get();
-    }
-
-    public int getRightElevatorEncoder(){
-      return rightElevatorEncoder.get();
-    }
-
-    public void resetBothElevatorEncoders(){
-      leftElevatorEncoder.reset();
-      rightElevatorEncoder.reset();
-    }
-
-    public void enableBothElevatorEncoderPIDValues(){
-      leftElevatorEncoderPID.enable();
-      rightElevatorEncoderPID.enable();
-    }
-
-    public void setBothElevatorEncoderPIDValues(double p, double i, double d) {
-      leftElevatorEncoderPID.setPID(p, i, d);
-      rightElevatorEncoderPID.setPID(p, i, d);
-    }
-  
-    public void setBothElevatorEncoderPIDValues(double p, double i, double d, double f) {
-      leftElevatorEncoderPID.setPID(p, i, d, f);
-      rightElevatorEncoderPID.setPID(p, i, d, f);
-    }
-
-    public void setLeftElevatorEncoderSetpoint(double leftElevatorEncoder) {
-      leftElevatorEncoderPID.setSetpoint(leftElevatorEncoder);
-    }
-
-    public void setRightElevatorEncoderSetpoint(double rightElevatorEncoder) {
-      rightElevatorEncoderPID.setSetpoint(rightElevatorEncoder);
-    }
-
-    public boolean checkOnTargetSetpoint(){
-      return leftElevatorEncoderPID.onTarget();
-    }
-  
-    public double getLeftElevatorEncoderPIDOutput() {
-      return leftElevatorEncoderPID.get();
-    }  
-
-    public double getRightElevatorEncoderPIDOutput() {
-      return rightElevatorEncoderPID.get();
-    }
-
-    public void disableBothElevatorEncoderPIDValues(){
-      leftElevatorEncoderPID.disable();
-      rightElevatorEncoderPID.disable();
-    }
-
-    public void initDefaultCommand() {
-      setDefaultCommand(new ElevatorSetpointCommand(Constants.defaultElevatorPosition));
-    }
->>>>>>> John-Schultz
-=======
->>>>>>> Maggie
 
 }

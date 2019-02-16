@@ -1,35 +1,17 @@
 package frc.robot.commands;
 
 import frc.robot.utilities.RobotLog;
-<<<<<<< HEAD
 
 public class FourBarCommand extends CommandBase {
   int leftBarEncoder, rightBarEncoder; //change
   double fourBarSetPoint;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Emily
   public FourBarCommand(int fourBarSetPoint) {
     // Use requires() here to declare subsystem dependencies
-=======
-  public FourBarCommand() {
->>>>>>> Maggie
-=======
-
-public class FourBarCommand extends CommandBase {
-  boolean buttonReleased, fourBarStart, floorGather, hatchLvlTwo, rocketLvlTwo, rocketLvlOne, climb, ballLvlOne,
-      ballLvlTwo;
-  int leftBarEncoder, rightBarEncoder;
-  int startPoint = 5, floorGatherPoint = 6, hatchLvlTwoPoint = 7, rocketLvlTwoPoint = 8, rocketLvlOnePoint = 9,
-      climbPoint = 10, ballLvlOnePoint = 11, ballLvlTwoPoint = 12, wristDownSetPoint = 70;
-
-  public FourBarCommand() {
->>>>>>> Maggie
     requires(fourBar);
     leftBarEncoder = fourBar.getLeftBarEncoder();
     rightBarEncoder = fourBar.getRightBarEncoder();
+    this.fourBarSetPoint = fourBarSetPoint;
   }
 
   protected void initialize() {
@@ -40,17 +22,14 @@ public class FourBarCommand extends CommandBase {
   }
 
   protected void execute() {
-<<<<<<< HEAD
     fourBar.setFourBarSetPoint(fourBarSetPoint);
     fourBar.setBothFourBarMotor(fourBar.getFourBarPIDOutput());
-<<<<<<< HEAD
-=======
 
     // Eight positions: starting/lvl 1 hatch, floor gather, hatch lvl 2, rocket lvl
     // 2, rocket lvl 1, climb position, lvl 1 ball, lvl 2 ball
 
     // starting position button (getBarStartingButton)
-    if (oi.getBarStartingButton() && buttonReleased) {
+    /*if (oi.getBarStartingButton() && buttonReleased) {
       fourBarStart = !fourBarStart;
       buttonReleased = !oi.getBarStartingButton();
     }
@@ -289,10 +268,9 @@ public class FourBarCommand extends CommandBase {
   @Override
 >>>>>>> Emily
 =======
-    }
+    }*/
   }
 
->>>>>>> Maggie
   protected boolean isFinished() {
     return false;
   }

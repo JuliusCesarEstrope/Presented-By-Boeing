@@ -10,11 +10,6 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.utilities.RobotLog;
-<<<<<<< HEAD
-
-=======
->>>>>>> Maggie
-
 
 public class WristSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
@@ -33,41 +28,24 @@ public class WristSubsystem extends Subsystem {
     rightWristEncoder = new Encoder(rightWristEncoderPort[0], rightWristEncoderPort[1]);
     leftWristMotor.follow(rightWristMotor); // :)
     leftWristMotor.setInverted(true);
-<<<<<<< HEAD
     leftWristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
     rightWristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
-=======
->>>>>>> Maggie
 
     leftWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3],
         leftWristEncoder, pidWristOutput);
     leftWristPID.setEnabled(true);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     rightWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3],
         leftWristEncoder, pidWristOutput);
     leftWristPID.setEnabled(true);
-<<<<<<< HEAD
-=======
 
     RobotLog.putMessage("Running WristSubsystem");
->>>>>>> Maggie
-=======
     rightWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3], leftWristEncoder, pidWristOutput);
-leftWristPID.setEnabled(true);
-leftWristPID.setAbsoluteTolerance(3);
-<<<<<<< HEAD
->>>>>>> John-Schultz
-=======
+    leftWristPID.setEnabled(true);
+    leftWristPID.setAbsoluteTolerance(3);
     rightWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3],
         leftWristEncoder, pidWristOutput);
     leftWristPID.setEnabled(true);
-
-    RobotLog.putMessage("Running WristSubsystem");
->>>>>>> Maggie
-=======
->>>>>>> John-Schultz
   }
 
   public void setLeftWristMotor(double Speed) {
@@ -110,20 +88,10 @@ leftWristPID.setAbsoluteTolerance(3);
   public void setLeftWristPIDValues(double p, double i, double d, double f) {
     leftWristPID.setPID(p, i, d, f);
   }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> John-Schultz
   public boolean leftWristOnTarget() {
     return leftWristPID.onTarget();
   }
 
->>>>>>> John-Schultz
-=======
->>>>>>> Maggie
   public void setRightWristPIDValues(double p, double i, double d) {
     leftWristPID.setPID(p, i, d);
   }
@@ -136,19 +104,10 @@ leftWristPID.setAbsoluteTolerance(3);
     leftWristPID.setSetpoint(wristSetPoint);
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   public void setWristUpSetpoint(int wristUpSetPoint) {
     leftWristPID.setSetpoint(wristUpSetPoint);
   }
 
-<<<<<<< HEAD
-=======
->>>>>>> John-Schultz
-=======
->>>>>>> Maggie
-=======
->>>>>>> John-Schultz
   public double getLeftWristPIDOutput() {
     return leftWristPID.get();
 
@@ -159,18 +118,8 @@ leftWristPID.setAbsoluteTolerance(3);
 
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-}
-=======
   public void initDefaultCommand() {
   }
 
 }
->>>>>>> Maggie
-=======
-  public void initDefaultCommand() {
-  }
 
-}
->>>>>>> Maggie

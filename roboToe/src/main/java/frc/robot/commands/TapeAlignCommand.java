@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import frc.robot.Constants;
+import frc.robot.Utilities;
 import frc.robot.utilities.RobotLog;
 
 public class TapeAlignCommand extends CommandBase {
@@ -18,10 +19,7 @@ public class TapeAlignCommand extends CommandBase {
 
   protected void initialize() { 
     RobotLog.putMessage("Running TapeAlignCommand");
-<<<<<<< HEAD
     startDistance = drive.getWheelDistanceRight();
-=======
->>>>>>> master
     drive.setBoth(0, 0);
     endCommand = false;
     tapeTouched = false;
@@ -36,7 +34,6 @@ public class TapeAlignCommand extends CommandBase {
   drive.getWheelDistanceLeft();
   Utilities.AngleFinderFromFrontSensorToLeftSensor(drive.getWheelDistanceRight() - startDistance, Constants.leftsensortocentersensor);
 
-<<<<<<< HEAD
   if(drive.getFrontSensor() || drive.getLeftSensor() || drive.getRightSensor() || drive.getBackSensor()){
     tapeTouched = true;
     }
@@ -46,16 +43,8 @@ public class TapeAlignCommand extends CommandBase {
       start = drive.getWheelDistanceLeft();
       touchFront = true;
       }
-=======
     drive.getWheelDistanceLeft();
     //Utilities.AngleFinder(drive.getWheelDistanceLeft());
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> John-Schultz
-=======
->>>>>>> John-Schultz
 
       if(drive.getLeftSensor() || drive.getRightSensor()){
         
@@ -66,7 +55,6 @@ public class TapeAlignCommand extends CommandBase {
         
       }
 
-<<<<<<< HEAD
     } 
 
   if(touchFront){
@@ -81,7 +69,7 @@ public class TapeAlignCommand extends CommandBase {
     }
   }
 
-  =======if(drive.getLeftSensor()&&drive.getFrontSensor()&&drive.getRightSensor())
+  if(drive.getLeftSensor()&&drive.getFrontSensor()&&drive.getRightSensor())
 
   {
     endCommand = true;
@@ -104,7 +92,6 @@ public class TapeAlignCommand extends CommandBase {
   {
     drive.setBoth(.1, .1);
   }
-  }>>>>>>>master
 
   protected boolean isFinished() {
     return endCommand;
