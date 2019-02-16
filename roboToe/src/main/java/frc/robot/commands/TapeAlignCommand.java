@@ -10,12 +10,8 @@ public class TapeAlignCommand extends CommandBase {
   private boolean tapeTouched, touchFront, touchSide;
   private double start, end;
 
-<<<<<<< HEAD
-  private double startDistance, newDistanceToMove;
-=======
   private double startDistance;
   
->>>>>>> Josh-Frazier
 
   public TapeAlignCommand() {
 
@@ -23,11 +19,8 @@ public class TapeAlignCommand extends CommandBase {
   }
 
   protected void initialize() { 
-<<<<<<< HEAD
     RobotLog.putMessage("Running TapeAlignCommand");
     startDistance = drive.getWheelDistanceRight();
-=======
->>>>>>> Josh-Frazier
     drive.setBoth(0, 0);
     endCommand = false;
     tapeTouched = false;
@@ -51,11 +44,6 @@ public class TapeAlignCommand extends CommandBase {
       start = drive.getWheelDistanceLeft();
       touchFront = true;
       }
-<<<<<<< HEAD
-    drive.getWheelDistanceLeft();
-    //Utilities.AngleFinder(drive.getWheelDistanceLeft());
-=======
->>>>>>> Josh-Frazier
 
       if(drive.getLeftSensor() || drive.getRightSensor()){
         
@@ -81,35 +69,8 @@ public class TapeAlignCommand extends CommandBase {
     }
   }
 
-<<<<<<< HEAD
-  if(drive.getLeftSensor()&&drive.getFrontSensor()&&drive.getRightSensor())
-
-  {
-    endCommand = true;
-  }else if(drive.getLeftSensor()&&drive.getFrontSensor()&&!drive.getRightSensor())
-  {
-    drive.setBoth(0.1, 0);
-  }else if(!drive.getLeftSensor()&&drive.getFrontSensor()&&drive.getRightSensor())
-  {
-    drive.setBoth(0, 0.1);
-  }else if(!drive.getLeftSensor()&&!drive.getFrontSensor()&&drive.getRightSensor())
-  {
-    drive.setBoth(.1, 0);
-  }else if(drive.getLeftSensor()&&!drive.getFrontSensor()&&!drive.getRightSensor())
-  {
-    drive.setBoth(0, .1);
-  }else if(!drive.getLeftSensor()&&!drive.getFrontSensor()&&!drive.getRightSensor())
-  {
-    endCommand = true;
-  }else if(!drive.getLeftSensor()&&drive.getFrontSensor()&&!drive.getRightSensor())
-  {
-    drive.setBoth(.1, .1);
-  }
-
-=======
   // Make this return true when this Command no longer needs to run execute()
   @Override
->>>>>>> Josh-Frazier
   protected boolean isFinished() {
     return endCommand;
   }

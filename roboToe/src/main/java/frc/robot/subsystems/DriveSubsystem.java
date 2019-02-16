@@ -9,23 +9,11 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> John-Schultz
-=======
->>>>>>> Maggie
-=======
->>>>>>> John-Schultz
-=======
->>>>>>> Josh-Frazier
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
-import frc.robot.commands.TankDrive;
+import frc.robot.commands.TankDriveCommand;
 import frc.robot.utilities.RobotLog;
 
 public class DriveSubsystem extends Subsystem {
@@ -43,14 +31,6 @@ public class DriveSubsystem extends Subsystem {
   private static PIDController rightEncoderPIDController;
   private static PIDOutput gyroPIDOutput, rightEncoderControllerPidOutput, leftEncoderControllerPidOutput; 
 
-<<<<<<< HEAD
-public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int[] driveEncoderPortLeft, int[] driveEncoderPortRight,int frontSensor, int rightSensor, int backSensor, int leftSensor, double circumferenceOfWheels, double ticksOfEncoder){
-  gyroDrive = new AnalogGyro(gyroPort);
-  encoderLeft = new Encoder(driveEncoderPortLeft[0],driveEncoderPortLeft[1]);
-  encoderRight = new Encoder(driveEncoderPortRight[0],driveEncoderPortRight[1]);
-  talonLeft = new WPI_TalonSRX(motorPortsLeft[0]);
-  talonRight = new WPI_TalonSRX(motorPortsRight[0]);
-=======
   public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int encoderPortLeft[], int encoderPortRight[],int frontSensor, int rightSensor, 
       int backSensor, int leftSensor, int[] driveEncoderPortLeft, int[] driveEncoderPortRight, double circumferanceOfWheels, double ticksOfEncoder){
 
@@ -59,25 +39,14 @@ public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort,
     encoderRight = new Encoder(driveEncoderPortRight[0],driveEncoderPortRight[1]);
     talonLeft = new WPI_TalonSRX(motorPortsLeft[0]);
     talonRight = new WPI_TalonSRX(motorPortsRight[0]);
->>>>>>> Josh-Frazier
 
     
-
-<<<<<<< HEAD
-  for(int i = 0; i < victorsLeft.length; i++)
-<<<<<<< HEAD
-    victorsLeft[i] = new WPI_VictorSPX(motorPortsLeft[i+1]); 
-  for(int i = 0; i < victorsRight.length; i++)
-    victorsRight[i] = new WPI_VictorSPX(motorPortsRight[i+1]);
-  
-    
-      talonLeft = new WPI_TalonSRX(motorPortsLeft[0]);
-      talonRight = new WPI_TalonSRX(motorPortsRight[0]);
+    talonLeft = new WPI_TalonSRX(motorPortsLeft[0]);
+    talonRight = new WPI_TalonSRX(motorPortsRight[0]);
     
 
-      encoderLeft.setDistancePerPulse(Constants.circumferenceOfWheels/ticksOfEncoder);
-      RobotLog.putMessage("Running DriveSubsystem");
-=======
+    encoderLeft.setDistancePerPulse(Constants.circumferenceOfWheels/ticksOfEncoder);
+    RobotLog.putMessage("Running DriveSubsystem");
     victorsLeft = new WPI_VictorSPX[motorPortsLeft.length - 1];
     victorsRight = new WPI_VictorSPX[motorPortsRight.length - 1];
 
@@ -120,7 +89,6 @@ public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort,
 
    public void setGyroSetpoint(double setpoint){
      gyroPID.setSetpoint(setpoint);
->>>>>>> Josh-Frazier
   }
 
   public void setleftEncoderPIDController(double setpoint){
@@ -142,67 +110,12 @@ public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort,
   public double getGyroPIDOutput(){
     return gyroPID.get();
   }
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-    victorsLeft[i] = new WPI_VictorSPX(motorPortsLeft[i]); 
-
-  for(int i = 0; i < victorsRight.length; i++)
-    victorsRight[i] = new WPI_VictorSPX(motorPortsRight[i]);
-  
-  for (int i = 0; i < victorsLeft.length; i++) 
-    victorsLeft[i] = new VictorSPX(motorPortsLeft[i]);
-=======
->>>>>>> Maggie
-
->>>>>>> John-Schultz
-=======
-    victorsLeft[i] = new WPI_VictorSPX(motorPortsLeft[i]); 
-
-  for(int i = 0; i < victorsRight.length; i++)
-    victorsRight[i] = new WPI_VictorSPX(motorPortsRight[i]);
-  
-  for (int i = 0; i < victorsLeft.length; i++) 
-    victorsLeft[i] = new VictorSPX(motorPortsLeft[i]);
-
->>>>>>> John-Schultz
-  for (int i = 0; i < victorsRight.length; i++) 
-    victorsRight[i] = new VictorSPX(motorPortsRight[i]);
-    
-  encoderLeft.setDistancePerPulse(circumferenceOfWheels/ticksOfEncoder);
-}
-public void setLeft(double speed){
-  talonLeft.set(ControlMode.PercentOutput, Math.max(Math.min(speed, -1), 1));
-  for(VictorSPX i: victorsLeft)
-    i.set(ControlMode.PercentOutput, Math.max(Math.min(speed, -1), 1));
-}
-public void setRight(double speed){
-  talonRight.set(ControlMode.PercentOutput, Math.max(Math.min(-speed, -1), 1));
-  for(VictorSPX i: victorsRight)
-    i.set(ControlMode.PercentOutput, Math.max(Math.min(-speed, -1), 1));
-}
-public void setBoth(double speedLeft, double speedRight){
-  setLeft(speedLeft);
-  setRight(speedRight);
-}
-public void setBoth(double speed){
-  setLeft(speed);
-  setRight(speed);    
-}
-public void calibrateGyro(){
-  gyroDrive.calibrate();
-}
-<<<<<<< HEAD
-=======
-
-  public double getRightEncoderControllerPIDOutput(){
-    return rightEncoderPIDController.get();
-  }
->>>>>>> Josh-Frazier
 
   public double getLeftEncoderControllerPIDOutput(){
     return leftEncoderPIDController.get();
+  }
+  public double getRightEncoderControllerPIDOutput(){
+    return rightEncoderPIDController.get();
   }
 
   public void disableLeftEncoderPIDController(){
@@ -258,7 +171,7 @@ public void calibrateGyro(){
 
     @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new TankDrive());
+    setDefaultCommand(new TankDriveCommand());
   }
 
   public double getWheelDistanceLeft() {
