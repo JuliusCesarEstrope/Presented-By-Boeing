@@ -1,4 +1,5 @@
 package frc.robot.subsystems;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -17,24 +18,26 @@ public class WristSubsystem extends Subsystem {
   private static PIDController leftWristPID, rightWristPID;
   private static PIDOutput pidWristOutput;
 
-  
-  public WristSubsystem(int leftWristMotorPort, int rightWristMotorPort, int[] leftWristEncoderPort, int[] rightWristEncoderPort, double[] wristPIDValues) {
+  public WristSubsystem(int leftWristMotorPort, int rightWristMotorPort, int[] leftWristEncoderPort,
+      int[] rightWristEncoderPort, double[] wristPIDValues) {
     leftWristMotor = new WPI_TalonSRX(leftWristMotorPort);
     rightWristMotor = new WPI_TalonSRX(rightWristMotorPort);
     leftWristEncoder = new Encoder(leftWristEncoderPort[0], leftWristEncoderPort[1]);
     rightWristEncoder = new Encoder(rightWristEncoderPort[0], rightWristEncoderPort[1]);
-    leftWristMotor.follow(rightWristMotor);  //:)
+    leftWristMotor.follow(rightWristMotor); // :)
     leftWristMotor.setInverted(true);
     leftWristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
     rightWristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
 
-    leftWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3], leftWristEncoder, pidWristOutput);
-leftWristPID.setEnabled(true);
+    leftWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3],
+        leftWristEncoder, pidWristOutput);
+    leftWristPID.setEnabled(true);
 
-    rightWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3], leftWristEncoder, pidWristOutput);
-leftWristPID.setEnabled(true);
+    rightWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3],
+        leftWristEncoder, pidWristOutput);
+    leftWristPID.setEnabled(true);
   }
-  
+
   public void setLeftWristMotor(double Speed) {
     leftWristMotor.set(ControlMode.PercentOutput, Speed);
   }
@@ -50,12 +53,12 @@ leftWristPID.setEnabled(true);
 
   public int getLeftWristEncoder() {
     return leftWristMotor.getSelectedSensorPosition();
-    //return leftWristEncoder.get();
+    // return leftWristEncoder.get();
   }
 
   public int getRightWristEncoder() {
     return rightWristMotor.getSelectedSensorPosition();
-    //return rightWristEncoder.get();
+    // return rightWristEncoder.get();
   }
 
   public void setBothWristMotor(double pidWristOutput) {
@@ -82,8 +85,6 @@ leftWristPID.setEnabled(true);
     leftWristPID.setPID(p, i, d, f);
   }
 
-  
-
   public void setRightWristPIDValues(double p, double i, double d) {
     leftWristPID.setPID(p, i, d);
   }
@@ -100,17 +101,14 @@ leftWristPID.setEnabled(true);
     leftWristPID.setSetpoint(wristUpSetPoint);
   }
 
-  
-
   public double getLeftWristPIDOutput() {
     return leftWristPID.get();
-    
+
   }
 
   public double getRightWristPIDOutput() {
     return rightWristPID.get();
-    
+
   }
- 
- 
+
 }

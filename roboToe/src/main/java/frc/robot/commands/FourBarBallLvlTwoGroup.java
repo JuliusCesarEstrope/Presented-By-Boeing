@@ -9,7 +9,9 @@ public class FourBarBallLvlTwoGroup extends CommandGroup{
   public FourBarBallLvlTwoGroup(boolean ballLvlTwo, boolean wristUp){
 
       addSequential(new WristCommand(Constants.wristUpSetPoint));
-      addSequential(new FourBarCommand(Constants.setBallLvlTwoPoint));
+      addSequential(new FourBarCommand(Constants.setStartPoint, Constants.setFloorGatherPoint,
+      Constants.setHatchLvlTwoPoint, Constants.setRocketLvlTwoPoint, Constants.setRocketLvlOnePoint,
+      Constants.setClimbPoint, Constants.setBallLvlOnePoint, Constants.setBallLvlTwoPoint));
      
   }
 
