@@ -2,28 +2,32 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.Constants;
 import frc.robot.commands.ElevatorCommandGroup;
 import frc.robot.commands.FourBarCommand;
-public class OI{
-  
-  //Joysticks
+
+public class OI {
+
+  // Joysticks
   Joystick leftJoyStick;
   Joystick rightJoyStick;
 
   Joystick gamePad;
-  
-  //Roller Buttons
+
+  // Roller Buttons
   JoystickButton rollerButtonIn;
   JoystickButton rollerButtonOut;
-  
-  //Gather Buttons
+
+  // Gather Buttons
   JoystickButton booperButton;
-  
-  //Tape Alignment Button
+
+  // Tape Alignment Button
   JoystickButton alignButton;
   
-  //Fourbar and Wrist button positions
+  //Elevator Buttons
+  JoystickButton elevatorButton;
+  JoystickButton elevatorEmergencyStopButton;
+
+  // Fourbar and Wrist button positions
   JoystickButton barStartingButton;
   JoystickButton floorGatherButton;
   JoystickButton hatchLvlTwoButton;
@@ -33,7 +37,7 @@ public class OI{
   JoystickButton ballLvlOneButton;
   JoystickButton ballLvlTwoButton;
 
-  public OI(){
+  public OI() {
     leftJoyStick = new Joystick(Constants.leftJoystick);
     rightJoyStick = new Joystick(Constants.rightJoystick);
     gamePad = new Joystick(Constants.rightJoystick);
@@ -44,6 +48,10 @@ public class OI{
   
   //Gather Buttons
   booperButton = new JoystickButton(gamePad, 9);
+
+  //Elevator Buttons
+  elevatorButton = new JoystickButton(gamePad, 10);
+  elevatorEmergencyStopButton = new JoystickButton(leftJoyStick,  9);
   
   //Fourbar and Wrist button positions
   barStartingButton = new JoystickButton(gamePad, 4);
@@ -63,17 +71,9 @@ public class OI{
   barClimbPositionButton.whenPressed(new FourBarCommand());
   ballLvlOneButton.whenPressed(new FourBarCommand());
   ballLvlTwoButton.whenPressed(new FourBarCommand());
-
-  
-  
-  //Elevator Buttons
-  JoystickButton elevatorButton = new JoystickButton(gamePad, 10);
   elevatorButton.whenPressed(new ElevatorCommandGroup());
-  }
 
-  public boolean getBooperButton(){ 
-    return booperButton.get();
-  } 
+  }
 
   public double getleftYAxis() {
     // return Math.pow(-leftJoyStick.getY(), 3.0);
@@ -89,11 +89,17 @@ public class OI{
     // return Math.pow(-leftJoyStick.getX(), 3.0);
     return -leftJoyStick.getX() * Math.abs(leftJoyStick.getX());
   }
+  
   public boolean getRollerButtonIn(){
     return rollerButtonIn.get();
   }
+  
   public boolean getRollerButtonOut(){
-    return rollerButtonIn.get();
+    return rollerButtonOut.get();
+  }
+
+  public boolean getBooperButton(){
+    return booperButton.get();
   }
 
   public double getrightXAxis() {
@@ -104,8 +110,8 @@ public class OI{
   public boolean getRightTrigger() {
     return alignButton.get();
   }
-  
-  //fourbar position buttons
+
+  // fourbar position buttons
   public boolean getFloorGatherButton() {
     return floorGatherButton.get();
   }
@@ -137,6 +143,9 @@ public class OI{
   public boolean getBallLvlTwoButton() {
     return ballLvlTwoButton.get();
   }
+
+  public boolean getElevatorEmergencyStopButton(){
+    return elevatorEmergencyStopButton.get();
+  }
+
 }
-
-

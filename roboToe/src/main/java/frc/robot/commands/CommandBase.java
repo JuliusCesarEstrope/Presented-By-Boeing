@@ -38,7 +38,7 @@ public abstract class CommandBase extends Command {
         Constants.setRocketLvlTwoPoint, Constants.setRocketLvlOnePoint, Constants.setClimbPoint,
         Constants.setBallLvlOnePoint, Constants.setBallLvlTwoPoint);
     roller = new RollerSubsystem(Constants.rollerMotor);
-    booper = new BooperSubsystem(Constants.booperPort);
+    booper = new BooperSubsystem(Constants.booperPorts);
     wrist = new WristSubsystem(Constants.leftWristMotor, Constants.rightWristMotor, Constants.leftWristEncoder, Constants.rightWristEncoder,  Constants.driveRotationPIDValues);
     elevatorVertical = new ElevatorVerticalSubsystem(Constants.leftVerticalElevatorMotor, Constants.rightVerticalElevatorMotor, Constants.leftElevatorEncoder, Constants.rightElevatorEncoder, Constants.leftElevatorEncoderPIDValues, Constants.rightElevatorEncoderPIDValues);
     elevatorHorizontal = new ElevatorHorizontalSubsystem(Constants.leftHorizontalElevatorMotor, Constants.rightHorizontalElevatorMotor, Constants.defaultElevatorPosition);

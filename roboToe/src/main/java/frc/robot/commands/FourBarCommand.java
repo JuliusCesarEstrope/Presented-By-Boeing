@@ -36,17 +36,17 @@ public class FourBarCommand extends CommandBase {
     // 2, rocket lvl 1, climb position, lvl 1 ball, lvl 2 ball
 
     // starting position button (getBarStartingButton)
-    if (oi.getBarStartButton() && buttonReleased) {
+    if (oi.getBarStartingButton() && buttonReleased) {
       fourBarStart = !fourBarStart;
-      buttonReleased = !oi.getBarStartButton();
+      buttonReleased = !oi.getBarStartingButton();
     }
 
-    if (!oi.getBarStartButton()) {
+    if (!oi.getBarStartingButton()) {
       buttonReleased = true;
     }
 
     if (fourBarStart) {
-      fourBar.setStartpoint(startPoint);
+      fourBar.setStartPoint(startPoint);
       fourBar.setBothFourBarMotor(0.5, 0.5);
     }
 
@@ -62,7 +62,7 @@ public class FourBarCommand extends CommandBase {
 
     // hatch level 2 button- also gather + cargo ship level
     if (hatchLvlTwo) {
-      fourBar.setHatchLvlTwopoint(hatchLvlTwoPoint);
+      fourBar.setHatchLvlTwoPoint(hatchLvlTwoPoint);
       fourBar.setBothFourBarMotor(0.5, 0.5);
     }
     
@@ -86,7 +86,7 @@ public class FourBarCommand extends CommandBase {
 
     // rocket level two button
     if (rocketLvlTwo) {
-      fourBar.setRocketLvlTwopoint(rocketLvlTwoPoint);
+      fourBar.setRocketLvlTwoPoint(rocketLvlTwoPoint);
       fourBar.setBothFourBarMotor(0.5, 0.5);
     }
 
@@ -107,7 +107,7 @@ public class FourBarCommand extends CommandBase {
 
     // rocket level one button
     if (rocketLvlOne) {
-      fourBar.setRocketLvlOnepoint(rocketLvlOnePoint);
+      fourBar.setRocketLvlOnePoint(rocketLvlOnePoint);
       fourBar.setBothFourBarMotor(0.5, 0.5);
     }
 
@@ -128,7 +128,7 @@ public class FourBarCommand extends CommandBase {
 
     // fourbar + wrist climbing position button
     if (climb) {
-      fourBar.setClimbpoint(climbPoint);
+      fourBar.setClimbPoint(climbPoint);
       fourBar.setBothFourBarMotor(0.5, 0.5);
     }
 
@@ -149,7 +149,7 @@ public class FourBarCommand extends CommandBase {
 
     // ball level one button
     if (ballLvlOne) {
-      fourBar.setBallLvlOnepoint(ballLvlOnePoint);
+      fourBar.setBallLvlOnePoint(ballLvlOnePoint);
       fourBar.setBothFourBarMotor(0.5, 0.5);
     }
 
@@ -175,7 +175,7 @@ public class FourBarCommand extends CommandBase {
 
     // ball level two button
     if (ballLvlTwo) {
-      fourBar.setBallLvlTwopoint(ballLvlTwoPoint);
+      fourBar.setBallLvlTwoPoint(ballLvlTwoPoint);
       fourBar.setBothFourBarMotor(0.5, 0.5);
     }
 
@@ -202,7 +202,7 @@ public class FourBarCommand extends CommandBase {
       wrist.setWristDownSetpoint(wristDownSetPoint);
       wrist.setBothWristMotor(0.5, 0.5);
     }
-
+  }
   }
 
   // Make this return true when this Command no longer needs to run execute()
