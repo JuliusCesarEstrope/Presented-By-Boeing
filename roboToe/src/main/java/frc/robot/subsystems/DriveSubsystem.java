@@ -28,13 +28,7 @@ public class DriveSubsystem extends Subsystem {
   private static PIDController gyroPID;
   private static PIDOutput gyroPIDOutput;
 
-<<<<<<< HEAD
-public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int encoderPortLeft[], int encoderPortRight[],int frontSensor, int rightSensor, int backSensor, int leftSensor, int[] leftEncoderPorts, int[] rightEncoderPorts, double circumferanceOfWheels, double ticksOfEncoder){
-  this.driveEnabled = driveEnabled;
-
-=======
 public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int[] driveEncoderPortLeft, int[] driveEncoderPortRight,int frontSensor, int rightSensor, int backSensor, int leftSensor, double circumferenceOfWheels, double ticksOfEncoder){
->>>>>>> master
   gyroDrive = new AnalogGyro(gyroPort);
   encoderLeft = new Encoder(driveEncoderPortLeft[0],driveEncoderPortLeft[1]);
   encoderRight = new Encoder(driveEncoderPortRight[0],driveEncoderPortRight[1]);

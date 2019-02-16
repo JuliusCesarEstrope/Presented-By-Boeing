@@ -14,7 +14,7 @@ public class FourBarSubsystem extends Subsystem {
 
   static TalonSRX leftFourBarMotor, rightFourBarMotor;
   static Encoder leftBarEncoder, rightBarEncoder;
-  static int hatchLvlTwoPoint, rocketLvlTwoPoint, rocketLvlOnePoint, ballLvlTwoPoint, ballLvlOnePoint;
+  static int fourbarSetPoint;
 
   private static PIDController fourBarPID;
   private static PIDOutput pidOutput;
@@ -57,6 +57,11 @@ public class FourBarSubsystem extends Subsystem {
     setRightFourBarMotor(rightFourBarSpeed);
   }
 
+  public void setBothFourBarMotor(double FourBarSpeed) {
+    setLeftFourBarMotor(FourBarSpeed);
+    setRightFourBarMotor(FourBarSpeed);
+  }
+
   public void resetAngle() {
   }
 
@@ -74,6 +79,11 @@ public class FourBarSubsystem extends Subsystem {
     leftBarEncoder.reset();
   }
 
+  //PID Outputs
+  public double getFourBarPIDOutput(){
+    return fourBarPID.get();
+  }
+
   /** PID RELATED METHODS **/
   public void setFourBarPIDValues(double p, double i, double d) {
     fourBarPID.setPID(p, i, d);
@@ -83,38 +93,12 @@ public class FourBarSubsystem extends Subsystem {
     fourBarPID.setPID(p, i, d, f);
   }
 
-  public void setFourBarSetPoint(int fourBarSetPoint) {
-    fourBarPID.setSetpoint(Point);
-  }
-/*
-  public void setStartPoint(int startPoint) {
-    fourBarPID.setSetpoint(startPoint);
+  //setpoint
+  public void setFourBarSetPoint(double fourBarSetPoint) {
+    fourBarPID.setSetpoint(fourbarSetPoint);
   }
 
-  public void setHatchLvlTwoPoint(int hatchLvlTwoPoint) {
-    fourBarPID.setSetpoint(hatchLvlTwoPoint);
-  }
 
-  public void setRocketLvlTwoPoint(int rocketLvlTwoPoint) {
-    fourBarPID.setSetpoint(rocketLvlTwoPoint);
-  }
-
-  public void setRocketLvlOnePoint(int rocketLvlOnePoint) {
-    fourBarPID.setSetpoint(rocketLvlOnePoint);
-  }
-
-  public void setClimbPoint(int climbPoint) {
-    fourBarPID.setSetpoint(climbPoint);
-  }
-
-  public void setBallLvlOnePoint(int ballLvlOnePoint) {
-    fourBarPID.setSetpoint(ballLvlOnePoint);
-  }
-
-  public void setBallLvlTwoPoint(int ballLvlTwoPoint) {
-    fourBarPID.setSetpoint(ballLvlTwoPoint);
-  }
-*/
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
