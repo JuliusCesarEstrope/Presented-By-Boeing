@@ -69,13 +69,11 @@ public class Constants {
   public static final double[] rightElevatorEncoderPIDValues = {0, 0, 0, 0};
   // Constant Number
   public static final double defaultElevatorPosition = 0;
-      // FIGURE OUT WHAT VALUE IS SUPPOSED TO BE
+  // FIGURE OUT WHAT VALUE IS SUPPOSED TO BE
   public static final double distanceToTicks = (360 / (Math.PI*1.432));
   public static final double distanceYToTravel = distanceToTicks * 22;
   public static final double distanceYInch = distanceToTicks * 1;
   public static final double distanceYFiveInch = distanceToTicks * 5;
-  
-}
   //Auton Constants
   public static final double level2Length = 48;
   public static final double level1Length = 47.25;

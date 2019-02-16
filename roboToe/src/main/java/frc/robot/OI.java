@@ -64,14 +64,11 @@ public class OI{
   ballLvlOneButton.whenPressed(new FourBarCommand());
   ballLvlTwoButton.whenPressed(new FourBarCommand());
 
-  }
+  
   
   //Elevator Buttons
   JoystickButton elevatorButton = new JoystickButton(gamePad, 10);
-
-  public OI(){
-
-    elevatorButton.whenPressed(new ElevatorCommandGroup());
+  elevatorButton.whenPressed(new ElevatorCommandGroup());
   }
 
   public boolean getBooperButton(){ 
@@ -91,8 +88,11 @@ public class OI{
   public double getleftXAxis() {
     // return Math.pow(-leftJoyStick.getX(), 3.0);
     return -leftJoyStick.getX() * Math.abs(leftJoyStick.getX());
-  
+  }
   public boolean getRollerButtonIn(){
+    return rollerButtonIn.get();
+  }
+  public boolean getRollerButtonOut(){
     return rollerButtonIn.get();
   }
 
