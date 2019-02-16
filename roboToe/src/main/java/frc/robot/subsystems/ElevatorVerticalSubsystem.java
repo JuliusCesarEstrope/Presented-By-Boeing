@@ -36,24 +36,18 @@ public class ElevatorVerticalSubsystem extends Subsystem {
         leftElevatorEncoderPIDValues[2], leftElevatorEncoderPIDValues[3], leftElevatorEncoder, pidOutput);
     leftElevatorEncoderPID.setEnabled(true);
     leftElevatorEncoderPID.setContinuous(true);
-    leftElevatorEncoderPID.setAbsoluteTolerance(.3);
-    // FIGURE OUT ABOVE
+    leftElevatorEncoderPID.setAbsoluteTolerance(1);
     leftElevatorEncoderPID.setOutputRange(-.6, .6);
-    // FIGURE OUT ABOVE
-    leftElevatorEncoderPID.setInputRange(0, 5);
-    // FIGURE OUT ABOVE
+    leftElevatorEncoderPID.setInputRange(-Double.MAX_VALUE, Double.MAX_VALUE);
     leftElevatorEncoderPID.enable();
 
     rightElevatorEncoderPID = new PIDController(rightElevatorEncoderPIDValues[0], rightElevatorEncoderPIDValues[1],
         rightElevatorEncoderPIDValues[2], rightElevatorEncoderPIDValues[3], rightElevatorEncoder, pidOutput);
     rightElevatorEncoderPID.setEnabled(true);
     rightElevatorEncoderPID.setContinuous(true);
-    rightElevatorEncoderPID.setAbsoluteTolerance(.3);
-    // FIGURE OUT ABOVE
+    rightElevatorEncoderPID.setAbsoluteTolerance(1);
     rightElevatorEncoderPID.setOutputRange(-.6, .6);
-    // FIGURE OUT ABOVE
-    rightElevatorEncoderPID.setInputRange(0, 5);
-    // FIGURE OUT ABOVE
+    rightElevatorEncoderPID.setInputRange(-Double.MAX_VALUE, Double.MAX_VALUE);
     rightElevatorEncoderPID.enable();
 
     RobotLog.putMessage("Running ElevatorVerticalSubsystem");
