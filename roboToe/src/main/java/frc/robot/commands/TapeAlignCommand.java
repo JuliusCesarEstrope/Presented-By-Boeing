@@ -19,10 +19,7 @@ public class TapeAlignCommand extends CommandBase {
   }
 
   protected void initialize() { 
-<<<<<<< HEAD
     RobotLog.putMessage("Running TapeAlignCommand");
-=======
->>>>>>> Salvatore
     startDistance = drive.getWheelDistanceRight();
     drive.setBoth(0, 0);
     endCommand = false;
@@ -36,11 +33,7 @@ public class TapeAlignCommand extends CommandBase {
     drive.setBoth(0.3, 0.3);
   }
   drive.getWheelDistanceLeft();
-<<<<<<< HEAD
   Utilities.AngleFinderFromFrontSensorToLeftSensor(drive.getWheelDistanceRight() - startDistance, Constants.leftSensorToCenterOfRobot);
-=======
-  Utilities.AngleFinderFromFrontSensorToLeftSensor(drive.getWheelDistanceRight() - startDistance, Constants.leftSensorToCenterSensor);
->>>>>>> Salvatore
 
   if(drive.getFrontSensor() || drive.getLeftSensor() || drive.getRightSensor() || drive.getBackSensor()){
     tapeTouched = true;
@@ -58,7 +51,7 @@ public class TapeAlignCommand extends CommandBase {
           end = drive.getWheelDistanceLeft();
           touchSide = true;
         }
-       
+        
       }
 
     } 
@@ -67,7 +60,6 @@ public class TapeAlignCommand extends CommandBase {
     drive.setBoth(0.3,0.3);
     if(touchSide){ 
         drive.setBoth(0,0); 
-<<<<<<< HEAD
         endCommand = true;
         //make sure this works!
         //new TurnAngle(Utilities.AngleFinderFromFrontSensorToLeftSensor(end-start,  Constants.frontSensorToCenterOfRobot));
@@ -76,15 +68,6 @@ public class TapeAlignCommand extends CommandBase {
       }
     }
   }
-=======
-        Utilities.AngleFinderFromFrontSensorToLeftSensor(end-start, Constants.frontSensorToCenterSensor);
-        newDistanceToMove = Math.abs(Constants.frontSensorToCenterSensor-(end-start));
-        
-
-      }
-    }
-  } 
->>>>>>> Salvatore
 
   // Make this return true when this Command no longer needs to run execute()
   @Override

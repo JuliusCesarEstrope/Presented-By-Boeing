@@ -4,10 +4,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Constants;
 import frc.robot.OI;
 import frc.robot.subsystems.BooperSubsystem;
-<<<<<<< HEAD
-=======
-import frc.robot.subsystems.CameraSubsystem;
->>>>>>> Salvatore
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ElevatorHorizontalSubsystem;
 import frc.robot.subsystems.ElevatorVerticalSubsystem;

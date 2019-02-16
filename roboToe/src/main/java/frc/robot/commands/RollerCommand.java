@@ -1,10 +1,7 @@
 package frc.robot.commands;
-<<<<<<< HEAD:roboToe/src/main/java/frc/robot/commands/RollerCommand.java
 
 import frc.robot.utilities.RobotLog;
 
-=======
->>>>>>> Salvatore:roboToe/src/main/java/frc/robot/commands/RollerCommand.java
 public class RollerCommand extends CommandBase {
   public RollerCommand() {
     requires(roller);
