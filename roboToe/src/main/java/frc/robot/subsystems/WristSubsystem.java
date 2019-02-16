@@ -15,6 +15,7 @@ import frc.robot.utilities.RobotLog;
 =======
 >>>>>>> Maggie
 
+
 public class WristSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -56,6 +57,7 @@ public class WristSubsystem extends Subsystem {
     rightWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3], leftWristEncoder, pidWristOutput);
 leftWristPID.setEnabled(true);
 leftWristPID.setAbsoluteTolerance(3);
+<<<<<<< HEAD
 >>>>>>> John-Schultz
 =======
     rightWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3],
@@ -64,6 +66,8 @@ leftWristPID.setAbsoluteTolerance(3);
 
     RobotLog.putMessage("Running WristSubsystem");
 >>>>>>> Maggie
+=======
+>>>>>>> John-Schultz
   }
 
   public void setLeftWristMotor(double Speed) {
@@ -109,7 +113,10 @@ leftWristPID.setAbsoluteTolerance(3);
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> John-Schultz
   public boolean leftWristOnTarget() {
     return leftWristPID.onTarget();
   }
@@ -130,6 +137,7 @@ leftWristPID.setAbsoluteTolerance(3);
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   public void setWristUpSetpoint(int wristUpSetPoint) {
     leftWristPID.setSetpoint(wristUpSetPoint);
   }
@@ -139,6 +147,8 @@ leftWristPID.setAbsoluteTolerance(3);
 >>>>>>> John-Schultz
 =======
 >>>>>>> Maggie
+=======
+>>>>>>> John-Schultz
   public double getLeftWristPIDOutput() {
     return leftWristPID.get();
 

@@ -9,6 +9,7 @@ public class BooperSubsystem extends Subsystem {
   static DoubleSolenoid booper;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> Maggie
 
@@ -27,6 +28,8 @@ public class BooperSubsystem extends Subsystem {
 
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> John-Schultz
 public BooperSubsystem(int[] booperPorts){
   booper = new DoubleSolenoid(booperPorts[0], booperPorts[1]);
 }

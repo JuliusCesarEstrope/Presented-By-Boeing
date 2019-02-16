@@ -165,7 +165,10 @@ public class FourBarCommand extends CommandBase {
     if (ballLvlOne) {
       fourBar.setBallLvlOnePoint(ballLvlOnePoint);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> John-Schultz
       fourBar.setBothFourBarMotor(0.5, 0.5);
     }
 
@@ -273,10 +276,13 @@ public class FourBarCommand extends CommandBase {
       wrist.setBothWristMotor(0.5, 0.5);
     }
   }
+<<<<<<< HEAD
 >>>>>>> John-Schultz
   }
 
 =======
+=======
+>>>>>>> John-Schultz
   }
 
   // Make this return true when this Command no longer needs to run execute()

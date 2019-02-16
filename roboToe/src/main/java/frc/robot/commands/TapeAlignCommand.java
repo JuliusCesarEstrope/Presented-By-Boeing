@@ -50,7 +50,10 @@ public class TapeAlignCommand extends CommandBase {
     drive.getWheelDistanceLeft();
     //Utilities.AngleFinder(drive.getWheelDistanceLeft());
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> master
+=======
+>>>>>>> John-Schultz
 =======
 >>>>>>> John-Schultz
 

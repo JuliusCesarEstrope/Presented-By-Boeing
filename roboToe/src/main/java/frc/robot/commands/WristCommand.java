@@ -1,9 +1,12 @@
 package frc.robot.commands;
 import frc.robot.Constants;
+<<<<<<< HEAD
 
 import frc.robot.utilities.RobotLog;
 
 import frc.robot.utilities.RobotLog;
+=======
+>>>>>>> John-Schultz
 
 public class WristCommand extends CommandBase {
 <<<<<<< HEAD
@@ -20,7 +23,11 @@ public class WristCommand extends CommandBase {
 
   
 <<<<<<< HEAD
+<<<<<<< HEAD
   public WristCommand(int wristUpSetPoint) {
+=======
+  public WristCommand(double wristDistance) {
+>>>>>>> John-Schultz
 =======
   public WristCommand(double wristDistance) {
 >>>>>>> John-Schultz
@@ -45,16 +52,20 @@ public class WristCommand extends CommandBase {
 >>>>>>> Maggie
     requires(wrist);
 <<<<<<< HEAD
+<<<<<<< HEAD
     leftWristEncoder = wrist.getLeftWristEncoder();
     rightWristEncoder = wrist.getRightWristEncoder();
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> John-Schultz
     this.wristDistance = wristDistance;
 
 >>>>>>> John-Schultz
   }
 
   protected void initialize() {
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
   }
@@ -87,6 +98,12 @@ public class WristCommand extends CommandBase {
     //Send PID to correct  motors
     wrist.setWristSetpoint(wristDistance + Constants.defaultWristPosition);
 
+=======
+    //Set point
+    //Send PID to correct  motors
+    wrist.setWristSetpoint(wristDistance + Constants.defaultWristPosition);
+
+>>>>>>> John-Schultz
     //wrist.setLeftWristSetpoint(leftWristEncoder);
     //wrist.setRightWristSetpoint(rightWristEncoder);
 >>>>>>> John-Schultz
@@ -103,6 +120,7 @@ public class WristCommand extends CommandBase {
 
   @Override
   protected void execute() {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     // Two Positions (Up, Down)
@@ -145,9 +163,15 @@ public class WristCommand extends CommandBase {
     wrist.setBothWristMotor(wrist.getLeftWristPIDOutput());
     
 >>>>>>> John-Schultz
+=======
+    //Two Positions (Up, Down)
+    wrist.setBothWristMotor(wrist.getLeftWristPIDOutput());
+    
+>>>>>>> John-Schultz
   }
 
   protected boolean isFinished() {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -158,11 +182,19 @@ public class WristCommand extends CommandBase {
     //if needed to maintain set pont (false) stopping point (true)
     return wrist.leftWristOnTarget();
 >>>>>>> John-Schultz
+=======
+    //if needed to maintain set pont (false) stopping point (true)
+    return wrist.leftWristOnTarget();
+>>>>>>> John-Schultz
   }
 
   protected void end() {
 <<<<<<< HEAD
+<<<<<<< HEAD
     drive.setBoth(0, 0);  
+=======
+    wrist.setBothWristMotor(0, 0);
+>>>>>>> John-Schultz
 =======
     wrist.setBothWristMotor(0, 0);
 >>>>>>> John-Schultz

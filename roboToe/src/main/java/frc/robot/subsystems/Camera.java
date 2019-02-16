@@ -1,5 +1,4 @@
 package frc.robot.subsystems;
-
 import edu.wpi.cscore.UsbCamera;
 import frc.robot.utilities.RobotLog;
 

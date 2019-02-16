@@ -18,9 +18,12 @@ import frc.robot.commands.FourBarStartGroup;
 <<<<<<< HEAD
 =======
 import frc.robot.commands.FourBarCommand;
+<<<<<<< HEAD
 >>>>>>> John-Schultz
 =======
 >>>>>>> Emily
+=======
+>>>>>>> John-Schultz
 
 public class OI {
 
@@ -102,9 +105,12 @@ public class OI {
   barClimbPositionButton.whenPressed(new FourBarCommand());
   ballLvlOneButton.whenPressed(new FourBarCommand());
   ballLvlTwoButton.whenPressed(new FourBarCommand());
+<<<<<<< HEAD
 >>>>>>> John-Schultz
 =======
 >>>>>>> Emily
+=======
+>>>>>>> John-Schultz
   elevatorButton.whenPressed(new ElevatorCommandGroup());
 
   }

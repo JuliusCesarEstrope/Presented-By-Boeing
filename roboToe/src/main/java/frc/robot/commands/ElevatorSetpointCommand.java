@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import frc.robot.utilities.RobotLog;
 
 =======
@@ -10,6 +11,8 @@ import frc.robot.utilities.RobotLog;
 import frc.robot.utilities.RobotLog;
 
 >>>>>>> Maggie
+=======
+>>>>>>> John-Schultz
 public class ElevatorSetpointCommand extends CommandBase {
   double elevatorVerticalSetpoint;
 
@@ -21,12 +24,15 @@ public class ElevatorSetpointCommand extends CommandBase {
   protected void initialize() {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     RobotLog.putMessage("Running ElevatorSetpointCommand");
 =======
 >>>>>>> John-Schultz
 =======
     RobotLog.putMessage("Running ElevatorSetpointCommand");
 >>>>>>> Maggie
+=======
+>>>>>>> John-Schultz
     drive.setBoth(0, 0);
     elevatorVertical.enableBothElevatorEncoderPIDValues();
     elevatorVertical.setLeftElevatorEncoderSetpoint(elevatorVerticalSetpoint);

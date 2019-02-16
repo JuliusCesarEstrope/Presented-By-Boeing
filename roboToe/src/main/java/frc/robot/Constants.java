@@ -1,6 +1,7 @@
 package frc.robot;
 
 public class Constants {
+<<<<<<< HEAD
 
   // Joysticks
   public static final int leftJoystick = 0;
@@ -11,6 +12,18 @@ public class Constants {
   // Motors
   public static final int[] motorPortsLeft = { 4, 5, 6 };
   public static final int[] motorPortsRight = { 1, 2, 3 };
+=======
+  
+  //Joysticks
+  public static final int leftJoystick = 0;
+  public static final int rightJoystick = 1;
+  public static final int gamePad = 2;
+  
+  /** BEGIN CAN DEVICES**/
+  //Motors
+  public static final int[] motorPortsLeft = {4, 5, 6};
+  public static final int[] motorPortsRight = {1, 2, 3};
+>>>>>>> John-Schultz
   public static final int rollerMotor = 7;
   public static final int leftWristMotor = 8;
   public static final int rightWristMotor = 9;
@@ -20,6 +33,7 @@ public class Constants {
   public static final int rightVerticalElevatorMotor = 13;
   public static final int leftHorizontalElevatorMotor = 14;
   public static final int rightHorizontalElevatorMotor = 15;
+<<<<<<< HEAD
   /** END CAN DEVICES **/
 
   /** BEGIN SOLENOIDS **/
@@ -39,15 +53,44 @@ public class Constants {
   public static final int fastSlowStopSensor = 1;
 
   // Drive Tape Sensors
+=======
+  /** END CAN DEVICES**/
+
+  /** BEGIN SOLENOIDS **/
+  public static final int[] booperPorts = {0, 1};
+  /** END SOLENOIDS **/
+  
+  //Buttons
+  public static final int gamepad = 16; //What is this variable doing here? I don't see any references
+  
+  /** BEGIN ANALOG INPUTS**/
+  //Gyros
+  public static final int gyroPort = 0;
+  /** END ANALOG INPUTS**/
+
+  /** BEGIN DIGITAL INPUTS**/
+  // Horizontal Elevator Sensor
+  public static final int fastSlowStopSensor = 1;
+  
+  //Drive Tape Sensors
+>>>>>>> John-Schultz
   public static final int leftSensor = 3;
   public static final int rightSensor = 4;
   public static final int frontSensor = 5;
   public static final int backSensor = 6;
+<<<<<<< HEAD
 
   // Note to everyone: Encoders used on a TalonSRX are done differently
   // Drive Encoders
   public static final int[] driveEncoderPortLeft = { 0, 1 };
   public static final int[] driveEncoderPortRight = { 2, 3 };
+=======
+  
+  //Note to everyone: Encoders used on a TalonSRX are done differently
+  //Drive Encoders
+  public static final int[] driveEncoderPortLeft = {0, 1};
+  public static final int[] driveEncoderPortRight = {2, 3};
+>>>>>>> John-Schultz
   public static double ticksOfEncoder = 360;
 <<<<<<< HEAD
   
@@ -57,10 +100,13 @@ public class Constants {
   public static final int[] leftElevatorEncoder = {1, 2};
   public static final int[] rightElevatorEncoder = {3, 4};
 <<<<<<< HEAD
+<<<<<<< HEAD
   
   //Wrist Encoders
   public static final int[] leftWristEncoder = {6, 7};
   public static final int[] rightWristEncoder = {8, 9};
+=======
+>>>>>>> John-Schultz
 =======
 >>>>>>> John-Schultz
   /** END DIGITAL INPUTS**/
@@ -68,6 +114,7 @@ public class Constants {
   
   /** BEGIN PID CONSTANTS**/
   //Drive PID
+<<<<<<< HEAD
 =======
 
   // Fourbar Encoders
@@ -110,6 +157,24 @@ public class Constants {
 
   // FourBar Constants
 >>>>>>> Maggie
+=======
+  public static double[] driveRotationPIDValues = { 0.1, 0, 0, 0 };
+
+  //FourBar PID
+  public static final double[] fourBarPIDValues = {0.1, 0.1, 0.01, 0};
+
+  //Elevator PID
+  public static final double[] leftElevatorEncoderPIDValues = {0, 0, 0, 0};
+  public static final double[] rightElevatorEncoderPIDValues = {0, 0, 0, 0};
+  /** END PID CONSTANTS**/
+
+  /** BEGIN OTHER CONSTANTS**/
+  //Drive Wheel Constants
+  public static double diameterOfWheels = 7.8025;
+  public static double circumferenceOfWheels = diameterOfWheels*Math.PI;
+ 
+  //FourBar Constants
+>>>>>>> John-Schultz
   public static final int setFloorGatherPoint = 6;
   public static final int setHatchLvlTwoPoint = 7;
   public static final int setRocketLvlTwoPoint = 8;
@@ -128,6 +193,9 @@ public class Constants {
   public static final int[] leftWristEncoder = {6, 7};
   public static final int[] rightWristEncoder = {8, 9};
   public static final int[] wristPIDValues = {0, 0, 0, 0};
+<<<<<<< HEAD
+>>>>>>> John-Schultz
+=======
 >>>>>>> John-Schultz
   public static final int setStartPoint = 13;
 
@@ -137,6 +205,11 @@ public class Constants {
   public static int wristDownSetPoint = 70;
   public static int wristUpSetPoint = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  public static final double defaultWristPosition = 0;
+  
+>>>>>>> John-Schultz
 =======
   public static final double defaultWristPosition = 0;
   
@@ -158,6 +231,7 @@ public class Constants {
   public static final double distanceYToTravel = distanceToTicks * 22;
   public static final double distanceYInch = distanceToTicks * 1;
   public static final double distanceYFiveInch = distanceToTicks * 5;
+<<<<<<< HEAD
 
   // Sensor Constants
   public static double leftSensorToRightSensor = 7;
@@ -172,11 +246,22 @@ public class Constants {
 >>>>>>> John-Schultz
 =======
 >>>>>>> Maggie
+=======
+  
+  //Sensor Constants
+  public static double leftSensorToRightSensor = 7;
+  public static double leftSensorToFrontSensor = 3.5;
+  public static double frontSensorToBackSensor = 7;
+>>>>>>> John-Schultz
   public static double rightSensorToBackSensor = 3.5;
   public static double rightSensorToCenterSensor = 1;
   public static double leftSensorToCenterSensor = 1;
 
+<<<<<<< HEAD
   // Auton Constants
+=======
+  //Auton Constants
+>>>>>>> John-Schultz
   public static final double level2Length = 48;
   public static final double level1Length = 47.25;
   public static final double firstExtra = 12;
@@ -204,5 +289,9 @@ public class Constants {
   public static final double setpointToFar = 84;
   public static final double setpointToMid = 62.25;
   public static final double setpointToClose = 40.5;
+<<<<<<< HEAD
   /** END OTHER CONSTANTS **/
+=======
+  /** END OTHER CONSTANTS**/
+>>>>>>> John-Schultz
 }

@@ -34,13 +34,18 @@ public class FourBarSubsystem extends Subsystem {
 
   private static PIDController fourBarPID;
   private static PIDOutput pidOutput;
+<<<<<<< HEAD
   // private static int startingPoint, floorGatherPoint, highPoint;
 >>>>>>> Maggie
+=======
+  //private static int startingPoint, floorGatherPoint, highPoint;
+>>>>>>> John-Schultz
 
   public FourBarSubsystem(int leftFourBarMotorPort, int rightFourBarMotorPort, int[] leftBarEncoderPort,
       int[] rightBarEncoderPort, int gyroPort, double[] fourBarPIDValues, int setStartPoint, int setFloorGatherPoint,
       int setHatchLvlTwoPoint, int setRocketLvlTwoPoint, int setRocketLvlOnePoint, int setClimbPoint,
       int setBallLvlOnePoint, int setBallLvlTwoPoint) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -50,6 +55,9 @@ public class FourBarSubsystem extends Subsystem {
 =======
 
 >>>>>>> Maggie
+=======
+        
+>>>>>>> John-Schultz
     leftFourBarMotor = new WPI_TalonSRX(leftFourBarMotorPort);
     rightFourBarMotor = new WPI_TalonSRX(rightFourBarMotorPort);
 
@@ -87,11 +95,15 @@ public class FourBarSubsystem extends Subsystem {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   public void setBothFourBarMotor(double FourBarSpeed) {
     setLeftFourBarMotor(FourBarSpeed);
     setRightFourBarMotor(FourBarSpeed);
   }
 =======
+=======
+
+>>>>>>> John-Schultz
 
 >>>>>>> John-Schultz
 
@@ -124,6 +136,7 @@ public class FourBarSubsystem extends Subsystem {
   /** PID RELATED METHODS **/
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   public void setFourBarPIDValues(double p, double i, double d) {
 =======
   public  void setFourBarPIDValues(double p, double i, double d) {
@@ -131,6 +144,9 @@ public class FourBarSubsystem extends Subsystem {
 =======
   public void setFourBarPIDValues(double p, double i, double d) {
 >>>>>>> Maggie
+=======
+  public  void setFourBarPIDValues(double p, double i, double d) {
+>>>>>>> John-Schultz
     fourBarPID.setPID(p, i, d);
   }
 
@@ -162,6 +178,7 @@ public class FourBarSubsystem extends Subsystem {
   }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
   
@@ -169,6 +186,9 @@ public class FourBarSubsystem extends Subsystem {
 =======
 
 >>>>>>> Maggie
+=======
+  
+>>>>>>> John-Schultz
   public void setClimbPoint(int climbPoint) {
     fourBarPID.setSetpoint(climbPoint);
   }

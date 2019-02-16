@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Constants;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 public class FourBarStartGroup extends CommandGroup {
 
   public FourBarStartGroup(int setStartPoint) {
@@ -13,6 +14,8 @@ public class FourBarStartGroup extends CommandGroup {
     addSequential(new FourBarCommand(Constants.setStartPoint));
 
 =======
+=======
+>>>>>>> John-Schultz
 public class FourBarStartGroup extends CommandGroup{
     
   public FourBarStartGroup(boolean fourBarStart, boolean wristUp){
@@ -25,6 +28,9 @@ public class FourBarStartGroup extends CommandGroup{
 
     //addSequential(new FourBarCommand(Constants.setStartPoint));
     //addSequential(new WristCommand(Constants.wristUpSetPoint));
+<<<<<<< HEAD
+>>>>>>> John-Schultz
+=======
 >>>>>>> John-Schultz
   }
     
