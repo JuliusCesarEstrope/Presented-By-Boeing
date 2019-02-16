@@ -2,7 +2,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.Constants;
 import frc.robot.commands.ElevatorCommandGroup;
 import frc.robot.commands.FourBarCommand;
 import frc.robot.commands.FourBarStartGroup;
@@ -71,14 +70,26 @@ public class OI {
   //Elevator Buttons
   JoystickButton elevatorButton = new JoystickButton(gamePad, 10);
 
+public class OI {
+  Joystick leftJoyStick;
+  Joystick rightJoyStick;
+  Joystick gamePad;
+  JoystickButton elevatorButton;
+  JoystickButton elevatorEmergencyStopButton;
+  
   public OI(){
-
+    leftJoyStick = new Joystick(Constants.leftJoystick);
+    rightJoyStick = new Joystick(Constants.rightJoystick);
+    gamePad = new Joystick(Constants.gamePad);
+    elevatorButton = new JoystickButton(gamePad, 10);
+    elevatorEmergencyStopButton = new JoystickButton(leftJoyStick,  9);
+    
     elevatorButton.whenPressed(new ElevatorCommandGroup());
   }
 
-  public boolean getBooperButton(){ 
-    return booperButton.get();
-  } 
+  public boolean getElevatorEmergencyStopButton(){
+    return elevatorEmergencyStopButton.get();
+  }
 
   public double getleftYAxis() {
     // return Math.pow(-leftJoyStick.getY(), 3.0);

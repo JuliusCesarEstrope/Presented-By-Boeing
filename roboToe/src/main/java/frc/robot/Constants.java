@@ -78,8 +78,7 @@ public class Constants {
   public static final double distanceYToTravel = distanceToTicks * 22;
   public static final double distanceYInch = distanceToTicks * 1;
   public static final double distanceYFiveInch = distanceToTicks * 5;
-  
-}
+
   //Auton Constants
   public static final double level2Length = 48;
   public static final double level1Length = 47.25;

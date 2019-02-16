@@ -38,7 +38,7 @@ public class ElevatorHorizontalCommand extends CommandBase {
   }
 
   protected boolean isFinished() {
-    return (tapeHit == 3);
+    return ((tapeHit == 3) || oi.getElevatorEmergencyStopButton());
   }
 
   protected void end() {

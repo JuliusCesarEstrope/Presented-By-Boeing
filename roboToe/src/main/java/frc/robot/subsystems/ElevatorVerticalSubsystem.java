@@ -76,21 +76,21 @@ public class ElevatorVerticalSubsystem extends Subsystem {
       rightElevatorEncoderPID.enable();
     }
 
-    public void setbothElevatorEncoderPIDValues(double p, double i, double d) {
+    public void setBothElevatorEncoderPIDValues(double p, double i, double d) {
       leftElevatorEncoderPID.setPID(p, i, d);
       rightElevatorEncoderPID.setPID(p, i, d);
     }
   
-    public void setbothElevatorEncoderPIDValues(double p, double i, double d, double f) {
+    public void setBothElevatorEncoderPIDValues(double p, double i, double d, double f) {
       leftElevatorEncoderPID.setPID(p, i, d, f);
       rightElevatorEncoderPID.setPID(p, i, d, f);
     }
 
-    public void setleftElevatorEncoderSetpoint(double leftElevatorEncoder) {
+    public void setLeftElevatorEncoderSetpoint(double leftElevatorEncoder) {
       leftElevatorEncoderPID.setSetpoint(leftElevatorEncoder);
     }
 
-    public void setrightElevatorEncoderSetpoint(double rightElevatorEncoder) {
+    public void setRightElevatorEncoderSetpoint(double rightElevatorEncoder) {
       rightElevatorEncoderPID.setSetpoint(rightElevatorEncoder);
     }
 
@@ -98,11 +98,11 @@ public class ElevatorVerticalSubsystem extends Subsystem {
       return leftElevatorEncoderPID.onTarget();
     }
   
-    public double getleftElevatorEncoderPIDOutput() {
+    public double getLeftElevatorEncoderPIDOutput() {
       return leftElevatorEncoderPID.get();
     }  
 
-    public double getrightElevatorEncoderPIDOutput() {
+    public double getRightElevatorEncoderPIDOutput() {
       return rightElevatorEncoderPID.get();
     }
 
