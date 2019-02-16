@@ -9,22 +9,35 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.utilities.RobotLog;
 
 public class FourBarSubsystem extends Subsystem {
 
   static TalonSRX leftFourBarMotor, rightFourBarMotor;
   static Encoder leftBarEncoder, rightBarEncoder;
+<<<<<<< HEAD
   static int fourbarSetPoint;
+=======
+  static int hatchLvlTwoPoint, rocketLvlTwoPoint, rocketLvlOnePoint, ballLvlTwoPoint, ballLvlOnePoint;
+>>>>>>> Maggie
 
   private static PIDController fourBarPID;
   private static PIDOutput pidOutput;
+<<<<<<< HEAD
   // private static int startingPoint, floorGatherPoint, highPoint;
+=======
+  //private static int startingPoint, floorGatherPoint, highPoint;
+>>>>>>> John-Schultz
 
   public FourBarSubsystem(int leftFourBarMotorPort, int rightFourBarMotorPort, int[] leftBarEncoderPort,
       int[] rightBarEncoderPort, int gyroPort, double[] fourBarPIDValues, int setStartPoint, int setFloorGatherPoint,
       int setHatchLvlTwoPoint, int setRocketLvlTwoPoint, int setRocketLvlOnePoint, int setClimbPoint,
       int setBallLvlOnePoint, int setBallLvlTwoPoint) {
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> John-Schultz
     leftFourBarMotor = new WPI_TalonSRX(leftFourBarMotorPort);
     rightFourBarMotor = new WPI_TalonSRX(rightFourBarMotorPort);
 
@@ -41,6 +54,8 @@ public class FourBarSubsystem extends Subsystem {
     fourBarPID = new PIDController(fourBarPIDValues[0], fourBarPIDValues[1], fourBarPIDValues[2], leftBarEncoder,
         pidOutput);
     fourBarPID.setEnabled(true);
+
+    RobotLog.putMessage("Running FourBarSubsystem");
   }
 
   // set motors
@@ -57,11 +72,18 @@ public class FourBarSubsystem extends Subsystem {
     setRightFourBarMotor(rightFourBarSpeed);
   }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
   public void setBothFourBarMotor(double FourBarSpeed) {
     setLeftFourBarMotor(FourBarSpeed);
     setRightFourBarMotor(FourBarSpeed);
   }
+=======
 
+>>>>>>> John-Schultz
+
+=======
+>>>>>>> Maggie
   public void resetAngle() {
   }
 
@@ -85,7 +107,11 @@ public class FourBarSubsystem extends Subsystem {
   }
 
   /** PID RELATED METHODS **/
+<<<<<<< HEAD
   public void setFourBarPIDValues(double p, double i, double d) {
+=======
+  public  void setFourBarPIDValues(double p, double i, double d) {
+>>>>>>> John-Schultz
     fourBarPID.setPID(p, i, d);
   }
 
@@ -98,10 +124,42 @@ public class FourBarSubsystem extends Subsystem {
     fourBarPID.setSetpoint(fourbarSetPoint);
   }
 
+<<<<<<< HEAD
+=======
+  public void setStartPoint(int startPoint) {
+    fourBarPID.setSetpoint(startPoint);
+  }
 
-  @Override
+  public void setHatchLvlTwoPoint(int hatchLvlTwoPoint) {
+    fourBarPID.setSetpoint(hatchLvlTwoPoint);
+  }
+
+  public void setRocketLvlTwoPoint(int rocketLvlTwoPoint) {
+    fourBarPID.setSetpoint(rocketLvlTwoPoint);
+  }
+
+  public void setRocketLvlOnePoint(int rocketLvlOnePoint) {
+    fourBarPID.setSetpoint(rocketLvlOnePoint);
+  }
+<<<<<<< HEAD
+
+=======
+  
+>>>>>>> John-Schultz
+  public void setClimbPoint(int climbPoint) {
+    fourBarPID.setSetpoint(climbPoint);
+  }
+
+  public void setBallLvlOnePoint(int ballLvlOnePoint) {
+    fourBarPID.setSetpoint(ballLvlOnePoint);
+  }
+
+  public void setBallLvlTwoPoint(int ballLvlTwoPoint) {
+    fourBarPID.setSetpoint(ballLvlTwoPoint);
+  }
+>>>>>>> Maggie
+
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+
   }
 }

@@ -1,31 +1,29 @@
 package frc.robot.commands;
 
-public class TankDrive extends CommandBase {
-  public TankDrive() {
+import frc.robot.utilities.RobotLog;
+
+public class TankDriveCommand extends CommandBase {
+  public TankDriveCommand() {
     requires(drive);
   }
 
-  @Override
   protected void initialize() {
+    RobotLog.putMessage("Running TankDriveCommand");
     drive.setBoth(0, 0);
   }
 
-  @Override
   protected void execute() {
     drive.setBoth(oi.getleftYAxis(), oi.getrightYAxis());
   }
 
-  @Override
   protected boolean isFinished() {
     return false;
   }
 
-  @Override
   protected void end() {
     drive.setBoth(0, 0);
   }
 
-  @Override
   protected void interrupted() {
     drive.setBoth(0, 0);
   }

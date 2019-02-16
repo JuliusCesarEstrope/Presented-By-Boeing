@@ -9,11 +9,15 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.Talon;
+=======
+>>>>>>> John-Schultz
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Constants;
 import frc.robot.commands.TankDrive;
+import frc.robot.utilities.RobotLog;
 
 public class DriveSubsystem extends Subsystem {
   TalonSRX talonLeft, talonRight;
@@ -43,27 +47,16 @@ public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort,
   for(int i = 0; i < victorsLeft.length; i++)
 <<<<<<< HEAD
     victorsLeft[i] = new WPI_VictorSPX(motorPortsLeft[i+1]); 
-=======
-    victorsLeft[i] = new WPI_VictorSPX(motorPortsLeft[i]); 
-
->>>>>>> master
   for(int i = 0; i < victorsRight.length; i++)
     victorsRight[i] = new WPI_VictorSPX(motorPortsRight[i+1]);
   
-<<<<<<< HEAD
     
       talonLeft = new WPI_TalonSRX(motorPortsLeft[0]);
       talonRight = new WPI_TalonSRX(motorPortsRight[0]);
     
 
-      encoderLeft.setDistancePerPulse(circumferanceOfWheels/ticksOfEncoder);
-      
-  }
-  
-  public void resetGyro() {
-		if (driveEnabled) {
-			driveGyro.reset();
-		}
+      encoderLeft.setDistancePerPulse(Constants.circumferenceOfWheels/ticksOfEncoder);
+      RobotLog.putMessage("Running DriveSubsystem");
   }
 
   public void setgyroPIDValues(double p, double i, double d){
@@ -81,11 +74,17 @@ public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort,
   public double getGyroPIDOutput(){
     return gyroPID.get();
   }
+
 =======
+    victorsLeft[i] = new WPI_VictorSPX(motorPortsLeft[i]); 
+
+  for(int i = 0; i < victorsRight.length; i++)
+    victorsRight[i] = new WPI_VictorSPX(motorPortsRight[i]);
+  
   for (int i = 0; i < victorsLeft.length; i++) 
     victorsLeft[i] = new VictorSPX(motorPortsLeft[i]);
->>>>>>> master
 
+>>>>>>> John-Schultz
   for (int i = 0; i < victorsRight.length; i++) 
     victorsRight[i] = new VictorSPX(motorPortsRight[i]);
     

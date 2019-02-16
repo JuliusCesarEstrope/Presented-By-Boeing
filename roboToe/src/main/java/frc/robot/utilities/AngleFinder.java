@@ -1,6 +1,6 @@
-package frc.robot;
+package frc.robot.utilities;
 
-public class Utilities {            
+public class AngleFinder {            
 
     static double angleOfTapeFromFrontSensorToRightSensor;
     static double lengthOfTapeFromFrontSensorToRightSensor;
@@ -23,5 +23,4 @@ public class Utilities {
         return  angleOfTapeFromFrontSensorToLeftSensor;
     } 
    
-      
 }

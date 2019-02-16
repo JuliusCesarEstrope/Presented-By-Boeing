@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import frc.robot.Constants;
+import frc.robot.utilities.RobotLog;
 
 public class ElevatorVerticalCommand extends CommandBase {
   double elevatorVerticalSetpoint;
@@ -12,6 +13,7 @@ public class ElevatorVerticalCommand extends CommandBase {
   }
 
   protected void initialize() {
+    RobotLog.putMessage("Running ElevatorVerticalCommand");
     elevatorVertical.enableBothElevatorEncoderPIDValues();
     drive.setBoth(0, 0);
     elevatorVertical.setLeftElevatorEncoderSetpoint(elevatorDistance + Constants.defaultElevatorPosition);

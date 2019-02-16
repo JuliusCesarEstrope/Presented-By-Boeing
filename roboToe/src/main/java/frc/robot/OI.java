@@ -3,7 +3,18 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.ElevatorCommandGroup;
+<<<<<<< HEAD
+import frc.robot.commands.FourBarBallLvlOneGroup;
+import frc.robot.commands.FourBarBallLvlTwoGroup;
+import frc.robot.commands.FourBarClimbGroup;
+import frc.robot.commands.FourBarFloorGatherGroup;
+import frc.robot.commands.FourBarHatchLvlTwoGroup;
+import frc.robot.commands.FourBarRocketLvlOneGroup;
+import frc.robot.commands.FourBarRocketLvlTwoGroup;
+import frc.robot.commands.FourBarStartGroup;
+=======
 import frc.robot.commands.FourBarCommand;
+>>>>>>> John-Schultz
 
 public class OI {
 
@@ -63,15 +74,25 @@ public class OI {
   ballLvlOneButton = new JoystickButton(gamePad, 10);
   ballLvlTwoButton = new JoystickButton(gamePad, 11);
 
-  //change FourBarCommand to command groups
-  barStartingButton.whenPressed(new FourBarCommand(Constants.setStartPoint));
-  floorGatherButton.whenPressed(new FourBarCommand(Constants.setFloorGatherPoint));
-  hatchLvlTwoButton.whenPressed(new FourBarCommand(Constants.setHatchLvlTwoPoint));
-  rocketLvlTwoButton.whenPressed(new FourBarCommand(Constants.setRocketLvlTwoPoint));
-  rocketLvlOneButton.whenPressed(new FourBarCommand(Constants.setRocketLvlOnePoint));
-  barClimbPositionButton.whenPressed(new FourBarCommand(Constants.setClimbPoint));
-  ballLvlOneButton.whenPressed(new FourBarCommand(Constants.setBallLvlOnePoint));
-  ballLvlTwoButton.whenPressed(new FourBarCommand(Constants.setBallLvlTwoPoint));
+<<<<<<< HEAD
+  barStartingButton.whenPressed(new FourBarStartGroup(Constants.setStartPoint));
+  floorGatherButton.whenPressed(new FourBarFloorGatherGroup(Constants.setFloorGatherPoint));
+  hatchLvlTwoButton.whenPressed(new FourBarHatchLvlTwoGroup(Constants.setHatchLvlTwoPoint));
+  rocketLvlTwoButton.whenPressed(new FourBarRocketLvlTwoGroup(Constants.setRocketLvlTwoPoint));
+  rocketLvlOneButton.whenPressed(new FourBarRocketLvlOneGroup(Constants.setRocketLvlOnePoint));
+  barClimbPositionButton.whenPressed(new FourBarClimbGroup(Constants.setClimbPoint));
+  ballLvlOneButton.whenPressed(new FourBarBallLvlOneGroup(Constants.setBallLvlOnePoint));
+  ballLvlTwoButton.whenPressed(new FourBarBallLvlTwoGroup(Constants.setBallLvlTwoPoint));
+=======
+  barStartingButton.whenPressed(new FourBarCommand());
+  floorGatherButton.whenPressed(new FourBarCommand());
+  hatchLvlTwoButton.whenPressed(new FourBarCommand());
+  rocketLvlTwoButton.whenPressed(new FourBarCommand());
+  rocketLvlOneButton.whenPressed(new FourBarCommand());
+  barClimbPositionButton.whenPressed(new FourBarCommand());
+  ballLvlOneButton.whenPressed(new FourBarCommand());
+  ballLvlTwoButton.whenPressed(new FourBarCommand());
+>>>>>>> John-Schultz
   elevatorButton.whenPressed(new ElevatorCommandGroup());
 
   }

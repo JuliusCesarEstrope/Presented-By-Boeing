@@ -1,5 +1,10 @@
 package frc.robot.commands;
 
+<<<<<<< HEAD
+import frc.robot.utilities.RobotLog;
+
+=======
+>>>>>>> John-Schultz
 public class ElevatorSetpointCommand extends CommandBase {
   double elevatorVerticalSetpoint;
 
@@ -9,6 +14,10 @@ public class ElevatorSetpointCommand extends CommandBase {
   }
 
   protected void initialize() {
+<<<<<<< HEAD
+    RobotLog.putMessage("Running ElevatorSetpointCommand");
+=======
+>>>>>>> John-Schultz
     drive.setBoth(0, 0);
     elevatorVertical.enableBothElevatorEncoderPIDValues();
     elevatorVertical.setLeftElevatorEncoderSetpoint(elevatorVerticalSetpoint);

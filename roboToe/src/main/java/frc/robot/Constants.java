@@ -55,10 +55,13 @@ public class Constants {
   public static final int[] rightBarEncoderPort = {12, 13};
   public static final int[] leftElevatorEncoder = {1, 2};
   public static final int[] rightElevatorEncoder = {3, 4};
+<<<<<<< HEAD
   
   //Wrist Encoders
   public static final int[] leftWristEncoder = {6, 7};
   public static final int[] rightWristEncoder = {8, 9};
+=======
+>>>>>>> John-Schultz
   /** END DIGITAL INPUTS**/
 
   
@@ -78,7 +81,11 @@ public class Constants {
   //Drive Wheel Constants
   public static double diameterOfWheels = 7.8025;
   public static double circumferenceOfWheels = diameterOfWheels*Math.PI;
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> John-Schultz
   //FourBar Constants
   public static final int setFloorGatherPoint = 6;
   public static final int setHatchLvlTwoPoint = 7;
@@ -87,8 +94,17 @@ public class Constants {
   public static final int setClimbPoint = 10;
   public static final int setBallLvlOnePoint = 11;
   public static final int setBallLvlTwoPoint = 12;
+<<<<<<< HEAD
   
   //Wrist Encoders
+<<<<<<< HEAD
+=======
+>>>>>>> Maggie
+=======
+  public static final int[] leftWristEncoder = {6, 7};
+  public static final int[] rightWristEncoder = {8, 9};
+  public static final int[] wristPIDValues = {0, 0, 0, 0};
+>>>>>>> John-Schultz
   public static final int setStartPoint = 13;
 
   
@@ -96,6 +112,11 @@ public class Constants {
   public static int wristButton = 3;
   public static int wristDownSetPoint = 70;
   public static int wristUpSetPoint = 0;
+<<<<<<< HEAD
+=======
+  public static final double defaultWristPosition = 0;
+  
+>>>>>>> John-Schultz
   // Constant Number
   public static final double defaultElevatorPosition = 0;
       // FIGURE OUT WHAT VALUE IS SUPPOSED TO BE
@@ -107,9 +128,13 @@ public class Constants {
   //Sensor Constants
   public static double leftSensorToRightSensor = 7;
   public static double leftSensorToFrontSensor = 3.5;
+<<<<<<< HEAD
   public static double rightSensorToFrontSensor = 3.5;
   public static double frontSensorToBackSensor = 7;
   public static double leftSensorToBackSensor = 3.5;
+=======
+  public static double frontSensorToBackSensor = 7;
+>>>>>>> John-Schultz
   public static double rightSensorToBackSensor = 3.5;
   public static double rightSensorToCenterSensor = 1;
   public static double leftSensorToCenterSensor = 1;

@@ -1,24 +1,28 @@
 package frc.robot.commands;
+
+import frc.robot.utilities.RobotLog;
+
 public class BooperRetractCommand extends CommandBase {
   public BooperRetractCommand() {
     requires(booper);
   }
-  @Override
+
   protected void initialize() {
-     booper.setBooperReverse();
+    RobotLog.putMessage("Running BooperRetractCommand");
+    booper.setBooperReverse();
   }
-  @Override
+
   protected void execute() {
-     
+
   }
-  @Override
+
   protected boolean isFinished() {
     return true;
   }
-  @Override
+
   protected void end() {
   }
-  @Override
+
   protected void interrupted() {
   }
 }

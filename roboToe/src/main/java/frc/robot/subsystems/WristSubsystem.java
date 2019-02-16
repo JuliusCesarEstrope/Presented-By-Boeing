@@ -4,10 +4,13 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.utilities.RobotLog;
+
 
 public class WristSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
@@ -33,9 +36,20 @@ public class WristSubsystem extends Subsystem {
         leftWristEncoder, pidWristOutput);
     leftWristPID.setEnabled(true);
 
+<<<<<<< HEAD
     rightWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3],
         leftWristEncoder, pidWristOutput);
     leftWristPID.setEnabled(true);
+<<<<<<< HEAD
+=======
+
+    RobotLog.putMessage("Running WristSubsystem");
+>>>>>>> Maggie
+=======
+    rightWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3], leftWristEncoder, pidWristOutput);
+leftWristPID.setEnabled(true);
+leftWristPID.setAbsoluteTolerance(3);
+>>>>>>> John-Schultz
   }
 
   public void setLeftWristMotor(double Speed) {
@@ -71,12 +85,6 @@ public class WristSubsystem extends Subsystem {
     setRightWristMotor(Speed1);
   }
 
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-  }
-
   public void setLeftWristPIDValues(double p, double i, double d) {
     leftWristPID.setPID(p, i, d);
   }
@@ -85,6 +93,13 @@ public class WristSubsystem extends Subsystem {
     leftWristPID.setPID(p, i, d, f);
   }
 
+<<<<<<< HEAD
+=======
+  public boolean leftWristOnTarget() {
+    return leftWristPID.onTarget();
+  }
+
+>>>>>>> John-Schultz
   public void setRightWristPIDValues(double p, double i, double d) {
     leftWristPID.setPID(p, i, d);
   }
@@ -93,14 +108,17 @@ public class WristSubsystem extends Subsystem {
     leftWristPID.setPID(p, i, d, f);
   }
 
-  public void setWristDownSetpoint(int wristDownSetPoint) {
-    leftWristPID.setSetpoint(wristDownSetPoint);
+  public void setWristSetpoint(double wristSetPoint) {
+    leftWristPID.setSetpoint(wristSetPoint);
   }
 
+<<<<<<< HEAD
   public void setWristUpSetpoint(int wristUpSetPoint) {
     leftWristPID.setSetpoint(wristUpSetPoint);
   }
 
+=======
+>>>>>>> John-Schultz
   public double getLeftWristPIDOutput() {
     return leftWristPID.get();
 
@@ -111,4 +129,11 @@ public class WristSubsystem extends Subsystem {
 
   }
 
+<<<<<<< HEAD
 }
+=======
+  public void initDefaultCommand() {
+  }
+
+}
+>>>>>>> Maggie

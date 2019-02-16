@@ -3,15 +3,17 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Constants;
 import frc.robot.OI;
-
 import frc.robot.subsystems.BooperSubsystem;
-import frc.robot.subsystems.Camera;
 import frc.robot.subsystems.DriveSubsystem;
+<<<<<<< HEAD
+=======
+import frc.robot.subsystems.ElevatorHorizontalSubsystem;
+import frc.robot.subsystems.ElevatorVerticalSubsystem;
+>>>>>>> Maggie
 import frc.robot.subsystems.FourBarSubsystem;
 import frc.robot.subsystems.RollerSubsystem;
 import frc.robot.subsystems.WristSubsystem;
-import frc.robot.subsystems.ElevatorVerticalSubsystem;
-import frc.robot.subsystems.ElevatorHorizontalSubsystem;
+import frc.robot.utilities.RobotLog;
 
 public abstract class CommandBase extends Command {
 
@@ -25,6 +27,7 @@ public abstract class CommandBase extends Command {
   public static ElevatorHorizontalSubsystem elevatorHorizontal;
 
   public static void init() {
+    RobotLog.putMessage("Running CommandBase");
     oi = new OI();
     drive = new DriveSubsystem(Constants.motorPortsLeft, Constants.motorPortsRight, Constants.gyroPort,
         Constants.driveEncoderPortLeft, Constants.driveEncoderPortRight, Constants.leftSensor, Constants.frontSensor,
