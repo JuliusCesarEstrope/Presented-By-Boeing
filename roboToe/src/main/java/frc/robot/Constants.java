@@ -87,8 +87,6 @@ public class Constants {
   public static final int setClimbPoint = 10;
   public static final int setBallLvlOnePoint = 11;
   public static final int setBallLvlTwoPoint = 12;
-  
-  //Wrist Encoders
   public static final int setStartPoint = 13;
 
   
@@ -98,7 +96,7 @@ public class Constants {
   public static int wristUpSetPoint = 0;
   // Constant Number
   public static final double defaultElevatorPosition = 0;
-  // FIGURE OUT WHAT VALUE IS SUPPOSED TO BE
+      // FIGURE OUT WHAT VALUE IS SUPPOSED TO BE
   public static final double distanceToTicks = (360 / (Math.PI*1.432));
   public static final double distanceYToTravel = distanceToTicks * 22;
   public static final double distanceYInch = distanceToTicks * 1;
@@ -111,8 +109,38 @@ public class Constants {
   public static double frontSensorToBackSensor = 7;
   public static double leftSensorToBackSensor = 3.5;
   public static double rightSensorToBackSensor = 3.5;
-  public static double leftSensorToCenterSensor = 1;
   public static double frontSensorToCenterSensor = 3.5;
+  public static double rightSensorToCenterSensor = 1;
+  public static double leftSensorToCenterSensor = 1;
 
+  //Auton Constants
+  public static final double level2Length = 48;
+  public static final double level1Length = 47.25;
+  public static final double firstExtra = 12;
 
+  public static final double midToMidAngle = -8.14;
+  public static final double midToMidDistance = 76.77;
+
+  public static final double midToSideAngle = -22.71;
+  public static final double midToSideDistance = 121.41;
+
+  public static final double sideToCloseMidAngle = 23.55;
+  public static final double sideToCloseMidDistance = 82.91;
+
+  public static final double sideToFarMidAngle = 35.83;
+  public static final double sideToFarMidDistance = 93.74;
+
+  public static final double crossAngle = 42.53;
+  public static final double crossDistance = 151.99;
+
+  public static final double sameSideAngle = -7.5;
+  public static final double sameSidesDistance = 112.97;
+
+  public static final double distanceToHatch = 36;
+
+  public static final double setpointToFar = 84;
+  public static final double setpointToMid = 62.25;
+  public static final double setpointToClose = 40.5;
+  /** END OTHER CONSTANTS**/
 }
+

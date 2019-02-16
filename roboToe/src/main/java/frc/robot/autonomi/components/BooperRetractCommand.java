@@ -1,16 +1,18 @@
-package frc.robot.commands;
-public class BooperExtendCommand extends CommandBase {
-  public BooperExtendCommand() {
+package frc.robot.autonomi.components;
+
+import frc.robot.commands.CommandBase;
+
+public class BooperRetractCommand extends CommandBase {
+  public BooperRetractCommand() {
     requires(booper);
   }
   @Override
   protected void initialize() {
-    booper.setBooperForward();
-
+     booper.setBooperReverse();
   }
   @Override
   protected void execute() {
-    
+     
   }
   @Override
   protected boolean isFinished() {
