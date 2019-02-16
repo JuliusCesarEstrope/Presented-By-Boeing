@@ -4,7 +4,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -18,12 +17,13 @@ public class FourBarSubsystem extends Subsystem {
 
   private static PIDController fourBarPID;
   private static PIDOutput pidOutput;
-  private static int startingPoint, floorGatherPoint, highPoint;
+  //private static int startingPoint, floorGatherPoint, highPoint;
 
   public FourBarSubsystem(int leftFourBarMotorPort, int rightFourBarMotorPort, int[] leftBarEncoderPort,
       int[] rightBarEncoderPort, int gyroPort, double[] fourBarPIDValues, int setStartPoint, int setFloorGatherPoint,
       int setHatchLvlTwoPoint, int setRocketLvlTwoPoint, int setRocketLvlOnePoint, int setClimbPoint,
       int setBallLvlOnePoint, int setBallLvlTwoPoint) {
+        
     leftFourBarMotor = new WPI_TalonSRX(leftFourBarMotorPort);
     rightFourBarMotor = new WPI_TalonSRX(rightFourBarMotorPort);
 
@@ -73,7 +73,7 @@ public class FourBarSubsystem extends Subsystem {
   }
 
   /** PID RELATED METHODS **/
-  public static void setFourBarPIDValues(double p, double i, double d) {
+  public  void setFourBarPIDValues(double p, double i, double d) {
     fourBarPID.setPID(p, i, d);
   }
 
@@ -89,27 +89,27 @@ public class FourBarSubsystem extends Subsystem {
     fourBarPID.setSetpoint(startPoint);
   }
 
-  public static void setHatchLvlTwoPoint(int hatchLvlTwoPoint) {
+  public void setHatchLvlTwoPoint(int hatchLvlTwoPoint) {
     fourBarPID.setSetpoint(hatchLvlTwoPoint);
   }
 
-  public static void setRocketLvlTwoPoint(int rocketLvlTwoPoint) {
+  public void setRocketLvlTwoPoint(int rocketLvlTwoPoint) {
     fourBarPID.setSetpoint(rocketLvlTwoPoint);
   }
 
-  public static void setRocketLvlOnePoint(int rocketLvlOnePoint) {
+  public void setRocketLvlOnePoint(int rocketLvlOnePoint) {
     fourBarPID.setSetpoint(rocketLvlOnePoint);
   }
-
-  public static void setClimbPoint(int climbPoint) {
+  
+  public void setClimbPoint(int climbPoint) {
     fourBarPID.setSetpoint(climbPoint);
   }
 
-  public static void setBallLvlOnePoint(int ballLvlOnePoint) {
+  public void setBallLvlOnePoint(int ballLvlOnePoint) {
     fourBarPID.setSetpoint(ballLvlOnePoint);
   }
 
-  public static void setBallLvlTwoPoint(int ballLvlTwoPoint) {
+  public void setBallLvlTwoPoint(int ballLvlTwoPoint) {
     fourBarPID.setSetpoint(ballLvlTwoPoint);
   }
 

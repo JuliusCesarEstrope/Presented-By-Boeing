@@ -10,7 +10,7 @@ public class Utilities {
     public static double AngleFinderFromFrontSensorToRightSensor(double distance, double rightSensorToCenterSensor){
         
         lengthOfTapeFromFrontSensorToRightSensor = Math.sqrt(((distance*distance)+(rightSensorToCenterSensor*rightSensorToCenterSensor))-(2*distance*rightSensorToCenterSensor*(Math.cos(45))));
-        angleOfTapeFromFrontSensorToRightSensor = Math.acos(((distance*distance)-(lengthOfTapeFromFrontSensorToRightSensor*lengthOfTapeFromFrontSensorToRightSensor)-(rightSensorToCenterSensor*rightSensorToCenterSensor))/(-2*lengthOfTapeFromFrontSensorToRightSensor*rightSensorToCenter));
+        angleOfTapeFromFrontSensorToRightSensor = Math.acos(((distance*distance)-(lengthOfTapeFromFrontSensorToRightSensor*lengthOfTapeFromFrontSensorToRightSensor)-(rightSensorToCenterSensor*rightSensorToCenterSensor))/(-2*lengthOfTapeFromFrontSensorToRightSensor*rightSensorToCenterSensor));
     
         return  angleOfTapeFromFrontSensorToRightSensor;
     } 

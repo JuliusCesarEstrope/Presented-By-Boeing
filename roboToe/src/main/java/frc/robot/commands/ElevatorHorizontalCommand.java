@@ -9,7 +9,7 @@ public class ElevatorHorizontalCommand extends CommandBase {
   }
 
   protected void initialize() {
-    drive.setBothMotor(0, 0);
+    drive.setBoth(0, 0);
   }
 
   protected void execute() {
@@ -29,7 +29,7 @@ public class ElevatorHorizontalCommand extends CommandBase {
 
     } else if (tapeHit==2){
       elevatorHorizontal.setXElevatorMotors(.2);
-      drive.setBothMotor(.4, .4);
+      drive.setBoth(.4, .4);
 
     } else if (tapeHit==3){
       elevatorHorizontal.setXElevatorMotors(0);
@@ -42,10 +42,10 @@ public class ElevatorHorizontalCommand extends CommandBase {
   }
 
   protected void end() {
-    drive.setBothMotor(0, 0);
+    drive.setBoth(0, 0);
   }
 
   protected void interrupted() {
-    drive.setBothMotor(0, 0);
+    drive.setBoth(0, 0);
   }
 }

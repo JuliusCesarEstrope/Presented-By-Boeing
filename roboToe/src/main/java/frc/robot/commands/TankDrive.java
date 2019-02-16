@@ -22,11 +22,11 @@ public class TankDrive extends CommandBase {
 
   @Override
   protected void end() {
-    drive.setBothMotor(0, 0);
+    drive.setBoth(0, 0);
   }
 
   @Override
   protected void interrupted() {
-    drive.setBothMotor(0, 0);
+    drive.setBoth(0, 0);
   }
 }
