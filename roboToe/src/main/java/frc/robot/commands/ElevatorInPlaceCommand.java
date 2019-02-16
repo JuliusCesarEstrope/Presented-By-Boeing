@@ -1,31 +1,33 @@
 package frc.robot.commands;
 
-public class TankDrive extends CommandBase {
-  public TankDrive() {
+public class ElevatorInPlaceCommand extends CommandBase {
+ 
+  public ElevatorInPlaceCommand() {
+    requires(elevatorHorizontal);
     requires(drive);
   }
 
-  @Override
   protected void initialize() {
     drive.setBoth(0, 0);
   }
 
-  @Override
   protected void execute() {
-    drive.setBoth(oi.getleftYAxis(), oi.getrightYAxis());
+    if(!elevatorHorizontal.getfastSlowStopSensor()){
+      elevatorHorizontal.setXElevatorMotors(-.4);
+    } else {
+      elevatorHorizontal.setXElevatorMotors(0);
+    }
+    
   }
 
-  @Override
   protected boolean isFinished() {
     return false;
   }
 
-  @Override
   protected void end() {
     drive.setBoth(0, 0);
   }
 
-  @Override
   protected void interrupted() {
     drive.setBoth(0, 0);
   }

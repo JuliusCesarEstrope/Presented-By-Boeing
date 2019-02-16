@@ -9,13 +9,13 @@ package frc.robot.commands;
 
 public class WristCommand extends CommandBase {
     boolean buttonReleased;
-    boolean moveWrist;
     int leftWristEncoder;
     int rightWristEncoder;
     int wristDownSetPoint = 70;   ////////////////////////////////////
     int wristUpSetPoint = 0; /////////////////////////////////////////
     boolean wristUp = false;
     boolean wristDown = false;
+    boolean moveWrist;
   
   public WristCommand() {
     // Use requires() here to declare subsystem dependencies
@@ -45,18 +45,9 @@ public class WristCommand extends CommandBase {
   @Override
   protected void execute() {
     //Two Positions (Up, Down)
-    if(oi.getWristMovement()&&buttonReleased) {
-      moveWrist = !moveWrist;
-      buttonReleased = !oi.getWristMovement();
-    }
-
-    if(!oi.getWristMovement()) {
-      buttonReleased = true;
-    }
 
     if(moveWrist && leftWristEncoder <= 0 && rightWristEncoder >= 0) {
       wrist.setBothWristMotor(-0.70, 0.70);
-      
     }
 
     else if(!moveWrist && leftWristEncoder >= 0 && rightWristEncoder <= 0) {

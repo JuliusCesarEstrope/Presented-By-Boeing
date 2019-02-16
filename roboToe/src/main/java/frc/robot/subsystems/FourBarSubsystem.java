@@ -4,7 +4,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -14,86 +13,105 @@ public class FourBarSubsystem extends Subsystem {
 
   static TalonSRX leftFourBarMotor, rightFourBarMotor;
   static Encoder leftBarEncoder, rightBarEncoder;
-  static AnalogGyro gyro;
+    static int hatchLvlTwoPoint, rocketLvlTwoPoint, rocketLvlOnePoint, ballLvlTwoPoint, ballLvlOnePoint;
+
   private static PIDController fourBarPID;
   private static PIDOutput pidOutput;
-  private static int startPoint, floorGatherPoint, highPoint;
+  //private static int startingPoint, floorGatherPoint, highPoint;
 
-  public FourBarSubsystem(int leftFourBarMotorPort, int rightFourBarMotorPort, int[] leftBarEncoderPort, int[] rightBarEncoderPort, int gyroPort, double[] fourBarPIDValues, int setStartPoint, int setFloorGatherPoint, int setHatchLvlTwoPoint, int setRocketLvlTwoPoint, int setRocketLvlOnePoint, int setClimbPoint, int setBallLvlOnePoint, int setBallLvlTwoPoint) {
+  public FourBarSubsystem(int leftFourBarMotorPort, int rightFourBarMotorPort, int[] leftBarEncoderPort,
+      int[] rightBarEncoderPort, int gyroPort, double[] fourBarPIDValues, int setStartPoint, int setFloorGatherPoint,
+      int setHatchLvlTwoPoint, int setRocketLvlTwoPoint, int setRocketLvlOnePoint, int setClimbPoint,
+      int setBallLvlOnePoint, int setBallLvlTwoPoint) {
+        
     leftFourBarMotor = new WPI_TalonSRX(leftFourBarMotorPort);
     rightFourBarMotor = new WPI_TalonSRX(rightFourBarMotorPort);
 
     leftBarEncoder = new Encoder(leftBarEncoderPort[0], leftBarEncoderPort[1]);
     rightBarEncoder = new Encoder(rightBarEncoderPort[0], rightBarEncoderPort[1]);
 
-    gyro = new AnalogGyro(gyroPort);
-
     leftFourBarMotor.follow(rightFourBarMotor);
     leftFourBarMotor.setInverted(true);
 
     /** PID **/
-    fourBarPID = new PIDController(fourBarPIDValues[0], fourBarPIDValues[1], fourBarPIDValues[2], leftBarEncoder, pidOutput);
+    fourBarPID = new PIDController(fourBarPIDValues[0], fourBarPIDValues[1], fourBarPIDValues[2], leftBarEncoder,
+        pidOutput);
     fourBarPID.setEnabled(true);
   }
+
+  // set motors
+  public void setLeftFourBarMotor(double leftFourBarSpeed) {
+    leftFourBarMotor.set(ControlMode.PercentOutput, leftFourBarSpeed);
+  }
+
+  public void setRightFourBarMotor(double rightFourBarSpeed) {
+    rightFourBarMotor.set(ControlMode.PercentOutput, rightFourBarSpeed);
+  }
+
+  public void setBothFourBarMotor(double leftFourBarSpeed, double rightFourBarSpeed) {
+    setLeftFourBarMotor(leftFourBarSpeed);
+    setRightFourBarMotor(rightFourBarSpeed);
+  }
+
+
+
+  public void resetAngle() {
+  }
   
-   //set motors
-    public void setLeftFourBarMotor(double leftFourBarSpeed) {
-      leftFourBarMotor.set(ControlMode.PercentOutput, leftFourBarSpeed); 
-    }
+  // encoder
+  public int getLeftBarEncoder() {
+    return leftBarEncoder.get();
+  }
 
-    public void setRightFourBarMotor(double rightFourBarSpeed) {
-      rightFourBarMotor.set(ControlMode.PercentOutput, rightFourBarSpeed); 
-    }
+  public int getRightBarEncoder() {
+    return rightBarEncoder.get();
+  }
 
-    public void setBothFourBarMotor(double leftFourBarSpeed, double rightFourBarSpeed) {
-      setLeftFourBarMotor(leftFourBarSpeed);
-      setRightFourBarMotor(rightFourBarSpeed);
-    }
+  public void resetEncoders() {
+    rightBarEncoder.reset();
+    leftBarEncoder.reset();
+  }
 
-    //gyro
-    public double getAngle() {
-      return gyro.getAngle();
-    }
-
-    public void resetAngle() {
-    }
-
-    //encoder
-    public int getLeftBarEncoder() {
-      return leftBarEncoder.get();
-    }
-
-    public int getRightBarEncoder() {
-      return rightBarEncoder.get();
-    }
-
-    public void resetEncoders() {
-      rightBarEncoder.reset();
-      leftBarEncoder.reset();
-    }
-
-     /** PID RELATED METHODS **/
-  public static void setFourBarPIDValues(double p, double i, double d) {
+  /** PID RELATED METHODS **/
+  public  void setFourBarPIDValues(double p, double i, double d) {
     fourBarPID.setPID(p, i, d);
   }
 
-  public static void setFourBarPIDValues(double p, double i, double d, double f) {
+  public void setFourBarPIDValues(double p, double i, double d, double f) {
     fourBarPID.setPID(p, i, d, f);
   }
 
-  public static void setFloorGatherPoint(int floorGatherPoint) {
+  public void setFloorGatherPoint(int floorGatherPoint) {
     fourBarPID.setSetpoint(floorGatherPoint);
   }
 
-  public static void setStartpoint(int startPoint) {
+  public void setStartPoint(int startPoint) {
     fourBarPID.setSetpoint(startPoint);
   }
 
-  public static void setHighpoint(int highPoint) {
-    fourBarPID.setSetpoint(highPoint);
+  public void setHatchLvlTwoPoint(int hatchLvlTwoPoint) {
+    fourBarPID.setSetpoint(hatchLvlTwoPoint);
   }
 
- 
+  public void setRocketLvlTwoPoint(int rocketLvlTwoPoint) {
+    fourBarPID.setSetpoint(rocketLvlTwoPoint);
+  }
+
+  public void setRocketLvlOnePoint(int rocketLvlOnePoint) {
+    fourBarPID.setSetpoint(rocketLvlOnePoint);
+  }
+  
+  public void setClimbPoint(int climbPoint) {
+    fourBarPID.setSetpoint(climbPoint);
+  }
+
+  public void setBallLvlOnePoint(int ballLvlOnePoint) {
+    fourBarPID.setSetpoint(ballLvlOnePoint);
+  }
+
+  public void setBallLvlTwoPoint(int ballLvlTwoPoint) {
+    fourBarPID.setSetpoint(ballLvlTwoPoint);
+  }
 
   @Override
   public void initDefaultCommand() {
