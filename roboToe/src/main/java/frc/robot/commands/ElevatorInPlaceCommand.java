@@ -11,7 +11,6 @@ public class ElevatorInPlaceCommand extends CommandBase {
 
   protected void initialize() {
     RobotLog.putMessage("Running ElevatorInPlaceCommand");
-    RobotLog.putMessage("Running ElevatorInPlaceCommand");
     drive.setBoth(0, 0);
   }
 

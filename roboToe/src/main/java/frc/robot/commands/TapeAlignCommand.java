@@ -12,9 +12,7 @@ public class TapeAlignCommand extends CommandBase {
 
   private double startDistance;
   
-
   public TapeAlignCommand() {
-
     requires(drive);
   }
 

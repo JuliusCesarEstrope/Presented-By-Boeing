@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -40,6 +41,7 @@ public class ElevatorVerticalSubsystem extends Subsystem {
     leftElevatorEncoderPID.setOutputRange(-.6, .6);
     leftElevatorEncoderPID.setInputRange(-Double.MAX_VALUE, Double.MAX_VALUE);
     leftElevatorEncoderPID.enable();
+    leftYElevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
 
     rightElevatorEncoderPID = new PIDController(rightElevatorEncoderPIDValues[0], rightElevatorEncoderPIDValues[1],
         rightElevatorEncoderPIDValues[2], rightElevatorEncoderPIDValues[3], rightElevatorEncoder, pidOutput);
@@ -49,6 +51,7 @@ public class ElevatorVerticalSubsystem extends Subsystem {
     rightElevatorEncoderPID.setOutputRange(-.6, .6);
     rightElevatorEncoderPID.setInputRange(-Double.MAX_VALUE, Double.MAX_VALUE);
     rightElevatorEncoderPID.enable();
+    rightYElevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
 
     RobotLog.putMessage("Running ElevatorVerticalSubsystem");
   }
@@ -58,11 +61,11 @@ public class ElevatorVerticalSubsystem extends Subsystem {
   }
 
   public int getLeftElevatorEncoder() {
-    return leftElevatorEncoder.get();
+    return leftYElevatorMotor.getSelectedSensorPosition();
   }
 
   public int getRightElevatorEncoder() {
-    return rightElevatorEncoder.get();
+    return rightYElevatorMotor.getSelectedSensorPosition();
   }
 
   public void resetBothElevatorEncoders() {
@@ -77,12 +80,28 @@ public class ElevatorVerticalSubsystem extends Subsystem {
 
   public void setBothElevatorEncoderPIDValues(double p, double i, double d) {
     leftElevatorEncoderPID.setPID(p, i, d);
+    leftElevatorEncoderPID.setP(p);
+    leftElevatorEncoderPID.setI(i);
+    leftElevatorEncoderPID.setD(d);
+
     rightElevatorEncoderPID.setPID(p, i, d);
+    rightElevatorEncoderPID.setP(p);
+    rightElevatorEncoderPID.setI(i);
+    rightElevatorEncoderPID.setD(d);
   }
 
   public void setBothElevatorEncoderPIDValues(double p, double i, double d, double f) {
     leftElevatorEncoderPID.setPID(p, i, d, f);
+    leftElevatorEncoderPID.setP(p);
+    leftElevatorEncoderPID.setI(i);
+    leftElevatorEncoderPID.setD(d);
+    leftElevatorEncoderPID.setF(f);
+    
     rightElevatorEncoderPID.setPID(p, i, d, f);
+    rightElevatorEncoderPID.setP(p);
+    rightElevatorEncoderPID.setI(i);
+    rightElevatorEncoderPID.setD(d);
+    rightElevatorEncoderPID.setF(f);
   }
 
   public void setLeftElevatorEncoderSetpoint(double leftElevatorEncoder) {

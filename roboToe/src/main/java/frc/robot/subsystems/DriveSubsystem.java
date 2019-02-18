@@ -46,7 +46,6 @@ public class DriveSubsystem extends Subsystem {
     
 
     encoderLeft.setDistancePerPulse(Constants.circumferenceOfWheels/ticksOfEncoder);
-    RobotLog.putMessage("Running DriveSubsystem");
     victorsLeft = new WPI_VictorSPX[motorPortsLeft.length - 1];
     victorsRight = new WPI_VictorSPX[motorPortsRight.length - 1];
 
@@ -64,6 +63,7 @@ public class DriveSubsystem extends Subsystem {
     leftEncoderPIDController = new PIDController(Constants.rightEncoderPIDValues[0], Constants.rightEncoderPIDValues[1], Constants.rightEncoderPIDValues[2], gyroDrive, leftEncoderControllerPidOutput);
     rightEncoderPIDController = new PIDController(Constants.leftEncoderPIDValues[0], Constants.leftEncoderPIDValues[1], Constants.leftEncoderPIDValues[2], gyroDrive, rightEncoderControllerPidOutput);
 
+    RobotLog.putMessage("Running DriveSubsystem");
   }
     
    public void resetGyro(){

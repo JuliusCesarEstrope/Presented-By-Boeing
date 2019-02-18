@@ -12,7 +12,6 @@ public class ElevatorSetpointCommand extends CommandBase {
 
   protected void initialize() {
     RobotLog.putMessage("Running ElevatorSetpointCommand");
-    RobotLog.putMessage("Running ElevatorSetpointCommand");
     drive.setBoth(0, 0);
     elevatorVertical.enableBothElevatorEncoderPIDValues();
     elevatorVertical.setLeftElevatorEncoderSetpoint(elevatorVerticalSetpoint);

@@ -39,13 +39,14 @@ public class WristSubsystem extends Subsystem {
         leftWristEncoder, pidWristOutput);
     leftWristPID.setEnabled(true);
 
-    RobotLog.putMessage("Running WristSubsystem");
     rightWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3], leftWristEncoder, pidWristOutput);
     leftWristPID.setEnabled(true);
     leftWristPID.setAbsoluteTolerance(3);
     rightWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3],
         leftWristEncoder, pidWristOutput);
     leftWristPID.setEnabled(true);
+
+    RobotLog.putMessage("Running WristSubsystem");
   }
 
   public void setLeftWristMotor(double Speed) {

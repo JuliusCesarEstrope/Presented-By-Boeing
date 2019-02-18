@@ -4,6 +4,7 @@ import frc.robot.utilities.RobotLog;
 
 public class ElevatorHorizontalCommand extends CommandBase {
   int tapeHit;
+  boolean tapeToggle;
 
   public ElevatorHorizontalCommand() {
     requires(elevatorHorizontal);
@@ -12,17 +13,16 @@ public class ElevatorHorizontalCommand extends CommandBase {
 
   protected void initialize() {
     RobotLog.putMessage("Running ElevatorHorizontalCommand");
-    RobotLog.putMessage("Running ElevatorHorizontalCommand");
     drive.setBoth(0, 0);
+    tapeToggle = true;
   }
 
   protected void execute() {
-    if (!elevatorHorizontal.getfastSlowStopSensor()) {
-      elevatorHorizontal.setXElevatorMotors(0.7);
-    }
-
-    if (elevatorHorizontal.getfastSlowStopSensor()) {
+    if (elevatorHorizontal.getfastSlowStopSensor() && tapeToggle) {
       tapeHit++;
+      tapeToggle = false;
+    } else if (!elevatorHorizontal.getfastSlowStopSensor()){
+      tapeToggle = true;
     }
 
     if (tapeHit == 0) {

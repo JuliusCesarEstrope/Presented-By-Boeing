@@ -23,8 +23,6 @@ public class WristCommand extends CommandBase {
     wristDown = false;
     //moveWrist;
     this.wristDistance = wristDistance;
-
-    RobotLog.putMessage("Running WristCommand");
     leftWristEncoder = wrist.getLeftWristEncoder();
     rightWristEncoder = wrist.getRightWristEncoder();
     this.wristDistance = wristDistance;
@@ -32,7 +30,7 @@ public class WristCommand extends CommandBase {
 
 
   protected void initialize() {
-
+    RobotLog.putMessage("Running WristCommand");
     //Set point
     //Send PID to correct  motors
     wrist.setWristSetpoint(wristDistance + Constants.defaultWristPosition);
