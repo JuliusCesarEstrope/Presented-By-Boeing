@@ -34,6 +34,25 @@ public class FourBarSubsystem extends Subsystem {
     leftFourBarMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
     rightFourBarMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
 
+    leftFourBarMotor.configNominalOutputForward(0);
+    leftFourBarMotor.configNominalOutputReverse(0);
+    leftFourBarMotor.configPeakOutputForward(1);
+    leftFourBarMotor.configPeakOutputReverse(-1);
+    leftFourBarMotor.config_kP(0, fourBarPIDValues[0]);
+    leftFourBarMotor.config_kI(0, fourBarPIDValues[1]);
+    leftFourBarMotor.config_kD(0, fourBarPIDValues[2]);
+    leftFourBarMotor.config_kF(0, fourBarPIDValues[3]);
+
+    rightFourBarMotor.configNominalOutputForward(0);
+    rightFourBarMotor.configNominalOutputReverse(0);
+    rightFourBarMotor.configPeakOutputForward(1);
+    rightFourBarMotor.configPeakOutputReverse(-1);
+    rightFourBarMotor.config_kP(0, fourBarPIDValues[0]);
+    rightFourBarMotor.config_kI(0, fourBarPIDValues[1]);
+    rightFourBarMotor.config_kD(0, fourBarPIDValues[2]);
+    rightFourBarMotor.config_kF(0, fourBarPIDValues[3]);
+
+
     /** PID **/
     fourBarPID = new PIDController(fourBarPIDValues[0], fourBarPIDValues[1], fourBarPIDValues[2], leftBarEncoder,
         pidOutput);
