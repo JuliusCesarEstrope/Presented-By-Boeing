@@ -29,6 +29,10 @@ public class ElevatorHorizontalSubsystem extends Subsystem {
     leftXElevatorMotor.set(ControlMode.PercentOutput, Speed);
   }
 
+  public double getXElevatorMotors(){
+    return leftXElevatorMotor.getMotorOutputPercent();
+  }
+
   public boolean getfastSlowStopSensor() {
     return fastSlowStopSensor.get();
   }

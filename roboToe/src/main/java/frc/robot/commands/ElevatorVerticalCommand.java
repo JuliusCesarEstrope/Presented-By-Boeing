@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.utilities.RobotLog;
 
@@ -23,6 +24,9 @@ public class ElevatorVerticalCommand extends CommandBase {
 
   protected void execute() {
     elevatorVertical.setYElevatorMotors(elevatorVertical.getLeftElevatorEncoderPIDOutput());
+    SmartDashboard.putNumber("Position of the elevator:", elevatorVertical.getLeftElevatorEncoder());
+    SmartDashboard.putNumber("Elevator current:", elevatorVertical.getElevatorMotorsCurrent());
+    SmartDashboard.putBoolean("Emergency Stop Button Pressed:", oi.getElevatorEmergencyStopButton());
   }
 
   protected boolean isFinished() {

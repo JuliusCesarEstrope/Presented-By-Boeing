@@ -79,10 +79,10 @@ public class Constants {
   /** BEGIN OTHER CONSTANTS**/
   //Drive Wheel Constants
   public static double diameterOfWheels = 7.8025;
-  public static double circumferenceOfWheels = diameterOfWheels*Math.PI;
+  public static double circumferenceOfWheels = diameterOfWheels * Math.PI;
 
    //Encoder tick to Inches
-   public static double ticksToInches = (ticksOfEncoder/360) *circumferenceOfWheels;
+   public static double ticksToInches = (ticksOfEncoder/360) * circumferenceOfWheels;
    
   //FourBar Constants
   public static final int setStartPoint = 5;

@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.utilities.RobotLog;
 
 public class ElevatorInPlaceCommand extends CommandBase {
@@ -20,7 +21,7 @@ public class ElevatorInPlaceCommand extends CommandBase {
     } else {
       elevatorHorizontal.setXElevatorMotors(0);
     }
-
+    SmartDashboard.putBoolean("X Elevator Sensor:", elevatorHorizontal.getfastSlowStopSensor());
   }
 
   protected boolean isFinished() {

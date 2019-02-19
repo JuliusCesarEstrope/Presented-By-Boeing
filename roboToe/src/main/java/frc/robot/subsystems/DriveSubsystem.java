@@ -130,7 +130,6 @@ public class DriveSubsystem extends Subsystem {
     gyroPID.disable();
   }
 
-
   public void setLeft(double speed){
     talonLeft.set(ControlMode.PercentOutput, Math.max(Math.min(speed, -1), 1));
     for(VictorSPX i: victorsLeft)
@@ -141,6 +140,23 @@ public class DriveSubsystem extends Subsystem {
     for(VictorSPX i: victorsRight)
       i.set(ControlMode.PercentOutput, Math.max(Math.min(-speed, -1), 1));
   }
+
+  public void setLeftPosition(double setpoint){
+    talonLeft.set(ControlMode.Position, setpoint);
+    for(VictorSPX i: victorsLeft)
+      i.set(ControlMode.Position, setpoint);
+  }
+  public void setRightPosition(double setpoint){
+    talonRight.set(ControlMode.Position, setpoint);
+    for(VictorSPX i: victorsRight)
+      i.set(ControlMode.Position, setpoint);
+  }
+
+  public void setBothPosition(double setpointLeft, double setpointRight){
+    setLeftPosition(setpointLeft);
+    setRightPosition(setpointRight);
+  }
+
   public void setBoth(double speedLeft, double speedRight){
     setLeft(speedLeft);
     setRight(speedRight);
@@ -158,8 +174,8 @@ public class DriveSubsystem extends Subsystem {
   }
 
   public void resetEncoder(){
-    encoderLeft.reset();
-    encoderRight.reset();
+    talonLeft.setSelectedSensorPosition(0);
+    talonRight.setSelectedSensorPosition(0);
   }
   public int getEncderLeft(){
     return encoderLeft.get();
