@@ -31,21 +31,34 @@ public class WristSubsystem extends Subsystem {
     leftWristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
     rightWristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
 
-    leftWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3],
+      leftWristMotor.configNominalOutputForward(0);
+      leftWristMotor.configNominalOutputReverse(0);
+      leftWristMotor.configPeakOutputForward(1);
+      leftWristMotor.configPeakOutputReverse(-1);
+      leftWristMotor.config_kP(0, wristPIDValues[0]);
+      leftWristMotor.config_kI(0, wristPIDValues[1]);
+      leftWristMotor.config_kD(0, wristPIDValues[2]);
+      leftWristMotor.config_kF(0, wristPIDValues[3]);
+
+      rightWristMotor.configNominalOutputForward(0);
+      rightWristMotor.configNominalOutputReverse(0);
+      rightWristMotor.configPeakOutputForward(1);
+      rightWristMotor.configPeakOutputReverse(-1);
+      rightWristMotor.config_kP(0, wristPIDValues[0]);
+      rightWristMotor.config_kI(0, wristPIDValues[1]);
+      rightWristMotor.config_kD(0, wristPIDValues[2]);
+      rightWristMotor.config_kF(0, wristPIDValues[3]);
+
+      leftWristMotor.limit
+    /*leftWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3],
         leftWristEncoder, pidWristOutput);
     leftWristPID.setEnabled(true);
 
-    rightWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3],
+   /* rightWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3],
         leftWristEncoder, pidWristOutput);
-    leftWristPID.setEnabled(true);
+    leftWristPID.setEnabled(true);*/
 
     RobotLog.putMessage("Running WristSubsystem");
-    rightWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3], leftWristEncoder, pidWristOutput);
-    leftWristPID.setEnabled(true);
-    leftWristPID.setAbsoluteTolerance(3);
-    rightWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3],
-        leftWristEncoder, pidWristOutput);
-    leftWristPID.setEnabled(true);
   }
 
   public void setLeftWristMotor(double Speed) {
@@ -54,6 +67,14 @@ public class WristSubsystem extends Subsystem {
 
   public void setRightWristMotor(double Speed) {
     rightWristMotor.set(ControlMode.PercentOutput, Speed);
+  }
+
+  public void setRightWristPosition(double setpoint) {
+    leftWristMotor.set(ControlMode.Position, setpoint);
+  }
+
+  public void setLeftWristPosition(double setpoint) {
+    rightWristMotor.set(ControlMode.Position, setpoint);
   }
 
   public void ResetEncoder() {
@@ -82,25 +103,54 @@ public class WristSubsystem extends Subsystem {
   }
 
   public void setLeftWristPIDValues(double p, double i, double d) {
-    leftWristPID.setPID(p, i, d);
+    //setLeftWristPIDValues(p, i, d);
+    //leftWristPID.setP(p);
+    //leftWristPID.setI(i);
+    //leftWristPID.setD(d);
+
+      leftWristMotor.config_kP(0, p);
+      leftWristMotor.config_kI(0, i);
+      leftWristMotor.config_kD(0, d);
+ 
+
   }
 
   public void setLeftWristPIDValues(double p, double i, double d, double f) {
-    leftWristPID.setPID(p, i, d, f);
+    setLeftWristPIDValues(p, i, d);
+    //leftWristPID.setP(p);
+    //leftWristPID.setI(i);
+    //leftWristPID.setD(d);
+    //leftWristPID.setF(f);
+
+    leftWristMotor.config_kF(0, f);
   }
+
   public boolean leftWristOnTarget() {
     return leftWristPID.onTarget();
   }
 
   public void setRightWristPIDValues(double p, double i, double d) {
-    leftWristPID.setPID(p, i, d);
+    //rightWristPID.setPID(p, i, d);
+    //rightWristPID.setP(p);
+    //rightWristPID.setI(i);
+    //rightWristPID.setD(d);
+
+    rightWristMotor.config_kP(0, p);
+    rightWristMotor.config_kI(0, i);
+    rightWristMotor.config_kD(0, d);
   }
 
-  public void setWristRightPIDValues(double p, double i, double d, double f) {
-    leftWristPID.setPID(p, i, d, f);
+  public void setRightWristPIDValues(double p, double i, double d, double f) {
+    setRightWristPIDValues(p, i, d);
+    //rightWristPID.setP(p);
+    //rightWristPID.setI(i);
+    //rightWristPID.setD(d);
+    //rightWristPID.setF(f);
+
+    rightWristMotor.config_kF(0, f);
   }
 
-  public void setWristSetpoint(double wristSetPoint) {
+  /*public void setWristSetpoint(double wristSetPoint) {
     leftWristPID.setSetpoint(wristSetPoint);
   }
 
@@ -112,7 +162,7 @@ public class WristSubsystem extends Subsystem {
   public double getRightWristPIDOutput() {
     return rightWristPID.get();
 
-  }
+  }*/
 
   public void initDefaultCommand() {
   }
