@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.Utilities;
 import frc.robot.utilities.RobotLog;
@@ -9,6 +10,7 @@ public class TapeAlignCommand extends CommandBase {
   private boolean endCommand;
   private boolean tapeTouched, touchFront, touchSide;
   private double start, end;
+  private double angleToTurn;
 
   private double startDistance;
   
@@ -23,7 +25,7 @@ public class TapeAlignCommand extends CommandBase {
     startDistance = drive.getWheelDistanceRight();
     drive.setBoth(0, 0);
     endCommand = false;
-    tapeTouched = false;
+    tapeTouched = false; 
     touchFront = false;
     touchSide = false;
   }
@@ -59,14 +61,21 @@ public class TapeAlignCommand extends CommandBase {
   if(touchFront){
     drive.setBoth(0.3,0.3);
     if(touchSide){ 
-        drive.setBoth(0,0); 
+        drive.setBoth(0,0);
         endCommand = true;
         //make sure this works!
         //new TurnAngle(Utilities.AngleFinderFromFrontSensorToLeftSensor(end-start,  Constants.frontSensorToCenterOfRobot));
         CommandBase.newDistanceToMove = Math.abs(Constants.frontSensorToCenterOfRobot-(end-start));
-        CommandBase.turnAngle = Utilities.AngleFinderFromFrontSensorToLeftSensor(end-start,  Constants.frontSensorToCenterOfRobot);
+        angleToTurn = Utilities.AngleFinderFromFrontSensorToLeftSensor(end-start,  Constants.frontSensorToCenterOfRobot);
+        CommandBase.turnAngle = angleToTurn;        
       }
     }
+    SmartDashboard.putBoolean("Left Sensor", drive.getLeftSensor());
+    SmartDashboard.putBoolean("Front Sensor", drive.getFrontSensor());
+    SmartDashboard.putBoolean("Right Sensor", drive.getRightSensor());
+    SmartDashboard.putBoolean("Back Sensor", drive.getBackSensor());
+    SmartDashboard.putNumber("Calculated Angle", (angleToTurn));
+    SmartDashboard.putNumber("DistanceTraveled", drive.getWheelDistanceLeft());
   }
 
   // Make this return true when this Command no longer needs to run execute()
