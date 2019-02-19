@@ -150,7 +150,7 @@ public class WristSubsystem extends Subsystem {
     rightWristMotor.config_kF(0, f);
   }
 
-  /*public void setWristSetpoint(double wristSetPoint) {
+  public void setWristSetpoint(double wristSetPoint) {
     leftWristPID.setSetpoint(wristSetPoint);
   }
 
@@ -162,7 +162,7 @@ public class WristSubsystem extends Subsystem {
   public double getRightWristPIDOutput() {
     return rightWristPID.get();
 
-  }*/
+  }
 
   public void initDefaultCommand() {
   }

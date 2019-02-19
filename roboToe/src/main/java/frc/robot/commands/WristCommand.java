@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.utilities.RobotLog;
 
@@ -43,6 +44,8 @@ public class WristCommand extends CommandBase {
   protected void execute() {
     //Two Positions (Up, Down)
     wrist.setBothWristMotor(wrist.getLeftWristPIDOutput());
+    SmartDashboard.putNumber("LeftWristEncoder", wrist.getLeftWristEncoder());
+    SmartDashboard.putNumber("RightWristEncoder", wrist.getRightWristEncoder());
     
   }
 
