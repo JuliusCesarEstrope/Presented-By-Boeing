@@ -52,7 +52,6 @@ public class FourBarSubsystem extends Subsystem {
     rightFourBarMotor.config_kD(0, fourBarPIDValues[2]);
     rightFourBarMotor.config_kF(0, fourBarPIDValues[3]);
 
-
     /** PID **/
     fourBarPID = new PIDController(fourBarPIDValues[0], fourBarPIDValues[1], fourBarPIDValues[2], leftBarEncoder,
         pidOutput);
@@ -101,11 +100,22 @@ public class FourBarSubsystem extends Subsystem {
 
   /** PID RELATED METHODS **/
   public  void setFourBarPIDValues(double p, double i, double d) {
-    fourBarPID.setPID(p, i, d);
+    //fourBarPID.setPID(p, i, d);
+    leftFourBarMotor.config_kP(0, p);
+    leftFourBarMotor.config_kI(0, i);
+    leftFourBarMotor.config_kD(0, d);
+    //fourBarPID.setP(p);
+    //fourBarPID.setI(i);
+    //fourBarPID.setD(d);
   }
 
   public void setFourBarPIDValues(double p, double i, double d, double f) {
-    fourBarPID.setPID(p, i, d, f);
+    fourBarPID.setPID(p, i, d);
+    leftFourBarMotor.config_kF(0, f);
+    //fourBarPID.setP(p);
+    //fourBarPID.setI(i);
+    //fourBarPID.setD(d);
+    //fourBarPID.setF(f);
   }
 
   //setpoint
