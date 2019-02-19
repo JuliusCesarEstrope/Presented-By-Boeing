@@ -11,7 +11,6 @@ public class FourBarStartCommandGroup extends CommandGroup {
     addSequential(new WristCommand(Constants.wristUpSetPoint));
     addSequential(new FourBarCommand(Constants.setStartPoint));
 
-
   }
-    
+
 }

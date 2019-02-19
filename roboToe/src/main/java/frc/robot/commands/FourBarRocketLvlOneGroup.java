@@ -4,13 +4,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Constants;
 
-public class FourBarRocketLvlOneGroup extends CommandGroup{
+public class FourBarRocketLvlOneGroup extends CommandGroup {
 
-  public FourBarRocketLvlOneGroup(int setRocketLvlOnePoint){
+  public FourBarRocketLvlOneGroup(int setRocketLvlOnePoint) {
 
-      addSequential(new WristCommand(Constants.wristUpSetPoint));
-      addSequential(new FourBarCommand(Constants.setRocketLvlOnePoint));
-     
+    addSequential(new WristCommand(Constants.wristUpSetPoint));
+    addSequential(new FourBarCommand(Constants.setRocketLvlOnePoint));
+
   }
 
 }
