@@ -7,7 +7,7 @@ public class FourBarCommand extends CommandBase {
   int leftBarEncoder, rightBarEncoder; // change
   double fourBarSetPoint;
 
-  public FourBarCommand(int fourBarSetPoint) {
+  public FourBarCommand(double fourBarSetPoint) {
     // Use requires() here to declare subsystem dependencies
     requires(fourBar);
     leftBarEncoder = fourBar.getLeftBarEncoder();

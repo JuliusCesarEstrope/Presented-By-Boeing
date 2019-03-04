@@ -85,14 +85,14 @@ public class Constants {
    public static double ticksToInches = (ticksOfEncoder/360) *circumferenceOfWheels;
    
   //FourBar Constants
-  public static final int setStartPoint = 5;
-  public static final int setFloorGatherPoint = 6;
-  public static final int setHatchLvlTwoPoint = 7;
-  public static final int setRocketLvlTwoPoint = 8;
-  public static final int setRocketLvlOnePoint = 9;
-  public static final int setClimbPoint = 10;
-  public static final int setBallLvlOnePoint = 11;
-  public static final int setBallLvlTwoPoint = 12;
+  public static final double setStartPoint = ((4096/360)*(11.22)); //initialize: set angle to 11.22
+  public static final double setFloorGatherPoint = ((4096/360)*(50.83));
+  public static final double setHatchLvlTwoPoint = ((4096/360)*(149.43)); //maybe not use
+  public static final double setRocketLvlTwoPoint = ((4096/360)*(149.43));
+  public static final double setRocketLvlOnePoint = ((4096/360)*(31.68));
+  public static final double setClimbPoint = 10; //value???
+  public static final double setBallLvlOnePoint = 11;
+  public static final double setBallLvlTwoPoint = 12;
 
   //Wrist stuff
   public static final int[] leftWristEncoder = {6, 7};
