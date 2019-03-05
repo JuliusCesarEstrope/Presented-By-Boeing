@@ -6,7 +6,7 @@ import frc.robot.Constants;
 
 public class FourBarStartCommandGroup extends CommandGroup {
 
-  public FourBarStartCommandGroup(int setStartPoint) {
+  public FourBarStartCommandGroup(double setStartPoint) {
 
     addSequential(new WristCommand(Constants.wristUpSetPoint));
     addSequential(new FourBarCommand(Constants.setStartPoint));

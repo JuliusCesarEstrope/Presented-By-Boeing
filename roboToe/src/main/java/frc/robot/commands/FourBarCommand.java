@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.utilities.RobotLog;
+import frc.robot.Constants;
 
 public class FourBarCommand extends CommandBase {
   int leftBarEncoder, rightBarEncoder; // change
@@ -13,13 +14,14 @@ public class FourBarCommand extends CommandBase {
     leftBarEncoder = fourBar.getLeftBarEncoder();
     rightBarEncoder = fourBar.getRightBarEncoder();
     this.fourBarSetPoint = fourBarSetPoint;
+    
   }
 
   protected void initialize() {
     RobotLog.putMessage("Running FourBarCommand");
     // send pid to correct motors
     fourBar.setBothFourBarMotor(0, 0);
-    // fourBar.resetEncoders();
+   
   }
 
   protected void execute() {

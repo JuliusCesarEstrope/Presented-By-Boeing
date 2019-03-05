@@ -6,10 +6,11 @@ import frc.robot.Constants;
 
 public class FourBarBallLvlOneGroup extends CommandGroup{
 
-  public FourBarBallLvlOneGroup(int setBallLvlOnePoint){
+  public FourBarBallLvlOneGroup(double setBallLvlOnePoint){
 
       addSequential(new WristCommand(Constants.wristUpSetPoint));
       addSequential(new FourBarCommand(Constants.setBallLvlOnePoint));
+      addSequential(new WristCommand(Constants.wristDownSetPoint));
      
   }
 

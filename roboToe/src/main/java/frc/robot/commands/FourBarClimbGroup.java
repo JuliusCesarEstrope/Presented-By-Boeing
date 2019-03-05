@@ -6,7 +6,7 @@ import frc.robot.Constants;
 
 public class FourBarClimbGroup extends CommandGroup{
 
-  public FourBarClimbGroup(int setClimbPoint){
+  public FourBarClimbGroup(double setClimbPoint){
 
       addSequential(new WristCommand(Constants.wristUpSetPoint));
       addSequential(new FourBarCommand(Constants.setClimbPoint));

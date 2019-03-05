@@ -6,7 +6,7 @@ import frc.robot.Constants;
 
 public class FourBarFloorGatherGroup extends CommandGroup {
 
-  public FourBarFloorGatherGroup(int setFloorGatherPoint) {
+  public FourBarFloorGatherGroup(double setFloorGatherPoint) {
 
     addSequential(new FourBarCommand(Constants.setFloorGatherPoint));
     addSequential(new WristCommand(Constants.wristDownSetPoint));
