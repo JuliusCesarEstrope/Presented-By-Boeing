@@ -20,7 +20,7 @@ public class ElevatorHorizontalSubsystem extends Subsystem {
     rightXElevatorMotor = new WPI_TalonSRX(rightXElevatorMotorPort);
 
     rightXElevatorMotor.follow(leftXElevatorMotor);
-    rightXElevatorMotor.setInverted(true);
+    rightXElevatorMotor.setInverted(true); //SHOULD BE HERE?
 
     RobotLog.putMessage("Running ElevatorHorizontalSubsystem");
   }

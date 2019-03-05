@@ -8,10 +8,11 @@ public class ElevatorCommandGroup extends CommandGroup {
   public ElevatorCommandGroup() {
     RobotLog.putMessage("Running ElevatorCommandGroup");
 
-    addSequential(new ElevatorVerticalCommand(Constants.distanceYToTravel));
+    addSequential(new ElevatorVerticalCommand(Constants.distanceToTicks * 22));
     addSequential(new ElevatorHorizontalCommand());
-    addSequential(new ElevatorVerticalCommand(Constants.distanceYToTravel - Constants.distanceYInch));
-    addSequential(new ElevatorVerticalCommand(Constants.distanceYFiveInch));
+    addSequential(new ElevatorVerticalCommand((Constants.distanceToTicks * 22) - (Constants.distanceToTicks * 1)));
+    // add at same time for 2 above??????????????????
+    addSequential(new ElevatorVerticalCommand(Constants.distanceToTicks * 5));
 
   }
 }

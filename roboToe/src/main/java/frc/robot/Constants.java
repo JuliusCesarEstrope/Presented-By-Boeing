@@ -107,9 +107,6 @@ public class Constants {
   public static final double defaultElevatorPosition = 0;
   // FIGURE OUT WHAT VALUE IS SUPPOSED TO BE
   public static final double distanceToTicks = (360 / (Math.PI * 1.432));
-  public static final double distanceYToTravel = distanceToTicks * 22;
-  public static final double distanceYInch = distanceToTicks * 1;
-  public static final double distanceYFiveInch = distanceToTicks * 5;
 
   // Sensor Constants
   public static double leftSensorToRightSensor = 7;
