@@ -2,7 +2,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.utilities.RobotLog;
-import frc.robot.Constants;
 
 public class FourBarCommand extends CommandBase {
   int leftBarEncoder, rightBarEncoder; // change

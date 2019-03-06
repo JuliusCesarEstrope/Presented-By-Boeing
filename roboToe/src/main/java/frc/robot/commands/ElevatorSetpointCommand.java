@@ -2,8 +2,6 @@ package frc.robot.commands;
 
 import frc.robot.utilities.RobotLog;
 
-import frc.robot.utilities.RobotLog;
-
 public class ElevatorSetpointCommand extends CommandBase {
   double elevatorVerticalSetpoint;
 
