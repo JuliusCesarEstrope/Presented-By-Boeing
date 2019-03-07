@@ -7,22 +7,22 @@ public class WristCommand extends CommandBase {
 
   int leftWristEncoder;
   int rightWristEncoder;
-  double wristDistance;
+  double wristSetPoint;
 
-  public WristCommand(double wristDistance) {
+  public WristCommand(double wristSetPoint) {
     requires(wrist);
     // Use requires() here to declare subsystem dependencies
     RobotLog.putMessage("Running WristCommand");
     leftWristEncoder = wrist.getLeftWristEncoder();
     rightWristEncoder = wrist.getRightWristEncoder();
-    this.wristDistance = wristDistance;
+    this.wristSetPoint = wristSetPoint;
   }
 
   protected void initialize() {
 
     // Set point
     // Send PID to correct motors
-    wrist.setWristSetpoint(wristDistance + Constants.defaultWristPosition);
+    wrist.setWristSetpoint(wristSetPoint);
 
   }
 

@@ -4,12 +4,13 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
+import frc.robot.Constants;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.utilities.RobotLog;
+import frc.robot.commands.FourBarCommand;
 
 public class FourBarSubsystem extends Subsystem {
 
@@ -156,6 +157,6 @@ public class FourBarSubsystem extends Subsystem {
   }
 
   public void initDefaultCommand() {
-
+    setDefaultCommand(new FourBarCommand(Constants.setStartPoint));
   }
 }

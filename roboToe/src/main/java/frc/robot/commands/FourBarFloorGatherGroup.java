@@ -8,6 +8,7 @@ public class FourBarFloorGatherGroup extends CommandGroup {
 
   public FourBarFloorGatherGroup(double setFloorGatherPoint) {
 
+    addSequential(new WristCommand(Constants.wristUpSetPoint));
     addSequential(new FourBarCommand(Constants.setFloorGatherPoint));
     addSequential(new WristCommand(Constants.wristDownSetPoint));
 
