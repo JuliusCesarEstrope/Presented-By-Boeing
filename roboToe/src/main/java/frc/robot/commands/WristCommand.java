@@ -12,8 +12,6 @@ public class WristCommand extends CommandBase {
   public WristCommand(double wristDistance) {
     requires(wrist);
     // Use requires() here to declare subsystem dependencies
-    this.wristDistance = wristDistance;
-
     RobotLog.putMessage("Running WristCommand");
     leftWristEncoder = wrist.getLeftWristEncoder();
     rightWristEncoder = wrist.getRightWristEncoder();

@@ -151,6 +151,10 @@ public class FourBarSubsystem extends Subsystem {
     fourBarPID.setSetpoint(ballLvlTwoPoint);
   }
 
+  public void setFloorGatherPoint(int floorGatherPoint) {
+    fourBarPID.setSetpoint(floorGatherPoint);
+  }
+
   public void initDefaultCommand() {
 
   }
