@@ -28,6 +28,7 @@ public class FourBarCommand extends CommandBase {
                                                  constants in the command groups, essentially a placeholder for
                                                  specific setpoints*/
     fourBar.setBothFourBarMotor(fourBar.getFourBarPIDOutput());
+    fourBar.setBothFourBarMotorPosition(fourBarSetPoint);
 
     SmartDashboard.putNumber("LeftFourBarEncoder", fourBar.getLeftBarEncoder());
     SmartDashboard.putNumber("RightFourBarEncoder", fourBar.getRightBarEncoder());
