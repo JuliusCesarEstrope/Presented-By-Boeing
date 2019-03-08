@@ -1,9 +1,11 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.utilities.RobotLog;
 
 public class ElevatorHorizontalCommand extends CommandBase {
   int tapeHit;
+  boolean tapeToggle;
 
   public ElevatorHorizontalCommand() {
     requires(elevatorHorizontal);
@@ -12,17 +14,16 @@ public class ElevatorHorizontalCommand extends CommandBase {
 
   protected void initialize() {
     RobotLog.putMessage("Running ElevatorHorizontalCommand");
-    RobotLog.putMessage("Running ElevatorHorizontalCommand");
     drive.setBoth(0, 0);
+    tapeToggle = true;
   }
 
   protected void execute() {
-    if (!elevatorHorizontal.getfastSlowStopSensor()) {
-      elevatorHorizontal.setXElevatorMotors(0.7);
-    }
-
-    if (elevatorHorizontal.getfastSlowStopSensor()) {
+    if (elevatorHorizontal.getfastSlowStopSensor() && tapeToggle) {
       tapeHit++;
+      tapeToggle = false;
+    } else if (!elevatorHorizontal.getfastSlowStopSensor()){
+      tapeToggle = true;
     }
 
     if (tapeHit == 0) {
@@ -39,6 +40,10 @@ public class ElevatorHorizontalCommand extends CommandBase {
       elevatorHorizontal.setXElevatorMotors(0);
 
     }
+
+    SmartDashboard.putBoolean("X Elevator Sensor:", elevatorHorizontal.getfastSlowStopSensor());
+    SmartDashboard.putNumber("Tape hit of sensor:", tapeHit);
+    SmartDashboard.putNumber("Speed of Horizontal Wheels:", elevatorHorizontal.getXElevatorMotors());
   }
 
   protected boolean isFinished() {

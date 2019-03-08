@@ -46,7 +46,6 @@ public class DriveSubsystem extends Subsystem {
     
 
     encoderLeft.setDistancePerPulse(Constants.circumferenceOfWheels/ticksOfEncoder);
-    RobotLog.putMessage("Running DriveSubsystem");
     victorsLeft = new WPI_VictorSPX[motorPortsLeft.length - 1];
     victorsRight = new WPI_VictorSPX[motorPortsRight.length - 1];
 
@@ -64,6 +63,7 @@ public class DriveSubsystem extends Subsystem {
     leftEncoderPIDController = new PIDController(Constants.rightEncoderPIDValues[0], Constants.rightEncoderPIDValues[1], Constants.rightEncoderPIDValues[2], gyroDrive, leftEncoderControllerPidOutput);
     rightEncoderPIDController = new PIDController(Constants.leftEncoderPIDValues[0], Constants.leftEncoderPIDValues[1], Constants.leftEncoderPIDValues[2], gyroDrive, rightEncoderControllerPidOutput);
 
+    RobotLog.putMessage("Running DriveSubsystem");
   }
     
    public void resetGyro(){
@@ -130,7 +130,6 @@ public class DriveSubsystem extends Subsystem {
     gyroPID.disable();
   }
 
-
   public void setLeft(double speed){
     talonLeft.set(ControlMode.PercentOutput, Math.max(Math.min(speed, -1), 1));
     for(VictorSPX i: victorsLeft)
@@ -141,6 +140,23 @@ public class DriveSubsystem extends Subsystem {
     for(VictorSPX i: victorsRight)
       i.set(ControlMode.PercentOutput, Math.max(Math.min(-speed, -1), 1));
   }
+
+  public void setLeftPosition(double setpoint){
+    talonLeft.set(ControlMode.Position, setpoint);
+    for(VictorSPX i: victorsLeft)
+      i.set(ControlMode.Position, setpoint);
+  }
+  public void setRightPosition(double setpoint){
+    talonRight.set(ControlMode.Position, setpoint);
+    for(VictorSPX i: victorsRight)
+      i.set(ControlMode.Position, setpoint);
+  }
+
+  public void setBothPosition(double setpointLeft, double setpointRight){
+    setLeftPosition(setpointLeft);
+    setRightPosition(setpointRight);
+  }
+
   public void setBoth(double speedLeft, double speedRight){
     setLeft(speedLeft);
     setRight(speedRight);
@@ -158,8 +174,8 @@ public class DriveSubsystem extends Subsystem {
   }
 
   public void resetEncoder(){
-    encoderLeft.reset();
-    encoderRight.reset();
+    talonLeft.setSelectedSensorPosition(0);
+    talonRight.setSelectedSensorPosition(0);
   }
   public int getEncderLeft(){
     return encoderLeft.get();

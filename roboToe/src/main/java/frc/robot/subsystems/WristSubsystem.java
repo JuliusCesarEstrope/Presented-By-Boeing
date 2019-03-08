@@ -39,13 +39,14 @@ public class WristSubsystem extends Subsystem {
         leftWristEncoder, pidWristOutput);
     leftWristPID.setEnabled(true);
 
-    RobotLog.putMessage("Running WristSubsystem");
     rightWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3], leftWristEncoder, pidWristOutput);
     leftWristPID.setEnabled(true);
     leftWristPID.setAbsoluteTolerance(3);
     rightWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3],
         leftWristEncoder, pidWristOutput);
     leftWristPID.setEnabled(true);
+
+    RobotLog.putMessage("Running WristSubsystem");
   }
 
   public void setLeftWristMotor(double Speed) {
@@ -104,6 +105,18 @@ public class WristSubsystem extends Subsystem {
     leftWristPID.setSetpoint(wristSetPoint);
   }
 
+  public void setWristUpSetpoint(int wristUpSetPoint) {
+    leftWristPID.setSetpoint(wristUpSetPoint);
+  }
+
+  public void setWristMidSetpoint(int wristMidSetPoint) {
+    leftWristPID.setSetpoint(wristMidSetPoint);
+  }
+
+  public void setWristDownSetpoint(int wristDownSetPoint) {
+    leftWristPID.setSetpoint(wristDownSetPoint);
+  }
+  
   public double getLeftWristPIDOutput() {
     return leftWristPID.get();
 

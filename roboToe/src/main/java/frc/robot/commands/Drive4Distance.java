@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.Constants;
+import frc.robot.utilities.RobotLog;
 
 
 public class Drive4Distance extends CommandBase {
@@ -21,7 +22,7 @@ public class Drive4Distance extends CommandBase {
   @Override
   protected void initialize() {
     
-		//RobotLog.putMessage("Running Drive4Distance: " + distanceToTravel);
+		RobotLog.putMessage("Running Drive4Distance: " + distanceToTravel);
 		
 		distance = distanceToTravel * Constants.ticksToInches;
 		drive.setBoth(0);
