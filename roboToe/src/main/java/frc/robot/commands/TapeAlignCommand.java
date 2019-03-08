@@ -14,6 +14,7 @@ public class TapeAlignCommand extends CommandBase {
   
   public TapeAlignCommand() {
     requires(drive);
+    requires(led);
   }
 
   protected void initialize() { 
@@ -36,6 +37,7 @@ public class TapeAlignCommand extends CommandBase {
   if(drive.getFrontSensor() || drive.getLeftSensor() || drive.getRightSensor() || drive.getBackSensor()){
     tapeTouched = true;
     }
+
   if (tapeTouched){
     
     if(!touchFront){
@@ -67,19 +69,17 @@ public class TapeAlignCommand extends CommandBase {
     }
   }
 
-  // Make this return true when this Command no longer needs to run execute()
-  @Override
   protected boolean isFinished() {
     return endCommand;
   }
 
   protected void end() {
     drive.setBoth(0, 0);
-
+    led.setLEDLightColor(.87); // Blue
   }
 
   protected void interrupted() {
     drive.setBoth(0, 0);
-
+    led.setLEDLightColor(.87); // Blue
   }
 }
