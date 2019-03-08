@@ -12,8 +12,8 @@ public class Constants {
   public static final int[] motorPortsLeft = { 4, 5, 6 };
   public static final int[] motorPortsRight = { 1, 2, 3 };
   public static final int rollerMotor = 7;
-  public static final int leftWristMotor = 8;
-  public static final int rightWristMotor = 9;
+  public static final int leftWristMotorPort = 8;
+  public static final int rightWristMotorPort = 9;
   public static final int leftFourBarMotorPort = 10;
   public static final int rightFourBarMotorPort = 11;
   public static final int leftVerticalElevatorMotor = 12;
@@ -58,8 +58,6 @@ public class Constants {
   
   /** END DIGITAL INPUTS**/
 
- 
-
   /** BEGIN PID CONSTANTS**/
   //Drive PID
 
@@ -85,24 +83,23 @@ public class Constants {
    public static double ticksToInches = (ticksOfEncoder/360) *circumferenceOfWheels;
    
   //FourBar Constants
-  public static final double setStartPoint = ((4096/360)*(11.22)); //initialize: set angle to 11.22
-  public static final double setFloorGatherPoint = ((4096/360)*(50.83));
-  public static final double setHatchLvlTwoPoint = ((4096/360)*(149.43)); //maybe not use?? how is this different from rocketlvltwo, should this be cargo
-  public static final double setRocketLvlTwoPoint = ((4096/360)*(149.43));
-  public static final double setRocketLvlOnePoint = ((4096/360)*(31.68));
-  public static final double setClimbPoint = 10; //value???
-  public static final double setBallLvlOnePoint = ((4096/360)*(31.68));
-  public static final double setBallLvlTwoPoint = ((4096/360)*(149.43));
+  public static final double setStartPoint = (36*((4096/360)*(11.22))); //initialize: set angle to 11.22
+  public static final double setFloorGatherPoint = (36*((4096/360)*(50.83)));
+  public static final double setHatchLvlTwoPoint = (36*((4096/360)*(149.43))); //maybe not use?? how is this different from rocketlvltwo, should this be cargo
+  public static final double setRocketLvlTwoPoint =(36*((4096/360)*(149.43)));
+  public static final double setRocketLvlOnePoint =(36*((4096/360)*(31.68)));
+  public static final double setClimbPoint = (36*((4096/360)*(11.22)));
+  public static final double setBallLvlOnePoint = (36*((4096/360)*(31.68)));
+  public static final double setBallLvlTwoPoint = (36*((4096/360)*(149.43)));
 
   //Wrist stuff
-  public static final int[] leftWristEncoder = {6, 7};
-  public static final int[] rightWristEncoder = {8, 9};
-  public static int wristButton = 3;
-  public static int wristDownSetPoint = ((4096/360)*(0));
-  public static int wristMidSetPoint = ((4096/360)*(45));
-  public static int wristUpSetPoint = ((4096/360)*(90));
+  public static final int[] leftWristEncoderPort = {6, 7};
+  public static final int[] rightWristEncoderPort = {8, 9};
+  public static int wristDownSetPoint = (28*((4096/360)*(0)));
+  public static int wristMidSetPoint = (28*((4096/360)*(45)));
+  public static int wristUpSetPoint = (28*((4096/360)*(90)));
   public static final double defaultWristPosition = 0;
-
+  public static final double[] wristPIDValues = {0.1, 0.1, 0.01, 0};
 
 
   public static final double defaultElevatorPosition = 0;

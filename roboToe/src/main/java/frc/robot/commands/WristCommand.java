@@ -39,7 +39,7 @@ public class WristCommand extends CommandBase {
   }
 
   protected void end() {
-    drive.setBoth(0, 0);
+    //drive.setBoth(0, 0);
     wrist.setBothWristMotor(0, 0);
   }
 
