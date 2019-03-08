@@ -24,11 +24,12 @@ public class FourBarCommand extends CommandBase {
   }
 
   protected void execute() {
-    fourBar.setFourBarSetPoint(fourBarSetPoint); /* fourBarSetPoint used to set the setpoint to other setpoints from
-                                                 constants in the command groups, essentially a placeholder for
-                                                 specific setpoints*/
-    fourBar.setBothFourBarMotor(fourBar.getFourBarPIDOutput());
+    fourBar.setFourBarSetPoint(fourBarSetPoint); 
+    fourBar.setBothFourBarMotor(fourBar.getFourBarPIDOutput());//still need this??
     fourBar.setBothFourBarMotorPosition(fourBarSetPoint);
+    /*fourBarSetPoint used to set the setpoint to other setpoints from
+    constants in the command groups, essentially a placeholder for
+    specific setpoints*/
 
     SmartDashboard.putNumber("LeftFourBarEncoder", fourBar.getLeftBarEncoder());
     SmartDashboard.putNumber("RightFourBarEncoder", fourBar.getRightBarEncoder());
