@@ -7,7 +7,7 @@ import frc.robot.utilities.RobotLog;
 
 public class FourBarClimbGroup extends CommandGroup{
 
-  public FourBarClimbGroup(int setClimbPoint){
+  public FourBarClimbGroup(double setClimbPoint){
       RobotLog.putMessage("Running FourBarClimbGroup");
 
       addSequential(new WristCommand(Constants.wristUpSetPoint));

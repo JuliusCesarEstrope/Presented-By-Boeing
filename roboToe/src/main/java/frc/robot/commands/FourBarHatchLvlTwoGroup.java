@@ -7,7 +7,7 @@ import frc.robot.utilities.RobotLog;
 
 public class FourBarHatchLvlTwoGroup extends CommandGroup{
 
-  public FourBarHatchLvlTwoGroup(int setHatchLvlTwoPoint){
+  public FourBarHatchLvlTwoGroup(double setHatchLvlTwoPoint){
       RobotLog.putMessage("Running FourBarHatchLvlTwoGroup");
 
       addSequential(new WristCommand(Constants.wristUpSetPoint));
