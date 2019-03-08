@@ -9,7 +9,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -21,16 +20,12 @@ public class DriveSubsystem extends Subsystem {
   TalonSRX talonLeft, talonRight;
   VictorSPX[] victorsLeft, victorsRight;
   AnalogGyro gyroDrive;
-  Encoder encoderLeft, encoderRight;
   static DigitalInput leftSensor;
   static DigitalInput frontSensor;
   static DigitalInput rightSensor;
   static DigitalInput backSensor;
-  static Encoder enablePID;
   private static PIDController gyroPID;
-  private static PIDController leftEncoderPIDController;
-  private static PIDController rightEncoderPIDController;
-  private static PIDOutput gyroPIDOutput, rightEncoderControllerPidOutput, leftEncoderControllerPidOutput;
+  private static PIDOutput gyroPIDOutput;
   private static int tolerance = 1;
 
   public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int encoderPortLeft[],
@@ -38,8 +33,6 @@ public class DriveSubsystem extends Subsystem {
       int[] driveEncoderPortLeft, int[] driveEncoderPortRight, double circumferanceOfWheels, double ticksOfEncoder) {
 
     gyroDrive = new AnalogGyro(gyroPort);
-    encoderLeft = new Encoder(driveEncoderPortLeft[0], driveEncoderPortLeft[1]);
-    encoderRight = new Encoder(driveEncoderPortRight[0], driveEncoderPortRight[1]);
     talonLeft = new WPI_TalonSRX(motorPortsLeft[0]);
     talonRight = new WPI_TalonSRX(motorPortsRight[0]);
     talonLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
@@ -48,7 +41,6 @@ public class DriveSubsystem extends Subsystem {
     talonLeft = new WPI_TalonSRX(motorPortsLeft[0]);
     talonRight = new WPI_TalonSRX(motorPortsRight[0]);
 
-    encoderLeft.setDistancePerPulse(360 / ticksOfEncoder * Constants.circumferenceOfWheels);
     RobotLog.putMessage("Running DriveSubsystem");
     victorsLeft = new WPI_VictorSPX[motorPortsLeft.length - 1];
     victorsRight = new WPI_VictorSPX[motorPortsRight.length - 1];
@@ -61,14 +53,8 @@ public class DriveSubsystem extends Subsystem {
     talonLeft = new WPI_TalonSRX(motorPortsLeft[0]);
     talonRight = new WPI_TalonSRX(motorPortsRight[0]);
 
-    encoderLeft.setDistancePerPulse(circumferanceOfWheels / ticksOfEncoder);
-
     gyroPID = new PIDController(Constants.driveRotationPIDValues[0], Constants.driveRotationPIDValues[1],
         Constants.driveRotationPIDValues[2], gyroDrive, gyroPIDOutput);
-    leftEncoderPIDController = new PIDController(Constants.rightEncoderPIDValues[0], Constants.rightEncoderPIDValues[1],
-        Constants.rightEncoderPIDValues[2], gyroDrive, leftEncoderControllerPidOutput);
-    rightEncoderPIDController = new PIDController(Constants.leftEncoderPIDValues[0], Constants.leftEncoderPIDValues[1],
-        Constants.leftEncoderPIDValues[2], gyroDrive, rightEncoderControllerPidOutput);
     talonLeft.setSensorPhase(false);
     talonRight.setSensorPhase(false);
   }
@@ -108,24 +94,8 @@ public class DriveSubsystem extends Subsystem {
     gyroPID.enable();
   }
 
-  public void enableleftEncoderControllerPID() {
-    gyroPID.enable();
-  }
-
-  public void enablerightEncoderPIDController() {
-    gyroPID.enable();
-  }
-
   public void setGyroSetpoint(double setpoint) {
     gyroPID.setSetpoint(setpoint);
-  }
-
-  public void setleftEncoderPIDController(double setpoint) {
-    leftEncoderPIDController.setSetpoint(setpoint);
-  }
-
-  public void setrightEncoderPIDController(double setpoint) {
-    rightEncoderPIDController.setSetpoint(setpoint);
   }
 
   public boolean gyroPIDOnSetpoint() {
@@ -133,11 +103,11 @@ public class DriveSubsystem extends Subsystem {
   }
 
   public boolean rightOnTarget() {
-    return Math.abs(talonRight.getClosedLoopError())<tolerance;
+    return Math.abs(talonRight.getClosedLoopError()) < tolerance;
   }
 
   public boolean leftOnTarget() {
-    return Math.abs(talonLeft.getClosedLoopError())<tolerance;
+    return Math.abs(talonLeft.getClosedLoopError()) < tolerance;
   }
 
   public boolean distanceOnTarget() {
@@ -146,18 +116,6 @@ public class DriveSubsystem extends Subsystem {
 
   public double getGyroPIDOutput() {
     return gyroPID.get();
-  }
-
-  public double getLeftEncoderControllerPIDOutput() {
-    return leftEncoderPIDController.get();
-  }
-
-  public double getRightEncoderControllerPIDOutput() {
-    return rightEncoderPIDController.get();
-  }
-
-  public void disableLeftEncoderPIDController() {
-    leftEncoderPIDController.disable();
   }
 
   public void setBothWheelPIDValues(double p, double i, double d) {
@@ -191,10 +149,6 @@ public class DriveSubsystem extends Subsystem {
    * rightWheelEncoderPID.setF(f); }
    */
 
-  public void disableRightEncoderPIDController() {
-    rightEncoderPIDController.disable();
-  }
-
   public void disableGyroPID() {
     gyroPID.disable();
   }
@@ -211,6 +165,14 @@ public class DriveSubsystem extends Subsystem {
       i.set(ControlMode.PercentOutput, Math.max(Math.min(-speed, -1), 1));
   }
 
+  public double getWheelDistanceLeft(){
+    return talonLeft.getSelectedSensorPosition();
+  }
+
+  public double getWheelDistanceRight(){
+    return talonRight.getSelectedSensorPosition();
+  }
+
   public void setBoth(double speedLeft, double speedRight) {
     setLeft(speedLeft);
     setRight(speedRight);
@@ -222,10 +184,9 @@ public class DriveSubsystem extends Subsystem {
   }
 
   public void setTalonMotorPositions(double position) {
-    talonLeft.set(ControlMode.Position, position/Constants.circumferenceOfWheels*Constants.ticksOfEncoder);
+    talonLeft.set(ControlMode.Position, position / Constants.circumferenceOfWheels * Constants.ticksOfEncoder);
+    talonRight.set(ControlMode.Position, position / Constants.circumferenceOfWheels * Constants.ticksOfEncoder);
   }
-
-  
 
   public void calibrateGyro() {
     gyroDrive.calibrate();
@@ -233,11 +194,6 @@ public class DriveSubsystem extends Subsystem {
 
   public double getAngle() {
     return gyroDrive.getAngle() % 360;
-  }
-
-  public void resetEncoder() {
-    encoderLeft.reset();
-    encoderRight.reset();
   }
 
   public int getEncoderLeft() {
@@ -251,14 +207,6 @@ public class DriveSubsystem extends Subsystem {
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new TankDriveCommand());
-  }
-
-  public double getWheelDistanceLeft() {
-    return encoderLeft.getDistance();
-  }
-
-  public double getWheelDistanceRight() {
-    return encoderRight.getDistance();
   }
 
   public boolean getLeftSensor() {
@@ -279,5 +227,4 @@ public class DriveSubsystem extends Subsystem {
     return backSensor.get();
   }
 
-  // sets rightSensor to a boolean value of true being it is seeing the tape
 }

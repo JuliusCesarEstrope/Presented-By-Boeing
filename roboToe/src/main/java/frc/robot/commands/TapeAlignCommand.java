@@ -13,61 +13,60 @@ public class TapeAlignCommand extends CommandBase {
   private double angleToTurn;
 
   private double startDistance;
-  
 
   public TapeAlignCommand() {
 
     requires(drive);
   }
 
-  protected void initialize() { 
+  protected void initialize() {
     RobotLog.putMessage("Running TapeAlignCommand");
     startDistance = drive.getWheelDistanceRight();
     drive.setBoth(0, 0);
     endCommand = false;
-    tapeTouched = false; 
+    tapeTouched = false;
     touchFront = false;
     touchSide = false;
   }
 
   protected void execute() {
-  if (!drive.getLeftSensor()&&!drive.getFrontSensor()&&!drive.getRightSensor()&&!drive.getBackSensor()){
-    drive.setBoth(0.3, 0.3);
-  }
-  drive.getWheelDistanceLeft();
-  Utilities.AngleFinderFromFrontSensorToLeftSensor(drive.getWheelDistanceRight() - startDistance, Constants.leftSensorToCenterOfRobot);
-
-  if(drive.getFrontSensor() || drive.getLeftSensor() || drive.getRightSensor() || drive.getBackSensor()){
-    tapeTouched = true;
+    if (!drive.getLeftSensor() && !drive.getFrontSensor() && !drive.getRightSensor() && !drive.getBackSensor()) {
+      drive.setBoth(0.3, 0.3);
     }
-  if (tapeTouched){
-    
-    if(!touchFront){
-      start = drive.getWheelDistanceLeft();
-      touchFront = true;
+
+    if (drive.getFrontSensor() || drive.getLeftSensor() || drive.getRightSensor() || drive.getBackSensor()) {
+      tapeTouched = true;
+    }
+    if (tapeTouched) {
+
+      if (!touchFront && drive.getFrontSensor()) {
+        start = drive.getWheelDistanceLeft();
+        touchFront = true;
       }
 
-      if(drive.getLeftSensor() || drive.getRightSensor()){
-        
-        if(!touchSide){
+      if ((drive.getLeftSensor() || drive.getRightSensor()) && touchFront) {
+
+        if (!touchSide) {
           end = drive.getWheelDistanceLeft();
           touchSide = true;
         }
-        
+
       }
 
-    } 
+    }
 
-  if(touchFront){
-    drive.setBoth(0.3,0.3);
-    if(touchSide){ 
-        drive.setBoth(0,0);
+    if (touchFront) {
+      drive.setBoth(0.3, 0.3);
+      if (touchSide) {
+        drive.setBoth(0, 0);
         endCommand = true;
-        //make sure this works!
-        //new TurnAngle(Utilities.AngleFinderFromFrontSensorToLeftSensor(end-start,  Constants.frontSensorToCenterOfRobot));
-        CommandBase.newDistanceToMove = Math.abs(Constants.frontSensorToCenterOfRobot-(end-start));
-        angleToTurn = Utilities.AngleFinderFromFrontSensorToLeftSensor(end-start,  Constants.frontSensorToCenterOfRobot);
-        CommandBase.turnAngle = angleToTurn;        
+        // make sure this works!
+        // new TurnAngle(Utilities.AngleFinderFromFrontSensorToLeftSensor(end-start,
+        // Constants.frontSensorToCenterOfRobot));
+        CommandBase.newDistanceToMove = Math.abs(Constants.frontSensorToCenterOfRobot - (end - start));
+        angleToTurn = Utilities.AngleFinderFromFrontSensorToLeftSensor(end - start,
+            Constants.frontSensorToCenterOfRobot);
+        CommandBase.turnAngle = angleToTurn;
       }
     }
     SmartDashboard.putBoolean("Left Sensor", drive.getLeftSensor());
