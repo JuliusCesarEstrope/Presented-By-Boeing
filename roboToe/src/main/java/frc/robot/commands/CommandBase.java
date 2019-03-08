@@ -34,7 +34,7 @@ public abstract class CommandBase extends Command {
         Constants.rightBarEncoderPort, Constants.leftBarEncoderPort, Constants.gyroPort, Constants.fourBarPIDValues);
     roller = new RollerSubsystem(Constants.rollerMotor);
     booper = new BooperSubsystem(Constants.booperPorts);
-    wrist = new WristSubsystem(Constants.leftWristMotor, Constants.rightWristMotor, Constants.leftWristEncoder, Constants.rightWristEncoder, Constants.wristPIDValues);
+    wrist = new WristSubsystem(Constants.leftWristMotorPort, Constants.rightWristMotorPort, Constants.leftWristEncoderPort, Constants.rightWristEncoderPort, Constants.wristPIDValues);
     elevatorVertical = new ElevatorVerticalSubsystem(Constants.leftVerticalElevatorMotor, Constants.rightVerticalElevatorMotor, Constants.leftElevatorEncoder, Constants.rightElevatorEncoder, Constants.leftElevatorEncoderPIDValues, Constants.rightElevatorEncoderPIDValues);
     elevatorHorizontal = new ElevatorHorizontalSubsystem(Constants.leftHorizontalElevatorMotor, Constants.rightHorizontalElevatorMotor, Constants.defaultElevatorPosition);
   }
