@@ -26,6 +26,7 @@ public abstract class CommandBase extends Command {
   public static double turnAngle;
 
   public static void init() {
+    RobotLog.init();
     RobotLog.putMessage("Running CommandBase");
     oi = new OI();
     drive = new DriveSubsystem(Constants.motorPortsLeft, Constants.motorPortsRight, Constants.gyroPort, Constants.driveEncoderPortLeft, Constants.driveEncoderPortRight, Constants.frontSensor, Constants.rightSensor, 
