@@ -15,9 +15,9 @@ import frc.robot.utilities.RobotLog;
 public class ElevatorVerticalSubsystem extends Subsystem {
   static TalonSRX leftYElevatorMotor, rightYElevatorMotor;
   static Encoder leftElevatorEncoder, rightElevatorEncoder;
-  private static PIDController leftElevatorEncoderPID;
-  private static PIDController rightElevatorEncoderPID;
   private static PIDOutput pidOutput;
+
+  static int tolerance = 5;
 
   public ElevatorVerticalSubsystem(int leftYElevatorMotorPort, int rightYElevatorMotorPort,
       int[] leftElevatorEncoderPorts, int[] rightElevatorEncoderPorts, double[] leftElevatorEncoderPIDValues,
@@ -62,6 +62,7 @@ public class ElevatorVerticalSubsystem extends Subsystem {
     leftYElevatorMotor.config_kI(0, leftElevatorEncoderPIDValues[1]);
     leftYElevatorMotor.config_kD(0, leftElevatorEncoderPIDValues[2]);
     leftYElevatorMotor.config_kF(0, leftElevatorEncoderPIDValues[3]);
+    leftYElevatorMotor.setSensorPhase(false);
 
     rightYElevatorMotor.configNominalOutputForward(0);
     rightYElevatorMotor.configNominalOutputReverse(0);
@@ -71,12 +72,18 @@ public class ElevatorVerticalSubsystem extends Subsystem {
     rightYElevatorMotor.config_kI(0, rightElevatorEncoderPIDValues[1]);
     rightYElevatorMotor.config_kD(0, rightElevatorEncoderPIDValues[2]);
     rightYElevatorMotor.config_kF(0, rightElevatorEncoderPIDValues[3]);
+    rightYElevatorMotor.setSensorPhase(false);
+    // Change above to true to invert sensor readout
 
     RobotLog.putMessage("Running ElevatorVerticalSubsystem");
   }
 
   public void setYElevatorMotors(double Speed) {
     leftYElevatorMotor.set(ControlMode.PercentOutput, Speed);
+  }
+
+  public void setYElevatorMotorsPosition(double Position){
+    leftYElevatorMotor.set(ControlMode.Position, Position);
   }
 
   public double getElevatorMotorsCurrent(){
@@ -94,11 +101,6 @@ public class ElevatorVerticalSubsystem extends Subsystem {
   public void resetBothElevatorEncoders() {
     leftElevatorEncoder.reset();
     rightElevatorEncoder.reset();
-  }
-
-  public void enableBothElevatorEncoderPIDValues() {
-    leftElevatorEncoderPID.enable();
-    rightElevatorEncoderPID.enable();
   }
 
   public void setBothElevatorEncoderPIDValues(double p, double i, double d) {
@@ -145,29 +147,8 @@ public class ElevatorVerticalSubsystem extends Subsystem {
     rightYElevatorMotor.config_kF(0, f);
   }
 
-  public void setLeftElevatorEncoderSetpoint(double leftElevatorEncoder) {
-    leftElevatorEncoderPID.setSetpoint(leftElevatorEncoder);
-  }
-
-  public void setRightElevatorEncoderSetpoint(double rightElevatorEncoder) {
-    rightElevatorEncoderPID.setSetpoint(rightElevatorEncoder);
-  }
-
-  public boolean checkOnTargetSetpoint() {
-    return leftElevatorEncoderPID.onTarget();
-  }
-
-  public double getLeftElevatorEncoderPIDOutput() {
-    return leftElevatorEncoderPID.get();
-  }
-
-  public double getRightElevatorEncoderPIDOutput() {
-    return rightElevatorEncoderPID.get();
-  }
-
-  public void disableBothElevatorEncoderPIDValues() {
-    leftElevatorEncoderPID.disable();
-    rightElevatorEncoderPID.disable();
+  public boolean checkOnTargetSetpoint(){
+    return Math.abs(leftYElevatorMotor.getClosedLoopError()) < tolerance;
   }
 
   public void initDefaultCommand() {
