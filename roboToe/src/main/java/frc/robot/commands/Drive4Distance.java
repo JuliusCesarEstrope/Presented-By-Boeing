@@ -8,12 +8,12 @@ public class Drive4Distance extends CommandBase {
   
   double distance, distanceToTravel, pLeft, pRight, leftDistance, rightDistance, leftEndDistance, rightEndDistance;
 	Timer timer;
-	Timer tarTimer;
+	Timer onTargetTimer;
   
   public Drive4Distance(double distanceToTravel) {
     requires(drive);
 		timer = new Timer();
-		tarTimer = new Timer();
+		onTargetTimer = new Timer();
 		this.distanceToTravel = distanceToTravel;
   }
 
@@ -28,7 +28,7 @@ public class Drive4Distance extends CommandBase {
 		drive.resetEncoder();
 		drive.resetGyro();
 		timer.start();
-		tarTimer.start();
+		onTargetTimer.start();
 		
 		pLeft = 0;
 		pRight = 0;
@@ -53,9 +53,9 @@ public class Drive4Distance extends CommandBase {
   @Override
   protected boolean isFinished() {
     if (drive.distanceOnTarget()) {
-			return tarTimer.hasPeriodPassed(0.5);
+			return onTargetTimer.hasPeriodPassed(0.5);
 		} else {
-			tarTimer.reset();
+			onTargetTimer.reset();
 			return timer.hasPeriodPassed(2);
 		} 
   }

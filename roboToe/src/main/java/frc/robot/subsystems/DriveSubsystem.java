@@ -31,6 +31,7 @@ public class DriveSubsystem extends Subsystem {
   private static PIDController leftEncoderPIDController;
   private static PIDController rightEncoderPIDController;
   private static PIDOutput gyroPIDOutput, rightEncoderControllerPidOutput, leftEncoderControllerPidOutput;
+  private static int tolerance = 1;
 
   public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int encoderPortLeft[],
       int encoderPortRight[], int frontSensor, int rightSensor, int backSensor, int leftSensor,
@@ -68,7 +69,8 @@ public class DriveSubsystem extends Subsystem {
         Constants.rightEncoderPIDValues[2], gyroDrive, leftEncoderControllerPidOutput);
     rightEncoderPIDController = new PIDController(Constants.leftEncoderPIDValues[0], Constants.leftEncoderPIDValues[1],
         Constants.leftEncoderPIDValues[2], gyroDrive, rightEncoderControllerPidOutput);
-
+    talonLeft.setSensorPhase(false);
+    talonRight.setSensorPhase(false);
   }
 
   public void resetGyro() {
@@ -79,33 +81,28 @@ public class DriveSubsystem extends Subsystem {
     gyroPID.setPID(p, i, d);
   }
 
-  public void setBothWheelEncoders(double p, double i, double d){
-    //talonLeft.setPID (p, i, d);
+  public void setBothWheelEncoders(double p, double i, double d) {
+    // talonLeft.setPID (p, i, d);
     talonLeft.config_kP(0, p);
     talonLeft.config_kI(0, i);
     talonLeft.config_kD(0, d);
-  
-   // talonRight.setPID (p, i, d);
+
+    // talonRight.setPID (p, i, d);
     talonRight.config_kP(0, p);
     talonRight.config_kI(0, i);
     talonRight.config_kD(0, d);
   }
 
-  
-  /* public void setBothWheelEncoders(double p, double i, double d) {
-    leftWheelEncoderPID.setPID (p, i, d);
-    leftWheelEncoderPID.setP(p);
-    leftWheelEncoderPID.setI(i);
-    leftWheelEncoderPID.setD(d);
-    leftWheelEncoderPID.setF(f);
-  
-    rightWheelEncoderPID.setPID (p, i, d);
-    rightWheelEncoderPID.setP(p);
-    rightWheelEncoderPID.setI(i);
-    rightWheelEncoderPID.setD(d);
-    rightWheelEncoderPID.setF(f);
-  }
-  */
+  /*
+   * public void setBothWheelEncoders(double p, double i, double d) {
+   * leftWheelEncoderPID.setPID (p, i, d); leftWheelEncoderPID.setP(p);
+   * leftWheelEncoderPID.setI(i); leftWheelEncoderPID.setD(d);
+   * leftWheelEncoderPID.setF(f);
+   * 
+   * rightWheelEncoderPID.setPID (p, i, d); rightWheelEncoderPID.setP(p);
+   * rightWheelEncoderPID.setI(i); rightWheelEncoderPID.setD(d);
+   * rightWheelEncoderPID.setF(f); }
+   */
 
   public void enableGyroPID() {
     gyroPID.enable();
@@ -135,8 +132,16 @@ public class DriveSubsystem extends Subsystem {
     return gyroPID.onTarget();
   }
 
+  public boolean rightOnTarget() {
+    return Math.abs(talonRight.getClosedLoopError())<tolerance;
+  }
+
+  public boolean leftOnTarget() {
+    return Math.abs(talonLeft.getClosedLoopError())<tolerance;
+  }
+
   public boolean distanceOnTarget() {
-    return rightEncoderPIDController.onTarget() || leftEncoderPIDController.onTarget();
+    return leftOnTarget() || rightOnTarget();
   }
 
   public double getGyroPIDOutput() {
@@ -154,34 +159,37 @@ public class DriveSubsystem extends Subsystem {
   public void disableLeftEncoderPIDController() {
     leftEncoderPIDController.disable();
   }
-/* public void setBothWheelEncoders(double p, double i, double d) {
-  leftWheelEncoderPID.setPID (p, i, d);
-  leftWheelEncoderPID.setP(p);
-  leftWheelEncoderPID.setI(i);
-  leftWheelEncoderPID.setD(d);
 
-  rightWheelEncoderPID.setPID (p, i, d);
-  rightWheelEncoderPID.setP(p);
-  rightWheelEncoderPID.setI(i);
-  rightWheelEncoderPID.setD(d);
-}
-*/
+  public void setBothWheelPIDValues(double p, double i, double d) {
+    // leftWheelEncoderPID.setPID (p, i, d);
+    // leftWheelEncoderPID.setP(p);
+    // leftWheelEncoderPID.setI(i);
+    // leftWheelEncoderPID.setD(d);
 
-/* public void setBothWheelEncoders(double p, double i, double d) {
-  leftWheelEncoderPID.setPID (p, i, d);
-  leftWheelEncoderPID.setP(p);
-  leftWheelEncoderPID.setI(i);
-  leftWheelEncoderPID.setD(d);
-  leftWheelEncoderPID.setF(f);
+    // rightWheelEncoderPID.setPID (p, i, d);
+    // rightWheelEncoderPID.setP(p);
+    // rightWheelEncoderPID.setI(i);
+    // rightWheelEncoderPID.setD(d);
 
-  rightWheelEncoderPID.setPID (p, i, d);
-  rightWheelEncoderPID.setP(p);
-  rightWheelEncoderPID.setI(i);
-  rightWheelEncoderPID.setD(d);
-  rightWheelEncoderPID.setF(f);
-}
-*/
+    talonLeft.config_kP(0, p);
+    talonLeft.config_kI(0, i);
+    talonLeft.config_kD(0, d);
 
+    talonRight.config_kP(0, p);
+    talonRight.config_kI(0, i);
+    talonRight.config_kD(0, d);
+  }
+
+  /*
+   * public void setBothWheelEncoders(double p, double i, double d) {
+   * leftWheelEncoderPID.setPID (p, i, d); leftWheelEncoderPID.setP(p);
+   * leftWheelEncoderPID.setI(i); leftWheelEncoderPID.setD(d);
+   * leftWheelEncoderPID.setF(f);
+   * 
+   * rightWheelEncoderPID.setPID (p, i, d); rightWheelEncoderPID.setP(p);
+   * rightWheelEncoderPID.setI(i); rightWheelEncoderPID.setD(d);
+   * rightWheelEncoderPID.setF(f); }
+   */
 
   public void disableRightEncoderPIDController() {
     rightEncoderPIDController.disable();
@@ -192,9 +200,9 @@ public class DriveSubsystem extends Subsystem {
   }
 
   public void setLeft(double speed) {
-    talonLeft.set(ControlMode.PercentOutput, Math.max(Math.min(speed, -1), 1));
+    talonLeft.set(ControlMode.PercentOutput, Math.min(Math.max(speed, -1), 1));
     for (VictorSPX i : victorsLeft)
-      i.set(ControlMode.PercentOutput, Math.max(Math.min(speed, -1), 1));
+      i.set(ControlMode.PercentOutput, Math.min(Math.max(speed, -1), 1));
   }
 
   public void setRight(double speed) {
@@ -212,6 +220,12 @@ public class DriveSubsystem extends Subsystem {
     setLeft(speed);
     setRight(speed);
   }
+
+  public void setTalonMotorPositions(double position) {
+    talonLeft.set(ControlMode.Position, position/Constants.circumferenceOfWheels*Constants.ticksOfEncoder);
+  }
+
+  
 
   public void calibrateGyro() {
     gyroDrive.calibrate();
