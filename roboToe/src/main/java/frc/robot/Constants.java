@@ -48,7 +48,7 @@ public class Constants {
   // Drive Encoders
   public static final int[] driveEncoderPortLeft = { 0, 1 };
   public static final int[] driveEncoderPortRight = { 2, 3 };
-  public static double ticksOfEncoder = 360;
+  public static double ticksOfEncoder = 4096;
   
   //Fourbar Encoders
   public static final int[] leftBarEncoderPort = {10, 11};
