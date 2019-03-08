@@ -20,6 +20,8 @@ public class FourBarSubsystem extends Subsystem {
   private static PIDController fourBarPID;
   private static PIDOutput pidOutput;
 
+  static int tolerance = 1;
+
   public FourBarSubsystem(int leftFourBarMotorPort, int rightFourBarMotorPort, int[] leftBarEncoderPort,
       int[] rightBarEncoderPort, int gyroPort, double[] fourBarPIDValues) {
 
@@ -75,7 +77,7 @@ public class FourBarSubsystem extends Subsystem {
     setRightFourBarMotor(rightFourBarSpeed);
   }
 
-  public void setBothFourBarMotor(double FourBarSpeed) {
+  public void setBothFourBarMotor(double FourBarSpeed) {//do i need this and/or the above method? they have the same name
     setLeftFourBarMotor(FourBarSpeed);
     setRightFourBarMotor(FourBarSpeed);
   }
@@ -118,6 +120,13 @@ public class FourBarSubsystem extends Subsystem {
     //fourBarPID.setD(d);
     //fourBarPID.setF(f);
   }
+
+  public void setBothFourBarMotorPosition(double position) {
+    leftFourBarMotor.set(ControlMode.Position, position);
+    rightFourBarMotor.set(ControlMode.Position, position);
+  }
+
+ 
 
   //setpoint
   public void setFourBarSetPoint(double fourBarSetPoint) {
