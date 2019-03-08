@@ -126,7 +126,9 @@ public class FourBarSubsystem extends Subsystem {
     rightFourBarMotor.set(ControlMode.Position, position);
   }
 
- 
+  public boolean checkOnTargetSetpoint(){ //needed?
+    return Math.abs(rightFourBarMotor.getClosedLoopError()) < tolerance;
+  }
 
   //setpoint
   public void setFourBarSetPoint(double fourBarSetPoint) {
