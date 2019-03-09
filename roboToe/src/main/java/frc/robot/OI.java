@@ -113,6 +113,10 @@ public class OI {
     // return Math.pow(-rightJoyStick.getX(), 3.0);
     return -rightJoyStick.getX() * Math.abs(rightJoyStick.getX());
   }
+
+  public double getWristAxis() {
+    return -gamePad.getRawAxis(5); //is this right
+  }
   
   public boolean getRightTrigger() {
     return alignButton.get();
