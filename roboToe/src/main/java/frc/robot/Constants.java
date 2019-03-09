@@ -26,9 +26,6 @@ public class Constants {
   public static final int[] booperPorts = { 0, 1 };
   /** END SOLENOIDS **/
 
-  // Buttons
-  public static final int gamepad = 16; // What is this variable doing here? I don't see any references
-
   /** BEGIN ANALOG INPUTS **/
   // Gyros
   public static final int gyroPort = 0;
