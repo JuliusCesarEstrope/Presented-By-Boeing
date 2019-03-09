@@ -1,14 +1,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.Drive4Distance;
-import frc.robot.commands.TurnAngle;
+import frc.robot.commands.TurnAngleCommand;;
 
 public class TapeAlignCommandGroup extends CommandGroup {
+
   public TapeAlignCommandGroup() {
+    RobotLog.putMessage("Running TapeAlignCommandGroup");
     
     addSequential(new TapeAlignCommand());
-    addSequential(new TurnAngle(CommandBase.turnAngle));
+    addSequential(new TurnAngleCommand(CommandBase.turnAngle));
     addSequential(new Drive4Distance(CommandBase.newDistanceToMove));
 
   }

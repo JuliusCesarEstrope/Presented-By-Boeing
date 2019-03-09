@@ -1,37 +1,34 @@
 package frc.robot.commands;
 
+import frc.robot.utilities.RobotLog;
+
 public class TurnAngle extends CommandBase {
   public double angle;
-
 
 	public TurnAngle(double angle) {
 		requires(drive);
 		this.angle = angle;
-
   }
 
   protected void initialize() {
-        drive.resetGyro();
-        drive.setGyroSetpoint(angle);
-      }
+    RobotLog.putMessage("Running TurnAngle");
+    drive.resetGyro();
+    drive.setGyroSetpoint(angle);
+  }
 
-  @Override
   protected void execute() {
 		drive.setBoth(drive.getGyroPIDOutput(), -drive.getGyroPIDOutput());
   }
 
-  @Override
   protected boolean isFinished() {
     return drive.gyroPIDOnSetpoint();
   }
 
-  @Override
   protected void end() {
 		drive.setBoth(0, 0);
 		drive.setGyroSetpoint(0);
   }
 
-  @Override
   protected void interrupted() {
 		drive.setBoth(0, 0);
 		drive.setGyroSetpoint(0);

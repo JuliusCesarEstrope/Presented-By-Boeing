@@ -12,7 +12,6 @@ public class RollerSubsystem extends Subsystem {
   static TalonSRX rollerMotor;
 
   public RollerSubsystem(int rollerMotorPort) {
-
     rollerMotor = new WPI_TalonSRX(rollerMotorPort);
     RobotLog.putMessage("Running RollerSubsystem");
   }

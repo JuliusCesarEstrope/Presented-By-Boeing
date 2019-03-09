@@ -48,7 +48,7 @@ public class Constants {
   // Drive Encoders
   public static final int[] driveEncoderPortLeft = { 0, 1 };
   public static final int[] driveEncoderPortRight = { 2, 3 };
-  public static double ticksOfEncoder = 360;
+  public static double ticksOfEncoder = 4096;
   
   //Fourbar Encoders
   public static final int[] leftBarEncoderPort = {10, 11};
@@ -77,10 +77,10 @@ public class Constants {
   /** BEGIN OTHER CONSTANTS**/
   //Drive Wheel Constants
   public static double diameterOfWheels = 7.8025;
-  public static double circumferenceOfWheels = diameterOfWheels*Math.PI;
+  public static double circumferenceOfWheels = diameterOfWheels * Math.PI;
 
    //Encoder tick to Inches
-   public static double ticksToInches = (ticksOfEncoder/360) *circumferenceOfWheels;
+   public static double ticksToInches = (ticksOfEncoder/360) * circumferenceOfWheels;
    
   //FourBar Constants
   public static final double setStartPoint = (36*((4096/360)*(11.22))); //initialize: set angle to 11.22
@@ -104,10 +104,7 @@ public class Constants {
 
   public static final double defaultElevatorPosition = 0;
   // FIGURE OUT WHAT VALUE IS SUPPOSED TO BE
-  public static final double distanceToTicks = (360 / (Math.PI * 1.432));
-  public static final double distanceYToTravel = distanceToTicks * 22;
-  public static final double distanceYInch = distanceToTicks * 1;
-  public static final double distanceYFiveInch = distanceToTicks * 5;
+  public static final double distanceToTicks = (4096 / (Math.PI * 1.432));
 
   // Sensor Constants
   public static double leftSensorToRightSensor = 7;
