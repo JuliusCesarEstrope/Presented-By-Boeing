@@ -23,8 +23,7 @@ public class FourBarCommand extends CommandBase {
 
   }
 
-  protected void execute() {
-    fourBar.setFourBarSetPoint(fourBarSetPoint); 
+  protected void execute() { 
     fourBar.setBothFourBarMotor(fourBar.getFourBarPIDOutput());//still need this??
     fourBar.setBothFourBarMotorPosition(fourBarSetPoint);
     /*fourBarSetPoint used to set the setpoint to other setpoints from

@@ -21,10 +21,6 @@ public class WristCommand extends CommandBase {
 
   protected void initialize() {
 
-    // Set point
-    // Send PID to correct motors
-    wrist.setWristSetpoint(wristSetPoint);
-
   }
 
   @Override
