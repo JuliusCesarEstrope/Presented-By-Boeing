@@ -8,7 +8,6 @@ public class TurnAngleCommand extends CommandBase {
   public TurnAngleCommand(double angle) {
     requires(drive);
     this.angle = angle;
-
   }
 
   protected void initialize() {

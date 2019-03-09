@@ -4,12 +4,13 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
+import frc.robot.Constants;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.utilities.RobotLog;
+import frc.robot.commands.FourBarCommand;
 
 public class FourBarSubsystem extends Subsystem {
 
@@ -18,6 +19,8 @@ public class FourBarSubsystem extends Subsystem {
   static int fourbarSetPoint;
   private static PIDController fourBarPID;
   private static PIDOutput pidOutput;
+
+  static int tolerance = 1;
 
   public FourBarSubsystem(int leftFourBarMotorPort, int rightFourBarMotorPort, int[] leftBarEncoderPort,
       int[] rightBarEncoderPort, int gyroPort, double[] fourBarPIDValues) {
@@ -33,6 +36,24 @@ public class FourBarSubsystem extends Subsystem {
 
     leftFourBarMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
     rightFourBarMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
+
+    leftFourBarMotor.configNominalOutputForward(0);
+    leftFourBarMotor.configNominalOutputReverse(0);
+    leftFourBarMotor.configPeakOutputForward(1);
+    leftFourBarMotor.configPeakOutputReverse(-1);
+    leftFourBarMotor.config_kP(0, fourBarPIDValues[0]);
+    leftFourBarMotor.config_kI(0, fourBarPIDValues[1]);
+    leftFourBarMotor.config_kD(0, fourBarPIDValues[2]);
+    leftFourBarMotor.config_kF(0, fourBarPIDValues[3]);
+
+    rightFourBarMotor.configNominalOutputForward(0);
+    rightFourBarMotor.configNominalOutputReverse(0);
+    rightFourBarMotor.configPeakOutputForward(1);
+    rightFourBarMotor.configPeakOutputReverse(-1);
+    rightFourBarMotor.config_kP(0, fourBarPIDValues[0]);
+    rightFourBarMotor.config_kI(0, fourBarPIDValues[1]);
+    rightFourBarMotor.config_kD(0, fourBarPIDValues[2]);
+    rightFourBarMotor.config_kF(0, fourBarPIDValues[3]);
 
     /** PID **/
     fourBarPID = new PIDController(fourBarPIDValues[0], fourBarPIDValues[1], fourBarPIDValues[2], leftBarEncoder,
@@ -56,7 +77,7 @@ public class FourBarSubsystem extends Subsystem {
     setRightFourBarMotor(rightFourBarSpeed);
   }
 
-  public void setBothFourBarMotor(double FourBarSpeed) {
+  public void setBothFourBarMotor(double FourBarSpeed) {//do i need this and/or the above method? they have the same name
     setLeftFourBarMotor(FourBarSpeed);
     setRightFourBarMotor(FourBarSpeed);
   }
@@ -82,11 +103,31 @@ public class FourBarSubsystem extends Subsystem {
 
   /** PID RELATED METHODS **/
   public  void setFourBarPIDValues(double p, double i, double d) {
-    fourBarPID.setPID(p, i, d);
+    //fourBarPID.setPID(p, i, d);
+    leftFourBarMotor.config_kP(0, p);
+    leftFourBarMotor.config_kI(0, i);
+    leftFourBarMotor.config_kD(0, d);
+    //fourBarPID.setP(p);
+    //fourBarPID.setI(i);
+    //fourBarPID.setD(d);
   }
 
   public void setFourBarPIDValues(double p, double i, double d, double f) {
-    fourBarPID.setPID(p, i, d, f);
+    fourBarPID.setPID(p, i, d);
+    leftFourBarMotor.config_kF(0, f);
+    //fourBarPID.setP(p);
+    //fourBarPID.setI(i);
+    //fourBarPID.setD(d);
+    //fourBarPID.setF(f);
+  }
+
+  public void setBothFourBarMotorPosition(double position) {
+    leftFourBarMotor.set(ControlMode.Position, position);
+    rightFourBarMotor.set(ControlMode.Position, position);
+  }
+
+  public boolean checkOnTargetSetpoint(){ //needed?
+    return Math.abs(rightFourBarMotor.getClosedLoopError()) < tolerance;
   }
 
   //setpoint
@@ -122,7 +163,11 @@ public class FourBarSubsystem extends Subsystem {
     fourBarPID.setSetpoint(ballLvlTwoPoint);
   }
 
-  public void initDefaultCommand() {
+  public void setFloorGatherPoint(int floorGatherPoint) {
+    fourBarPID.setSetpoint(floorGatherPoint);
+  }
 
+  public void initDefaultCommand() {
+    setDefaultCommand(new FourBarCommand(Constants.setStartPoint));
   }
 }

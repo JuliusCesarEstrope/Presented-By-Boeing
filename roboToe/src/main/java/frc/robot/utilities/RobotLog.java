@@ -13,19 +13,23 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * other data can be written to the SmartDashboard to identify whether or not
  * the program is behaving in the intended manner.
  * 
+ * 
+ * Updated for efficiency on 2019-03-06 -- Matthew Polgar was here
  */
 
 public abstract class RobotLog {
 
-    private static String[] log;
+    private static String log;
     private static SimpleDateFormat timeFormat = new SimpleDateFormat("[HH:mm:ss]\t");
-    private static Date date;
+
+    private static final int NUM_LINES = 512;
 
     public static void init() {
 
-        log = new String[128];
-        for (int i = 0; i < 128; i++)
-            log[i] = "";
+        log = "";
+        for (int i = 0; i < NUM_LINES - 1; i++) {
+            log += '\n';
+        }
 
         updateLog();
 
@@ -33,29 +37,20 @@ public abstract class RobotLog {
 
     public static void putMessage(String message) {
 
-        for (int i = 127; i > 0; i--)
-            log[i] = log[i - 1];
-
-        date = new Date();
-        log[0] = timeFormat.format(date) + message;
+        Date date = new Date();
+        log = log.substring(0, log.lastIndexOf('\n'));
+        log = timeFormat.format(date) + message + "\n" + log;
 
         updateLog();
 
     }
 
     private static void updateLog() {
-
-        String logMessage = "";
-        for (int i = 0; i < 128; i++)
-            logMessage += "\n" + log[i];
-        logMessage = logMessage.replaceFirst("\n", "");
-
         try {
-            SmartDashboard.putString("RobotLog", logMessage);
+            SmartDashboard.putString("RobotLog", log);
         } catch (IllegalArgumentException iae) {
             System.out.println(iae.getMessage());
         }
-
     }
 
 }

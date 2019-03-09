@@ -60,7 +60,7 @@ public class OI {
   elevatorButton = new JoystickButton(gamePad, 10);
   elevatorEmergencyStopButton = new JoystickButton(leftJoyStick,  9);
   
-  //Fourbar and Wrist button positions
+  //Fourbar and Wrist + Elevator button positions
   barStartingButton = new JoystickButton(gamePad, 4);
   floorGatherButton = new JoystickButton(gamePad, 1);
   hatchLvlTwoButton = new JoystickButton(gamePad, 2);

@@ -8,19 +8,16 @@ public class ElevatorSetpointCommand extends CommandBase {
   public ElevatorSetpointCommand(double elevatorVerticalSetpoint) {
     requires(elevatorVertical);
     requires(drive);
+    this.elevatorVerticalSetpoint = elevatorVerticalSetpoint;
   }
 
   protected void initialize() {
     RobotLog.putMessage("Running ElevatorSetpointCommand");
-    RobotLog.putMessage("Running ElevatorSetpointCommand");
     drive.setBoth(0, 0);
-    elevatorVertical.enableBothElevatorEncoderPIDValues();
-    elevatorVertical.setLeftElevatorEncoderSetpoint(elevatorVerticalSetpoint);
-    elevatorVertical.setRightElevatorEncoderSetpoint(elevatorVerticalSetpoint);
   }
 
   protected void execute() {
-    elevatorVertical.setYElevatorMotors(elevatorVertical.getLeftElevatorEncoderPIDOutput());
+   elevatorVertical.setYElevatorMotorsPosition(elevatorVerticalSetpoint);
   }
 
   protected boolean isFinished() {
@@ -29,11 +26,9 @@ public class ElevatorSetpointCommand extends CommandBase {
 
   protected void end() {
     drive.setBoth(0, 0);
-    elevatorVertical.disableBothElevatorEncoderPIDValues();
   }
 
   protected void interrupted() {
     drive.setBoth(0, 0);
-    elevatorVertical.disableBothElevatorEncoderPIDValues();
   }
 }

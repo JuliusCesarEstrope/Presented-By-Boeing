@@ -8,9 +8,9 @@ public class BooperExtendCommand extends CommandBase {
   }
 
   protected void initialize() {
-    RobotLog.putMessage("Running BooperExtendCommand");
     booper.setBooperForward();
-
+    RobotLog.putMessage("Running BooperExtendCommand");
+    
   }
 
   protected void execute() {

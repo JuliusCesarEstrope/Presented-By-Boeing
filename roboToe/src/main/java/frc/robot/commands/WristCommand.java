@@ -1,58 +1,48 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.utilities.RobotLog;
 
 public class WristCommand extends CommandBase {
-    boolean buttonReleased;
-    int leftWristEncoder;
-    int rightWristEncoder;
-    int wristDownSetPoint;   ////////////////////////////////////
-    int wristUpSetPoint; /////////////////////////////////////////
-    boolean wristUp;
-    boolean wristDown;
-    boolean moveWrist;
-    double wristDistance;
 
-  public WristCommand(double wristDistance) {
+  int leftWristEncoder;
+  int rightWristEncoder;
+  double wristSetPoint;
+
+  public WristCommand(double wristSetPoint) {
     requires(wrist);
     // Use requires() here to declare subsystem dependencies
-    wristDownSetPoint = 70;
-    wristUpSetPoint = 0;
-    wristUp = false;
-    wristDown = false;
-    //moveWrist;
-    this.wristDistance = wristDistance;
-
     RobotLog.putMessage("Running WristCommand");
     leftWristEncoder = wrist.getLeftWristEncoder();
     rightWristEncoder = wrist.getRightWristEncoder();
-    this.wristDistance = wristDistance;
+    this.wristSetPoint = wristSetPoint;
   }
-
 
   protected void initialize() {
 
-    //Set point
-    //Send PID to correct  motors
-    wrist.setWristSetpoint(wristDistance + Constants.defaultWristPosition);
+    // Set point
+    // Send PID to correct motors
+    wrist.setWristSetpoint(wristSetPoint);
 
   }
 
   @Override
   protected void execute() {
-    //Two Positions (Up, Down)
+    // Two Positions (Up, Down)
     wrist.setBothWristMotor(wrist.getLeftWristPIDOutput());
+    SmartDashboard.putNumber("LeftWristEncoder", wrist.getLeftWristEncoder());
+    SmartDashboard.putNumber("RightWristEncoder", wrist.getRightWristEncoder());
     
   }
 
   protected boolean isFinished() {
-    //if needed to maintain set pont (false) stopping point (true)
+    // if needed to maintain set pont (false) stopping point (true)
     return wrist.leftWristOnTarget();
   }
 
   protected void end() {
-    drive.setBoth(0, 0);  
+    //drive.setBoth(0, 0);
     wrist.setBothWristMotor(0, 0);
   }
 
