@@ -2,13 +2,14 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import frc.robot.Constants;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.commands.WristCommand;
+import frc.robot.Constants;
 import frc.robot.utilities.RobotLog;
+import frc.robot.commands.WristCommand;
 
 public class WristSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
@@ -46,7 +47,6 @@ public class WristSubsystem extends Subsystem {
       rightWristMotor.config_kD(0, wristPIDValues[2]);
       rightWristMotor.config_kF(0, wristPIDValues[3]);
 
-      leftWristMotor.limit
     /*leftWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3],
         leftWristEncoder, pidWristOutput);
     leftWristPID.setEnabled(true);
@@ -155,10 +155,6 @@ public class WristSubsystem extends Subsystem {
 
   public void setWristMidSetpoint(int wristMidSetPoint) {
     leftWristPID.setSetpoint(wristMidSetPoint);
-  }
-
-  public void setWristDownSetpoint(int wristDownSetPoint) {
-    leftWristPID.setSetpoint(wristDownSetPoint);
   }
   
   public double getLeftWristPIDOutput() {

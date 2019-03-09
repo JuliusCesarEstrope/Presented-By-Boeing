@@ -23,7 +23,7 @@ public class WristCommand extends CommandBase {
 
     // Set point
     // Send PID to correct motors
-    wrist.setWristSetpoint(wristSetPoint);
+    wrist.setRightWristPosition(wristSetPoint);
 
   }
 
