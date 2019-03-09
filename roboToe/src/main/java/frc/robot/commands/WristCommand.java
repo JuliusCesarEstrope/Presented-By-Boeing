@@ -27,6 +27,7 @@ public class WristCommand extends CommandBase {
   protected void execute() {
     // Two Positions (Up, Down)
     wrist.setBothWristMotor(wrist.getLeftWristPIDOutput());
+    wrist.setBothWristMotorPosition(wristSetPoint);
     SmartDashboard.putNumber("LeftWristEncoder", wrist.getLeftWristEncoder());
     SmartDashboard.putNumber("RightWristEncoder", wrist.getRightWristEncoder());
     

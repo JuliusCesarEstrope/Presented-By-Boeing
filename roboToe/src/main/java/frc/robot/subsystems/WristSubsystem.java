@@ -144,6 +144,11 @@ public class WristSubsystem extends Subsystem {
     rightWristMotor.config_kF(0, f);
   }
 
+  public void setBothWristMotorPosition(double position) {
+    leftWristMotor.set(ControlMode.Position, position);
+    rightWristMotor.set(ControlMode.Position, position);
+  }
+
   public void setWristDownSetpoint(int wristDownSetPoint) {
     leftWristPID.setSetpoint(wristDownSetPoint);
   }
