@@ -43,6 +43,7 @@ public class OI {
   JoystickButton barClimbPositionButton;
   JoystickButton ballLvlOneButton;
   JoystickButton ballLvlTwoButton;
+  JoystickButton wristAngleButton;
 
   public OI() {
     leftJoyStick = new Joystick(Constants.leftJoystick);
@@ -69,6 +70,7 @@ public class OI {
   barClimbPositionButton = new JoystickButton(gamePad, 6);
   ballLvlOneButton = new JoystickButton(gamePad, 10);
   ballLvlTwoButton = new JoystickButton(gamePad, 11);
+  wristAngleButton = new JoystickButton(gamePad, 5);
 
   barStartingButton.whenPressed(new FourBarStartCommandGroup(Constants.setStartPoint));
   floorGatherButton.whenPressed(new FourBarFloorGatherGroup(Constants.setFloorGatherPoint));
@@ -149,6 +151,12 @@ public class OI {
 
   public boolean getBallLvlTwoButton() {
     return ballLvlTwoButton.get();
+  }
+
+  //wrist button
+  public double getWristAxis() {
+    // return Math.pow(-rightJoyStick.getX(), 3.0);
+    return wristAngleButton.getRawAxis(5);
   }
 
   public boolean getElevatorEmergencyStopButton(){
