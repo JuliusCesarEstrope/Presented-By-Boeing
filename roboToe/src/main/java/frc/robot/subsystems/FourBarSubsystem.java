@@ -6,8 +6,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.utilities.RobotLog;
 import frc.robot.commands.FourBarCommand;
@@ -17,8 +15,6 @@ public class FourBarSubsystem extends Subsystem {
   static TalonSRX leftFourBarMotor, rightFourBarMotor;
   static Encoder leftBarEncoder, rightBarEncoder;
   static int fourbarSetPoint;
-  private static PIDController fourBarPID;
-  private static PIDOutput pidOutput;
 
   static int tolerance = 1;
 
@@ -54,11 +50,6 @@ public class FourBarSubsystem extends Subsystem {
     rightFourBarMotor.config_kI(0, fourBarPIDValues[1]);
     rightFourBarMotor.config_kD(0, fourBarPIDValues[2]);
     rightFourBarMotor.config_kF(0, fourBarPIDValues[3]);
-
-    /** PID **/
-    fourBarPID = new PIDController(fourBarPIDValues[0], fourBarPIDValues[1], fourBarPIDValues[2], leftBarEncoder,
-        pidOutput);
-    fourBarPID.setEnabled(true);
 
     RobotLog.putMessage("Running FourBarSubsystem");
   }
@@ -96,11 +87,6 @@ public class FourBarSubsystem extends Subsystem {
     leftBarEncoder.reset();
   }
 
-  //PID Outputs
-  public double getFourBarPIDOutput(){
-    return fourBarPID.get();
-  }
-
   /** PID RELATED METHODS **/
   public  void setFourBarPIDValues(double p, double i, double d) {
     //fourBarPID.setPID(p, i, d);
@@ -113,7 +99,9 @@ public class FourBarSubsystem extends Subsystem {
   }
 
   public void setFourBarPIDValues(double p, double i, double d, double f) {
-    fourBarPID.setPID(p, i, d);
+    leftFourBarMotor.config_kP(0, p);
+    leftFourBarMotor.config_kI(0, i);
+    leftFourBarMotor.config_kD(0, d);
     leftFourBarMotor.config_kF(0, f);
     //fourBarPID.setP(p);
     //fourBarPID.setI(i);
@@ -128,44 +116,6 @@ public class FourBarSubsystem extends Subsystem {
 
   public boolean checkOnTargetSetpoint(){ //needed?
     return Math.abs(rightFourBarMotor.getClosedLoopError()) < tolerance;
-  }
-
-  
-  //setpoint (not needed?))
-  public void setFourBarSetPoint(double fourBarSetPoint) {
-    fourBarPID.setSetpoint(fourbarSetPoint);
-  }
-
-  public void setStartPoint(int startPoint) {
-    fourBarPID.setSetpoint(startPoint);
-  }
-
-  public void setHatchLvlTwoPoint(int hatchLvlTwoPoint) {
-    fourBarPID.setSetpoint(hatchLvlTwoPoint);
-  }
-
-  public void setRocketLvlTwoPoint(int rocketLvlTwoPoint) {
-    fourBarPID.setSetpoint(rocketLvlTwoPoint);
-  }
-
-  public void setRocketLvlOnePoint(int rocketLvlOnePoint) {
-    fourBarPID.setSetpoint(rocketLvlOnePoint);
-  }
-
-  public void setClimbPoint(int climbPoint) {
-    fourBarPID.setSetpoint(climbPoint);
-  }
-
-  public void setBallLvlOnePoint(int ballLvlOnePoint) {
-    fourBarPID.setSetpoint(ballLvlOnePoint);
-  }
-
-  public void setBallLvlTwoPoint(int ballLvlTwoPoint) {
-    fourBarPID.setSetpoint(ballLvlTwoPoint);
-  }
-
-  public void setFloorGatherPoint(int floorGatherPoint) {
-    fourBarPID.setSetpoint(floorGatherPoint);
   }
 
   public void initDefaultCommand() {

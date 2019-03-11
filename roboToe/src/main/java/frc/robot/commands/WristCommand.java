@@ -23,7 +23,6 @@ public class WristCommand extends CommandBase {
   @Override
   protected void execute() {
     // Two Positions (Up, Down)
-    wrist.setBothWristMotor(wrist.getLeftWristPIDOutput());
     wrist.setBothWristMotorPosition(wristSetPoint);
     SmartDashboard.putNumber("LeftWristEncoder", wrist.getLeftWristEncoder());
     SmartDashboard.putNumber("RightWristEncoder", wrist.getRightWristEncoder());
@@ -32,7 +31,7 @@ public class WristCommand extends CommandBase {
 
   protected boolean isFinished() {
     // if needed to maintain set pont (false) stopping point (true)
-    return wrist.leftWristOnTarget();
+    return false;
   }
 
   protected void end() {

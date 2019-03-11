@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.ElevatorCommandGroup;
 import frc.robot.commands.FourBarBallLvlOneGroup;
 import frc.robot.commands.FourBarBallLvlTwoGroup;
-import frc.robot.commands.FourBarClimbGroup;
 import frc.robot.commands.FourBarFloorGatherGroup;
 import frc.robot.commands.FourBarHatchLvlTwoGroup;
 import frc.robot.commands.FourBarRocketLvlOneGroup;
@@ -44,6 +43,7 @@ public class OI {
   JoystickButton ballLvlOneButton;
   JoystickButton ballLvlTwoButton;
   JoystickButton wristAngleButton;
+  JoystickButton fourBarAngleButton;
 
   public OI() {
     leftJoyStick = new Joystick(Constants.leftJoystick);
@@ -70,6 +70,7 @@ public class OI {
   ballLvlOneButton = new JoystickButton(gamePad, 10);
   ballLvlTwoButton = new JoystickButton(gamePad, 11);
   wristAngleButton = new JoystickButton(gamePad, 5);
+  fourBarAngleButton = new JoystickButton(gamePad, 22); //22 = temporary number, MUST CHANGE!!
 
   barStartingButton.whenPressed(new FourBarStartCommandGroup(Constants.setStartPoint));
   floorGatherButton.whenPressed(new FourBarFloorGatherGroup(Constants.setFloorGatherPoint));
@@ -117,6 +118,11 @@ public class OI {
   //wrist axis
   public double getWristAxis() {
     return -gamePad.getRawAxis(5); //is this right
+  }
+
+  //fourbar vert. axis
+  public double getFourBarAxis() {
+    return -gamePad.getRawAxis(3); 
   }
   
   public boolean getRightTrigger() {

@@ -4,8 +4,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.WristCommand;
 import frc.robot.utilities.RobotLog;
@@ -16,8 +14,6 @@ public class WristSubsystem extends Subsystem {
 
   static TalonSRX leftWristMotor, rightWristMotor;
   static Encoder leftWristEncoder, rightWristEncoder;
-  private static PIDController leftWristPID, rightWristPID;
-  private static PIDOutput pidWristOutput;
 
   
   public WristSubsystem(int leftWristMotorPort, int rightWristMotorPort, int[] leftWristEncoderPort, int[] rightWristEncoderPort, double[] wristPIDValues) {
@@ -120,10 +116,6 @@ public class WristSubsystem extends Subsystem {
     leftWristMotor.config_kF(0, f);
   }
 
-  public boolean leftWristOnTarget() {
-    return leftWristPID.onTarget();
-  }
-
   public void setRightWristPIDValues(double p, double i, double d) {
     //rightWristPID.setPID(p, i, d);
     //rightWristPID.setP(p);
@@ -148,32 +140,6 @@ public class WristSubsystem extends Subsystem {
   public void setBothWristMotorPosition(double position) {
     leftWristMotor.set(ControlMode.Position, position);
     rightWristMotor.set(ControlMode.Position, position);
-  }
-
-  public void setWristSetpoint(double wristSetPoint) {
-    leftWristPID.setSetpoint(wristSetPoint);
-  }
- 
-  public void setWristDownSetpoint(int wristDownSetPoint) {
-    leftWristPID.setSetpoint(wristDownSetPoint);
-  }
-
-  public void setWristUpSetpoint(int wristUpSetPoint) {
-    leftWristPID.setSetpoint(wristUpSetPoint);
-  }
-
-  public void setWristMidSetpoint(int wristMidSetPoint) {
-    leftWristPID.setSetpoint(wristMidSetPoint);
-  }
-  
-  public double getLeftWristPIDOutput() {
-    return leftWristPID.get();
-    
-  }
-
-  public double getRightWristPIDOutput() {
-    return rightWristPID.get();
-    
   }
 
   public void initDefaultCommand() {

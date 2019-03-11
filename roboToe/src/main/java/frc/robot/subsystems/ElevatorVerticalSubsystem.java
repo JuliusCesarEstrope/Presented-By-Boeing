@@ -5,8 +5,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
 import frc.robot.commands.ElevatorSetpointCommand;
@@ -15,7 +13,6 @@ import frc.robot.utilities.RobotLog;
 public class ElevatorVerticalSubsystem extends Subsystem {
   static TalonSRX leftYElevatorMotor, rightYElevatorMotor;
   static Encoder leftElevatorEncoder, rightElevatorEncoder;
-  private static PIDOutput pidOutput;
 
   static int tolerance = 5;
 
