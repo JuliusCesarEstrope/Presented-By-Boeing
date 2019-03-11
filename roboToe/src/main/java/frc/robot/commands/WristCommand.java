@@ -5,8 +5,6 @@ import frc.robot.utilities.RobotLog;
 
 public class WristCommand extends CommandBase {
 
-  int leftWristEncoder;
-  int rightWristEncoder;
   double wristSetPoint;
 
   public WristCommand(double wristSetPoint) {
