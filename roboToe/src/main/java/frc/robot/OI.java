@@ -114,6 +114,7 @@ public class OI {
     return -rightJoyStick.getX() * Math.abs(rightJoyStick.getX());
   }
 
+  //wrist axis
   public double getWristAxis() {
     return -gamePad.getRawAxis(5); //is this right
   }
@@ -153,12 +154,6 @@ public class OI {
 
   public boolean getBallLvlTwoButton() {
     return ballLvlTwoButton.get();
-  }
-
-  //wrist button
-  public double getWristAxis() {
-    // return Math.pow(-rightJoyStick.getX(), 3.0);
-    return wristAngleButton.getRawAxis(5);
   }
 
   public boolean getElevatorEmergencyStopButton(){
