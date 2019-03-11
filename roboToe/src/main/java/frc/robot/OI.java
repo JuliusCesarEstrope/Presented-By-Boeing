@@ -66,7 +66,6 @@ public class OI {
   hatchLvlTwoButton = new JoystickButton(gamePad, 2);
   rocketLvlTwoButton = new JoystickButton(gamePad, 3);
   rocketLvlOneButton = new JoystickButton(gamePad, 5);
-  barClimbPositionButton = new JoystickButton(gamePad, 6);
   ballLvlOneButton = new JoystickButton(gamePad, 10);
   ballLvlTwoButton = new JoystickButton(gamePad, 11);
 
@@ -75,7 +74,6 @@ public class OI {
   hatchLvlTwoButton.whenPressed(new FourBarHatchLvlTwoGroup(Constants.setHatchLvlTwoPoint));
   rocketLvlTwoButton.whenPressed(new FourBarRocketLvlTwoGroup(Constants.setRocketLvlTwoPoint));
   rocketLvlOneButton.whenPressed(new FourBarRocketLvlOneGroup(Constants.setRocketLvlOnePoint));
-  barClimbPositionButton.whenPressed(new FourBarClimbGroup(Constants.setClimbPoint));
   ballLvlOneButton.whenPressed(new FourBarBallLvlOneGroup(Constants.setBallLvlOnePoint));
   ballLvlTwoButton.whenPressed(new FourBarBallLvlTwoGroup(Constants.setBallLvlTwoPoint));
   elevatorButton.whenPressed(new ElevatorCommandGroup());

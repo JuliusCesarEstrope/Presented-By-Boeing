@@ -1,7 +1,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Constants;
 import frc.robot.utilities.RobotLog;
 
 public class WristCommand extends CommandBase {
@@ -14,8 +13,6 @@ public class WristCommand extends CommandBase {
     requires(wrist);
     // Use requires() here to declare subsystem dependencies
     RobotLog.putMessage("Running WristCommand");
-    leftWristEncoder = wrist.getLeftWristEncoder();
-    rightWristEncoder = wrist.getRightWristEncoder();
     this.wristSetPoint = wristSetPoint;
   }
 

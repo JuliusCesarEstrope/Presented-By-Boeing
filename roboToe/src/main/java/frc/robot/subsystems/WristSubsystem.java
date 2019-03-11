@@ -79,11 +79,11 @@ public class WristSubsystem extends Subsystem {
   }
 
   public int getLeftWristEncoder() {
-    return leftWristEncoder.get();
+    return leftWristMotor.getSelectedSensorPosition();
   }
 
   public int getRightWristEncoder() {
-    return rightWristEncoder.get();
+    return rightWristMotor.getSelectedSensorPosition();
   }
 
   public void setBothWristMotor(double pidWristOutput) {

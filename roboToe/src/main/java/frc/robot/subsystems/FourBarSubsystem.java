@@ -130,7 +130,8 @@ public class FourBarSubsystem extends Subsystem {
     return Math.abs(rightFourBarMotor.getClosedLoopError()) < tolerance;
   }
 
-  //setpoint
+  
+  //setpoint (not needed?))
   public void setFourBarSetPoint(double fourBarSetPoint) {
     fourBarPID.setSetpoint(fourbarSetPoint);
   }
