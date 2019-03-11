@@ -156,7 +156,7 @@ public class OI {
   //wrist button
   public double getWristAxis() {
     // return Math.pow(-rightJoyStick.getX(), 3.0);
-    return wristAngleButton.getRawAxis(5);
+    return gamePad.getRawAxis(5);
   }
 
   public boolean getElevatorEmergencyStopButton(){
