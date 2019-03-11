@@ -1,18 +1,14 @@
 
 package frc.robot.autonomi;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Constants;
 
-public class AutonInput {
-
-  /*private static boolean targetLeftFar, targetLeftMiddle, targetLeftClose, targetRightFar, targetRightMiddle, targetRightClose, targetMidLeft, targetMidRight, startLeft,
-    startMid, startRight, onPlatform;*/
+public class AutonInput extends CommandGroup{
 
   private static boolean onLevel2, crossField, invertTurns, targetMiddle, startMiddle, NEI; //NEI = not enough information
   private static double distanceToTarget;
   private static char targetSide; //'l' for left, 'm' for mid, and 'r' for right
-  private static Command auton;
   
   public AutonInput(){
 
@@ -80,10 +76,8 @@ public class AutonInput {
     if(NEI){
       //auton = new DoNothingCommand();
     }else{
-      auton = new Auton(onLevel2, startMiddle, invertTurns, targetMiddle, crossField, distanceToTarget);
+      addSequential(new Auton(onLevel2, startMiddle, invertTurns, targetMiddle, crossField, distanceToTarget));
     }
-
-    auton.start();
 
   }
 

@@ -11,6 +11,7 @@ import frc.robot.commands.FourBarHatchLvlTwoGroup;
 import frc.robot.commands.FourBarRocketLvlOneGroup;
 import frc.robot.commands.FourBarRocketLvlTwoGroup;
 import frc.robot.commands.FourBarStartCommandGroup;
+import frc.robot.commands.ZeroButtonCommand;
 
 public class OI {
 
@@ -19,6 +20,9 @@ public class OI {
   Joystick rightJoyStick;
 
   Joystick gamePad;
+
+  // Zero Button
+  JoystickButton zeroButton;
 
   // Roller Buttons
   JoystickButton rollerButtonIn;
@@ -50,6 +54,9 @@ public class OI {
     rightJoyStick = new Joystick(Constants.rightJoystick);
     gamePad = new Joystick(Constants.rightJoystick);
   
+  // Zero Button
+  zeroButton = new JoystickButton(gamePad, 1);
+
   //Roller Buttons
   rollerButtonIn = new JoystickButton(gamePad, 7);
   rollerButtonOut = new JoystickButton(gamePad, 8);
@@ -81,6 +88,7 @@ public class OI {
   ballLvlOneButton.whenPressed(new FourBarBallLvlOneGroup(Constants.setBallLvlOnePoint));
   ballLvlTwoButton.whenPressed(new FourBarBallLvlTwoGroup(Constants.setBallLvlTwoPoint));
   elevatorButton.whenPressed(new ElevatorCommandGroup());
+  zeroButton.whenPressed(new ZeroButtonCommand());
 
   }
 
@@ -161,6 +169,10 @@ public class OI {
 
   public boolean getElevatorEmergencyStopButton(){
     return elevatorEmergencyStopButton.get();
+  }
+
+  public boolean getZeroButton(){
+    return zeroButton.get();
   }
 
 }
