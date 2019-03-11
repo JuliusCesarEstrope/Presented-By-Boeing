@@ -10,7 +10,7 @@ public class TapeAlignCommandGroup extends CommandGroup {
     
     addSequential(new TapeAlignCommand());
     addSequential(new TurnAngleCommand(CommandBase.turnAngle));
-    led.setLEDLightColor(.77); // Green
+    led.setLEDLightColor(-.25); // Heartbeat Red
     addSequential(new Drive4Distance(CommandBase.newDistanceToMove));
 
   }
