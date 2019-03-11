@@ -181,7 +181,7 @@ public class DriveSubsystem extends Subsystem {
     setRightPosition(setpointRight);
   }
 
-  public void setBoth(double speedLeft, double speedRight){
+  
   public double getWheelDistanceLeft(){
     return talonLeft.getSelectedSensorPosition();
   }
@@ -209,8 +209,7 @@ public class DriveSubsystem extends Subsystem {
     talonLeft.setSelectedSensorPosition(0);
     talonRight.setSelectedSensorPosition(0);
   }
-  public int getEncderLeft(){
-    return encoderLeft.get();
+  
   public void calibrateGyro() {
     gyroDrive.calibrate();
   }
