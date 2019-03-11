@@ -32,6 +32,7 @@ public class TapeAlignCommand extends CommandBase {
   protected void execute() {
     if (!drive.getLeftSensor() && !drive.getFrontSensor() && !drive.getRightSensor() && !drive.getBackSensor()) {
       drive.setBoth(0.3, 0.3);
+      led.setLEDLightColor(.61); // Red
     }
 
     if (drive.getFrontSensor() || drive.getLeftSensor() || drive.getRightSensor() || drive.getBackSensor()) {
@@ -67,6 +68,7 @@ public class TapeAlignCommand extends CommandBase {
         angleToTurn = Utilities.AngleFinderFromFrontSensorToLeftSensor(end - start,
             Constants.frontSensorToCenterOfRobot);
         CommandBase.turnAngle = angleToTurn;
+        led.setLEDLightColor(.69); // Yellow
       }
     }
     SmartDashboard.putBoolean("Left Sensor", drive.getLeftSensor());
