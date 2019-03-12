@@ -26,9 +26,6 @@ public class Constants {
   public static final int[] booperPorts = { 0, 1 };
   /** END SOLENOIDS **/
 
-  // Buttons
-  public static final int gamepad = 16; // What is this variable doing here? I don't see any references
-
   /** BEGIN ANALOG INPUTS **/
   // Gyros
   public static final int gyroPort = 0;
@@ -85,7 +82,7 @@ public class Constants {
   //FourBar Constants
   public static final double setStartPoint = (36*((4096/360)*(11.22))); //initialize: set angle to 11.22
   public static final double setFloorGatherPoint = (36*((4096/360)*(50.83)));
-  public static final double setHatchLvlTwoPoint = (36*((4096/360)*(149.43))); //maybe not use?? how is this different from rocketlvltwo, should this be cargo
+  //public static final double setHatchLvlTwoPoint = (36*((4096/360)*(149.43))); //maybe not use?? how is this different from rocketlvltwo, should this be cargo
   public static final double setRocketLvlTwoPoint =(36*((4096/360)*(149.43)));
   public static final double setRocketLvlOnePoint =(36*((4096/360)*(31.68)));
   public static final double setClimbPoint = (36*((4096/360)*(11.22)));

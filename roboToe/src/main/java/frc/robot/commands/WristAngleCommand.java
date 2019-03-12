@@ -18,7 +18,6 @@ public class WristAngleCommand extends CommandBase {
 
   }
 
-  @Override
   protected void execute() {
     wrist.setBothWristMotor(oi.getWristAxis() * 0.7);
     

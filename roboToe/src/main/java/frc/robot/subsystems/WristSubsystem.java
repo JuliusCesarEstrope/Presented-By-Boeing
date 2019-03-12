@@ -47,6 +47,7 @@ public class WristSubsystem extends Subsystem {
       rightWristMotor.config_kD(0, wristPIDValues[2]);
       rightWristMotor.config_kF(0, wristPIDValues[3]);
 
+     // leftWristMotor.limit
     /*leftWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3],
         leftWristEncoder, pidWristOutput);
     leftWristPID.setEnabled(true);
@@ -145,6 +146,10 @@ public class WristSubsystem extends Subsystem {
     rightWristMotor.config_kF(0, f);
   }
 
+  public void setWristSetpoint(double wristSetPoint) {
+    leftWristPID.setSetpoint(wristSetPoint);
+  }
+ 
   public void setWristDownSetpoint(int wristDownSetPoint) {
     leftWristPID.setSetpoint(wristDownSetPoint);
   }
