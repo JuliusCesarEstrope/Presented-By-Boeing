@@ -11,7 +11,7 @@ public class FourBarHatchLvlTwoGroup extends CommandGroup{
       RobotLog.putMessage("Running FourBarHatchLvlTwoGroup");
 
       addSequential(new WristCommand(Constants.wristUpSetPoint));
-      addSequential(new FourBarCommand(Constants.setHatchLvlTwoPoint));
+      addSequential(new FourBarCommand(Constants.setRocketLvlTwoPoint));
       
 
 
