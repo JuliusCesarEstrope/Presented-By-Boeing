@@ -12,8 +12,8 @@ public class Constants {
   public static final int[] motorPortsLeft = { 4, 5, 6 };
   public static final int[] motorPortsRight = { 1, 2, 3 };
   public static final int rollerMotor = 7;
-  public static final int leftWristMotorPort = 8;
-  public static final int rightWristMotorPort = 9;
+  public static final int leftWristMotorPort = 9;
+  public static final int rightWristMotorPort = 8;
   public static final int leftFourBarMotorPort = 10;
   public static final int rightFourBarMotorPort = 11;
   public static final int leftVerticalElevatorMotor = 12;
