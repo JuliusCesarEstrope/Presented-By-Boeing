@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import frc.robot.commands.ElevatorCommandGroup;
+import frc.robot.commands.ElevatorManualCommand;
 import frc.robot.commands.FourBarBallLvlOneGroup;
 import frc.robot.commands.FourBarBallLvlTwoGroup;
 import frc.robot.commands.FourBarFloorGatherGroup;
@@ -36,6 +37,7 @@ public class OI {
   //Elevator Buttons
   JoystickButton elevatorButton;
   JoystickButton elevatorEmergencyStopButton;
+  JoystickButton manualElevatorButton;
 
   // Fourbar and Wrist button positions
   Trigger startPosition;
@@ -48,8 +50,12 @@ public class OI {
   JoystickButton ballLvlTwoButton;
   JoystickButton wristAngleButton;
   JoystickButton fourBarAngleButton;
+
+  //Miss Elaineous
   JoystickButton manualOverrideButton;
   Trigger zeroEncoderTrigger;
+
+
 
   public OI() {
     leftJoyStick = new Joystick(Constants.leftJoystick);
@@ -68,6 +74,9 @@ public class OI {
   //Elevator Buttons
   elevatorButton = new JoystickButton(gamePad, 10);
   elevatorEmergencyStopButton = new JoystickButton(leftJoyStick,  11);
+  manualElevatorButton = new JoystickButton(gamePad, 12);
+
+
   
   //Fourbar and Wrist + Elevator button positions
   //startPosition = new JoystickButton(gamePad, 2);
@@ -122,6 +131,7 @@ public class OI {
   elevatorButton.whenPressed(new ElevatorCommandGroup());
   manualOverrideButton.whileHeld(new ManualCommand());
   zeroEncoderTrigger.whenActive(new ZeroEncoderCommand());
+  manualElevatorButton.toggleWhenPressed(new ElevatorManualCommand());
   }
 
   public double getleftYAxis() {

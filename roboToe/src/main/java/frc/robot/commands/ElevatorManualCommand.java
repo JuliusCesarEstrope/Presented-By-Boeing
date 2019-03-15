@@ -19,7 +19,7 @@ public class ElevatorManualCommand extends CommandBase {
   @Override
   protected void execute() {
     elevatorHorizontal.setXElevatorMotors(oi.getElevatorHorizontalAxis()*0.5);
-    elevatorVertical.setYElevatorMotors(oi.getElevatorVerticalAxis()*0.5);
+    elevatorVertical.setYElevatorMotor(oi.getElevatorVerticalAxis()*0.5);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -31,11 +31,15 @@ public class ElevatorManualCommand extends CommandBase {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    elevatorHorizontal.setXElevatorMotors(0);
+    elevatorVertical.setYElevatorMotor(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    elevatorHorizontal.setXElevatorMotors(0);
+    elevatorVertical.setYElevatorMotor(0);
   }
 }
