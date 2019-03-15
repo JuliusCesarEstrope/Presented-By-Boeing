@@ -13,7 +13,6 @@ import frc.robot.utilities.RobotLog;
 
 public class ElevatorVerticalSubsystem extends Subsystem {
   static TalonSRX verticalYElevatorMotor;
-  static Encoder verticalYElevatorEncoder;
   private static PIDOutput pidOutput;
 
   static int tolerance = 5;
@@ -45,10 +44,8 @@ public class ElevatorVerticalSubsystem extends Subsystem {
     rightYElevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute); 
     */
 
-    verticalYElevatorMotor.configNominalOutputForward(0);
-    verticalYElevatorMotor.configNominalOutputReverse(0);
     verticalYElevatorMotor.configPeakOutputForward(.6);
-    verticalYElevatorMotor.configPeakOutputReverse(.6);
+    verticalYElevatorMotor.configPeakOutputReverse(-.7);
     verticalYElevatorMotor.config_kP(0, verticalElevatorEncoderPIDValues[0]);
     verticalYElevatorMotor.config_kI(0, verticalElevatorEncoderPIDValues[1]);
     verticalYElevatorMotor.config_kD(0, verticalElevatorEncoderPIDValues[2]);
@@ -76,7 +73,7 @@ public class ElevatorVerticalSubsystem extends Subsystem {
   }
 
   public void resetBothElevatorEncoders() {
-    verticalYElevatorEncoder.reset();
+    verticalYElevatorMotor.setSelectedSensorPosition(0);
   }
 
   public void setBothElevatorEncoderPIDValues(double p, double i, double d) {

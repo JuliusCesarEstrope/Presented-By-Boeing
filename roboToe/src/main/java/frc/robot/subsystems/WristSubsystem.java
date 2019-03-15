@@ -10,8 +10,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Constants;
-import frc.robot.commands.WristCommand;
+import frc.robot.commands.ManualCommand;
 
 public class WristSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
@@ -26,10 +25,11 @@ public class WristSubsystem extends Subsystem {
     rightWristMotor = new WPI_VictorSPX(rightWristMotorPort);
 
     leftWristMotor.configFactoryDefault();
-    //rightWristMotor.configFactoryDefault();
+    rightWristMotor.configFactoryDefault();
 
     rightWristMotor.follow(leftWristMotor); // :)
     leftWristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
+    rightWristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
     leftWristMotor.setInverted(true); 
     rightWristMotor.setInverted(InvertType.OpposeMaster);
 
@@ -49,7 +49,7 @@ public class WristSubsystem extends Subsystem {
     leftWristMotor.config_kF(0, wristPIDValues[3]);
 
     leftWristMotor.setNeutralMode(NeutralMode.Brake);
-    //rightWristMotor.setNeutralMode(NeutralMode.Brake);
+    rightWristMotor.setNeutralMode(NeutralMode.Brake);
 
   }
 
@@ -67,6 +67,7 @@ public class WristSubsystem extends Subsystem {
   }
 
   public int getLeftWristEncoder() {
+    //return leftWristMotor.getSelectedSensorPosition();
     return leftWristMotor.getSelectedSensorPosition();
     // return leftWristEncoder.get();
   }
@@ -104,7 +105,7 @@ public class WristSubsystem extends Subsystem {
   }
 
   public void initDefaultCommand() {
-   //setDefaultCommand(new WristCommand(Constants.defaultWristPosition));
+   setDefaultCommand(new ManualCommand());
   }
 
 }

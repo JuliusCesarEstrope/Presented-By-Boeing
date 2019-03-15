@@ -7,10 +7,11 @@ public class LEDLightSubsystem extends Subsystem {
   static Spark LEDLight;
 
   public LEDLightSubsystem() {
+    //LEDLight = new Spark(-1);
   }
 
   public void setLEDLightColor(double Speed) {
-    LEDLight.set(Speed);
+    //LEDLight.set(Speed);
   }
 
   // Blue nothing align(default), Green isfully aligned, red not aligned, yellow is close to align but not yet

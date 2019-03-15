@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -11,7 +12,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
 import frc.robot.commands.TankDriveCommand;
@@ -47,34 +47,35 @@ public class DriveSubsystem extends Subsystem {
     talonLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
     talonRight.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
 
-    talonLeft.configPeakOutputForward(0.5);
-    talonLeft.configPeakOutputReverse(-0.5);
+    talonLeft.configPeakOutputForward(1);
+    talonLeft.configPeakOutputReverse(-1);
     talonLeft.configClosedloopRamp(ramp);
-    talonLeft.config_kP(0, drivePIDValues[0]);
-    talonLeft.config_kI(0, drivePIDValues[1]);
-    talonLeft.config_kD(0, drivePIDValues[2]);
-    talonLeft.config_kF(0, drivePIDValues[3]);
-    talonLeft.setSensorPhase(true);
+    // talonLeft.config_kP(0, drivePIDValues[0]);
+    // talonLeft.config_kI(0, drivePIDValues[1]);
+    // talonLeft.config_kD(0, drivePIDValues[2]);
+    // talonLeft.config_kF(0, drivePIDValues[3]);
+    // talonLeft.setSensorPhase(true);
+    // talonLeft.setInverted(false);
 
-    talonRight.configPeakOutputForward(0.5);
-    talonRight.configPeakOutputReverse(-0.5);
+    talonRight.configPeakOutputForward(1);
+    talonRight.configPeakOutputReverse(-1);
     talonRight.configClosedloopRamp(ramp);
-    talonRight.config_kP(0, drivePIDValues[0]);
-    talonRight.config_kI(0, drivePIDValues[1]);
-    talonRight.config_kD(0, drivePIDValues[2]);
-    talonRight.config_kF(0, drivePIDValues[3]);
-    talonRight.setSensorPhase(true);
-    talonRight.setInverted(true);
+    // talonRight.config_kP(0, drivePIDValues[0]);
+    // talonRight.config_kI(0, drivePIDValues[1]);
+    // talonRight.config_kD(0, drivePIDValues[2]);
+    // talonRight.config_kF(0, drivePIDValues[3]);
+    // talonRight.setSensorPhase(true);
+     talonRight.setInverted(true);
 
     talonLeft.setNeutralMode(NeutralMode.Brake);
     talonRight.setNeutralMode(NeutralMode.Brake);
-
+        /*
     gyroPID = new PIDController(0.05, 0, 0, gyroDrive, gyroOutput);
     gyroPID.setAbsoluteTolerance(1);
     gyroPID.setInputRange(-Integer.MAX_VALUE, Integer.MAX_VALUE);
     gyroPID.setOutputRange(-1, 1);
     gyroPID.setEnabled(true);
-
+*/
     RobotLog.putMessage("Running DriveSubsystem");
     victorsLeft = new WPI_VictorSPX[motorPortsLeft.length - 1];
     victorsRight = new WPI_VictorSPX[motorPortsRight.length - 1];
@@ -83,18 +84,21 @@ public class DriveSubsystem extends Subsystem {
       victorsLeft[i] = new WPI_VictorSPX(motorPortsLeft[i + 1]);
     for (int i = 0; i < victorsRight.length; i++)
       victorsRight[i] = new WPI_VictorSPX(motorPortsRight[i + 1]);
+
       for (int i = 0; i < victorsLeft.length; i++){
         victorsLeft[i].follow(talonLeft);
         victorsLeft[i].setNeutralMode(NeutralMode.Brake);
+        victorsLeft[i].setInverted(InvertType.FollowMaster);
       }
   
       for (int i = 0; i < victorsRight.length; i++){
         victorsRight[i].follow(talonRight);
         victorsRight[i].setNeutralMode(NeutralMode.Brake);
+        victorsRight[i].setInverted(InvertType.FollowMaster);
       }
       
-      for (int i = 0; i < victorsRight.length; i++)
-        victorsRight[i].setInverted(true);
+
+      
     
     }
 
@@ -197,15 +201,15 @@ public class DriveSubsystem extends Subsystem {
   }
 
   public void setLeft(double speed) {
-    talonLeft.set(ControlMode.PercentOutput, Math.min(Math.max(speed, -1), 1));
-    for (VictorSPX i : victorsLeft)
-      i.set(ControlMode.PercentOutput, Math.min(Math.max(speed, -1), 1));
+    talonLeft.set(ControlMode.PercentOutput, speed);
+    // for (VictorSPX i : victorsLeft)
+    //   i.set(ControlMode.PercentOutput, Math.min(Math.max(speed, -1), 1));
   }
 
   public void setRight(double speed) {
-    talonRight.set(ControlMode.PercentOutput, Math.max(Math.min(-speed, -1), 1));
-    for (VictorSPX i : victorsRight)
-      i.set(ControlMode.PercentOutput, Math.max(Math.min(-speed, -1), 1));
+    talonRight.set(ControlMode.PercentOutput,speed);
+    // for (VictorSPX i : victorsRight)
+    //   i.set(ControlMode.PercentOutput, Math.max(Math.min(-speed, -1), 1));
   }
 
   public void setLeftMotorPosition(double position) {

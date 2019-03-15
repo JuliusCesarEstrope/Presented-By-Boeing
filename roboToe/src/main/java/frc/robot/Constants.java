@@ -9,15 +9,15 @@ public class Constants {
 
   /** BEGIN CAN DEVICES **/
   // Motors
-  public static final int[] motorPortsLeft = { 4, 5, 6 };
-  public static final int[] motorPortsRight = { 1, 2, 3 };
+  public static final int[] motorPortsLeft = { 1, 2};
+  public static final int[] motorPortsRight = { 3, 4};
   public static final int rollerMotor = 7;
   public static final int leftWristMotorPort = 9;
   public static final int rightWristMotorPort = 8;
-  public static final int leftFourBarMotorPort = 10;
-  public static final int rightFourBarMotorPort = 11;
-  public static final int verticalElevatorMotor = 12;
-  public static final int horizontalElevatorMotor = 14;
+  public static final int leftFourBarMotorPort = 6;
+  public static final int rightFourBarMotorPort = 5;
+  public static final int verticalElevatorMotor = 10;
+  public static final int horizontalElevatorMotor = 11;
   /** END CAN DEVICES **/
 
   /** BEGIN SOLENOIDS **/
@@ -107,6 +107,11 @@ public class Constants {
   public static double rightSensorToBackSensor = 3.5;
   public static double leftSensorToCenterOfRobot = 1;
   public static double frontSensorToCenterOfRobot = 3.5;
+  public static double fourbarMaxPosition = 42200;
+  public static double fourbarMinPosition = 0;
+  public static double fourbarSafeWristPosition = 0;
+  public static double wristMaxPosition = 0;
+  public static double wristMinPosition = 0;
 
   //Auton Constants
   public static final double level2Length = 48;

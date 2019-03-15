@@ -13,7 +13,7 @@ public class RollerSubsystem extends Subsystem {
 
   public RollerSubsystem(int rollerMotorPort) {
     rollerMotor = new WPI_VictorSPX(rollerMotorPort);
-    rollerMotor.setInverted(true);
+    rollerMotor.setInverted(false);
     //RobotLog.putMessage("Running RollerSubsystem");
   }
 

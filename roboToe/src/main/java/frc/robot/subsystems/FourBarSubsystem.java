@@ -2,8 +2,12 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
@@ -14,37 +18,29 @@ import frc.robot.commands.FourBarCommand;
 
 public class FourBarSubsystem extends Subsystem {
 
-  static TalonSRX leftFourBarMotor, rightFourBarMotor;
+  static TalonSRX rightFourBarMotor;
+  static VictorSPX  leftFourBarMotor;
   static Encoder leftBarEncoder, rightBarEncoder;
   static int fourbarSetPoint;
-  private static PIDController fourBarPID;
-  private static PIDOutput pidOutput;
 
   static int tolerance = 1;
 
   public FourBarSubsystem(int leftFourBarMotorPort, int rightFourBarMotorPort, int[] leftBarEncoderPort,
       int[] rightBarEncoderPort, int gyroPort, double[] fourBarPIDValues) {
 
-    leftFourBarMotor = new WPI_TalonSRX(leftFourBarMotorPort);
+    leftFourBarMotor = new WPI_VictorSPX(leftFourBarMotorPort);
     rightFourBarMotor = new WPI_TalonSRX(rightFourBarMotorPort);
 
     leftBarEncoder = new Encoder(leftBarEncoderPort[0], leftBarEncoderPort[1]);
     rightBarEncoder = new Encoder(rightBarEncoderPort[0], rightBarEncoderPort[1]);
 
+    leftFourBarMotor.configFactoryDefault();
+    rightFourBarMotor.configFactoryDefault();
+    
     leftFourBarMotor.follow(rightFourBarMotor);
-    leftFourBarMotor.setInverted(true);
+    leftFourBarMotor.setInverted(InvertType.OpposeMaster);
 
-    leftFourBarMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
     rightFourBarMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
-
-    leftFourBarMotor.configNominalOutputForward(0);
-    leftFourBarMotor.configNominalOutputReverse(0);
-    leftFourBarMotor.configPeakOutputForward(1);
-    leftFourBarMotor.configPeakOutputReverse(-1);
-    leftFourBarMotor.config_kP(0, fourBarPIDValues[0]);
-    leftFourBarMotor.config_kI(0, fourBarPIDValues[1]);
-    leftFourBarMotor.config_kD(0, fourBarPIDValues[2]);
-    leftFourBarMotor.config_kF(0, fourBarPIDValues[3]);
 
     rightFourBarMotor.configNominalOutputForward(0);
     rightFourBarMotor.configNominalOutputReverse(0);
@@ -56,10 +52,10 @@ public class FourBarSubsystem extends Subsystem {
     rightFourBarMotor.config_kF(0, fourBarPIDValues[3]);
 
     /** PID **/
-    fourBarPID = new PIDController(fourBarPIDValues[0], fourBarPIDValues[1], fourBarPIDValues[2], leftBarEncoder,
+    /*fourBarPID = new PIDController(fourBarPIDValues[0], fourBarPIDValues[1], fourBarPIDValues[2], leftBarEncoder,
         pidOutput);
     fourBarPID.setEnabled(true);
-
+*/
     RobotLog.putMessage("Running FourBarSubsystem");
   }
 
@@ -92,14 +88,14 @@ public class FourBarSubsystem extends Subsystem {
   }
 
   public void resetEncoders() {
-    rightBarEncoder.reset();
-    leftBarEncoder.reset();
+    leftFourBarMotor.setSelectedSensorPosition(0);
+    rightFourBarMotor.setSelectedSensorPosition(0);
   }
 
-  //PID Outputs
+  /*//PID Outputs
   public double getFourBarPIDOutput(){
     return fourBarPID.get();
-  }
+  }*/
 
   /** PID RELATED METHODS **/
   public  void setFourBarPIDValues(double p, double i, double d) {
@@ -113,7 +109,7 @@ public class FourBarSubsystem extends Subsystem {
   }
 
   public void setFourBarPIDValues(double p, double i, double d, double f) {
-    fourBarPID.setPID(p, i, d);
+    //fourBarPID.setPID(p, i, d);
     leftFourBarMotor.config_kF(0, f);
     //fourBarPID.setP(p);
     //fourBarPID.setI(i);
@@ -129,7 +125,7 @@ public class FourBarSubsystem extends Subsystem {
   public boolean checkOnTargetSetpoint(){ //needed?
     return Math.abs(rightFourBarMotor.getClosedLoopError()) < tolerance;
   }
-
+/*
   //setpoint
   public void setFourBarSetPoint(double fourBarSetPoint) {
     fourBarPID.setSetpoint(fourbarSetPoint);
@@ -166,7 +162,7 @@ public class FourBarSubsystem extends Subsystem {
   public void setFloorGatherPoint(int floorGatherPoint) {
     fourBarPID.setSetpoint(floorGatherPoint);
   }
-
+*/
   public void initDefaultCommand() {
     //setDefaultCommand(new FourBarCommand(Constants.setStartPoint));
   }

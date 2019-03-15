@@ -1,26 +1,25 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.commands.ElevatorInPlaceCommand;
 import frc.robot.utilities.RobotLog;
 
 public class ElevatorHorizontalSubsystem extends Subsystem {
-  static TalonSRX leftXElevatorMotor, rightXElevatorMotor;
+  static VictorSPX leftXElevatorMotor, rightXElevatorMotor;
   static DigitalInput fastSlowStopSensor;
 
   public ElevatorHorizontalSubsystem(int leftXElevatorMotorPort,
       double defaultElevatorPosition) {
 
-    leftXElevatorMotor = new WPI_TalonSRX(leftXElevatorMotorPort);
-
+    leftXElevatorMotor = new WPI_VictorSPX(leftXElevatorMotorPort);
+/*
     rightXElevatorMotor.follow(leftXElevatorMotor);
     rightXElevatorMotor.setInverted(true); //SHOULD BE HERE?
-
+*/
     RobotLog.putMessage("Running ElevatorHorizontalSubsystem");
   }
 

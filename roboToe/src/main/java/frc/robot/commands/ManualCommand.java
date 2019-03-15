@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants;
 import frc.robot.utilities.RobotLog;
 
 public class ManualCommand extends CommandBase {
@@ -19,8 +20,21 @@ public class ManualCommand extends CommandBase {
   }
 
   protected void execute() {
-    fourBar.setBothFourBarMotor(oi.getFourBarAxis());
-    wrist.setBothWristMotor(oi.getWristAxis(), oi.getWristAxis());
+    /*
+    if(fourBar.getRightBarEncoder() < Constants.fourbarMaxPosition  fourBar.getRightBarEncoder() > Constants.fourbarMinPosition){
+      fourBar.setBothFourBarMotor(oi.getFourBarAxis() * 0.4);
+    }
+    else{
+      fourBar.setBothFourBarMotor(0);
+    }*/
+    fourBar.setBothFourBarMotor(oi.getFourBarAxis() * 0.4);
+    // if(wrist.getLeftWristEncoder() < Constants.wristMaxPosition && wrist.getLeftWristEncoder() > Constants.wristMinPosition && fourBar.getLeftBarEncoder() > Constants.fourbarSafeWristPosition){
+       wrist.setBothWristMotor(oi.getWristAxis(), oi.getWristAxis());
+    // }
+    // else{
+    //   wrist.setBothWristMotor(0, 0);
+    // }
+
   }
 
   protected boolean isFinished() {

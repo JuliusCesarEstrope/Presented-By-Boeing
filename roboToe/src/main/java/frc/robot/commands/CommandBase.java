@@ -30,7 +30,6 @@ public abstract class CommandBase extends Command {
   public static void init() {
     RobotLog.init();
     RobotLog.putMessage("Running CommandBase");
-    oi = new OI();
     led = new LEDLightSubsystem();
     drive = new DriveSubsystem(Constants.motorPortsLeft, Constants.motorPortsRight, Constants.gyroPort, Constants.driveEncoderPortLeft, Constants.driveEncoderPortRight, Constants.frontSensor, Constants.rightSensor, 
     Constants.backSensor, Constants.leftSensor, Constants.driveEncoderPortLeft, Constants.driveEncoderPortRight, Constants.circumferenceOfWheels, Constants.ticksOfEncoder, Constants.driveRotationPIDValues);
@@ -41,8 +40,8 @@ public abstract class CommandBase extends Command {
     wrist = new WristSubsystem(Constants.leftWristMotorPort, Constants.rightWristMotorPort, Constants.leftWristEncoderPort, Constants.rightWristEncoderPort, Constants.wristPIDValues);
     elevatorVertical = new ElevatorVerticalSubsystem(Constants.verticalElevatorMotor, Constants.elevatorEncoderPIDValues);
     elevatorHorizontal = new ElevatorHorizontalSubsystem(Constants.horizontalElevatorMotor, Constants.defaultElevatorPosition);
-
-    led.setLEDLightColor(.87); // Blue
+    oi = new OI();
+    //led.setLEDLightColor(.87); // Blue
   }
 
   public static void disable() {

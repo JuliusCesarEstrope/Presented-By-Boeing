@@ -7,12 +7,12 @@ import frc.robot.commands.ElevatorCommandGroup;
 import frc.robot.commands.ElevatorManualCommand;
 import frc.robot.commands.FourBarBallLvlOneGroup;
 import frc.robot.commands.FourBarBallLvlTwoGroup;
+import frc.robot.commands.FourBarCommand;
 import frc.robot.commands.FourBarFloorGatherGroup;
-import frc.robot.commands.FourBarHatchLvlTwoGroup;
 import frc.robot.commands.FourBarRocketLvlOneGroup;
 import frc.robot.commands.FourBarRocketLvlTwoGroup;
 import frc.robot.commands.FourBarStartCommandGroup;
-import frc.robot.commands.ManualCommand;
+import frc.robot.commands.WristCommand;
 import frc.robot.commands.ZeroEncoderCommand;
 
 public class OI {
@@ -55,12 +55,15 @@ public class OI {
   JoystickButton manualOverrideButton;
   Trigger zeroEncoderTrigger;
 
+  //Test Buttons
+  JoystickButton fourBarTestButton;
+  JoystickButton wristTestButton;
 
 
   public OI() {
     leftJoyStick = new Joystick(Constants.leftJoystick);
     rightJoyStick = new Joystick(Constants.rightJoystick);
-    gamePad = new Joystick(Constants.rightJoystick);
+    gamePad = new Joystick(Constants.gamePad);
   
   //Roller Buttons
   rollerButtonIn = new JoystickButton(gamePad, 5);
@@ -76,7 +79,9 @@ public class OI {
   elevatorEmergencyStopButton = new JoystickButton(leftJoyStick,  11);
   manualElevatorButton = new JoystickButton(gamePad, 12);
 
-
+ //Test Buttons
+    fourBarTestButton = new JoystickButton(rightJoyStick, 8);
+    wristTestButton = new JoystickButton(rightJoyStick, 9);
   
   //Fourbar and Wrist + Elevator button positions
   //startPosition = new JoystickButton(gamePad, 2);
@@ -86,6 +91,7 @@ public class OI {
   //wristAngleButton = new JoystickButton(gamePad, 5);
   //fourBarAngleButton = new JoystickButton(gamePad, 22); //22 = temporary number, MUST CHANGE!!
   //Zero Encoders Button
+
   zeroEncoderTrigger = new Trigger(){
     public boolean get(){
       return (rightJoyStick.getRawButton(6) && rightJoyStick.getRawButton(11));
@@ -123,15 +129,18 @@ public class OI {
 
   startPosition.whenActive(new FourBarStartCommandGroup(Constants.setStartPoint));
   floorGather.whenActive(new FourBarFloorGatherGroup(Constants.setFloorGatherPoint));
-  hatchLvlTwoButton.whenPressed(new FourBarHatchLvlTwoGroup(Constants.setRocketLvlTwoPoint));
+  //hatchLvlTwoButton.whenPressed(new FourBarHatchLvlTwoGroup(Constants.setRocketLvlTwoPoint));
   rocketLvlTwoHatch.whenActive(new FourBarRocketLvlTwoGroup(Constants.setRocketLvlTwoPoint));
   rocketLvlOneHatch.whenActive(new FourBarRocketLvlOneGroup(Constants.setRocketLvlOnePoint));
   ballLvlOneButton.whenPressed(new FourBarBallLvlOneGroup(Constants.setBallLvlOnePoint));
   ballLvlTwoButton.whenPressed(new FourBarBallLvlTwoGroup(Constants.setBallLvlTwoPoint));
   elevatorButton.whenPressed(new ElevatorCommandGroup());
-  manualOverrideButton.whileHeld(new ManualCommand());
+  //manualOverrideButton.whileHeld(new ManualCommand());
   zeroEncoderTrigger.whenActive(new ZeroEncoderCommand());
   manualElevatorButton.toggleWhenPressed(new ElevatorManualCommand());
+
+  fourBarTestButton.whenPressed(new FourBarCommand(Constants.setFloorGatherPoint));
+  wristTestButton.whenPressed(new WristCommand(Constants.wristMidSetPoint));
   }
 
   public double getleftYAxis() {
@@ -168,12 +177,12 @@ public class OI {
 
   //wrist axis
   public double getWristAxis() {
-    return -gamePad.getRawAxis(1);
+    return (Math.abs(gamePad.getRawAxis(0)) > 0.25) ? -gamePad.getRawAxis(0) : 0;
   }
 
   //fourbar vert. axis
   public double getFourBarAxis() {
-    return -gamePad.getRawAxis(0); 
+    return(Math.abs(gamePad.getRawAxis(1)) > 0.25) ? -gamePad.getRawAxis(1) : 0; 
   }
   
   public boolean getRightTrigger() {
@@ -206,11 +215,11 @@ public class OI {
   }
 
   public double getElevatorHorizontalAxis(){
-    return gamePad.getRawAxis(4);
+    return (Math.abs(gamePad.getRawAxis(2)) > 0.3) ? gamePad.getRawAxis(2) : 0;
   }
 
   public double getElevatorVerticalAxis(){
-    return gamePad.getRawAxis(5);
+    return (Math.abs(gamePad.getRawAxis(3)) > 0.3) ? gamePad.getRawAxis(3) : 0;
   }
 
 }
