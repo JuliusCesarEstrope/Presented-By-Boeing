@@ -51,7 +51,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    RobotLog.putMessage("Vertical Elevator Encoders"+ CommandBase.elevatorVertical.getLeftElevatorEncoder());
+    RobotLog.putMessage("Vertical Elevator Encoders"+ CommandBase.elevatorVertical.getVerticalElevatorEncoder());
   }
 
   /**
