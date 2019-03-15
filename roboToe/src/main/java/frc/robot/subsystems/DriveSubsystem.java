@@ -23,14 +23,14 @@ public class DriveSubsystem extends Subsystem {
   DoublePIDOutput gyroOutput;
   VictorSPX[] victorsLeft, victorsRight;
   AnalogGyro gyroDrive;
-  double pidTolerance = 5;
+  double pidTolerance = 70;
   double ramp = 0;
   static DigitalInput leftSensor;
   static DigitalInput frontSensor;
   static DigitalInput rightSensor;
   static DigitalInput backSensor;
   private static PIDController gyroPID;
-  private static int tolerance = 1;
+  private static int tolerance = 70;
   
 
   public DriveSubsystem(int[] motorPortsLeft, int[] motorPortsRight, int gyroPort, int encoderPortLeft[],

@@ -37,7 +37,7 @@ public class ElevatorHorizontalSubsystem extends Subsystem {
   }
 
   public void initDefaultCommand() {
-    setDefaultCommand(new ElevatorInPlaceCommand());
+    //setDefaultCommand(new ElevatorInPlaceCommand());
   }
 
 }

@@ -168,6 +168,6 @@ public class FourBarSubsystem extends Subsystem {
   }
 
   public void initDefaultCommand() {
-    setDefaultCommand(new FourBarCommand(Constants.setStartPoint));
+    //setDefaultCommand(new FourBarCommand(Constants.setStartPoint));
   }
 }

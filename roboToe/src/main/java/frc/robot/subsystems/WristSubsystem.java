@@ -104,7 +104,7 @@ public class WristSubsystem extends Subsystem {
   }
 
   public void initDefaultCommand() {
-   setDefaultCommand(new WristCommand(Constants.defaultWristPosition));
+   //setDefaultCommand(new WristCommand(Constants.defaultWristPosition));
   }
 
 }

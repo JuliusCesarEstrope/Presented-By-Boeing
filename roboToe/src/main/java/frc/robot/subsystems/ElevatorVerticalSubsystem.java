@@ -119,7 +119,7 @@ public class ElevatorVerticalSubsystem extends Subsystem {
   }
 
   public void initDefaultCommand() {
-    setDefaultCommand(new ElevatorSetpointCommand(Constants.defaultElevatorPosition));
+    //setDefaultCommand(new ElevatorSetpointCommand(Constants.defaultElevatorPosition));
   }
 
 }

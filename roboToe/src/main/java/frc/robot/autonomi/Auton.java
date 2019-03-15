@@ -26,7 +26,6 @@ public class Auton extends CommandGroup{
 
     }
 
-    addSequential(new Drive4Distance(Constants.level1Length + Constants.firstExtra));
     addSequential(new Drive4DistanceCommand(Constants.level1Length + Constants.firstExtra));
 
     if(startMiddle){
