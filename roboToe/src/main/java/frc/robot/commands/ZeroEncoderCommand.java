@@ -1,8 +1,8 @@
 package frc.robot.commands;
 import frc.robot.utilities.RobotLog;
 
-public class ZeroButtonCommand extends CommandBase {
-  public ZeroButtonCommand() {
+public class ZeroEncoderCommand extends CommandBase {
+  public ZeroEncoderCommand() {
   }
 
   protected void initialize() {

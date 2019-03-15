@@ -10,7 +10,7 @@ public class TapeAlignCommandGroup extends CommandGroup {
     
     addSequential(new TapeAlignCommand());
     addSequential(new TurnAngleCommand(CommandBase.turnAngle));
-     addSequential(new Drive4Distance(CommandBase.newDistanceToMove));
+     addSequential(new Drive4DistanceCommand(CommandBase.newDistanceToMove));
 
   }
 }

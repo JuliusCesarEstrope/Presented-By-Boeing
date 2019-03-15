@@ -16,10 +16,8 @@ public class Constants {
   public static final int rightWristMotorPort = 8;
   public static final int leftFourBarMotorPort = 10;
   public static final int rightFourBarMotorPort = 11;
-  public static final int leftVerticalElevatorMotor = 12;
-  public static final int rightVerticalElevatorMotor = 13;
-  public static final int leftHorizontalElevatorMotor = 14;
-  public static final int rightHorizontalElevatorMotor = 15;
+  public static final int verticalElevatorMotor = 12;
+  public static final int horizontalElevatorMotor = 14;
   /** END CAN DEVICES **/
 
   /** BEGIN SOLENOIDS **/
@@ -50,25 +48,22 @@ public class Constants {
   //Fourbar Encoders
   public static final int[] leftBarEncoderPort = {10, 11};
   public static final int[] rightBarEncoderPort = {12, 13};
-  public static final int[] leftElevatorEncoder = {1, 2};
-  public static final int[] rightElevatorEncoder = {3, 4};
   
   /** END DIGITAL INPUTS**/
 
   /** BEGIN PID CONSTANTS**/
   //Drive PID
 
-  public static double[] driveRotationPIDValues = { 0.1, 0, 0, 0 };
-  public static double[] rightEncoderPIDValues = {0,0,0,0};
-  public static double[] leftEncoderPIDValues = {0,0,0,0};
+  public static double[] driveRotationPIDValues = { 0.5, 0, 0, 0 };
+  public static double[] rightEncoderPIDValues = {0.32,0,0.2,0};
+  public static double[] leftEncoderPIDValues = {0.32,0,0.2,0};
 
 
   //FourBar PID
   public static final double[] fourBarPIDValues = {0.1, 0.1, 0.01, 0};
 
   //Elevator PID
-  public static final double[] leftElevatorEncoderPIDValues = {0, 0, 0, 0};
-  public static final double[] rightElevatorEncoderPIDValues = {0, 0, 0, 0};
+  public static final double[] elevatorEncoderPIDValues = {0, 0, 0, 0};
   /** END PID CONSTANTS**/
 
   /** BEGIN OTHER CONSTANTS**/

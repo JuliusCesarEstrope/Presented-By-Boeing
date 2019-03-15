@@ -20,9 +20,9 @@ public class ElevatorVerticalCommand extends CommandBase {
   }
 
   protected void execute() {
-    elevatorVertical.setYElevatorMotorsPosition(elevatorDistance + Constants.defaultElevatorPosition);
-    elevatorVertical.setYElevatorMotorsPosition(elevatorVerticalSetpoint);
-    SmartDashboard.putNumber("Position of the elevator:", elevatorVertical.getLeftElevatorEncoder());
+    elevatorVertical.setYElevatorMotorPosition(elevatorDistance + Constants.defaultElevatorPosition);
+    elevatorVertical.setYElevatorMotorPosition(elevatorVerticalSetpoint);
+    SmartDashboard.putNumber("Position of the elevator:", elevatorVertical.getVerticalElevatorEncoder());
     SmartDashboard.putNumber("Elevator current:", elevatorVertical.getElevatorMotorsCurrent());
     SmartDashboard.putBoolean("Emergency Stop Button Pressed:", oi.getElevatorEmergencyStopButton());
   }

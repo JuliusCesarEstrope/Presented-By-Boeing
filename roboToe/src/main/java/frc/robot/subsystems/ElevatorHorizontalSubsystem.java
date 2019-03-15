@@ -13,11 +13,10 @@ public class ElevatorHorizontalSubsystem extends Subsystem {
   static TalonSRX leftXElevatorMotor, rightXElevatorMotor;
   static DigitalInput fastSlowStopSensor;
 
-  public ElevatorHorizontalSubsystem(int leftXElevatorMotorPort, int rightXElevatorMotorPort,
+  public ElevatorHorizontalSubsystem(int leftXElevatorMotorPort,
       double defaultElevatorPosition) {
 
     leftXElevatorMotor = new WPI_TalonSRX(leftXElevatorMotorPort);
-    rightXElevatorMotor = new WPI_TalonSRX(rightXElevatorMotorPort);
 
     rightXElevatorMotor.follow(leftXElevatorMotor);
     rightXElevatorMotor.setInverted(true); //SHOULD BE HERE?

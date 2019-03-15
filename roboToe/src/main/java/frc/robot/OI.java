@@ -12,9 +12,11 @@ import frc.robot.commands.FourBarRocketLvlOneGroup;
 import frc.robot.commands.FourBarRocketLvlTwoGroup;
 import frc.robot.commands.FourBarStartCommandGroup;
 import frc.robot.commands.ManualCommand;
+import frc.robot.commands.ZeroEncoderCommand;
 
 public class OI {
-
+  
+  Joystick setZeroPositionButton;
   // Joysticks
   Joystick leftJoyStick;
   Joystick rightJoyStick;
@@ -47,6 +49,7 @@ public class OI {
   JoystickButton wristAngleButton;
   JoystickButton fourBarAngleButton;
   JoystickButton manualOverrideButton;
+  Trigger zeroEncoderTrigger;
 
   public OI() {
     leftJoyStick = new Joystick(Constants.leftJoystick);
@@ -54,24 +57,31 @@ public class OI {
     gamePad = new Joystick(Constants.rightJoystick);
   
   //Roller Buttons
-  rollerButtonIn = new JoystickButton(gamePad, 7);
-  rollerButtonOut = new JoystickButton(gamePad, 8);
+  rollerButtonIn = new JoystickButton(gamePad, 5);
+  rollerButtonOut = new JoystickButton(gamePad, 6);
   
   //Manual Motor Overide Button
   manualOverrideButton = new JoystickButton(gamePad, 1);
   //Gather Buttons
-  booperButton = new JoystickButton(gamePad, 9);
+  booperButton = new JoystickButton(gamePad, 8);
 
   //Elevator Buttons
   elevatorButton = new JoystickButton(gamePad, 10);
-  elevatorEmergencyStopButton = new JoystickButton(leftJoyStick,  9);
+  elevatorEmergencyStopButton = new JoystickButton(leftJoyStick,  11);
   
   //Fourbar and Wrist + Elevator button positions
-  startPosition = new JoystickButton(gamePad, 2);
+  //startPosition = new JoystickButton(gamePad, 2);
+  floorGather = new JoystickButton(gamePad, 2);
   ballLvlOneButton = new JoystickButton(gamePad, 3);
   ballLvlTwoButton = new JoystickButton(gamePad, 4);
-  wristAngleButton = new JoystickButton(gamePad, 5);
-  fourBarAngleButton = new JoystickButton(gamePad, 22); //22 = temporary number, MUST CHANGE!!
+  //wristAngleButton = new JoystickButton(gamePad, 5);
+  //fourBarAngleButton = new JoystickButton(gamePad, 22); //22 = temporary number, MUST CHANGE!!
+  //Zero Encoders Button
+  zeroEncoderTrigger = new Trigger(){
+    public boolean get(){
+      return (rightJoyStick.getRawButton(6) && rightJoyStick.getRawButton(11));
+    }
+  };
 
   rocketLvlOneHatch = new Trigger(){
 
@@ -111,7 +121,7 @@ public class OI {
   ballLvlTwoButton.whenPressed(new FourBarBallLvlTwoGroup(Constants.setBallLvlTwoPoint));
   elevatorButton.whenPressed(new ElevatorCommandGroup());
   manualOverrideButton.whileHeld(new ManualCommand());
-
+  zeroEncoderTrigger.whenActive(new ZeroEncoderCommand());
   }
 
   public double getleftYAxis() {
@@ -183,6 +193,14 @@ public class OI {
 
   public boolean getManualOverrideButton(){
     return manualOverrideButton.get();
+  }
+
+  public double getElevatorHorizontalAxis(){
+    return gamePad.getRawAxis(4);
+  }
+
+  public double getElevatorVerticalAxis(){
+    return gamePad.getRawAxis(5);
   }
 
 }

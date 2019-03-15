@@ -1,37 +1,33 @@
 package frc.robot.commands;
 
-public class WristCommand extends CommandBase {
-
-  int leftWristEncoder;
-  int rightWristEncoder;
+public class WristAngleCommand extends CommandBase {
   double wristSetPoint;
 
-  public WristCommand(double wristSetPoint) {
+  public WristAngleCommand() {
     requires(wrist);
     // Use requires() here to declare subsystem dependencies
-    this.wristSetPoint = wristSetPoint;
 
   }
 
   protected void initialize() {
-
-    // Set point
-    // Send PID to correct motors
-
   }
 
-  @Override
   protected void execute() {
-    // Two Positions (Up, Down)
-    //wrist.setRightWristMotorPosition(wristSetPoint);
-    wrist.setLeftWristMotorPosition(wristSetPoint);
-    wrist.setRightWristMotor(wrist.getLeftTalonOutput());
+    if(oi.getWristAxis() > 0.1 || oi.getWristAxis() < -0.1){
+      wrist.setLeftWristMotor(oi.getWristAxis() * 0.4);
+      wristSetPoint = wrist.getLeftWristEncoder();
+    } else {
+      //swrist.setLeftWristMotorPosition(wristSetPoint);
+      //wrist.setRightWristMotorPosition(wristSetPoint);
+    }
+
+    
   }
 
   protected boolean isFinished() {
     // if needed to maintain set pont (false) stopping point (true)
     return false;
-  } 
+  }
 
   protected void end() {
    // drive.setBoth(0, 0);

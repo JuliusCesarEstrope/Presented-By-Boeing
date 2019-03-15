@@ -1,62 +1,57 @@
 package frc.robot.subsystems;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import frc.robot.Constants;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Constants;
 import frc.robot.commands.WristCommand;
-import frc.robot.utilities.RobotLog;
 
 public class WristSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  static TalonSRX leftWristMotor, rightWristMotor;
-  static Encoder leftWristEncoder, rightWristEncoder;
-  private static PIDController leftWristPID, rightWristPID;
-  private static PIDOutput pidWristOutput;
+  static VictorSPX rightWristMotor;
+  static TalonSRX leftWristMotor;
 
-  
-  public WristSubsystem(int leftWristMotorPort, int rightWristMotorPort, int[] leftWristEncoderPort, int[] rightWristEncoderPort, double[] wristPIDValues) {
+  public WristSubsystem(int leftWristMotorPort, int rightWristMotorPort, int[] leftWristEncoderPort,
+      int[] rightWristEncoderPort, double[] wristPIDValues) {
     leftWristMotor = new WPI_TalonSRX(leftWristMotorPort);
-    rightWristMotor = new WPI_TalonSRX(rightWristMotorPort);
-    leftWristEncoder = new Encoder(leftWristEncoderPort[0], leftWristEncoderPort[1]);
-    rightWristEncoder = new Encoder(rightWristEncoderPort[0], rightWristEncoderPort[1]);
-    leftWristMotor.follow(rightWristMotor);  //:)
-    leftWristMotor.setInverted(true);
+    rightWristMotor = new WPI_VictorSPX(rightWristMotorPort);
 
-      leftWristMotor.configNominalOutputForward(0);
-      leftWristMotor.configNominalOutputReverse(0);
-      leftWristMotor.configPeakOutputForward(1);
-      leftWristMotor.configPeakOutputReverse(-1);
-      leftWristMotor.config_kP(0, wristPIDValues[0]);
-      leftWristMotor.config_kI(0, wristPIDValues[1]);
-      leftWristMotor.config_kD(0, wristPIDValues[2]);
-      leftWristMotor.config_kF(0, wristPIDValues[3]);
+    leftWristMotor.configFactoryDefault();
+    //rightWristMotor.configFactoryDefault();
 
-      rightWristMotor.configNominalOutputForward(0);
-      rightWristMotor.configNominalOutputReverse(0);
-      rightWristMotor.configPeakOutputForward(1);
-      rightWristMotor.configPeakOutputReverse(-1);
-      rightWristMotor.config_kP(0, wristPIDValues[0]);
-      rightWristMotor.config_kI(0, wristPIDValues[1]);
-      rightWristMotor.config_kD(0, wristPIDValues[2]);
-      rightWristMotor.config_kF(0, wristPIDValues[3]);
+    rightWristMotor.follow(leftWristMotor); // :)
+    leftWristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
+    leftWristMotor.setInverted(true); 
+    rightWristMotor.setInverted(InvertType.OpposeMaster);
 
-     // leftWristMotor.limit
-    /*leftWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3],
-        leftWristEncoder, pidWristOutput);
-    leftWristPID.setEnabled(true);
+    leftWristMotor.configPeakOutputForward(0.4);
+    leftWristMotor.configPeakOutputReverse(-0.4);
+    leftWristMotor.configClosedLoopPeakOutput(0, 0.4);
+    
+    /*
+    rightWristMotor.configPeakOutputForward(0.4);
+    rightWristMotor.configPeakOutputReverse(-0.4);
+    rightWristMotor.configClosedLoopPeakOutput(0, 0.4);
+    */
 
-   /* rightWristPID = new PIDController(wristPIDValues[0], wristPIDValues[1], wristPIDValues[2], wristPIDValues[3],
-        leftWristEncoder, pidWristOutput);
-    leftWristPID.setEnabled(true);*/
+    leftWristMotor.config_kP(0, wristPIDValues[0]);
+    leftWristMotor.config_kI(0, wristPIDValues[1]);
+    leftWristMotor.config_kD(0, wristPIDValues[2]);
+    leftWristMotor.config_kF(0, wristPIDValues[3]);
 
-    RobotLog.putMessage("Running WristSubsystem");
-    }
+    leftWristMotor.setNeutralMode(NeutralMode.Brake);
+    //rightWristMotor.setNeutralMode(NeutralMode.Brake);
+
+  }
 
   public void setLeftWristMotor(double Speed) {
     leftWristMotor.set(ControlMode.PercentOutput, Speed);
@@ -66,25 +61,27 @@ public class WristSubsystem extends Subsystem {
     rightWristMotor.set(ControlMode.PercentOutput, Speed);
   }
 
-  public void setRightWristPosition(double setpoint) {
-    leftWristMotor.set(ControlMode.Position, setpoint);
-  }
-
-  public void setLeftWristPosition(double setpoint) {
-    rightWristMotor.set(ControlMode.Position, setpoint);
-  }
-
   public void ResetEncoder() {
-    leftWristEncoder.reset();
-    rightWristEncoder.reset();
+    leftWristMotor.setSelectedSensorPosition(0);
+    rightWristMotor.setSelectedSensorPosition(0);
   }
 
   public int getLeftWristEncoder() {
-    return leftWristEncoder.get();
+    return leftWristMotor.getSelectedSensorPosition();
+    // return leftWristEncoder.get();
+  }
+
+  public int getLeftWristEncoderError(){
+    return leftWristMotor.getClosedLoopError();
   }
 
   public int getRightWristEncoder() {
-    return rightWristEncoder.get();
+    return rightWristMotor.getSelectedSensorPosition();
+    // return rightWristEncoder.get();
+  }
+
+  public double getLeftTalonOutput() {
+    return leftWristMotor.getMotorOutputPercent();
   }
 
   public void setBothWristMotor(double pidWristOutput) {
@@ -93,87 +90,21 @@ public class WristSubsystem extends Subsystem {
   }
 
   public void setBothWristMotor(double Speed, double Speed1) {
-    setLeftWristMotor(Speed);
-    setRightWristMotor(Speed1);
+    setLeftWristMotor(Speed * 0.4);
+    setRightWristMotor(Speed * 0.4);
   }
 
-  public void setLeftWristPIDValues(double p, double i, double d) {
-    //setLeftWristPIDValues(p, i, d);
-    //leftWristPID.setP(p);
-    //leftWristPID.setI(i);
-    //leftWristPID.setD(d);
-
-      leftWristMotor.config_kP(0, p);
-      leftWristMotor.config_kI(0, i);
-      leftWristMotor.config_kD(0, d);
- 
-
+  public void setLeftWristMotorPosition(double position){
+    //rightWristMotor.set(ControlMode.Follower, );
+    leftWristMotor.set(ControlMode.Position, position);
   }
 
-  public void setLeftWristPIDValues(double p, double i, double d, double f) {
-    setLeftWristPIDValues(p, i, d);
-    //leftWristPID.setP(p);
-    //leftWristPID.setI(i);
-    //leftWristPID.setD(d);
-    //leftWristPID.setF(f);
-
-    leftWristMotor.config_kF(0, f);
-  }
-
-  public boolean leftWristOnTarget() {
-    return leftWristPID.onTarget();
-  }
-
-  public void setRightWristPIDValues(double p, double i, double d) {
-    //rightWristPID.setPID(p, i, d);
-    //rightWristPID.setP(p);
-    //rightWristPID.setI(i);
-    //rightWristPID.setD(d);
-
-    rightWristMotor.config_kP(0, p);
-    rightWristMotor.config_kI(0, i);
-    rightWristMotor.config_kD(0, d);
-  }
-
-  public void setRightWristPIDValues(double p, double i, double d, double f) {
-    setRightWristPIDValues(p, i, d);
-    //rightWristPID.setP(p);
-    //rightWristPID.setI(i);
-    //rightWristPID.setD(d);
-    //rightWristPID.setF(f);
-
-    rightWristMotor.config_kF(0, f);
-  }
-
-  public void setWristSetpoint(double wristSetPoint) {
-    leftWristPID.setSetpoint(wristSetPoint);
-  }
- 
-  public void setWristDownSetpoint(int wristDownSetPoint) {
-    leftWristPID.setSetpoint(wristDownSetPoint);
-  }
-
-  public void setWristUpSetpoint(int wristUpSetPoint) {
-    leftWristPID.setSetpoint(wristUpSetPoint);
-  }
-
-  public void setWristMidSetpoint(int wristMidSetPoint) {
-    leftWristPID.setSetpoint(wristMidSetPoint);
-  }
-  
-  public double getLeftWristPIDOutput() {
-    return leftWristPID.get();
-    
-  }
-
-  public double getRightWristPIDOutput() {
-    return rightWristPID.get();
-    
+  public void setRightWristMotorPosition(double position){
+    rightWristMotor.set(ControlMode.Position, position);
   }
 
   public void initDefaultCommand() {
-    setDefaultCommand(new WristCommand(Constants.wristUpSetPoint));
+   setDefaultCommand(new WristCommand(Constants.defaultWristPosition));
   }
 
 }
-
