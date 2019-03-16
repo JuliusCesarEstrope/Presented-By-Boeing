@@ -43,6 +43,7 @@ public abstract class CommandBase extends Command {
     oi = new OI();
     //led.setLEDLightColor(.87); // Blue
     wrist.ResetEncoder();
+    elevatorVertical.resetBothElevatorEncoders();
   }
 
   public static void disable() {
