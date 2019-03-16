@@ -136,7 +136,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putString("DB/String 1", "" + CommandBase.fourBar.getRightBarEncoder());
     SmartDashboard.putString("DB/String 2", "" + CommandBase.wrist.getLeftWristEncoder());
     SmartDashboard.putString("DB/String 3", "" + CommandBase.elevatorVertical.getVerticalElevatorEncoder());
-
+    SmartDashboard.putString("DB/String 5", "" + CommandBase.elevatorHorizontal.getlimitSwitch());
     Scheduler.getInstance().run();
   }
 

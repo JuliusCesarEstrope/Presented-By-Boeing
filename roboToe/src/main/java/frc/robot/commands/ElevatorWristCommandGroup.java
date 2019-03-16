@@ -8,8 +8,8 @@ public class ElevatorWristCommandGroup extends CommandGroup {
   public ElevatorWristCommandGroup() {
     RobotLog.putMessage("Running ElevatorWristCommandGroup");
 
-    addSequential(new ElevatorManualCommand());
-    addParallel(new WristCommand(Constants.wristUpSetPoint));
+    addParallel(new ElevatorManualCommand());
+    addSequential(new WristCommand(Constants.wristUpSetPoint));
     
   }
 }

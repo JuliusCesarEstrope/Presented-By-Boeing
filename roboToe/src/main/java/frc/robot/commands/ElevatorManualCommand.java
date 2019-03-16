@@ -17,8 +17,9 @@ public class ElevatorManualCommand extends CommandBase {
   }
 
   protected void execute() {
-    if (((oi.getElevatorVerticalAxis()) > 0) && (elevatorVertical.getVerticalElevatorEncoder() >= Constants.elevatorVerticalMax)
-    || (((oi.getElevatorVerticalAxis()) < 0) && (elevatorVertical.getVerticalElevatorEncoder() <= Constants.elevatorVerticalMin))) {
+    
+    if (((oi.getElevatorVerticalAxis()) < 0) && (elevatorVertical.getVerticalElevatorEncoder() >= Constants.elevatorVerticalMax)
+    || (((oi.getElevatorVerticalAxis()) > 0) && (elevatorVertical.getVerticalElevatorEncoder() <= Constants.elevatorVerticalMin))) {
       elevatorVertical.setYElevatorMotor(0);
 } else {
     elevatorHorizontal.setXElevatorMotors(oi.getElevatorHorizontalAxis());

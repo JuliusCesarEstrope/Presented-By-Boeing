@@ -107,7 +107,11 @@ public class Constants {
   public static int wristUpSetPoint = -8400; 
   public static final double defaultWristPosition = 0;
   public static final double[] wristPIDValues = {.25, 0, 0, 0};
+  public static final double wristShootSetPoint = -12790;
 
+  //Counter Weight Stuff
+  public static final int counterWeightMotorPort = 5;
+  public static boolean counterWeightAutomaticTriggerable = false;
 
   public static final double defaultElevatorPosition = 0;
   // FIGURE OUT WHAT VALUE IS SUPPOSED TO BE

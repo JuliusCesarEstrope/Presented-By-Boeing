@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Constants;
 import frc.robot.OI;
 import frc.robot.subsystems.BooperSubsystem;
+import frc.robot.subsystems.CounterWeightSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ElevatorHorizontalSubsystem;
 import frc.robot.subsystems.ElevatorVerticalSubsystem;
@@ -24,7 +25,7 @@ public abstract class CommandBase extends Command {
   public static RollerSubsystem roller;
   public static ElevatorVerticalSubsystem elevatorVertical;
   public static ElevatorHorizontalSubsystem elevatorHorizontal;
-  public static double newDistanceToMove;
+  public static CounterWeightSubsystem CounterWeight;
   public static double turnAngle;
 
   public static void init() {
@@ -40,10 +41,12 @@ public abstract class CommandBase extends Command {
     wrist = new WristSubsystem(Constants.leftWristMotorPort, Constants.rightWristMotorPort, Constants.leftWristEncoderPort, Constants.rightWristEncoderPort, Constants.wristPIDValues);
     elevatorVertical = new ElevatorVerticalSubsystem(Constants.verticalElevatorMotor, Constants.elevatorEncoderPIDValues);
     elevatorHorizontal = new ElevatorHorizontalSubsystem(Constants.horizontalElevatorMotor, Constants.defaultElevatorPosition);
+    CounterWeight = new CounterWeightSubsystem(Constants.counterWeightMotorPort);
     oi = new OI();
     //led.setLEDLightColor(.87); // Blue
     wrist.ResetEncoder();
     elevatorVertical.resetBothElevatorEncoders();
+    
   }
 
   public static void disable() {

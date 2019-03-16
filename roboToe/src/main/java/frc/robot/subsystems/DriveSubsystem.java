@@ -70,11 +70,13 @@ public class DriveSubsystem extends Subsystem {
 
       talonLeft.setNeutralMode(NeutralMode.Brake);
       talonRight.setNeutralMode(NeutralMode.Brake);
-      /*
-       * gyroPID = new PIDController(0.05, 0, 0, gyroDrive, gyroOutput);
-       * gyroPID.setAbsoluteTolerance(1); gyroPID.setInputRange(-Integer.MAX_VALUE,
-       * Integer.MAX_VALUE); gyroPID.setOutputRange(-1, 1); gyroPID.setEnabled(true);
-       */
+
+      gyroPID = new PIDController(0.05, 0, 0, gyroDrive, gyroOutput);
+      gyroPID.setAbsoluteTolerance(1);
+      gyroPID.setInputRange(-Integer.MAX_VALUE, Integer.MAX_VALUE);
+      gyroPID.setOutputRange(-1, 1);
+      gyroPID.setEnabled(true);
+
       RobotLog.putMessage("Running DriveSubsystem");
       victorsLeft = new WPI_VictorSPX[motorPortsLeft.length - 1];
       victorsRight = new WPI_VictorSPX[motorPortsRight.length - 1];
