@@ -25,6 +25,7 @@ public class ElevatorVerticalCommand extends CommandBase {
     SmartDashboard.putNumber("Position of the elevator:", elevatorVertical.getVerticalElevatorEncoder());
     SmartDashboard.putNumber("Elevator current:", elevatorVertical.getElevatorMotorsCurrent());
     SmartDashboard.putBoolean("Emergency Stop Button Pressed:", oi.getElevatorEmergencyStopButton());
+   
   }
 
   protected boolean isFinished() {

@@ -77,6 +77,10 @@ public class Constants {
   public static final double[] elevatorEncoderPIDValues = {0, 0, 0, 0};
   /** END PID CONSTANTS**/
 
+  // Elevator Max & Min
+  public static final double elevatorVerticalMax = 0; 
+  public static final double elevatorVerticalMin = -188800;
+
   /** BEGIN OTHER CONSTANTS**/
   //Drive Wheel Constants
   public static double diameterOfWheels = 7.8025;

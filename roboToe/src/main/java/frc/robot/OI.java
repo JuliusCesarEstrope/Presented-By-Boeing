@@ -196,7 +196,7 @@ public class OI {
   public double getFourBarAxis() {
     return(Math.abs(gamePad.getRawAxis(1)) > 0.25) ? -gamePad.getRawAxis(1) : 0; 
   }
-  
+
   public boolean getRightTrigger() {
     return alignButton.get();
   }
