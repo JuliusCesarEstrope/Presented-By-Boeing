@@ -18,6 +18,7 @@ public class TurnAngleCommand extends CommandBase {
     RobotLog.putMessage("Running TurnAngleCommand");
     drive.resetGyro();
     drive.setGyroSetpoint(angle);
+    timer.start();
   }
 
   protected void execute() {

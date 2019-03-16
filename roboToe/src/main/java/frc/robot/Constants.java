@@ -1,6 +1,16 @@
 package frc.robot;
 
 public class Constants {
+  // Subsystem Enabled States
+  public static final boolean wristEnabled = true;
+  public static final boolean rollerEnabled = true;
+  public static final boolean LEDLightEnabled = false;
+  public static final boolean fourBarEnabled = false;
+  public static final boolean elevatorVerticalEnabled = true;
+  public static final boolean elevatorHorizontalEnabled = true;
+  public static final boolean driveEnabled = true;
+  public static final boolean cameraEnabled = true;
+  public static final boolean booperEnabled = true;
 
   // Joysticks
   public static final int leftJoystick = 0;
@@ -32,6 +42,7 @@ public class Constants {
   /** BEGIN DIGITAL INPUTS **/
   // Horizontal Elevator Sensor
   public static final int fastSlowStopSensor = 1;
+  public static final int limitSwitch = 0;
 
   // Drive Tape Sensors
   public static final int leftSensor = 3;
@@ -60,7 +71,7 @@ public class Constants {
 
 
   //FourBar PID
-  public static final double[] fourBarPIDValues = {0.1, 0.1, 0.01, 0};
+  public static final double[] fourBarPIDValues = {0.1, 0, 0, 0};
 
   //Elevator PID
   public static final double[] elevatorEncoderPIDValues = {0, 0, 0, 0};
@@ -75,23 +86,23 @@ public class Constants {
    public static double ticksToInches = (ticksOfEncoder/360) * circumferenceOfWheels;
    
   //FourBar Constants
-  public static final double setStartPoint = (36*((4096/360)*(11.22))); //initialize: set angle to 11.22
-  public static final double setFloorGatherPoint = (36*((4096/360)*(50.83)));
-  //public static final double setHatchLvlTwoPoint = (36*((4096/360)*(149.43))); //maybe not use?? how is this different from rocketlvltwo, should this be cargo
-  public static final double setRocketLvlTwoPoint =(36*((4096/360)*(149.43)));
-  public static final double setRocketLvlOnePoint =(36*((4096/360)*(31.68)));
-  public static final double setClimbPoint = (36*((4096/360)*(11.22)));
-  public static final double setBallLvlOnePoint = (36*((4096/360)*(31.68)));
-  public static final double setBallLvlTwoPoint = (36*((4096/360)*(149.43)));
+  public static final double setStartPoint = (36*((4096/360)*(11.22))); //4,595 ticks //initialize: set angle to 11.22
+  public static final double setFloorGatherPoint = 4449;
+  //public static final double setHatchLvlTwoPoint = (36*((4096/360)*(149.43))); 
+  public static final double setRocketLvlTwoPoint =(36*((4096/360)*(149.43))); //61,206 ticks
+  public static final double setRocketLvlOnePoint =(36*((4096/360)*(31.68))); //12,976 ticks
+  public static final double setClimbPoint = (36*((4096/360)*(11.22))); //4,595 ticks
+  public static final double setBallLvlOnePoint = (36*((4096/360)*(31.68))); //12,976 ticks
+  public static final double setBallLvlTwoPoint = (36*((4096/360)*(149.43))); //61,206 ticks
 
   //Wrist stuff
   public static final int[] leftWristEncoderPort = {6, 7};
   public static final int[] rightWristEncoderPort = {8, 9};
-  public static int wristDownSetPoint = (28*((4096/360)*(0)));
-  public static int wristMidSetPoint = (28*((4096/360)*(45)));
-  public static int wristUpSetPoint = (28*((4096/360)*(90)));
+  public static int wristDownSetPoint = -34780;//0 ticks
+  public static int wristMidSetPoint = (28*((4096/360)*(45))); //14,336 ticks
+  public static int wristUpSetPoint = -8400; 
   public static final double defaultWristPosition = 0;
-  public static final double[] wristPIDValues = {0.1, 0.1, 0.01, 0};
+  public static final double[] wristPIDValues = {.25, 0, 0, 0};
 
 
   public static final double defaultElevatorPosition = 0;

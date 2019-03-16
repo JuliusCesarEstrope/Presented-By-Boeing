@@ -17,8 +17,8 @@ public class WristAngleCommand extends CommandBase {
       wrist.setLeftWristMotor(oi.getWristAxis() * 0.4);
       wristSetPoint = wrist.getLeftWristEncoder();
     } else {
-      //swrist.setLeftWristMotorPosition(wristSetPoint);
-      //wrist.setRightWristMotorPosition(wristSetPoint);
+      //wrist.setLeftWristMotorPosition(wristSetPoint);
+      //wrist.setRightWristMotor(wrist.getLeftTalonOutput());
     }
 
     

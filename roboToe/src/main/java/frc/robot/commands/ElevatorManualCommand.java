@@ -20,8 +20,8 @@ public class ElevatorManualCommand extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    elevatorHorizontal.setXElevatorMotors(oi.getElevatorHorizontalAxis()*0.5);
-    elevatorVertical.setYElevatorMotor(oi.getElevatorVerticalAxis()*0.5);
+    elevatorHorizontal.setXElevatorMotors(oi.getElevatorHorizontalAxis());
+    elevatorVertical.setYElevatorMotor(oi.getElevatorVerticalAxis());
   }
 
   // Make this return true when this Command no longer needs to run execute()

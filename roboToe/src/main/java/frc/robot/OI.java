@@ -51,6 +51,10 @@ public class OI {
   JoystickButton wristAngleButton;
   JoystickButton fourBarAngleButton;
 
+  JoystickButton wristUpButton;
+  JoystickButton wristMidButton;
+  JoystickButton wristDownButton;
+
   //Miss Elaineous
   JoystickButton manualOverrideButton;
   Trigger zeroEncoderTrigger;
@@ -91,6 +95,8 @@ public class OI {
   //wristAngleButton = new JoystickButton(gamePad, 5);
   //fourBarAngleButton = new JoystickButton(gamePad, 22); //22 = temporary number, MUST CHANGE!!
   //Zero Encoders Button
+
+  wristUpButton = new JoystickButton(gamePad, 3);
 
   zeroEncoderTrigger = new Trigger(){
     public boolean get(){
@@ -138,9 +144,10 @@ public class OI {
   //manualOverrideButton.whileHeld(new ManualCommand());
   zeroEncoderTrigger.whenActive(new ZeroEncoderCommand());
   manualElevatorButton.toggleWhenPressed(new ElevatorManualCommand());
+  wristUpButton.whileHeld(new WristCommand(Constants.wristUpSetPoint));
 
   fourBarTestButton.whenPressed(new FourBarCommand(Constants.setFloorGatherPoint));
-  wristTestButton.whenPressed(new WristCommand(Constants.wristMidSetPoint));
+  wristTestButton.whileHeld(new WristCommand(Constants.wristUpSetPoint));
   }
 
   public double getleftYAxis() {

@@ -16,7 +16,7 @@ public class RollerCommand extends CommandBase {
     if (oi.getRollerButtonIn()) {
       roller.setRollerMotor(-0.70);
     } else if (oi.getRollerButtonOut()) {
-      roller.setRollerMotor(0.70);
+      roller.setRollerMotor(0.40);
     } else {
       roller.setRollerMotor(0);
     }

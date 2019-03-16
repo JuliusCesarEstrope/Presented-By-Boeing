@@ -21,18 +21,23 @@ public class ManualCommand extends CommandBase {
 
   protected void execute() {
     /*
-    if(fourBar.getRightBarEncoder() < Constants.fourbarMaxPosition  fourBar.getRightBarEncoder() > Constants.fourbarMinPosition){
-      fourBar.setBothFourBarMotor(oi.getFourBarAxis() * 0.4);
+    if(((fourBar.getRawAxis(1) > 0) && (fourBar.getRightBarEncoder() >= Constants.fourBarMaxPosition))
+    || ((fourBar.getRawAxis(1) < 0) && (fourBar.getRightBarEncoder() <= Constants.fourBarMinPosition)) {
+      fourBar.setBothFourBarMotor(0);
     }
     else{
-      fourBar.setBothFourBarMotor(0);
+      fourBar.setBothFourBarMotor(oi.getFourBarAxis() * 0.4);
     }*/
     fourBar.setBothFourBarMotor(oi.getFourBarAxis() * 0.4);
-    // if(wrist.getLeftWristEncoder() < Constants.wristMaxPosition && wrist.getLeftWristEncoder() > Constants.wristMinPosition && fourBar.getLeftBarEncoder() > Constants.fourbarSafeWristPosition){
+    /*
+    if(((wrist.getWristAxis > 0) && (wrist.getLeftWristEncoder() >= Constants.wristMaxPosition))
+    || ((wrist.getWristAxis < 0) && (wrist.getLeftWristEncoder() <= Constants.wristMinPosition))){
+    wrist.setBothWristMotor(0, 0);
+    */
        wrist.setBothWristMotor(oi.getWristAxis(), oi.getWristAxis());
     // }
     // else{
-    //   wrist.setBothWristMotor(0, 0);
+    //   wrist.setBothWristMotor(oi.getWristAxis(), oi.getWristAxis());
     // }
 
   }

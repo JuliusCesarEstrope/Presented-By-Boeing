@@ -18,7 +18,7 @@ public class ElevatorVerticalSubsystem extends Subsystem {
   static int tolerance = 5;
 
   public ElevatorVerticalSubsystem(int verticalYElevatorMotorPort, double[] verticalElevatorEncoderPIDValues){
-      
+    if (Constants.wristEnabled){
 
     verticalYElevatorMotor = new WPI_TalonSRX(verticalYElevatorMotorPort);
 
@@ -44,8 +44,8 @@ public class ElevatorVerticalSubsystem extends Subsystem {
     rightYElevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute); 
     */
 
-    verticalYElevatorMotor.configPeakOutputForward(.6);
-    verticalYElevatorMotor.configPeakOutputReverse(-.7);
+    verticalYElevatorMotor.configPeakOutputForward(1);
+    verticalYElevatorMotor.configPeakOutputReverse(-1);
     verticalYElevatorMotor.config_kP(0, verticalElevatorEncoderPIDValues[0]);
     verticalYElevatorMotor.config_kI(0, verticalElevatorEncoderPIDValues[1]);
     verticalYElevatorMotor.config_kD(0, verticalElevatorEncoderPIDValues[2]);
@@ -54,29 +54,45 @@ public class ElevatorVerticalSubsystem extends Subsystem {
     // Change above to true to invert sensor readout
 
     RobotLog.putMessage("Running ElevatorVerticalSubsystem");
+    }
   }
 
   public void setYElevatorMotor(double Speed) {
+    if (Constants.wristEnabled){
     verticalYElevatorMotor.set(ControlMode.PercentOutput, Speed);
+    }
   }
 
   public void setYElevatorMotorPosition(double Position){
+    if (Constants.wristEnabled){
     verticalYElevatorMotor.set(ControlMode.Position, Position);
+    }
   }
 
   public double getElevatorMotorsCurrent(){
+    if (Constants.wristEnabled){
     return verticalYElevatorMotor.getOutputCurrent();
+    } else {
+      return 0;
+    }
   }
 
   public int getVerticalElevatorEncoder() {
+    if (Constants.wristEnabled){
     return verticalYElevatorMotor.getSelectedSensorPosition();
+    } else {
+      return 0;
+    }
   }
 
   public void resetBothElevatorEncoders() {
+    if (Constants.wristEnabled){
     verticalYElevatorMotor.setSelectedSensorPosition(0);
+    }
   }
 
   public void setBothElevatorEncoderPIDValues(double p, double i, double d) {
+    if (Constants.wristEnabled){
     // verticalElevatorEncoderPID.setPID(p, i, d);
     // verticalElevatorEncoderPID.setP(p);
     // verticalElevatorEncoderPID.setI(i);
@@ -90,9 +106,11 @@ public class ElevatorVerticalSubsystem extends Subsystem {
     verticalYElevatorMotor.config_kP(0, p);
     verticalYElevatorMotor.config_kI(0, i);
     verticalYElevatorMotor.config_kD(0, d);
+    }
   }
 
   public void setBothElevatorEncoderPIDValues(double p, double i, double d, double f) {
+    if (Constants.wristEnabled){
     // verticalElevatorEncoderPID.setPID(p, i, d, f);
     // verticalElevatorEncoderPID.setP(p);
     // verticalElevatorEncoderPID.setI(i);
@@ -109,14 +127,21 @@ public class ElevatorVerticalSubsystem extends Subsystem {
     verticalYElevatorMotor.config_kI(0, i);
     verticalYElevatorMotor.config_kD(0, d);
     verticalYElevatorMotor.config_kF(0, f);
+    }
   }
 
   public boolean checkOnTargetSetpoint(){
+    if (Constants.wristEnabled){
     return Math.abs(verticalYElevatorMotor.getClosedLoopError()) < tolerance;
+    } else {
+      return false;
+    }
   }
 
   public void initDefaultCommand() {
+    if (Constants.wristEnabled){
     //setDefaultCommand(new ElevatorSetpointCommand(Constants.defaultElevatorPosition));
+    }
   }
 
 }
