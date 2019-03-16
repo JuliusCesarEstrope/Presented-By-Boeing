@@ -1,8 +1,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.utilities.RobotLog;
-
 public class DriveStraight extends CommandBase {
   public DriveStraight() {
     requires(CounterWeight);

@@ -6,9 +6,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Constants;
-import frc.robot.commands.RollerCommand;
-
 
 public class CounterWeightSubsystem extends Subsystem {
   static TalonSRX counterWeightMotor; 
