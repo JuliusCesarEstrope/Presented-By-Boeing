@@ -42,6 +42,7 @@ public abstract class CommandBase extends Command {
     elevatorHorizontal = new ElevatorHorizontalSubsystem(Constants.horizontalElevatorMotor, Constants.defaultElevatorPosition);
     oi = new OI();
     //led.setLEDLightColor(.87); // Blue
+    wrist.ResetEncoder();
   }
 
   public static void disable() {

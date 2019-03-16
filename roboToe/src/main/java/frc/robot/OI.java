@@ -12,6 +12,7 @@ import frc.robot.commands.FourBarFloorGatherGroup;
 import frc.robot.commands.FourBarRocketLvlOneGroup;
 import frc.robot.commands.FourBarRocketLvlTwoGroup;
 import frc.robot.commands.FourBarStartCommandGroup;
+import frc.robot.commands.ManualCommand;
 import frc.robot.commands.WristCommand;
 import frc.robot.commands.ZeroEncoderCommand;
 
@@ -52,7 +53,7 @@ public class OI {
   JoystickButton fourBarAngleButton;
 
   JoystickButton wristUpButton;
-  JoystickButton wristMidButton;
+  JoystickButton wristStartButton;
   JoystickButton wristDownButton;
 
   //Miss Elaineous
@@ -89,14 +90,16 @@ public class OI {
   
   //Fourbar and Wrist + Elevator button positions
   //startPosition = new JoystickButton(gamePad, 2);
-  floorGather = new JoystickButton(gamePad, 2);
-  ballLvlOneButton = new JoystickButton(gamePad, 3);
-  ballLvlTwoButton = new JoystickButton(gamePad, 4);
+  // floorGather = new JoystickButton(gamePad, 2);
+  //ballLvlOneButton = new JoystickButton(gamePad, 3);
+ // ballLvlTwoButton = new JoystickButton(gamePad, 4);
   //wristAngleButton = new JoystickButton(gamePad, 5);
   //fourBarAngleButton = new JoystickButton(gamePad, 22); //22 = temporary number, MUST CHANGE!!
   //Zero Encoders Button
-
+  wristDownButton = new JoystickButton(gamePad, 2);
   wristUpButton = new JoystickButton(gamePad, 3);
+  wristStartButton = new JoystickButton(gamePad, 4);
+
 
   zeroEncoderTrigger = new Trigger(){
     public boolean get(){
@@ -133,21 +136,23 @@ public class OI {
   };
 
 
-  startPosition.whenActive(new FourBarStartCommandGroup(Constants.setStartPoint));
-  floorGather.whenActive(new FourBarFloorGatherGroup(Constants.setFloorGatherPoint));
+  // startPosition.whenActive(new FourBarStartCommandGroup(Constants.setStartPoint));
+  // floorGather.whenActive(new FourBarFloorGatherGroup(Constants.setFloorGatherPoint));
   //hatchLvlTwoButton.whenPressed(new FourBarHatchLvlTwoGroup(Constants.setRocketLvlTwoPoint));
-  rocketLvlTwoHatch.whenActive(new FourBarRocketLvlTwoGroup(Constants.setRocketLvlTwoPoint));
-  rocketLvlOneHatch.whenActive(new FourBarRocketLvlOneGroup(Constants.setRocketLvlOnePoint));
-  ballLvlOneButton.whenPressed(new FourBarBallLvlOneGroup(Constants.setBallLvlOnePoint));
-  ballLvlTwoButton.whenPressed(new FourBarBallLvlTwoGroup(Constants.setBallLvlTwoPoint));
+  // rocketLvlTwoHatch.whenActive(new FourBarRocketLvlTwoGroup(Constants.setRocketLvlTwoPoint));
+  // rocketLvlOneHatch.whenActive(new FourBarRocketLvlOneGroup(Constants.setRocketLvlOnePoint));
+  // ballLvlOneButton.whenPressed(new FourBarBallLvlOneGroup(Constants.setBallLvlOnePoint));
+  // ballLvlTwoButton.whenPressed(new FourBarBallLvlTwoGroup(Constants.setBallLvlTwoPoint));
   elevatorButton.whenPressed(new ElevatorCommandGroup());
-  //manualOverrideButton.whileHeld(new ManualCommand());
+  manualOverrideButton.whileHeld(new ManualCommand());
   zeroEncoderTrigger.whenActive(new ZeroEncoderCommand());
   manualElevatorButton.toggleWhenPressed(new ElevatorManualCommand());
   wristUpButton.whileHeld(new WristCommand(Constants.wristUpSetPoint));
+  wristStartButton.whileHeld(new WristCommand(Constants.defaultWristPosition));
+  wristDownButton.whileHeld(new WristCommand(Constants.wristDownSetPoint));
 
-  fourBarTestButton.whenPressed(new FourBarCommand(Constants.setFloorGatherPoint));
-  wristTestButton.whileHeld(new WristCommand(Constants.wristUpSetPoint));
+ // fourBarTestButton.whenPressed(new FourBarCommand(Constants.setFloorGatherPoint));
+ // wristTestButton.whileHeld(new WristCommand(Constants.wristUpSetPoint));
   }
 
   public double getleftYAxis() {

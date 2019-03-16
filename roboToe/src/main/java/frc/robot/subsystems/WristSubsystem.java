@@ -146,7 +146,7 @@ public class WristSubsystem extends Subsystem {
 
   public void initDefaultCommand() {
     if (Constants.wristEnabled){
-   setDefaultCommand(new ManualCommand());
+  // setDefaultCommand(new ManualCommand());
     }
   }
 
