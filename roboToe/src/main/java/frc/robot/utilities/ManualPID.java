@@ -20,7 +20,7 @@ public class ManualPID {
     Timer timer;
 
     public ManualPID(double P, double I, double D, PIDSource pidSource){
-         setManualPIDValues(P, I, D);
+         setPID(P, I, D);
          this.pidSource = pidSource;
          previousError = 0;
          currentError = 0;
@@ -49,25 +49,32 @@ public class ManualPID {
     }
 
     public double getIntegral(){
-        integral += ((previousError + getError()) / 2) * timer.get();
-        return integral; 
+        if(I == 0){
+            return 0;
+        }
+        else{
+            integral += ((previousError + getError()) / 2) * timer.get();
+            return integral; 
+        }
+        
     }
 
-    public void setManualPIDValues(double P, double I, double D) {
+    public void setPID(double P, double I, double D) {
+        setP(P);
+        setI(I);
+        setD(D);
+    }
+
+    public void setP(double P) {
         this.P = P;
+    }
+
+    public void setI(double I) {
         this.I = I;
-        this.D = D;
+        integral = 0;
     }
 
-    public void setManualPValue(double P) {
-        this.P = P;
-    }
-
-    public void setManualIValue(double I) {
-        this.I = I;
-    }
-
-    public void setManualDValue(double D) {
+    public void setD(double D) {
         this.D = D;
     }
 
@@ -76,7 +83,7 @@ public class ManualPID {
             timer.start();
         }
 
-        POutput = currentError * P;
+        POutput = getError() * P;
         IOutput = getIntegral() * I;
         DOutput = ((currentError - previousError) / timer.get()) * D;
         timer.reset();
