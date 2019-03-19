@@ -76,7 +76,7 @@ public class ManualPID {
             timer.start();
         }
 
-        POutput = currentError * P;
+        POutput = getError()* P;
         IOutput = getIntegral() * I;
         DOutput = ((currentError - previousError) / timer.get()) * D;
         timer.reset();
