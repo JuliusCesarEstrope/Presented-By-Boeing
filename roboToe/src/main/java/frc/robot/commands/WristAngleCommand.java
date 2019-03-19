@@ -1,26 +1,26 @@
 package frc.robot.commands;
 
 public class WristAngleCommand extends CommandBase {
-
-  int leftWristEncoder;
-  int rightWristEncoder;
   double wristSetPoint;
 
   public WristAngleCommand() {
     requires(wrist);
     // Use requires() here to declare subsystem dependencies
-    leftWristEncoder = wrist.getLeftWristEncoder();
-    rightWristEncoder = wrist.getRightWristEncoder();
 
   }
 
   protected void initialize() {
-
   }
 
-  @Override
   protected void execute() {
-    wrist.setBothWristMotor(oi.getWristAxis() * 0.7);
+    if(oi.getWristAxis() > 0.1 || oi.getWristAxis() < -0.1){
+      wrist.setLeftWristMotor(oi.getWristAxis() * 0.4);
+      wristSetPoint = wrist.getLeftWristEncoder();
+    } else {
+      //wrist.setLeftWristMotorPosition(wristSetPoint);
+      //wrist.setRightWristMotor(wrist.getLeftTalonOutput());
+    }
+
     
   }
 
