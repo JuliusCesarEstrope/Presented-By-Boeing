@@ -25,7 +25,6 @@ public class WristCommand extends CommandBase {
     SmartDashboard.putString("DB/String 7", "Running WristCommand");
   }
 
-  @Override
   protected void execute() {
     // Two Positions (Up, Down)
     //wrist.setRightWristMotorPosition(wristSetPoint);
