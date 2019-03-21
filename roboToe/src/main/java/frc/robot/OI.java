@@ -3,18 +3,21 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
+import frc.robot.commands.CommandBase;
+import frc.robot.commands.CounterWeightAutoTriggerCommand;
+import frc.robot.commands.CounterWeightForwardCommand;
+import frc.robot.commands.CounterWeightReverseCommand;
+import frc.robot.commands.Drive4DistanceCommand;
+import frc.robot.commands.DriveStraight;
 import frc.robot.commands.ElevatorCommandGroup;
-import frc.robot.commands.FourBarBallLvlOneGroup;
-import frc.robot.commands.FourBarBallLvlTwoGroup;
-import frc.robot.commands.FourBarFloorGatherGroup;
-import frc.robot.commands.FourBarHatchLvlTwoGroup;
-import frc.robot.commands.FourBarRocketLvlOneGroup;
-import frc.robot.commands.FourBarRocketLvlTwoGroup;
-import frc.robot.commands.FourBarStartCommandGroup;
+import frc.robot.commands.ElevatorWristCommandGroup;
 import frc.robot.commands.ManualCommand;
+import frc.robot.commands.WristCommand;
+import frc.robot.commands.ZeroEncoderCommand;
 
 public class OI {
 
+  Joystick setZeroPositionButton;
   // Joysticks
   Joystick leftJoyStick;
   Joystick rightJoyStick;
@@ -30,14 +33,21 @@ public class OI {
 
   // Tape Alignment Button
   JoystickButton alignButton;
-  
-  //Elevator Buttons
+
+  //Drive Straight Button
+  JoystickButton driveStraightButton;
+
+  // Elevator Buttons
   JoystickButton elevatorButton;
   JoystickButton elevatorEmergencyStopButton;
+  JoystickButton manualElevatorButton;
 
   // Fourbar and Wrist button positions
   Trigger startPosition;
   Trigger floorGather;
+  Trigger counterWeightReverse;
+  Trigger counterWeightForward;
+  Trigger counterWeightAutomatic;
   JoystickButton hatchLvlTwoButton;
   Trigger rocketLvlTwoHatch;
   Trigger rocketLvlOneHatch;
@@ -46,72 +56,158 @@ public class OI {
   JoystickButton ballLvlTwoButton;
   JoystickButton wristAngleButton;
   JoystickButton fourBarAngleButton;
+
+  JoystickButton wristUpButton;
+  JoystickButton wristStartButton;
+  JoystickButton wristDownButton;
+  Trigger ballShoot;
+
+  // Miss Elaineous
   JoystickButton manualOverrideButton;
+  Trigger zeroEncoderTrigger;
+
+  // Test Buttons
+  JoystickButton fourBarTestButton;
+  JoystickButton wristTestButton;
 
   public OI() {
     leftJoyStick = new Joystick(Constants.leftJoystick);
     rightJoyStick = new Joystick(Constants.rightJoystick);
-    gamePad = new Joystick(Constants.rightJoystick);
-  
-  //Roller Buttons
-  rollerButtonIn = new JoystickButton(gamePad, 7);
-  rollerButtonOut = new JoystickButton(gamePad, 8);
-  
-  //Manual Motor Overide Button
-  manualOverrideButton = new JoystickButton(gamePad, 1);
-  //Gather Buttons
-  booperButton = new JoystickButton(gamePad, 9);
+    gamePad = new Joystick(Constants.gamePad);
+    
 
-  //Elevator Buttons
-  elevatorButton = new JoystickButton(gamePad, 10);
-  elevatorEmergencyStopButton = new JoystickButton(leftJoyStick,  9);
-  
-  //Fourbar and Wrist + Elevator button positions
-  startPosition = new JoystickButton(gamePad, 2);
-  ballLvlOneButton = new JoystickButton(gamePad, 3);
-  ballLvlTwoButton = new JoystickButton(gamePad, 4);
-  wristAngleButton = new JoystickButton(gamePad, 5);
-  fourBarAngleButton = new JoystickButton(gamePad, 22); //22 = temporary number, MUST CHANGE!!
+    // Roller Buttons
+    rollerButtonIn = new JoystickButton(gamePad, 5);
+    rollerButtonOut = new JoystickButton(gamePad, 6);
 
-  rocketLvlOneHatch = new Trigger(){
+    // Manual Motor Overide Button
+    manualOverrideButton = new JoystickButton(gamePad, 1);
+    // Gather Buttons
+    booperButton = new JoystickButton(gamePad, 8);
 
-    public boolean get(){
-      return (gamePad.getPOV() == 2);
-    }
-  };
- 
-  rocketLvlTwoHatch = new Trigger(){
+    // Elevator Buttons
+    elevatorButton = new JoystickButton(gamePad, 10);
+    elevatorEmergencyStopButton = new JoystickButton(leftJoyStick, 11);
+    manualElevatorButton = new JoystickButton(gamePad, 12);
 
-    public boolean get(){
-      return (gamePad.getPOV() == 0);
-    }
-  };
+    // Test Buttons
+    fourBarTestButton = new JoystickButton(rightJoyStick, 8);
+    wristTestButton = new JoystickButton(rightJoyStick, 9);
 
-  floorGather = new Trigger(){
+    // Fourbar and Wrist + Elevator button positions
+    // startPosition = new JoystickButton(gamePad, 2);
+    // floorGather = new JoystickButton(gamePad, 2);
+    // ballLvlOneButton = new JoystickButton(gamePad, 3);
+    // ballLvlTwoButton = new JoystickButton(gamePad, 4);
+    // wristAngleButton = new JoystickButton(gamePad, 5);
+    // fourBarAngleButton = new JoystickButton(gamePad, 22); //22 = temporary
+    // number, MUST CHANGE!!
+    // Zero Encoders Button
+    wristDownButton = new JoystickButton(gamePad, 2);
+    wristUpButton = new JoystickButton(gamePad, 3);
+    wristStartButton = new JoystickButton(gamePad, 4);
 
-    public boolean get(){
-      return (gamePad.getPOV() == 6);
-    }
-  };
+    zeroEncoderTrigger = new Trigger() {
+      public boolean get() {
+        return (rightJoyStick.getRawButton(6) && rightJoyStick.getRawButton(11));
+      }
+    };
 
-  startPosition = new Trigger(){
+    rocketLvlOneHatch = new Trigger() {
 
-    public boolean get(){
-      return (gamePad.getPOV() == 4);
-    }
-  };
+      public boolean get() {
+        // return (gamePad.getPOV() == 2);
+        return false;
+      }
+    };
 
+    ballShoot = new Trigger() {
 
-  startPosition.whenActive(new FourBarStartCommandGroup(Constants.setStartPoint));
-  floorGather.whenActive(new FourBarFloorGatherGroup(Constants.setFloorGatherPoint));
-  hatchLvlTwoButton.whenPressed(new FourBarHatchLvlTwoGroup(Constants.setRocketLvlTwoPoint));
-  rocketLvlTwoHatch.whenActive(new FourBarRocketLvlTwoGroup(Constants.setRocketLvlTwoPoint));
-  rocketLvlOneHatch.whenActive(new FourBarRocketLvlOneGroup(Constants.setRocketLvlOnePoint));
-  ballLvlOneButton.whenPressed(new FourBarBallLvlOneGroup(Constants.setBallLvlOnePoint));
-  ballLvlTwoButton.whenPressed(new FourBarBallLvlTwoGroup(Constants.setBallLvlTwoPoint));
-  elevatorButton.whenPressed(new ElevatorCommandGroup());
-  manualOverrideButton.whileHeld(new ManualCommand());
+      public boolean get() {
+        return (gamePad.getPOV() == 90);
+      }
+    };
 
+    rocketLvlTwoHatch = new Trigger() {
+
+      public boolean get() {
+        return false;
+        // return (gamePad.getPOV() == 0);
+      }
+    };
+
+    floorGather = new Trigger() {
+
+      public boolean get() {
+        return (gamePad.getPOV() == 6);
+      }
+    };
+
+    startPosition = new Trigger() {
+
+      public boolean get() {
+        return (gamePad.getPOV() == 4);
+      }
+    };
+
+    counterWeightForward = new Trigger() {
+
+      public boolean get() {
+        return (gamePad.getPOV() == 0);
+      }
+    };
+
+    counterWeightReverse = new Trigger() {
+
+      public boolean get() {
+        return (gamePad.getPOV() == 180);
+      }
+    };
+
+    counterWeightAutomatic = new Trigger() {
+
+      public boolean get() {
+        if (Constants.counterWeightAutomaticTriggerable
+            && CommandBase.elevatorVertical.getVerticalElevatorEncoder() <= Constants.elevatorVerticalMin + 100) {
+          Constants.counterWeightAutomaticTriggerable = false;
+          return true;
+        } else {
+          return false;
+        }
+      }
+    };
+
+    // startPosition.whenActive(new
+    // FourBarStartCommandGroup(Constants.setStartPoint));
+    // floorGather.whenActive(new
+    // FourBarFloorGatherGroup(Constants.setFloorGatherPoint));
+    // hatchLvlTwoButton.whenPressed(new
+    // FourBarHatchLvlTwoGroup(Constants.setRocketLvlTwoPoint));
+    // rocketLvlTwoHatch.whenActive(new
+    // FourBarRocketLvlTwoGroup(Constants.setRocketLvlTwoPoint));
+    // rocketLvlOneHatch.whenActive(new
+    // FourBarRocketLvlOneGroup(Constants.setRocketLvlOnePoint));
+    // ballLvlOneButton.whenPressed(new
+    // FourBarBallLvlOneGroup(Constants.setBallLvlOnePoint));
+    // ballLvlTwoButton.whenPressed(new
+    // FourBarBallLvlTwoGroup(Constants.setBallLvlTwoPoint));
+    elevatorButton.whenPressed(new ElevatorCommandGroup());
+    manualOverrideButton.whileHeld(new ManualCommand());
+    zeroEncoderTrigger.whenActive(new ZeroEncoderCommand());
+    manualElevatorButton.toggleWhenPressed(new ElevatorWristCommandGroup());
+    wristUpButton.whileHeld(new WristCommand(Constants.wristUpSetPoint));
+    wristStartButton.whileHeld(new WristCommand(Constants.defaultWristPosition));
+    wristDownButton.whileHeld(new WristCommand(Constants.wristDownSetPoint));
+    ballShoot.whileActive(new WristCommand(Constants.wristShootSetPoint));
+    driveStraightButton.whileHeld(new DriveStraight());
+
+    counterWeightForward.whileActive(new CounterWeightForwardCommand());
+    counterWeightReverse.whileActive(new CounterWeightReverseCommand());
+    counterWeightAutomatic.whenActive(new CounterWeightAutoTriggerCommand());
+
+    // fourBarTestButton.whenPressed(new
+    // FourBarCommand(Constants.setFloorGatherPoint));
+    // wristTestButton.whileHeld(new WristCommand(Constants.wristUpSetPoint));
   }
 
   public double getleftYAxis() {
@@ -128,16 +224,16 @@ public class OI {
     // return Math.pow(-leftJoyStick.getX(), 3.0);
     return -leftJoyStick.getX() * Math.abs(leftJoyStick.getX());
   }
-  
-  public boolean getRollerButtonIn(){
+
+  public boolean getRollerButtonIn() {
     return rollerButtonIn.get();
   }
-  
-  public boolean getRollerButtonOut(){
+
+  public boolean getRollerButtonOut() {
     return rollerButtonOut.get();
   }
 
-  public boolean getBooperButton(){
+  public boolean getBooperButton() {
     return booperButton.get();
   }
 
@@ -146,16 +242,16 @@ public class OI {
     return -rightJoyStick.getX() * Math.abs(rightJoyStick.getX());
   }
 
-  //wrist axis
+  // wrist axis
   public double getWristAxis() {
-    return -gamePad.getRawAxis(1);
+    return (Math.abs(gamePad.getRawAxis(0)) > 0.25) ? -gamePad.getRawAxis(0) : 0;
   }
 
-  //fourbar vert. axis
+  // fourbar vert. axis
   public double getFourBarAxis() {
-    return -gamePad.getRawAxis(0); 
+    return (Math.abs(gamePad.getRawAxis(1)) > 0.25) ? -gamePad.getRawAxis(1) : 0;
   }
-  
+
   public boolean getRightTrigger() {
     return alignButton.get();
   }
@@ -177,12 +273,20 @@ public class OI {
     return ballLvlTwoButton.get();
   }
 
-  public boolean getElevatorEmergencyStopButton(){
+  public boolean getElevatorEmergencyStopButton() {
     return elevatorEmergencyStopButton.get();
   }
 
-  public boolean getManualOverrideButton(){
+  public boolean getManualOverrideButton() {
     return manualOverrideButton.get();
+  }
+
+  public double getElevatorHorizontalAxis() {
+    return (Math.abs(gamePad.getRawAxis(2)) > 0.3) ? gamePad.getRawAxis(2) : 0;
+  }
+
+  public double getElevatorVerticalAxis() {
+    return (Math.abs(gamePad.getRawAxis(3)) > 0.3) ? gamePad.getRawAxis(3) : 0;
   }
 
 }

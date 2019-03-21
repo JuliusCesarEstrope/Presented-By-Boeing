@@ -63,7 +63,7 @@ public class TapeAlignCommand extends CommandBase {
         // make sure this works!
         // new TurnAngle(Utilities.AngleFinderFromFrontSensorToLeftSensor(end-start,
         // Constants.frontSensorToCenterOfRobot));
-        CommandBase.newDistanceToMove = Math.abs(Constants.frontSensorToCenterOfRobot - (end - start));
+      //  CommandBase.newDistanceToMove = Math.abs(Constants.frontSensorToCenterOfRobot - (end - start));
         angleToTurn = Utilities.AngleFinderFromFrontSensorToLeftSensor(end - start,
             Constants.frontSensorToCenterOfRobot);
         CommandBase.turnAngle = angleToTurn;
