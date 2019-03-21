@@ -15,6 +15,8 @@ public class ElevatorCommandGroup extends CommandGroup {
     // addSequential(new ElevatorVerticalCommand(Constants.distanceToTicks * 5));
 
     addSequential(new ElevatorVerticalCommand(Constants.elevatorVerticalMin));
-
+    addParallel(new ElevatorHorizontalAutoCommand());
+    addSequential(new DriveStraight(-)); //idk what this value is supposed to be 
+    addSequential(new ElevatorVerticalCommand(Constants.distanceToTicks * 5));
   }
 }

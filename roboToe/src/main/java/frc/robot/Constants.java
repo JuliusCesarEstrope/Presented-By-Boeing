@@ -37,6 +37,9 @@ public class Constants {
   /** BEGIN ANALOG INPUTS **/
   // Gyros
   public static final int gyroPort = 0;
+
+  // Elevator 
+  public static final int potentiometerPort = 1;
   /** END ANALOG INPUTS **/
 
   /** BEGIN DIGITAL INPUTS **/
@@ -80,6 +83,12 @@ public class Constants {
   // Elevator Max & Min
   public static final double elevatorVerticalMax = 0; 
   public static final double elevatorVerticalMin = -188800;
+
+  // Elevator Voltage
+  public static final double elevatorHorizontalNone = 0;
+  public static final double elevatorHorizontalFast = 0;
+  public static final double elevatorHorizontalSlow = 0;
+  public static final double elevatorHorizontalStop = 0;
 
   /** BEGIN OTHER CONSTANTS**/
   //Drive Wheel Constants
