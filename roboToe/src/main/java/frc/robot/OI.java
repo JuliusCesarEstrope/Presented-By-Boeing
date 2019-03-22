@@ -180,7 +180,7 @@ public class OI {
 
     elevatorAutoClimb = new Trigger() {
       public boolean get() {
-        return (rightJoyStick.getRawButton(7) && gamePad.getRawButton(12));
+        return (rightJoyStick.getRawButton(7) && gamePad.getRawButton(7));
       }
     };
 
@@ -198,7 +198,7 @@ public class OI {
     // FourBarBallLvlOneGroup(Constants.setBallLvlOnePoint));
     // ballLvlTwoButton.whenPressed(new
     // FourBarBallLvlTwoGroup(Constants.setBallLvlTwoPoint));
-    elevatorButton.whenPressed(new ElevatorCommandGroup());
+    // elevatorButton.whenPressed(new ElevatorCommandGroup());
     elevatorAutoClimb.whenActive(new ElevatorCommandGroup());
     manualOverrideButton.whileHeld(new ManualCommand());
     zeroEncoderTrigger.whenActive(new ZeroEncoderCommand());
