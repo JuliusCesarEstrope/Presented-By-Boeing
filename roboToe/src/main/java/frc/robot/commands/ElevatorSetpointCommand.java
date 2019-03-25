@@ -17,7 +17,7 @@ public class ElevatorSetpointCommand extends CommandBase {
   }
 
   protected void execute() {
-   elevatorVertical.setYElevatorMotorsPosition(elevatorVerticalSetpoint);
+   elevatorVertical.setYElevatorMotorPosition(elevatorVerticalSetpoint);
   }
 
   protected boolean isFinished() {

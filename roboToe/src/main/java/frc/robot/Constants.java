@@ -1,6 +1,16 @@
 package frc.robot;
 
 public class Constants {
+  // Subsystem Enabled States
+  public static final boolean wristEnabled = true;
+  public static final boolean rollerEnabled = true;
+  public static final boolean LEDLightEnabled = false;
+  public static final boolean fourBarEnabled = false;
+  public static final boolean elevatorVerticalEnabled = true;
+  public static final boolean elevatorHorizontalEnabled = true;
+  public static final boolean driveEnabled = true;
+  public static final boolean cameraEnabled = true;
+  public static final boolean booperEnabled = true;
 
   // Joysticks
   public static final int leftJoystick = 0;
@@ -9,17 +19,15 @@ public class Constants {
 
   /** BEGIN CAN DEVICES **/
   // Motors
-  public static final int[] motorPortsLeft = { 4, 5, 6 };
-  public static final int[] motorPortsRight = { 1, 2, 3 };
+  public static final int[] motorPortsLeft = { 1, 2};
+  public static final int[] motorPortsRight = { 3, 4};
   public static final int rollerMotor = 7;
-  public static final int leftWristMotorPort = 8;
-  public static final int rightWristMotorPort = 9;
-  public static final int leftFourBarMotorPort = 10;
-  public static final int rightFourBarMotorPort = 11;
-  public static final int leftVerticalElevatorMotor = 12;
-  public static final int rightVerticalElevatorMotor = 13;
-  public static final int leftHorizontalElevatorMotor = 14;
-  public static final int rightHorizontalElevatorMotor = 15;
+  public static final int leftWristMotorPort = 9;
+  public static final int rightWristMotorPort = 8;
+  public static final int leftFourBarMotorPort = 6;
+  public static final int rightFourBarMotorPort = 5;
+  public static final int verticalElevatorMotor = 10;
+  public static final int horizontalElevatorMotor = 11;
   /** END CAN DEVICES **/
 
   /** BEGIN SOLENOIDS **/
@@ -34,6 +42,7 @@ public class Constants {
   /** BEGIN DIGITAL INPUTS **/
   // Horizontal Elevator Sensor
   public static final int fastSlowStopSensor = 1;
+  public static final int limitSwitch = 0;
 
   // Drive Tape Sensors
   public static final int leftSensor = 3;
@@ -50,25 +59,26 @@ public class Constants {
   //Fourbar Encoders
   public static final int[] leftBarEncoderPort = {10, 11};
   public static final int[] rightBarEncoderPort = {12, 13};
-  public static final int[] leftElevatorEncoder = {1, 2};
-  public static final int[] rightElevatorEncoder = {3, 4};
   
   /** END DIGITAL INPUTS**/
 
   /** BEGIN PID CONSTANTS**/
   //Drive PID
 
-  public static double[] driveRotationPIDValues = { 0.1, 0, 0, 0 };
-  public static double[] rightEncoderPIDValues = {0,0,0,0};
-  public static double[] leftEncoderPIDValues = {0,0,0,0};
+  public static double[] driveRotationPIDValues = { 0.5, 0, 0, 0 };
+  public static double[] rightEncoderPIDValues = {0.32,0,0.2,0};
+  public static double[] leftEncoderPIDValues = {0.32,0,0.2,0};
 
   //FourBar PID
-  public static final double[] fourBarPIDValues = {0.1, 0.1, 0.01, 0};
+  public static final double[] fourBarPIDValues = {0.1, 0, 0, 0};
 
   //Elevator PID
-  public static final double[] leftElevatorEncoderPIDValues = {0, 0, 0, 0};
-  public static final double[] rightElevatorEncoderPIDValues = {0, 0, 0, 0};
+  public static final double[] elevatorEncoderPIDValues = {0, 0, 0, 0};
   /** END PID CONSTANTS**/
+
+  // Elevator Max & Min
+  public static final double elevatorVerticalMax = 0; 
+  public static final double elevatorVerticalMin = -188800;
 
   /** BEGIN OTHER CONSTANTS**/
   //Drive Wheel Constants
@@ -79,24 +89,28 @@ public class Constants {
    public static double ticksToInches = (ticksOfEncoder/360) * circumferenceOfWheels;
    
   //FourBar Constants
-  public static final double setStartPoint = (36*((4096/360)*(11.22))); //initialize: set angle to 11.22, also use for climb point
-  public static final double setFloorGatherPoint = (36*((4096/360)*(50.83)));
-  //public static final double setHatchLvlTwoPoint = (36*((4096/360)*(149.43))); //maybe not use?? how is this different from rocketlvltwo, should this be cargo
-  public static final double setRocketLvlTwoPoint =(36*((4096/360)*(149.43)));
-  public static final double setRocketLvlOnePoint =(36*((4096/360)*(31.68)));
-  public static final double setClimbPoint = (36*((4096/360)*(11.22)));
-  public static final double setBallLvlOnePoint = (36*((4096/360)*(31.68)));
-  public static final double setBallLvlTwoPoint = (36*((4096/360)*(149.43)));
+  public static final double setStartPoint = (36*((4096/360)*(11.22))); //4,595 ticks //initialize: set angle to 11.22
+  public static final double setFloorGatherPoint = 4449;
+  //public static final double setHatchLvlTwoPoint = (36*((4096/360)*(149.43))); 
+  public static final double setRocketLvlTwoPoint =(36*((4096/360)*(149.43))); //61,206 ticks
+  public static final double setRocketLvlOnePoint =(36*((4096/360)*(31.68))); //12,976 ticks
+  public static final double setClimbPoint = (36*((4096/360)*(11.22))); //4,595 ticks
+  public static final double setBallLvlOnePoint = (36*((4096/360)*(31.68))); //12,976 ticks
+  public static final double setBallLvlTwoPoint = (36*((4096/360)*(149.43))); //61,206 ticks
 
   //Wrist stuff
   public static final int[] leftWristEncoderPort = {6, 7};
   public static final int[] rightWristEncoderPort = {8, 9};
-  public static int wristDownSetPoint = (28*((4096/360)*(0)));
-  public static int wristMidSetPoint = (28*((4096/360)*(45)));
-  public static int wristUpSetPoint = (28*((4096/360)*(90)));
+  public static int wristDownSetPoint = -34780;//0 ticks
+  public static int wristMidSetPoint = (28*((4096/360)*(45))); //14,336 ticks
+  public static int wristUpSetPoint = -8400; 
   public static final double defaultWristPosition = 0;
-  public static final double[] wristPIDValues = {0.1, 0.1, 0.01, 0};
+  public static final double[] wristPIDValues = {.25, 0, 0, 0};
+  public static final double wristShootSetPoint = -12790;
 
+  //Counter Weight Stuff
+  public static final int counterWeightMotorPort = 5;
+  public static boolean counterWeightAutomaticTriggerable = false;
 
   public static final double defaultElevatorPosition = 0;
   // FIGURE OUT WHAT VALUE IS SUPPOSED TO BE
@@ -111,6 +125,11 @@ public class Constants {
   public static double rightSensorToBackSensor = 3.5;
   public static double leftSensorToCenterOfRobot = 1;
   public static double frontSensorToCenterOfRobot = 3.5;
+  public static double fourbarMaxPosition = 42200;
+  public static double fourbarMinPosition = 0;
+  public static double fourbarSafeWristPosition = 0;
+  public static double wristMaxPosition = 0;
+  public static double wristMinPosition = 0;
 
   //Auton Constants
   public static final double level2Length = 48;

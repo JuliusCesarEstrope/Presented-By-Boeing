@@ -14,7 +14,7 @@ public class DynamicBrakingCommand extends CommandBase {
   }
 
   protected void execute() {
-    drive.setBothPosition(0, 0);
+    drive.setBothPositions(0, 0);
   }
 
   protected boolean isFinished() {

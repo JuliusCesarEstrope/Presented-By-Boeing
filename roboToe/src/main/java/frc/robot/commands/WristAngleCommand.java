@@ -1,7 +1,6 @@
 package frc.robot.commands;
 
 public class WristAngleCommand extends CommandBase {
-
   double wristSetPoint;
 
   public WristAngleCommand() {
@@ -11,12 +10,17 @@ public class WristAngleCommand extends CommandBase {
   }
 
   protected void initialize() {
-
   }
 
-  @Override
   protected void execute() {
-    wrist.setBothWristMotor(oi.getWristAxis() * 0.4);
+    if(oi.getWristAxis() > 0.1 || oi.getWristAxis() < -0.1){
+      wrist.setLeftWristMotor(oi.getWristAxis() * 0.4);
+      wristSetPoint = wrist.getLeftWristEncoder();
+    } else {
+      //wrist.setLeftWristMotorPosition(wristSetPoint);
+      //wrist.setRightWristMotor(wrist.getLeftTalonOutput());
+    }
+
     
   }
 

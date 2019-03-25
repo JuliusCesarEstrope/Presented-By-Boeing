@@ -5,40 +5,33 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
 import frc.robot.commands.ElevatorSetpointCommand;
 import frc.robot.utilities.RobotLog;
 
 public class ElevatorVerticalSubsystem extends Subsystem {
-  static TalonSRX leftYElevatorMotor, rightYElevatorMotor;
-  static Encoder leftElevatorEncoder, rightElevatorEncoder;
+  static TalonSRX verticalYElevatorMotor;
+  private static PIDOutput pidOutput;
 
   static int tolerance = 5;
 
-  public ElevatorVerticalSubsystem(int leftYElevatorMotorPort, int rightYElevatorMotorPort,
-      int[] leftElevatorEncoderPorts, int[] rightElevatorEncoderPorts, double[] leftElevatorEncoderPIDValues,
-      double[] rightElevatorEncoderPIDValues) {
+  public ElevatorVerticalSubsystem(int verticalYElevatorMotorPort, double[] verticalElevatorEncoderPIDValues){
+    if (Constants.wristEnabled){
 
-    leftYElevatorMotor = new WPI_TalonSRX(leftYElevatorMotorPort);
-    rightYElevatorMotor = new WPI_TalonSRX(rightYElevatorMotorPort);
-
-    rightYElevatorMotor.follow(leftYElevatorMotor);
-    rightYElevatorMotor.setInverted(true);
-
-    leftElevatorEncoder = new Encoder(leftElevatorEncoderPorts[1], leftElevatorEncoderPorts[2]);
-    rightElevatorEncoder = new Encoder(rightElevatorEncoderPorts[3], rightElevatorEncoderPorts[4]);
+    verticalYElevatorMotor = new WPI_TalonSRX(verticalYElevatorMotorPort);
 
     /*
-    leftElevatorEncoderPID = new PIDController(leftElevatorEncoderPIDValues[0], leftElevatorEncoderPIDValues[1],
-        leftElevatorEncoderPIDValues[2], leftElevatorEncoderPIDValues[3], leftElevatorEncoder, pidOutput);
-    leftElevatorEncoderPID.setEnabled(true);
-    leftElevatorEncoderPID.setContinuous(true);
-    leftElevatorEncoderPID.setAbsoluteTolerance(1);
-    leftElevatorEncoderPID.setOutputRange(-.6, .6);
-    leftElevatorEncoderPID.setInputRange(-Double.MAX_VALUE, Double.MAX_VALUE);
-    leftElevatorEncoderPID.enable();
-    leftYElevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
+    verticalElevatorEncoderPID = new PIDController(verticalElevatorEncoderPIDValues[0], verticalElevatorEncoderPIDValues[1],
+        verticalElevatorEncoderPIDValues[2], verticalElevatorEncoderPIDValues[3], verticalElevatorEncoder, pidOutput);
+    verticalElevatorEncoderPID.setEnabled(true);
+    verticalElevatorEncoderPID.setContinuous(true);
+    verticalElevatorEncoderPID.setAbsoluteTolerance(1);
+    verticalElevatorEncoderPID.setOutputRange(-.6, .6);
+    verticalElevatorEncoderPID.setInputRange(-Double.MAX_VALUE, Double.MAX_VALUE);
+    verticalElevatorEncoderPID.enable();
+    verticalYElevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
 
     rightElevatorEncoderPID = new PIDController(rightElevatorEncoderPIDValues[0], rightElevatorEncoderPIDValues[1],
         rightElevatorEncoderPIDValues[2], rightElevatorEncoderPIDValues[3], rightElevatorEncoder, pidOutput);
@@ -51,81 +44,78 @@ public class ElevatorVerticalSubsystem extends Subsystem {
     rightYElevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute); 
     */
 
-    leftYElevatorMotor.configNominalOutputForward(0);
-    leftYElevatorMotor.configNominalOutputReverse(0);
-    leftYElevatorMotor.configPeakOutputForward(.6);
-    leftYElevatorMotor.configPeakOutputReverse(.6);
-    leftYElevatorMotor.config_kP(0, leftElevatorEncoderPIDValues[0]);
-    leftYElevatorMotor.config_kI(0, leftElevatorEncoderPIDValues[1]);
-    leftYElevatorMotor.config_kD(0, leftElevatorEncoderPIDValues[2]);
-    leftYElevatorMotor.config_kF(0, leftElevatorEncoderPIDValues[3]);
-    leftYElevatorMotor.setSensorPhase(false);
-
-    rightYElevatorMotor.configNominalOutputForward(0);
-    rightYElevatorMotor.configNominalOutputReverse(0);
-    rightYElevatorMotor.configPeakOutputForward(.6);
-    rightYElevatorMotor.configPeakOutputReverse(-.6);
-    rightYElevatorMotor.config_kP(0, rightElevatorEncoderPIDValues[0]);
-    rightYElevatorMotor.config_kI(0, rightElevatorEncoderPIDValues[1]);
-    rightYElevatorMotor.config_kD(0, rightElevatorEncoderPIDValues[2]);
-    rightYElevatorMotor.config_kF(0, rightElevatorEncoderPIDValues[3]);
-    rightYElevatorMotor.setSensorPhase(false);
+    verticalYElevatorMotor.configPeakOutputForward(1);
+    verticalYElevatorMotor.configPeakOutputReverse(-1);
+    verticalYElevatorMotor.config_kP(0, verticalElevatorEncoderPIDValues[0]);
+    verticalYElevatorMotor.config_kI(0, verticalElevatorEncoderPIDValues[1]);
+    verticalYElevatorMotor.config_kD(0, verticalElevatorEncoderPIDValues[2]);
+    verticalYElevatorMotor.config_kF(0, verticalElevatorEncoderPIDValues[3]);
+    verticalYElevatorMotor.setSensorPhase(false);
     // Change above to true to invert sensor readout
 
     RobotLog.putMessage("Running ElevatorVerticalSubsystem");
+    }
   }
 
-  public void setYElevatorMotors(double Speed) {
-    leftYElevatorMotor.set(ControlMode.PercentOutput, Speed);
+  public void setYElevatorMotor(double Speed) {
+    if (Constants.wristEnabled){
+    verticalYElevatorMotor.set(ControlMode.PercentOutput, Speed);
+    }
   }
 
-  public void setYElevatorMotorsPosition(double Position){
-    leftYElevatorMotor.set(ControlMode.Position, Position);
+  public void setYElevatorMotorPosition(double Position){
+    if (Constants.wristEnabled){
+    verticalYElevatorMotor.set(ControlMode.Position, Position);
+    }
   }
 
   public double getElevatorMotorsCurrent(){
-    return leftYElevatorMotor.getOutputCurrent();
+    if (Constants.wristEnabled){
+    return verticalYElevatorMotor.getOutputCurrent();
+    } else {
+      return 0;
+    }
   }
 
-  public int getLeftElevatorEncoder() {
-    return leftYElevatorMotor.getSelectedSensorPosition();
-  }
-
-  public int getRightElevatorEncoder() {
-    return rightYElevatorMotor.getSelectedSensorPosition();
+  public int getVerticalElevatorEncoder() {
+    if (Constants.wristEnabled){
+    return verticalYElevatorMotor.getSelectedSensorPosition();
+    } else {
+      return 0;
+    }
   }
 
   public void resetBothElevatorEncoders() {
-    leftElevatorEncoder.reset();
-    rightElevatorEncoder.reset();
+    if (Constants.wristEnabled){
+    verticalYElevatorMotor.setSelectedSensorPosition(0);
+    }
   }
 
   public void setBothElevatorEncoderPIDValues(double p, double i, double d) {
-    // leftElevatorEncoderPID.setPID(p, i, d);
-    // leftElevatorEncoderPID.setP(p);
-    // leftElevatorEncoderPID.setI(i);
-    // leftElevatorEncoderPID.setD(d);
+    if (Constants.wristEnabled){
+    // verticalElevatorEncoderPID.setPID(p, i, d);
+    // verticalElevatorEncoderPID.setP(p);
+    // verticalElevatorEncoderPID.setI(i);
+    // verticalElevatorEncoderPID.setD(d);
 
     // rightElevatorEncoderPID.setPID(p, i, d);
     // rightElevatorEncoderPID.setP(p);
     // rightElevatorEncoderPID.setI(i);
     // rightElevatorEncoderPID.setD(d);
 
-    leftYElevatorMotor.config_kP(0, p);
-    leftYElevatorMotor.config_kI(0, i);
-    leftYElevatorMotor.config_kD(0, d);
-
-    rightYElevatorMotor.config_kP(0, p);
-    rightYElevatorMotor.config_kI(0, i);
-    rightYElevatorMotor.config_kD(0, d);
+    verticalYElevatorMotor.config_kP(0, p);
+    verticalYElevatorMotor.config_kI(0, i);
+    verticalYElevatorMotor.config_kD(0, d);
+    }
   }
 
   public void setBothElevatorEncoderPIDValues(double p, double i, double d, double f) {
-    // leftElevatorEncoderPID.setPID(p, i, d, f);
-    // leftElevatorEncoderPID.setP(p);
-    // leftElevatorEncoderPID.setI(i);
-    // leftElevatorEncoderPID.setD(d);
-    // leftElevatorEncoderPID.setF(f);
+    if (Constants.wristEnabled){
+    // verticalElevatorEncoderPID.setPID(p, i, d, f);
+    // verticalElevatorEncoderPID.setP(p);
+    // verticalElevatorEncoderPID.setI(i);
+    // verticalElevatorEncoderPID.setD(d);
+    // verticalElevatorEncoderPID.setF(f);
 
     // rightElevatorEncoderPID.setPID(p, i, d, f);
     // rightElevatorEncoderPID.setP(p);
@@ -133,23 +123,25 @@ public class ElevatorVerticalSubsystem extends Subsystem {
     // rightElevatorEncoderPID.setD(d);
     // rightElevatorEncoderPID.setF(f);
 
-    leftYElevatorMotor.config_kP(0, p);
-    leftYElevatorMotor.config_kI(0, i);
-    leftYElevatorMotor.config_kD(0, d);
-    leftYElevatorMotor.config_kF(0, f);
-
-    rightYElevatorMotor.config_kP(0, p);
-    rightYElevatorMotor.config_kI(0, i);
-    rightYElevatorMotor.config_kD(0, d);
-    rightYElevatorMotor.config_kF(0, f);
+    verticalYElevatorMotor.config_kP(0, p);
+    verticalYElevatorMotor.config_kI(0, i);
+    verticalYElevatorMotor.config_kD(0, d);
+    verticalYElevatorMotor.config_kF(0, f);
+    }
   }
 
   public boolean checkOnTargetSetpoint(){
-    return Math.abs(leftYElevatorMotor.getClosedLoopError()) < tolerance;
+    if (Constants.wristEnabled){
+    return Math.abs(verticalYElevatorMotor.getClosedLoopError()) < tolerance;
+    } else {
+      return false;
+    }
   }
 
   public void initDefaultCommand() {
-    setDefaultCommand(new ElevatorSetpointCommand(Constants.defaultElevatorPosition));
+    if (Constants.wristEnabled){
+    //setDefaultCommand(new ElevatorSetpointCommand(Constants.defaultElevatorPosition));
+    }
   }
 
 }

@@ -12,7 +12,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.autonomi.AutonInput;
 import frc.robot.commands.CommandBase;
+import frc.robot.utilities.RobotLog;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -50,6 +52,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    //RobotLog.putMessage("Vertical Elevator Encoders"+ CommandBase.elevatorVertical.getVerticalElevatorEncoder());
   }
 
   /**
@@ -80,8 +83,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
-
+    //m_autonomousCommand = m_chooser.getSelected();
+    //m_autonomousCommand = new AutonInput();
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
      * switch(autoSelected) { case "My Auto": autonomousCommand = new
@@ -101,10 +104,16 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
+    /*if(commandBase.oi.getleftYAxis() > 0.1 && commandBase.oi.getrightYAxis() > 0.1){
+      m_autonomousCommand.cancel();
+    }*/
   }
 
   @Override
   public void teleopInit() {
+    
+   
+    //m_autonomousCommand.start();
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
@@ -119,6 +128,15 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    /*
+    if(commandBase.oi.getleftYAxis() > 0.1 && commandBase.oi.getrightYAxis() > 0.1){
+      m_autonomousCommand.cancel();
+    }*/
+
+    SmartDashboard.putString("DB/String 1", "" + CommandBase.fourBar.getRightBarEncoder());
+    SmartDashboard.putString("DB/String 2", "" + CommandBase.wrist.getLeftWristEncoder());
+    SmartDashboard.putString("DB/String 3", "" + CommandBase.elevatorVertical.getVerticalElevatorEncoder());
+    SmartDashboard.putString("DB/String 5", "" + CommandBase.elevatorHorizontal.getlimitSwitch());
     Scheduler.getInstance().run();
   }
 

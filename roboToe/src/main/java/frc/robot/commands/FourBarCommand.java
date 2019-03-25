@@ -20,7 +20,9 @@ public class FourBarCommand extends CommandBase {
 
   }
 
-  protected void execute() { 
+  protected void execute() {
+    //fourBar.setFourBarSetPoint(fourBarSetPoint); 
+    //fourBar.setBothFourBarMotor(fourBar.getFourBarPIDOutput());//still need this??
     fourBar.setBothFourBarMotorPosition(fourBarSetPoint);
 
     SmartDashboard.putNumber("LeftFourBarEncoder", fourBar.getLeftBarEncoder());

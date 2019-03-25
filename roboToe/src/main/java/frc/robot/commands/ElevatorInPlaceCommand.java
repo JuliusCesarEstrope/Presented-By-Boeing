@@ -18,7 +18,7 @@ public class ElevatorInPlaceCommand extends CommandBase {
   }
 
   protected void execute() {
-    elevatorVertical.setYElevatorMotorsPosition(Constants.defaultElevatorPosition);
+    elevatorVertical.setYElevatorMotorPosition(Constants.defaultElevatorPosition);
 
     if (!elevatorHorizontal.getfastSlowStopSensor()) {
       elevatorHorizontal.setXElevatorMotors(-.4);
