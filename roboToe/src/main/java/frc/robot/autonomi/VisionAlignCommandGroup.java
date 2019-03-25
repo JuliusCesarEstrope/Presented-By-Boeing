@@ -17,7 +17,6 @@ public class VisionAlignCommandGroup extends CommandGroup{
      addSequential(new Drive4DistanceCommand(distanceToPosition));
      addSequential(new TurnAngleCommand(angleToPosition));
      
-  
   }
 
 }
