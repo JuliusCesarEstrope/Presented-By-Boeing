@@ -27,7 +27,7 @@ public class Constants {
   public static final int leftFourBarMotorPort = 6;
   public static final int rightFourBarMotorPort = 5;
   public static final int verticalElevatorMotor = 10;
-  public static final int horizontalElevatorMotor = 11;
+  public static final int XElevatorMotorPort = 11;
   /** END CAN DEVICES **/
 
   /** BEGIN SOLENOIDS **/
@@ -38,8 +38,6 @@ public class Constants {
   // Gyros
   public static final int gyroPort = 0;
 
-  // Elevator 
-  public static final int potentiometerPort = 1;
   /** END ANALOG INPUTS **/
 
   /** BEGIN DIGITAL INPUTS **/
@@ -63,6 +61,9 @@ public class Constants {
   public static final int[] leftBarEncoderPort = {10, 11};
   public static final int[] rightBarEncoderPort = {12, 13};
   
+  // Elevator Encoder
+  public static final int XElevatorEncoderPort = 0;
+
   /** END DIGITAL INPUTS**/
 
   /** BEGIN PID CONSTANTS**/
@@ -71,7 +72,6 @@ public class Constants {
   public static double[] driveRotationPIDValues = { 0.5, 0, 0, 0 };
   public static double[] rightEncoderPIDValues = {0.32,0,0.2,0};
   public static double[] leftEncoderPIDValues = {0.32,0,0.2,0};
-
 
   //FourBar PID
   public static final double[] fourBarPIDValues = {0.1, 0, 0, 0};

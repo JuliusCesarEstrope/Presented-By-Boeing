@@ -22,7 +22,7 @@ public class ElevatorManualCommand extends CommandBase {
     || (((oi.getElevatorVerticalAxis()) > 0) && (elevatorVertical.getVerticalElevatorEncoder() <= Constants.elevatorVerticalMin))) {
       elevatorVertical.setYElevatorMotor(0);
 } else {
-    elevatorHorizontal.setXElevatorMotors(oi.getElevatorHorizontalAxis());
+    elevatorHorizontal.setXElevatorMotor(oi.getElevatorHorizontalAxis());
     elevatorVertical.setYElevatorMotor(oi.getElevatorVerticalAxis());
     }
   }
@@ -34,14 +34,14 @@ public class ElevatorManualCommand extends CommandBase {
   protected void end() {
     RobotLog.putMessage("Ended Elevator Manual Command");
     SmartDashboard.putString("DB/String 6", "Ending Elevator");
-    elevatorHorizontal.setXElevatorMotors(0);
+    elevatorHorizontal.setXElevatorMotor(0);
     elevatorVertical.setYElevatorMotor(0);
   }
 
   protected void interrupted() {
     RobotLog.putMessage("Interrupted Elevator Manual Command");
     SmartDashboard.putString("DB/String 6", "Interrupted Elevator");
-    elevatorHorizontal.setXElevatorMotors(0);
+    elevatorHorizontal.setXElevatorMotor(0);
     elevatorVertical.setYElevatorMotor(0);
   }
 }

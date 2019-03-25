@@ -20,29 +20,27 @@ public class ElevatorHorizontalAutoCommand extends CommandBase {
   }
 
   protected void execute() {
-   elevatorHorizontal.setXElevatorMotors(.4);
+   elevatorHorizontal.setXElevatorMotor(.4);
 
-  if (Constants.elevatorHorizontalNone == elevatorHorizontal.getPotentiometer()) {
-    elevatorHorizontal.setXElevatorMotors(.6);
+  if (Constants.elevatorHorizontalNone == elevatorHorizontal.getXElevatorEncoder()) {
+    elevatorHorizontal.setXElevatorMotor(.6);
 
-          // USE RANGE OF VALUES
+  } else if (Constants.elevatorHorizontalFast == elevatorHorizontal.getXElevatorEncoder()) {
+    elevatorHorizontal.setXElevatorMotor(.4);
 
-  } else if (Constants.elevatorHorizontalFast == elevatorHorizontal.getPotentiometer()) {
-    elevatorHorizontal.setXElevatorMotors(.4);
-
-  } else if (Constants.elevatorHorizontalSlow == elevatorHorizontal.getPotentiometer()) {
-    elevatorHorizontal.setXElevatorMotors(.2);
+  } else if (Constants.elevatorHorizontalSlow == elevatorHorizontal.getXElevatorEncoder()) {
+    elevatorHorizontal.setXElevatorMotor(.2);
     drive.setBoth(.4, .4);
 
-  } else if (Constants.elevatorHorizontalStop == elevatorHorizontal.getPotentiometer()) {
-    elevatorHorizontal.setXElevatorMotors(0);
+  } else if (Constants.elevatorHorizontalStop == elevatorHorizontal.getXElevatorEncoder()) {
+    elevatorHorizontal.setXElevatorMotor(0);
 
    } SmartDashboard.putBoolean("X Elevator Sensor:", elevatorHorizontal.getlimitSwitch());
-    SmartDashboard.putNumber("Speed of Horizontal Wheels:", elevatorHorizontal.getXElevatorMotors());
+    SmartDashboard.putNumber("Speed of Horizontal Wheels:", elevatorHorizontal.getXElevatorMotor());
   }
 
   protected boolean isFinished() {
-    return (elevatorHorizontal.getlimitSwitch() || oi.getElevatorEmergencyStopButton() || (elevatorHorizontal.getPotentiometer() == 0));
+    return (elevatorHorizontal.getlimitSwitch() || oi.getElevatorEmergencyStopButton() || (elevatorHorizontal.getXElevatorEncoder() == 0));
   }
 
   protected void end() {

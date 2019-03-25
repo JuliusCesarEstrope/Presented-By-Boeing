@@ -1,50 +1,55 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import frc.robot.Constants;
 import frc.robot.utilities.RobotLog;
 
 public class ElevatorHorizontalSubsystem extends Subsystem {
-  static VictorSPX leftXElevatorMotor, rightXElevatorMotor;
+  static TalonSRX XElevatorMotor;
   static DigitalInput fastSlowStopSensor, limitSwitch;
-  static Potentiometer potentiometer;
-  static AnalogInput potentiometerInput;
+  static Encoder XElevatorEncoder;
 
-  public ElevatorHorizontalSubsystem(int leftXElevatorMotorPort,
-      double defaultElevatorPosition, int potentiometerPort) {
+  public ElevatorHorizontalSubsystem(int XElevatorMotorPort,
+      double defaultElevatorPosition, int XElevatorEncoderPort) {
 
         if (Constants.wristEnabled){
 
-    leftXElevatorMotor = new WPI_VictorSPX(leftXElevatorMotorPort);
+    XElevatorMotor = new WPI_TalonSRX(XElevatorMotorPort);
     limitSwitch = new DigitalInput(Constants.limitSwitch);
-    potentiometerInput = new AnalogInput(potentiometerPort);
-    potentiometer = new AnalogPotentiometer(potentiometerInput);
+    XElevatorMotor.configFactoryDefault();
+    XElevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
 
-/*
-    rightXElevatorMotor.follow(leftXElevatorMotor);
-    rightXElevatorMotor.setInverted(true); //SHOULD BE HERE?
-*/
+   // XElevatorEncoder.configPeakOutputForward(1);
+   // XElevatorEncoder.configPeakOutputReverse(-1);
+   // XElevatorEncoder.configClosedloopRamp(ramp);
+
+   // XElevatorEncoder.setInverted(true);
+
+    XElevatorMotor.setNeutralMode(NeutralMode.Brake);
+
     RobotLog.putMessage("Running ElevatorHorizontalSubsystem");
         }
   }
 
-  public void setXElevatorMotors(double Speed) {
+  public void setXElevatorMotor(double Speed) {
     if (Constants.wristEnabled){
-    leftXElevatorMotor.set(ControlMode.PercentOutput, Speed);
+    XElevatorMotor.set(ControlMode.PercentOutput, Speed);
     }
   }
 
-  public double getXElevatorMotors(){
+  public double getXElevatorMotor(){
     if (Constants.wristEnabled){
-    return leftXElevatorMotor.getMotorOutputPercent();
+    return XElevatorMotor.getMotorOutputPercent();
     } else {
       return 0;
     }
@@ -66,9 +71,9 @@ public class ElevatorHorizontalSubsystem extends Subsystem {
     }
   }
 
-  public double getPotentiometer(){
+  public double getXElevatorEncoder(){
     if (Constants.wristEnabled){
-      return potentiometer.get();
+      return XElevatorEncoder.get();
       } else {
         return 0;
       }

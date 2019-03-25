@@ -21,9 +21,9 @@ public class ElevatorInPlaceCommand extends CommandBase {
     elevatorVertical.setYElevatorMotorPosition(Constants.defaultElevatorPosition);
 
     if (!elevatorHorizontal.getfastSlowStopSensor()) {
-      elevatorHorizontal.setXElevatorMotors(-.4);
+      elevatorHorizontal.setXElevatorMotor(-.4);
     } else {
-      elevatorHorizontal.setXElevatorMotors(0);
+      elevatorHorizontal.setXElevatorMotor(0);
     }
 
     SmartDashboard.putBoolean("X Elevator Sensor:", elevatorHorizontal.getfastSlowStopSensor());
