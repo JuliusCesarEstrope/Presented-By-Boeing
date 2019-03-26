@@ -17,7 +17,7 @@ public class ElevatorVerticalSubsystem extends Subsystem {
 
   static int tolerance = 5;
 
-  public ElevatorVerticalSubsystem(int verticalYElevatorMotorPort, double[] verticalElevatorEncoderPIDValues){
+  public ElevatorVerticalSubsystem(int verticalYElevatorMotorPort, double[] YElevatorEncoderPIDValues){
     if (Constants.wristEnabled){
 
     verticalYElevatorMotor = new WPI_TalonSRX(verticalYElevatorMotorPort);
@@ -46,10 +46,10 @@ public class ElevatorVerticalSubsystem extends Subsystem {
 
     verticalYElevatorMotor.configPeakOutputForward(1);
     verticalYElevatorMotor.configPeakOutputReverse(-1);
-    verticalYElevatorMotor.config_kP(0, verticalElevatorEncoderPIDValues[0]);
-    verticalYElevatorMotor.config_kI(0, verticalElevatorEncoderPIDValues[1]);
-    verticalYElevatorMotor.config_kD(0, verticalElevatorEncoderPIDValues[2]);
-    verticalYElevatorMotor.config_kF(0, verticalElevatorEncoderPIDValues[3]);
+    verticalYElevatorMotor.config_kP(0, YElevatorEncoderPIDValues[0]);
+    verticalYElevatorMotor.config_kI(0, YElevatorEncoderPIDValues[1]);
+    verticalYElevatorMotor.config_kD(0, YElevatorEncoderPIDValues[2]);
+    verticalYElevatorMotor.config_kF(0, YElevatorEncoderPIDValues[3]);
     verticalYElevatorMotor.setSensorPhase(false);
     // Change above to true to invert sensor readout
 

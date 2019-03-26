@@ -20,6 +20,8 @@ public class WristCommand extends CommandBase {
     timer.start();
     // Set point
     // Send PID to correct motors
+    // wrist.setRightWristPosition(wristSetPoint);
+
     SmartDashboard.putString("DB/String 7", "Running WristCommand");
   }
 
