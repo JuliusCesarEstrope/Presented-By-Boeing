@@ -4,14 +4,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.utilities.RobotLog;
 
 public class FourBarCommand extends CommandBase {
-  int leftBarEncoder, rightBarEncoder; // change
   double fourBarSetPoint;
 
   public FourBarCommand(double fourBarSetPoint) {
     // Use requires() here to declare subsystem dependencies
     requires(fourBar);
-    leftBarEncoder = fourBar.getLeftBarEncoder();
-    rightBarEncoder = fourBar.getRightBarEncoder();
     this.fourBarSetPoint = fourBarSetPoint;
 
   }

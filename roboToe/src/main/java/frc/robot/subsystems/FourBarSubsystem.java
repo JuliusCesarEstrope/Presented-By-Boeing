@@ -29,8 +29,8 @@ public class FourBarSubsystem extends Subsystem {
     leftFourBarMotor = new WPI_VictorSPX(leftFourBarMotorPort);
     rightFourBarMotor = new WPI_TalonSRX(rightFourBarMotorPort);
 
-    leftBarEncoder = new Encoder(leftBarEncoderPort[0], leftBarEncoderPort[1]);
-    rightBarEncoder = new Encoder(rightBarEncoderPort[0], rightBarEncoderPort[1]);
+    leftFourBarMotor.configFactoryDefault();
+    rightFourBarMotor.configFactoryDefault();
 
     leftFourBarMotor.configFactoryDefault();
     rightFourBarMotor.configFactoryDefault();

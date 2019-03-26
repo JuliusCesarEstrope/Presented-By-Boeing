@@ -69,7 +69,6 @@ public class Constants {
   public static double[] rightEncoderPIDValues = {0.32,0,0.2,0};
   public static double[] leftEncoderPIDValues = {0.32,0,0.2,0};
 
-
   //FourBar PID
   public static final double[] fourBarPIDValues = {0.1, 0, 0, 0};
 

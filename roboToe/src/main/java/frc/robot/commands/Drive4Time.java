@@ -2,7 +2,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 
-
 public class Drive4Time extends CommandBase {
   
   Timer timer;

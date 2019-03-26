@@ -11,6 +11,7 @@ import frc.robot.commands.Drive4DistanceCommand;
 import frc.robot.commands.DriveStraight;
 import frc.robot.commands.ElevatorCommandGroup;
 import frc.robot.commands.ElevatorWristCommandGroup;
+import frc.robot.autonomi.VisionAlignCommandGroup;
 import frc.robot.commands.ManualCommand;
 import frc.robot.commands.WristCommand;
 import frc.robot.commands.ZeroEncoderCommand;
@@ -70,6 +71,9 @@ public class OI {
   JoystickButton fourBarTestButton;
   JoystickButton wristTestButton;
 
+  // Vision Align Button
+  JoystickButton visionAlignButton;
+
   public OI() {
     leftJoyStick = new Joystick(Constants.leftJoystick);
     rightJoyStick = new Joystick(Constants.rightJoystick);
@@ -93,6 +97,9 @@ public class OI {
     // Test Buttons
     fourBarTestButton = new JoystickButton(rightJoyStick, 8);
     wristTestButton = new JoystickButton(rightJoyStick, 9);
+
+    //Vision ALign Button
+    visionAlignButton = new JoystickButton(leftJoyStick, 2);
 
     // Fourbar and Wrist + Elevator button positions
     // startPosition = new JoystickButton(gamePad, 2);
@@ -200,6 +207,7 @@ public class OI {
     wristDownButton.whileHeld(new WristCommand(Constants.wristDownSetPoint));
     ballShoot.whileActive(new WristCommand(Constants.wristShootSetPoint));
     driveStraightButton.whileHeld(new DriveStraight());
+    visionAlignButton.whenPressed(new VisionAlignCommandGroup());
 
     counterWeightForward.whileActive(new CounterWeightForwardCommand());
     counterWeightReverse.whileActive(new CounterWeightReverseCommand());

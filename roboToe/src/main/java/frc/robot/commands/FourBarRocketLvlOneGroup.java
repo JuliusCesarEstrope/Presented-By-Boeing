@@ -9,6 +9,10 @@ public class FourBarRocketLvlOneGroup extends CommandGroup {
   public FourBarRocketLvlOneGroup(double setRocketLvlOnePoint){
       RobotLog.putMessage("Running FourBarRocketLvlOneGroup");
 
+      addSequential(new WristCommand(Constants.wristUpSetPoint));
+      addSequential(new FourBarCommand(Constants.setBallLvlOnePoint));
+      addSequential(new WristCommand(Constants.wristDownSetPoint));
+
   }
 
 }

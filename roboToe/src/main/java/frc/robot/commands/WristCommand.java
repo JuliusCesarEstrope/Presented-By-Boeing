@@ -5,8 +5,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class WristCommand extends CommandBase {
 
-  int leftWristEncoder;
-  int rightWristEncoder;
   double wristSetPoint;
   Timer timer;
 
