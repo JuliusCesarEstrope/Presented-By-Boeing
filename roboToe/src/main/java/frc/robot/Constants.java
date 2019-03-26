@@ -78,6 +78,7 @@ public class Constants {
 
   //Elevator PID
   public static final double[] elevatorEncoderPIDValues = {0, 0, 0, 0};
+  public static final double[] XElevatorEncoderPIDValues = {0, 0, 0, 0};
   /** END PID CONSTANTS**/
 
   // Elevator Max & Min
