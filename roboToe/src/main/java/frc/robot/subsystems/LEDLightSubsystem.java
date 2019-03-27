@@ -9,13 +9,13 @@ public class LEDLightSubsystem extends Subsystem {
 
   public LEDLightSubsystem() {
     if (Constants.wristEnabled){
-    //LEDLight = new Spark(-1);
+    LEDLight = new Spark(0);
     }
   }
 
   public void setLEDLightColor(double Speed) {
     if (Constants.wristEnabled){
-    //LEDLight.set(Speed);
+    LEDLight.set(Speed);
     }
   }
 
