@@ -12,6 +12,7 @@ import frc.robot.subsystems.LEDLightSubsystem;
 import frc.robot.subsystems.RollerSubsystem;
 import frc.robot.subsystems.WristSubsystem;
 import frc.robot.utilities.RobotLog;
+import frc.robot.subsystems.ElevatorAssistSubsystem;
 
 public abstract class CommandBase extends Command {
 
@@ -25,6 +26,7 @@ public abstract class CommandBase extends Command {
   public static ElevatorVerticalSubsystem elevatorVertical;
   public static ElevatorHorizontalSubsystem elevatorHorizontal;
   public static double turnAngle;
+  public static ElevatorAssistSubsystem elevatorAssist;
 
   public static void init() {
     RobotLog.init();
@@ -42,6 +44,7 @@ public abstract class CommandBase extends Command {
     elevatorVertical = new ElevatorVerticalSubsystem(Constants.verticalElevatorMotor, Constants.elevatorEncoderPIDValues);
     elevatorHorizontal = new ElevatorHorizontalSubsystem(Constants.XElevatorMotorPort, Constants.defaultElevatorPosition, Constants.XElevatorEncoderPIDValues);
     oi = new OI();
+    elevatorAssist = new ElevatorAssistSubsystem(Constants.elevatorAssistPorts);
     //led.setLEDLightColor(.87); // Blue
     wrist.ResetEncoder();
     elevatorVertical.resetElevatorEncoder();

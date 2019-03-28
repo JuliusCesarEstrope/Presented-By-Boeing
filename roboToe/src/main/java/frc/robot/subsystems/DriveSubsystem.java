@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -219,9 +220,9 @@ public class DriveSubsystem extends Subsystem {
       talonLeftPosition *= Constants.ticksOfEncoder / Constants.circumferenceOfWheels;
       talonRightPosition *= Constants.ticksOfEncoder / Constants.circumferenceOfWheels;
       setLeftMotorPosition(talonLeftPosition);
-      setRightMotorPosition(talonRightPosition);
-      // talonRight.set(ControlMode.Position, talonRightPosition, DemandType.AuxPID,
-      // gyroCorrection);
+      //setRightMotorPosition(talonRightPosition);
+      talonRight.set(ControlMode.Position, talonRightPosition, DemandType.AuxPID,
+        gyroCorrection);
     }
   }
 

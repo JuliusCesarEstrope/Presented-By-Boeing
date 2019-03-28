@@ -4,20 +4,15 @@ import frc.robot.utilities.RobotLog;
 
 public class ElevatorAssistCommand extends CommandBase {
   public ElevatorAssistCommand() {
-    requires(booper);
+    requires(elevatorAssist);
   }
 
   protected void initialize() {
-    RobotLog.putMessage("Running ");
-    booper.setBooperReverse();
+    RobotLog.putMessage("Running ElevatorAssistCommand");
+    elevatorAssist.setBooperForward();
   }
 
   protected void execute() {
-    if (oi.getBooperButton()) {
-      booper.setBooperForward();
-    } else {
-      booper.setBooperReverse();
-    }
   }
 
   protected boolean isFinished() {
@@ -25,8 +20,10 @@ public class ElevatorAssistCommand extends CommandBase {
   }
 
   protected void end() {
+    elevatorAssist.setBooperReverse();
   }
 
   protected void interrupted() {
+    elevatorAssist.setBooperReverse();
   }
 }
