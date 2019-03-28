@@ -4,14 +4,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import frc.robot.commands.CommandBase;
-import frc.robot.commands.CounterWeightAutoTriggerCommand;
-import frc.robot.commands.CounterWeightForwardCommand;
-import frc.robot.commands.CounterWeightReverseCommand;
-import frc.robot.commands.Drive4DistanceCommand;
 import frc.robot.commands.DriveStraight;
 import frc.robot.commands.ElevatorCommandGroup;
 import frc.robot.commands.ElevatorWristCommandGroup;
-import frc.robot.autonomi.VisionAlignCommandGroup;
 import frc.robot.commands.ManualCommand;
 import frc.robot.commands.WristCommand;
 import frc.robot.commands.ZeroEncoderCommand;
@@ -103,11 +98,6 @@ public class OI {
     visionAlignButton = new JoystickButton(leftJoyStick, 2);
 
     // Fourbar and Wrist + Elevator button positions
-    // startPosition = new JoystickButton(gamePad, 2);
-    // floorGather = new JoystickButton(gamePad, 2);
-    // ballLvlOneButton = new JoystickButton(gamePad, 3);
-    // ballLvlTwoButton = new JoystickButton(gamePad, 4);
-    // wristAngleButton = new JoystickButton(gamePad, 5);
     // fourBarAngleButton = new JoystickButton(gamePad, 22); //22 = temporary
     // number, MUST CHANGE!!
     // Zero Encoders Button
@@ -121,67 +111,10 @@ public class OI {
       }
     };
 
-    rocketLvlOneHatch = new Trigger() {
-
-      public boolean get() {
-        // return (gamePad.getPOV() == 2);
-        return false;
-      }
-    };
-
     ballShoot = new Trigger() {
 
       public boolean get() {
         return (gamePad.getPOV() == 90);
-      }
-    };
-
-    rocketLvlTwoHatch = new Trigger() {
-
-      public boolean get() {
-        return false;
-        // return (gamePad.getPOV() == 0);
-      }
-    };
-
-    floorGather = new Trigger() {
-
-      public boolean get() {
-        return (gamePad.getPOV() == 6);
-      }
-    };
-
-    startPosition = new Trigger() {
-
-      public boolean get() {
-        return (gamePad.getPOV() == 4);
-      }
-    };
-
-    counterWeightForward = new Trigger() {
-
-      public boolean get() {
-        return (gamePad.getPOV() == 0);
-      }
-    };
-
-    counterWeightReverse = new Trigger() {
-
-      public boolean get() {
-        return (gamePad.getPOV() == 180);
-      }
-    };
-
-    counterWeightAutomatic = new Trigger() {
-
-      public boolean get() {
-        if (Constants.counterWeightAutomaticTriggerable
-            && CommandBase.elevatorVertical.getVerticalElevatorEncoder() <= Constants.elevatorVerticalMin + 100) {
-          Constants.counterWeightAutomaticTriggerable = false;
-          return true;
-        } else {
-          return false;
-        }
       }
     };
 
@@ -191,21 +124,6 @@ public class OI {
       }
     };
 
-    // startPosition.whenActive(new
-    // FourBarStartCommandGroup(Constants.setStartPoint));
-    // floorGather.whenActive(new
-    // FourBarFloorGatherGroup(Constants.setFloorGatherPoint));
-    // hatchLvlTwoButton.whenPressed(new
-    // FourBarHatchLvlTwoGroup(Constants.setRocketLvlTwoPoint));
-    // rocketLvlTwoHatch.whenActive(new
-    // FourBarRocketLvlTwoGroup(Constants.setRocketLvlTwoPoint));
-    // rocketLvlOneHatch.whenActive(new
-    // FourBarRocketLvlOneGroup(Constants.setRocketLvlOnePoint));
-    // ballLvlOneButton.whenPressed(new
-    // FourBarBallLvlOneGroup(Constants.setBallLvlOnePoint));
-    // ballLvlTwoButton.whenPressed(new
-    // FourBarBallLvlTwoGroup(Constants.setBallLvlTwoPoint));
-    // elevatorButton.whenPressed(new ElevatorCommandGroup());
     elevatorAutoClimb.whenActive(new ElevatorCommandGroup());
     manualOverrideButton.whileHeld(new ManualCommand());
     zeroEncoderTrigger.whenActive(new ZeroEncoderCommand());
@@ -215,11 +133,7 @@ public class OI {
     wristDownButton.whileHeld(new WristCommand(Constants.wristDownSetPoint));
     ballShoot.whileActive(new WristCommand(Constants.wristShootSetPoint));
     driveStraightButton.whileHeld(new DriveStraight());
-    visionAlignButton.whenPressed(new VisionAlignCommandGroup());
-
-    counterWeightForward.whileActive(new CounterWeightForwardCommand());
-    counterWeightReverse.whileActive(new CounterWeightReverseCommand());
-    counterWeightAutomatic.whenActive(new CounterWeightAutoTriggerCommand());
+    //visionAlignButton.whenPressed(new VisionAlignCommandGroup());
 
     // fourBarTestButton.whenPressed(new
     // FourBarCommand(Constants.setFloorGatherPoint));
