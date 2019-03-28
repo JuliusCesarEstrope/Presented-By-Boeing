@@ -15,7 +15,7 @@ public class ElevatorVerticalCommand extends CommandBase {
 
   protected void initialize() {
     RobotLog.putMessage("Running ElevatorVerticalCommand");
-
+    led.setLEDLightColor(0.87); // blue
     drive.setBoth(0, 0);
   }
 
@@ -29,6 +29,7 @@ public class ElevatorVerticalCommand extends CommandBase {
   }
 
   protected boolean isFinished() {
+    led.setLEDLightColor(0.77); // green
     return (elevatorVertical.checkOnTargetSetpoint() || oi.getElevatorEmergencyStopButton());
   }
 
