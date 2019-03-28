@@ -21,7 +21,7 @@ public class TapeAlignCommand extends CommandBase {
 
   protected void initialize() {
     RobotLog.putMessage("Running TapeAlignCommand");
-    startDistance = drive.getWheelDistanceRight();
+    startDistance = drive.getEncoderRight();
     drive.setBoth(0, 0);
     endCommand = false;
     tapeTouched = false;
@@ -40,14 +40,14 @@ public class TapeAlignCommand extends CommandBase {
     if (tapeTouched) {
 
       if (!touchFront && drive.getFrontSensor()) {
-        start = drive.getWheelDistanceLeft();
+        start = drive.getEncoderLeft();
         touchFront = true;
       }
 
       if ((drive.getLeftSensor() || drive.getRightSensor()) && touchFront) {
 
         if (!touchSide) {
-          end = drive.getWheelDistanceLeft();
+          end = drive.getEncoderLeft();
           touchSide = true;
         }
 
@@ -74,7 +74,7 @@ public class TapeAlignCommand extends CommandBase {
     SmartDashboard.putBoolean("Right Sensor", drive.getRightSensor());
     SmartDashboard.putBoolean("Back Sensor", drive.getBackSensor());
     SmartDashboard.putNumber("Calculated Angle", (angleToTurn));
-    SmartDashboard.putNumber("DistanceTraveled", drive.getWheelDistanceLeft());
+    SmartDashboard.putNumber("DistanceTraveled", drive.getEncoderLeft());
   }
 
   protected boolean isFinished() {

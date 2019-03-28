@@ -3,7 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveStraight extends CommandBase {
   public DriveStraight() {
-    requires(CounterWeight);
+    requires(drive);
   }
 
   protected void initialize() {
