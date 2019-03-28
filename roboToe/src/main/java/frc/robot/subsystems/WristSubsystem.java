@@ -22,8 +22,7 @@ public class WristSubsystem extends Subsystem {
 
   double tolerance = 70;
 
-  public WristSubsystem(int leftWristMotorPort, int rightWristMotorPort, int[] leftWristEncoderPort,
-  int[] rightWristEncoderPort, double[] wristPIDValues) {
+  public WristSubsystem(int leftWristMotorPort, int rightWristMotorPort, double[] wristPIDValues) {
     if (Constants.wristEnabled){
 
     leftWristMotor = new WPI_TalonSRX(leftWristMotorPort);

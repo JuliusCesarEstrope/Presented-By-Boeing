@@ -10,7 +10,7 @@ public class ZeroEncoderCommand extends CommandBase {
     drive.resetEncoder();
     wrist.ResetEncoder();
     fourBar.resetEncoders();
-    elevatorVertical.resetBothElevatorEncoders();
+    elevatorVertical.resetElevatorEncoder();
   }
 
   protected void execute() {    

@@ -13,7 +13,7 @@ public class RollerSubsystem extends Subsystem {
   static VictorSPX rollerMotor;
 
   public RollerSubsystem(int rollerMotorPort) {
-    if (Constants.wristEnabled){
+    if (Constants.rollerEnabled){
     rollerMotor = new WPI_VictorSPX(rollerMotorPort);
     rollerMotor.setInverted(false);
     //RobotLog.putMessage("Running RollerSubsystem");
@@ -21,13 +21,13 @@ public class RollerSubsystem extends Subsystem {
   }
 
   public void setRollerMotor(double Speed) {
-    if (Constants.wristEnabled){
+    if (Constants.rollerEnabled){
     rollerMotor.set(ControlMode.PercentOutput, Speed);
     }
   }
 
   public void initDefaultCommand() {
-    if (Constants.wristEnabled){
+    if (Constants.rollerEnabled){
     setDefaultCommand(new RollerCommand());
     }
   }

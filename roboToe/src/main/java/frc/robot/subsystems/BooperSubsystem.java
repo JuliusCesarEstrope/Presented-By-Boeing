@@ -10,26 +10,26 @@ public class BooperSubsystem extends Subsystem {
   static DoubleSolenoid booper;
 
   public BooperSubsystem(int[] booperPorts) {
-    if (Constants.wristEnabled){
+    if (Constants.booperEnabled){
     booper = new DoubleSolenoid(booperPorts[0], booperPorts[1]);
     RobotLog.putMessage("Running BooperSubsystem");
     }
   }
 
   public void setBooperForward() {
-    if (Constants.wristEnabled){
+    if (Constants.booperEnabled){
     booper.set(DoubleSolenoid.Value.kForward);
     }
   }
 
   public void setBooperReverse() {
-    if (Constants.wristEnabled){
+    if (Constants.booperEnabled){
     booper.set(DoubleSolenoid.Value.kReverse);
     }
   }
  
   public void initDefaultCommand() {
-    if (Constants.wristEnabled){
+    if (Constants.booperEnabled){
     setDefaultCommand(new BooperCommand());
     }
   }

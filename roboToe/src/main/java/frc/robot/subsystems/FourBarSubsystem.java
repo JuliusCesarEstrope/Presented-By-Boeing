@@ -24,7 +24,7 @@ public class FourBarSubsystem extends Subsystem {
 
   public FourBarSubsystem(int leftFourBarMotorPort, int rightFourBarMotorPort, int[] leftBarEncoderPort,
       int[] rightBarEncoderPort, int gyroPort, double[] fourBarPIDValues) {
-      if (Constants.wristEnabled){
+      if (Constants.fourBarEnabled){
 
     leftFourBarMotor = new WPI_VictorSPX(leftFourBarMotorPort);
     rightFourBarMotor = new WPI_TalonSRX(rightFourBarMotorPort);
@@ -53,26 +53,26 @@ public class FourBarSubsystem extends Subsystem {
 
   // set motors
   public void setLeftFourBarMotor(double leftFourBarSpeed) {
-    if (Constants.wristEnabled){
+    if (Constants.fourBarEnabled){
     leftFourBarMotor.set(ControlMode.PercentOutput, leftFourBarSpeed);
     }
   }
 
   public void setRightFourBarMotor(double rightFourBarSpeed) {
-    if (Constants.wristEnabled){
+    if (Constants.fourBarEnabled){
     rightFourBarMotor.set(ControlMode.PercentOutput, rightFourBarSpeed);
     }
   }
 
   public void setBothFourBarMotor(double leftFourBarSpeed, double rightFourBarSpeed) {
-    if (Constants.wristEnabled){
+    if (Constants.fourBarEnabled){
     setLeftFourBarMotor(leftFourBarSpeed);
     setRightFourBarMotor(rightFourBarSpeed);
     }
   }
 
   public void setBothFourBarMotor(double FourBarSpeed) {//do i need this and/or the above method? they have the same name
-    if (Constants.wristEnabled){
+    if (Constants.fourBarEnabled){
     setLeftFourBarMotor(FourBarSpeed);
     setRightFourBarMotor(FourBarSpeed);
     }
@@ -80,7 +80,7 @@ public class FourBarSubsystem extends Subsystem {
 
   // encoder
   public int getLeftBarEncoder() {
-    if (Constants.wristEnabled){
+    if (Constants.fourBarEnabled){
     return leftFourBarMotor.getSelectedSensorPosition();
     } else {
       return 0;
@@ -88,7 +88,7 @@ public class FourBarSubsystem extends Subsystem {
   }
 
   public int getRightBarEncoder() {
-    if (Constants.wristEnabled){
+    if (Constants.fourBarEnabled){
     return rightFourBarMotor.getSelectedSensorPosition();
     } else {
       return 0;
@@ -96,7 +96,7 @@ public class FourBarSubsystem extends Subsystem {
   }
 
   public void resetEncoders() {
-    if (Constants.wristEnabled){
+    if (Constants.fourBarEnabled){
     leftFourBarMotor.setSelectedSensorPosition(0);
     rightFourBarMotor.setSelectedSensorPosition(0);
     }
@@ -104,7 +104,7 @@ public class FourBarSubsystem extends Subsystem {
 
   /** PID RELATED METHODS **/
   public  void setFourBarPIDValues(double p, double i, double d) {
-    if (Constants.wristEnabled){
+    if (Constants.fourBarEnabled){
     //fourBarPID.setPID(p, i, d);
     rightFourBarMotor.config_kP(0, p);
     rightFourBarMotor.config_kI(0, i);
@@ -117,7 +117,7 @@ public class FourBarSubsystem extends Subsystem {
 
 
   public void setFourBarPIDValues(double p, double i, double d, double f) {
-    if (Constants.wristEnabled){
+    if (Constants.fourBarEnabled){
     setFourBarPIDValues(p, i, d);
     rightFourBarMotor.config_kF(0, f);
     //fourBarPID.setP(p);
@@ -128,14 +128,14 @@ public class FourBarSubsystem extends Subsystem {
   }
 
   public void setBothFourBarMotorPosition(double position) {
-    if (Constants.wristEnabled){
+    if (Constants.fourBarEnabled){
     leftFourBarMotor.set(ControlMode.Position, position);
     rightFourBarMotor.set(ControlMode.PercentOutput, leftFourBarMotor.getMotorOutputPercent());
     }
   }
 
   public boolean checkOnTargetSetpoint(){ //needed?
-    if (Constants.wristEnabled){
+    if (Constants.fourBarEnabled){
     return Math.abs(rightFourBarMotor.getClosedLoopError()) < tolerance;
     } else {
       return false;
@@ -143,7 +143,7 @@ public class FourBarSubsystem extends Subsystem {
   }
 
   public void initDefaultCommand() {
-    if (Constants.wristEnabled){
+    if (Constants.fourBarEnabled){
     //setDefaultCommand(new FourBarCommand(Constants.setStartPoint));
     }
   }

@@ -38,14 +38,14 @@ public abstract class CommandBase extends Command {
         Constants.rightBarEncoderPort, Constants.leftBarEncoderPort, Constants.gyroPort, Constants.fourBarPIDValues);
     roller = new RollerSubsystem(Constants.rollerMotor);
     booper = new BooperSubsystem(Constants.booperPorts);
-    wrist = new WristSubsystem(Constants.leftWristMotorPort, Constants.rightWristMotorPort, Constants.leftWristEncoderPort, Constants.rightWristEncoderPort, Constants.wristPIDValues);
+    wrist = new WristSubsystem(Constants.leftWristMotorPort, Constants.rightWristMotorPort, Constants.wristPIDValues);
     elevatorVertical = new ElevatorVerticalSubsystem(Constants.verticalElevatorMotor, Constants.elevatorEncoderPIDValues);
-    elevatorHorizontal = new ElevatorHorizontalSubsystem(Constants.XElevatorMotorPort, Constants.defaultElevatorPosition, Constants.XElevatorEncoderPort, Constants.XElevatorEncoderPIDValues);
+    elevatorHorizontal = new ElevatorHorizontalSubsystem(Constants.XElevatorMotorPort, Constants.defaultElevatorPosition, Constants.XElevatorEncoderPIDValues);
     CounterWeight = new CounterWeightSubsystem(Constants.counterWeightMotorPort);
     oi = new OI();
     //led.setLEDLightColor(.87); // Blue
     wrist.ResetEncoder();
-    elevatorVertical.resetBothElevatorEncoders();
+    elevatorVertical.resetElevatorEncoder();
     
   }
 
