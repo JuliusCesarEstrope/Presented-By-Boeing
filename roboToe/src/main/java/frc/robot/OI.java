@@ -38,6 +38,7 @@ public class OI {
   JoystickButton elevatorEmergencyStopButton;
   JoystickButton manualElevatorButton;
   Trigger elevatorAutoClimb;
+  Trigger elevatorAssistButton;
 
   // Fourbar and Wrist button positions
   Trigger startPosition;
@@ -124,6 +125,12 @@ public class OI {
       }
     };
 
+    elevatorAssistButton = new Trigger() {
+      public boolean get() {
+        return (gamePad.getPOV() == 270);
+      }
+    };
+
     elevatorAutoClimb.whenActive(new ElevatorCommandGroup());
     manualOverrideButton.whileHeld(new ManualCommand());
     zeroEncoderTrigger.whenActive(new ZeroEncoderCommand());
@@ -133,6 +140,7 @@ public class OI {
     wristDownButton.whileHeld(new WristCommand(Constants.wristDownSetPoint));
     ballShoot.whileActive(new WristCommand(Constants.wristShootSetPoint));
     driveStraightButton.whileHeld(new DriveStraight());
+    elevatorAssistButton.toggleWhenActive(new );
     //visionAlignButton.whenPressed(new VisionAlignCommandGroup());
 
     // fourBarTestButton.whenPressed(new
