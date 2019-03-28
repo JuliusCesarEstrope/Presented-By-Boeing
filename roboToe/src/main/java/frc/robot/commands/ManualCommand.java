@@ -20,15 +20,8 @@ public class ManualCommand extends CommandBase {
   }
 
   protected void execute() {
-    /*
-    if(((fourBar.getRawAxis(1) > 0) && (fourBar.getRightBarEncoder() >= Constants.fourBarMaxPosition))
-    || ((fourBar.getRawAxis(1) < 0) && (fourBar.getRightBarEncoder() <= Constants.fourBarMinPosition)) {
-      fourBar.setBothFourBarMotor(0);
-    }
-    else{
-      fourBar.setBothFourBarMotor(oi.getFourBarAxis() * 0.4);
-    }*/
-    fourBar.setBothFourBarMotor(oi.getFourBarAxis() * 0.4);
+  
+    
     /*
     if(((wrist.getWristAxis > 0) && (wrist.getLeftWristEncoder() >= Constants.wristMaxPosition))
     || ((wrist.getWristAxis < 0) && (wrist.getLeftWristEncoder() <= Constants.wristMinPosition))){
