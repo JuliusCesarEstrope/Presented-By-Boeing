@@ -5,7 +5,6 @@ import frc.robot.Constants;
 import frc.robot.utilities.RobotLog;
 
 public class ElevatorVerticalCommand extends CommandBase {
-  double elevatorVerticalSetpoint;
   double elevatorDistance;
 
   public ElevatorVerticalCommand(double elevatorDistance) {
