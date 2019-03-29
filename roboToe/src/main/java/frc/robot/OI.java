@@ -3,8 +3,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
-import frc.robot.commands.CommandBase;
 import frc.robot.commands.DriveStraight;
+import frc.robot.commands.DynamicBrakingCommand;
+import frc.robot.commands.ElevatorAssistCommand;
 import frc.robot.commands.ElevatorCommandGroup;
 import frc.robot.commands.ElevatorWristCommandGroup;
 import frc.robot.commands.ManualCommand;
@@ -23,6 +24,7 @@ public class OI {
   // Roller Buttons
   JoystickButton rollerButtonIn;
   JoystickButton rollerButtonOut;
+  JoystickButton ballShootButton;
 
   // Gather Buttons
   JoystickButton booperButton;
@@ -32,6 +34,7 @@ public class OI {
 
   //Drive Straight Button
   JoystickButton driveStraightButton;
+  JoystickButton dynamicBraking;
 
   // Elevator Buttons
   JoystickButton elevatorButton;
@@ -41,24 +44,15 @@ public class OI {
   Trigger elevatorAssistButton;
 
   // Fourbar and Wrist button positions
-  Trigger startPosition;
-  Trigger floorGather;
-  Trigger counterWeightReverse;
-  Trigger counterWeightForward;
-  Trigger counterWeightAutomatic;
-  JoystickButton hatchLvlTwoButton;
-  Trigger rocketLvlTwoHatch;
-  Trigger rocketLvlOneHatch;
-  JoystickButton barClimbPositionButton;
-  JoystickButton ballLvlOneButton;
-  JoystickButton ballLvlTwoButton;
-  JoystickButton wristAngleButton;
-  JoystickButton fourBarAngleButton;
-
+  Trigger jogRollerHatchUp;
+  Trigger jogRollerHatchDown;
+  
   JoystickButton wristUpButton;
   JoystickButton wristStartButton;
   JoystickButton wristDownButton;
   Trigger ballShoot;
+
+  JoystickButton wristTurboButton;
 
   // Miss Elaineous
   JoystickButton manualOverrideButton;
@@ -80,6 +74,7 @@ public class OI {
     // Roller Buttons
     rollerButtonIn = new JoystickButton(gamePad, 5);
     rollerButtonOut = new JoystickButton(gamePad, 6);
+    ballShootButton = new JoystickButton(gamePad, 7);
 
     // Manual Motor Overide Button
     manualOverrideButton = new JoystickButton(gamePad, 1);
@@ -98,6 +93,9 @@ public class OI {
     //Vision ALign Button
     visionAlignButton = new JoystickButton(leftJoyStick, 2);
 
+    dynamicBraking = new JoystickButton(leftJoyStick, 1);
+    driveStraightButton = new JoystickButton(rightJoyStick, 1);
+
     // Fourbar and Wrist + Elevator button positions
     // fourBarAngleButton = new JoystickButton(gamePad, 22); //22 = temporary
     // number, MUST CHANGE!!
@@ -105,6 +103,7 @@ public class OI {
     wristDownButton = new JoystickButton(gamePad, 2);
     wristUpButton = new JoystickButton(gamePad, 3);
     wristStartButton = new JoystickButton(gamePad, 4);
+    wristTurboButton = new JoystickButton(gamePad, 11);
 
     zeroEncoderTrigger = new Trigger() {
       public boolean get() {
@@ -119,9 +118,21 @@ public class OI {
       }
     };
 
+    jogRollerHatchUp = new Trigger() {
+      public boolean get() {
+        return (gamePad.getPOV() == 0);
+      }
+    };
+
+    jogRollerHatchDown = new Trigger() {
+      public boolean get() {
+        return (gamePad.getPOV() == 180);
+      }
+    };
+
     elevatorAutoClimb = new Trigger() {
       public boolean get() {
-        return (rightJoyStick.getRawButton(7) && gamePad.getRawButton(7));
+        return (rightJoyStick.getRawButton(7) && gamePad.getRawButton(9));
       }
     };
 
@@ -140,12 +151,14 @@ public class OI {
     wristDownButton.whileHeld(new WristCommand(Constants.wristDownSetPoint));
     ballShoot.whileActive(new WristCommand(Constants.wristShootSetPoint));
     driveStraightButton.whileHeld(new DriveStraight());
-    //elevatorAssistButton.toggleWhenActive(new );
+    elevatorAssistButton.toggleWhenActive(new ElevatorAssistCommand());
+    dynamicBraking.whileHeld(new DynamicBrakingCommand());
     //visionAlignButton.whenPressed(new VisionAlignCommandGroup());
 
-    // fourBarTestButton.whenPressed(new
-    // FourBarCommand(Constants.setFloorGatherPoint));
-    // wristTestButton.whileHeld(new WristCommand(Constants.wristUpSetPoint));
+  }
+
+  public boolean getBallShootButton() {
+    return ballShootButton.get();
   }
 
   public double getleftYAxis() {
@@ -170,6 +183,12 @@ public class OI {
   public boolean getRollerButtonOut() {
     return rollerButtonOut.get();
   }
+  public boolean getJogRollerHatchUp() {
+    return jogRollerHatchUp.get();
+  }
+  public boolean getJogRollerHatchDown() {
+    return jogRollerHatchDown.get();
+  }
 
   public boolean getBooperButton() {
     return booperButton.get();
@@ -185,30 +204,12 @@ public class OI {
     return (Math.abs(gamePad.getRawAxis(0)) > 0.25) ? -gamePad.getRawAxis(0) : 0;
   }
 
-  // fourbar vert. axis
-  public double getFourBarAxis() {
-    return (Math.abs(gamePad.getRawAxis(1)) > 0.25) ? -gamePad.getRawAxis(1) : 0;
+  public boolean getWristTurboButton(){
+    return wristTurboButton.get();
   }
 
   public boolean getRightTrigger() {
     return alignButton.get();
-  }
-
-  // fourbar position buttons
-  public boolean getHatchLvlTwoButton() {
-    return hatchLvlTwoButton.get();
-  }
-
-  public boolean getBarClimbPositionButton() {
-    return barClimbPositionButton.get();
-  }
-
-  public boolean getBallLvlOneButton() {
-    return ballLvlOneButton.get();
-  }
-
-  public boolean getBallLvlTwoButton() {
-    return ballLvlTwoButton.get();
   }
 
   public boolean getElevatorEmergencyStopButton() {

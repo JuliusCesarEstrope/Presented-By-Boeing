@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.Timer;
 public class TurnAngleCommand extends CommandBase {
   public double angle;
   Timer timer;
-  boolean endCommand;
 
   public TurnAngleCommand(double angle) {
     requires(drive);
@@ -28,23 +27,18 @@ public class TurnAngleCommand extends CommandBase {
   protected boolean isFinished() {
     if (!drive.gyroPIDOnSetpoint()) {
       timer.reset();
+      return false;
     } else {
-      if (timer.get() > 0.5) {
-        return true;
-
-      }
+      return timer.hasPeriodPassed(0.5);
     }
-    return false;
+    
   }
 
   protected void end() {
     drive.setBoth(0, 0);
-    drive.setGyroSetpoint(0);
-    endCommand = true;
   }
 
   protected void interrupted() {
     drive.setBoth(0, 0);
-    drive.setGyroSetpoint(0);
   }
 }

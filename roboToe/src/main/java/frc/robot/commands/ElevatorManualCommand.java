@@ -35,7 +35,10 @@ public class ElevatorManualCommand extends CommandBase {
     || (((oi.getElevatorVerticalAxis()) > 0) && (elevatorVertical.getVerticalElevatorEncoder() <= Constants.elevatorVerticalMin))) {
       elevatorVertical.setYElevatorMotor(0);
 } else {
-    elevatorHorizontal.setXElevatorMotor(oi.getElevatorHorizontalAxis());
+    if(elevatorHorizontal.getlimitSwitch() && oi.getElevatorHorizontalAxis() < 0)
+      elevatorHorizontal.setXElevatorMotor(0);
+    else
+      elevatorHorizontal.setXElevatorMotor(oi.getElevatorHorizontalAxis());
     elevatorVertical.setYElevatorMotor(oi.getElevatorVerticalAxis());
     }
   }

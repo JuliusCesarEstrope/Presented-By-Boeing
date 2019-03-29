@@ -8,15 +8,13 @@ public class ElevatorCommandGroup extends CommandGroup {
   public ElevatorCommandGroup() {
     RobotLog.putMessage("Running ElevatorCommandGroup");
 
-    // addSequential(new ElevatorVerticalCommand(Constants.distanceToTicks * 22));
-    // addSequential(new ElevatorHorizontalCommand());
-    // addSequential(new ElevatorVerticalCommand((Constants.distanceToTicks * 22) - (Constants.distanceToTicks * 1)));
-    // // add at same time for 2 above??????????????????
-    // addSequential(new ElevatorVerticalCommand(Constants.distanceToTicks * 5));
-
+  
     addSequential(new ElevatorVerticalCommand(Constants.elevatorVerticalMin));
     addParallel(new ElevatorHorizontalAutoCommand());
-    addSequential(new Drive4DistanceCommand(12)); 
-    addSequential(new ElevatorVerticalCommand(Constants.distanceToTicks * 5));
+    addSequential(new Drive4Time(3, -0.6)); 
+    addSequential(new Drive4DistanceCommand(1)); 
+    addSequential(new ElevatorAssistCommand());
+    addSequential(new ElevatorVerticalCommand(Constants.elevatorVerticalMin + 
+      Constants.distanceToTicks * 5));
   }
 }

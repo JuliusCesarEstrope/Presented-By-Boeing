@@ -32,6 +32,7 @@ public class Constants {
 
   /** BEGIN SOLENOIDS **/
   public static final int[] booperPorts = { 0, 1 };
+  public static final int[] elevatorAssistPorts = {2, 3};
   /** END SOLENOIDS **/
 
   /** BEGIN ANALOG INPUTS **/
@@ -52,17 +53,9 @@ public class Constants {
   public static final int backSensor = 6;
 
   // Note to everyone: Encoders used on a TalonSRX are done differently
-  // Drive Encoders
-  public static final int[] driveEncoderPortLeft = { 0, 1 };
-  public static final int[] driveEncoderPortRight = { 2, 3 };
+  
   public static double ticksOfEncoder = 4096;
   
-  //Fourbar Encoders
-  public static final int[] leftBarEncoderPort = {10, 11};
-  public static final int[] rightBarEncoderPort = {12, 13};
-  
-  // Elevator Encoder
-  public static final int XElevatorEncoderPort = 0;
 
   /** END DIGITAL INPUTS**/
 
@@ -73,8 +66,6 @@ public class Constants {
   public static double[] rightEncoderPIDValues = {0.32,0,0.2,0};
   public static double[] leftEncoderPIDValues = {0.32,0,0.2,0};
 
-  //FourBar PID
-  public static final double[] fourBarPIDValues = {0.1, 0, 0, 0};
 
   //Elevator PID
   public static final double[] elevatorEncoderPIDValues = {0, 0, 0, 0};
@@ -83,7 +74,7 @@ public class Constants {
 
   // Elevator Max & Min
   public static final double elevatorVerticalMax = 0; 
-  public static final double elevatorVerticalMin = -188800;
+  public static final double elevatorVerticalMin = -170000;
 
   // Elevator Voltage
   public static final double elevatorHorizontalNone = 0;
@@ -110,18 +101,12 @@ public class Constants {
   public static final double setBallLvlTwoPoint = (36*((4096/360)*(149.43))); //61,206 ticks
 
   //Wrist stuff
-  public static final int[] leftWristEncoderPort = {6, 7};
-  public static final int[] rightWristEncoderPort = {8, 9};
-  public static int wristDownSetPoint = -34780;//0 ticks
+  public static int wristDownSetPoint = -36000;//0 ticks
   public static int wristMidSetPoint = (28*((4096/360)*(45))); //14,336 ticks
-  public static int wristUpSetPoint = -8400; 
+  public static int wristUpSetPoint = -5700; 
   public static final double defaultWristPosition = 0;
   public static final double[] wristPIDValues = {.25, 0, 0, 0};
-  public static final double wristShootSetPoint = -12790;
-
-  //Counter Weight Stuff
-  public static final int counterWeightMotorPort = 5;
-  public static boolean counterWeightAutomaticTriggerable = false;
+  public static final double wristShootSetPoint = -12000;
 
   public static final double defaultElevatorPosition = 0;
   // FIGURE OUT WHAT VALUE IS SUPPOSED TO BE

@@ -8,10 +8,12 @@ public class DriveStraight extends CommandBase {
 
   protected void initialize() {
     SmartDashboard.putString("DB/Sring 9", "Running DriveStraight");
+    drive.resetGyro();
+    drive.setGyroSetpoint(0);
   }
 
   protected void execute() {
-    drive.setBoth(oi.getrightYAxis(), oi.getrightYAxis());
+    drive.setBoth(oi.getrightYAxis(), oi.getrightYAxis() - drive.getGyroPIDOutput());
   }
 
   protected boolean isFinished() {
@@ -19,7 +21,6 @@ public class DriveStraight extends CommandBase {
   }
 
   protected void end() {
-    drive.setBoth(0, 0);
     SmartDashboard.putString("DB/Sring 9", "Running DriveStraight");
   }
 

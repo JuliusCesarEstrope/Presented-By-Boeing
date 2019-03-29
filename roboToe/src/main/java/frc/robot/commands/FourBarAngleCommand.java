@@ -5,7 +5,7 @@ public class FourBarAngleCommand extends CommandBase {
   double wristSetPoint;
 
   public FourBarAngleCommand() {
-    requires(fourBar);
+    //requires(fourBar);
     // Use requires() here to declare subsystem dependencies
 
   }
@@ -16,7 +16,6 @@ public class FourBarAngleCommand extends CommandBase {
 
   @Override
   protected void execute() {
-    fourBar.setBothFourBarMotor(oi.getFourBarAxis() * 0.7);
 
   }
 

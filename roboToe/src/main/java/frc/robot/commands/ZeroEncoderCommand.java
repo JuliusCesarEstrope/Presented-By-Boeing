@@ -9,8 +9,8 @@ public class ZeroEncoderCommand extends CommandBase {
     RobotLog.putMessage("Zeroing Encoder Positions");
     drive.resetEncoder();
     wrist.ResetEncoder();
-    fourBar.resetEncoders();
     elevatorVertical.resetElevatorEncoder();
+    elevatorHorizontal.resetEncoders();
   }
 
   protected void execute() {    
@@ -24,6 +24,6 @@ public class ZeroEncoderCommand extends CommandBase {
   }
 
   protected void interrupted() {
-    roller.setRollerMotor(0);
+    
   }
 }

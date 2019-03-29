@@ -13,7 +13,10 @@ public class WristAngleCommand extends CommandBase {
   }
 
   protected void execute() {
-    if(oi.getWristAxis() > 0.1 || oi.getWristAxis() < -0.1){
+    if((oi.getWristAxis() > 0.1 || oi.getWristAxis() < -0.1) && oi.getWristTurboButton()){
+      wrist.setLeftWristMotor(oi.getWristAxis());
+      wristSetPoint = wrist.getLeftWristEncoder();
+    } else if(oi.getWristAxis() > 0.1 || oi.getWristAxis() < -0.1){
       wrist.setLeftWristMotor(oi.getWristAxis() * 0.4);
       wristSetPoint = wrist.getLeftWristEncoder();
     } else {
