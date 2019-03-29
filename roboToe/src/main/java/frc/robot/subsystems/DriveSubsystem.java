@@ -52,21 +52,21 @@ public class DriveSubsystem extends Subsystem {
       talonLeft.configPeakOutputForward(1);
       talonLeft.configPeakOutputReverse(-1);
       talonLeft.configClosedloopRamp(ramp);
-      // talonLeft.config_kP(0, drivePIDValues[0]);
-      // talonLeft.config_kI(0, drivePIDValues[1]);
-      // talonLeft.config_kD(0, drivePIDValues[2]);
-      // talonLeft.config_kF(0, drivePIDValues[3]);
-      // talonLeft.setSensorPhase(true);
-      // talonLeft.setInverted(false);
+       talonLeft.config_kP(0, drivePIDValues[0]);
+       talonLeft.config_kI(0, drivePIDValues[1]);
+       talonLeft.config_kD(0, drivePIDValues[2]);
+       talonLeft.config_kF(0, drivePIDValues[3]);
+       talonLeft.setSensorPhase(true);
+       talonLeft.setInverted(false);
 
       talonRight.configPeakOutputForward(1);
       talonRight.configPeakOutputReverse(-1);
       talonRight.configClosedloopRamp(ramp);
-      // talonRight.config_kP(0, drivePIDValues[0]);
-      // talonRight.config_kI(0, drivePIDValues[1]);
-      // talonRight.config_kD(0, drivePIDValues[2]);
-      // talonRight.config_kF(0, drivePIDValues[3]);
-      // talonRight.setSensorPhase(true);
+       talonRight.config_kP(0, drivePIDValues[0]);
+       talonRight.config_kI(0, drivePIDValues[1]);
+       talonRight.config_kD(0, drivePIDValues[2]);
+       talonRight.config_kF(0, drivePIDValues[3]);
+       talonRight.setSensorPhase(true);
       talonRight.setInverted(true);
 
       talonLeft.setNeutralMode(NeutralMode.Brake);
