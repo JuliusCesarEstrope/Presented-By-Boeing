@@ -5,7 +5,6 @@ import frc.robot.Constants;
 import frc.robot.utilities.RobotLog;
 
 public class ElevatorVerticalCommand extends CommandBase {
-  double elevatorVerticalSetpoint;
   double elevatorDistance;
 
   public ElevatorVerticalCommand(double elevatorDistance) {
@@ -21,7 +20,6 @@ public class ElevatorVerticalCommand extends CommandBase {
 
   protected void execute() {
     elevatorVertical.setYElevatorMotorPosition(elevatorDistance + Constants.defaultElevatorPosition);
-    elevatorVertical.setYElevatorMotorPosition(elevatorVerticalSetpoint);
     SmartDashboard.putNumber("Position of the elevator:", elevatorVertical.getVerticalElevatorEncoder());
     SmartDashboard.putNumber("Elevator current:", elevatorVertical.getElevatorMotorsCurrent());
     SmartDashboard.putBoolean("Emergency Stop Button Pressed:", oi.getElevatorEmergencyStopButton());

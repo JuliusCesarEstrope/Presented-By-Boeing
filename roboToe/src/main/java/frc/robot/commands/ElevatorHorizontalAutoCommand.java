@@ -6,7 +6,6 @@ import frc.robot.Constants;
 import frc.robot.utilities.RobotLog;
 
 public class ElevatorHorizontalAutoCommand extends CommandBase {
-  Potentiometer potentiometer;
 
   public ElevatorHorizontalAutoCommand() {
     requires(elevatorHorizontal);

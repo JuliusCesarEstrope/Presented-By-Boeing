@@ -140,7 +140,7 @@ public class OI {
     wristDownButton.whileHeld(new WristCommand(Constants.wristDownSetPoint));
     ballShoot.whileActive(new WristCommand(Constants.wristShootSetPoint));
     driveStraightButton.whileHeld(new DriveStraight());
-    elevatorAssistButton.toggleWhenActive(new );
+    //elevatorAssistButton.toggleWhenActive(new );
     //visionAlignButton.whenPressed(new VisionAlignCommandGroup());
 
     // fourBarTestButton.whenPressed(new
