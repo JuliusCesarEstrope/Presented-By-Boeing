@@ -42,6 +42,7 @@ public class OI {
   JoystickButton manualElevatorButton;
   Trigger elevatorAutoClimb;
   Trigger elevatorAssistButton;
+  JoystickButton elevatorTest;
 
   // Fourbar and Wrist button positions
   Trigger jogRollerHatchUp;
@@ -85,6 +86,7 @@ public class OI {
     elevatorButton = new JoystickButton(gamePad, 10);
     elevatorEmergencyStopButton = new JoystickButton(leftJoyStick, 11);
     manualElevatorButton = new JoystickButton(gamePad, 12);
+    //elevatorTest = new JoystickButton(gamePad, )
 
     // Test Buttons
     fourBarTestButton = new JoystickButton(rightJoyStick, 8);
@@ -142,7 +144,7 @@ public class OI {
       }
     };
 
-    elevatorAutoClimb.whenActive(new ElevatorCommandGroup());
+    //elevatorAutoClimb.whenActive(new ElevatorCommandGroup());
     manualOverrideButton.whileHeld(new ManualCommand());
     zeroEncoderTrigger.whenActive(new ZeroEncoderCommand());
     manualElevatorButton.toggleWhenPressed(new ElevatorWristCommandGroup());

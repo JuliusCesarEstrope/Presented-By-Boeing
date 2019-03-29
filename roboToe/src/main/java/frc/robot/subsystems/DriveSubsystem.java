@@ -48,7 +48,7 @@ public class DriveSubsystem extends Subsystem {
       talonRight.configFactoryDefault();
       talonLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
       talonRight.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
-
+                 
       talonLeft.configPeakOutputForward(1);
       talonLeft.configPeakOutputReverse(-1);
       talonLeft.configClosedloopRamp(ramp);
@@ -66,7 +66,7 @@ public class DriveSubsystem extends Subsystem {
       talonRight.config_kI(0, rightPIDValues[1]);
       talonRight.config_kD(0, rightPIDValues[2]);
       talonRight.config_kF(0, rightPIDValues[3]);
-      talonRight.setSensorPhase(false);
+      talonRight.setSensorPhase(true);
       talonRight.setInverted(true);
 
       talonLeft.setNeutralMode(NeutralMode.Brake);

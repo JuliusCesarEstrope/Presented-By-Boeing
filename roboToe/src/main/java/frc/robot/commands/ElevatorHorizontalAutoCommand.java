@@ -18,6 +18,7 @@ public class ElevatorHorizontalAutoCommand extends CommandBase {
 
   protected void initialize() {
     RobotLog.putMessage("Running ElevatorHorizontalAutoCommand");
+    SmartDashboard.putString("DB/String 1", "Running Elevator Horizontal Command");
     drive.setBoth(0, 0);
     timer.start();
   }
@@ -47,12 +48,14 @@ public class ElevatorHorizontalAutoCommand extends CommandBase {
   }
 
   protected void end() {
+    SmartDashboard.putString("DB/String 1", "Ending Elevator Horizontal Command");
     drive.setBoth(0, 0);
     elevatorHorizontal.setXElevatorMotor(0);
 
   }
 
   protected void interrupted() {
+    SmartDashboard.putString("DB/String 1", "Interrupted Elevator Horizontal Command");
     elevatorHorizontal.setXElevatorMotor(0);
   }
 }
