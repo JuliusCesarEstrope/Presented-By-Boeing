@@ -33,7 +33,7 @@ public class RollerCommand extends CommandBase {
       jogRollerHatchDown = true;
       timer.start();
       buttonReleased = false;
-    } else if(!oi.getJogRollerHatchUp() && !oi.getJogRollerHatchDown()) {
+    } else if(!oi.getJogRollerHatchUp() && !oi.getJogRollerHatchDown() && ! oi.getBallShootButton()) {
       buttonReleased = true;
     }
 
@@ -41,8 +41,6 @@ public class RollerCommand extends CommandBase {
       shootRollerBall = true;
       ballTimer.start();
       buttonReleased = false;
-    } else if(!oi.getBallShootButton()) {
-      buttonReleased = true;
     }
 
     if(timer.hasPeriodPassed(time)) {

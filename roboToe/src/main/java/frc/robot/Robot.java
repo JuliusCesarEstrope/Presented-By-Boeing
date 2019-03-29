@@ -130,6 +130,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }*/
 
+    SmartDashboard.putString("DB/String 0", "" + CommandBase.elevatorHorizontal.getXElevatorEncoder());
     SmartDashboard.putString("DB/String 2", "" + CommandBase.wrist.getLeftWristEncoder());
     SmartDashboard.putString("DB/String 3", "" + CommandBase.elevatorVertical.getVerticalElevatorEncoder());
     SmartDashboard.putString("DB/String 5", "" + CommandBase.elevatorHorizontal.getlimitSwitch());

@@ -34,7 +34,7 @@ public abstract class CommandBase extends Command {
     drive = new DriveSubsystem(Constants.motorPortsLeft, Constants.motorPortsRight,
       Constants.gyroPort, Constants.frontSensor, Constants.rightSensor, Constants.backSensor,
       Constants.leftSensor, Constants.circumferenceOfWheels, Constants.ticksOfEncoder,
-      Constants.driveRotationPIDValues);
+      Constants.leftEncoderPIDValues, Constants.rightEncoderPIDValues, Constants.driveRotationPIDValues);
     //fourBar = new FourBarSubsystem(Constants.leftFourBarMotorPort, Constants.rightFourBarMotorPort,
       //  Constants.rightBarEncoderPort, Constants.leftBarEncoderPort, Constants.gyroPort, Constants.fourBarPIDValues);
     roller = new RollerSubsystem(Constants.rollerMotor);

@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import frc.robot.commands.DriveStraight;
+import frc.robot.commands.DynamicBrakingCommand;
 import frc.robot.commands.ElevatorAssistCommand;
 import frc.robot.commands.ElevatorCommandGroup;
 import frc.robot.commands.ElevatorWristCommandGroup;
@@ -33,6 +34,7 @@ public class OI {
 
   //Drive Straight Button
   JoystickButton driveStraightButton;
+  JoystickButton dynamicBraking;
 
   // Elevator Buttons
   JoystickButton elevatorButton;
@@ -49,6 +51,8 @@ public class OI {
   JoystickButton wristStartButton;
   JoystickButton wristDownButton;
   Trigger ballShoot;
+
+  JoystickButton wristTurboButton;
 
   // Miss Elaineous
   JoystickButton manualOverrideButton;
@@ -89,6 +93,7 @@ public class OI {
     //Vision ALign Button
     visionAlignButton = new JoystickButton(leftJoyStick, 2);
 
+    dynamicBraking = new JoystickButton(leftJoyStick, 1);
     driveStraightButton = new JoystickButton(rightJoyStick, 1);
 
     // Fourbar and Wrist + Elevator button positions
@@ -98,6 +103,7 @@ public class OI {
     wristDownButton = new JoystickButton(gamePad, 2);
     wristUpButton = new JoystickButton(gamePad, 3);
     wristStartButton = new JoystickButton(gamePad, 4);
+    wristTurboButton = new JoystickButton(gamePad, 11);
 
     zeroEncoderTrigger = new Trigger() {
       public boolean get() {
@@ -126,7 +132,7 @@ public class OI {
 
     elevatorAutoClimb = new Trigger() {
       public boolean get() {
-        return (rightJoyStick.getRawButton(7) && gamePad.getRawButton(7));
+        return (rightJoyStick.getRawButton(7) && gamePad.getRawButton(9));
       }
     };
 
@@ -146,6 +152,7 @@ public class OI {
     ballShoot.whileActive(new WristCommand(Constants.wristShootSetPoint));
     driveStraightButton.whileHeld(new DriveStraight());
     elevatorAssistButton.toggleWhenActive(new ElevatorAssistCommand());
+    dynamicBraking.whileHeld(new DynamicBrakingCommand());
     //visionAlignButton.whenPressed(new VisionAlignCommandGroup());
 
   }
@@ -197,6 +204,9 @@ public class OI {
     return (Math.abs(gamePad.getRawAxis(0)) > 0.25) ? -gamePad.getRawAxis(0) : 0;
   }
 
+  public boolean getWristTurboButton(){
+    return wristTurboButton.get();
+  }
 
   public boolean getRightTrigger() {
     return alignButton.get();

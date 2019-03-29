@@ -103,7 +103,7 @@ public class Constants {
   //Wrist stuff
   public static int wristDownSetPoint = -36000;//0 ticks
   public static int wristMidSetPoint = (28*((4096/360)*(45))); //14,336 ticks
-  public static int wristUpSetPoint = -2100; 
+  public static int wristUpSetPoint = -5700; 
   public static final double defaultWristPosition = 0;
   public static final double[] wristPIDValues = {.25, 0, 0, 0};
   public static final double wristShootSetPoint = -12000;
