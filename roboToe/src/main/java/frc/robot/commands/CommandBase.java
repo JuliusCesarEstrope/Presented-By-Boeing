@@ -26,10 +26,12 @@ public abstract class CommandBase extends Command {
   public static ElevatorHorizontalSubsystem elevatorHorizontal;
   public static double turnAngle;
   public static ElevatorAssistSubsystem elevatorAssist;
+  public static double elevatorHoldPosition;
 
   public static void init() {
     RobotLog.init();
     RobotLog.putMessage("Running CommandBase");
+    elevatorHoldPosition = Constants.defaultElevatorPosition;
     led = new LEDLightSubsystem();
     drive = new DriveSubsystem(Constants.motorPortsLeft, Constants.motorPortsRight,
       Constants.gyroPort, Constants.frontSensor, Constants.rightSensor, Constants.backSensor,

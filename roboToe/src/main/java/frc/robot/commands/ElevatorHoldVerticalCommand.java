@@ -4,12 +4,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.utilities.RobotLog;
 
-public class ElevatorVerticalCommand extends CommandBase {
+public class ElevatorHoldVerticalCommand extends CommandBase {
   double elevatorDistance;
 
-  public ElevatorVerticalCommand(double elevatorDistance) {
+  public ElevatorHoldVerticalCommand() {
     requires(elevatorVertical);
-    this.elevatorDistance = elevatorDistance;
+    this.elevatorDistance = elevatorHoldPosition;
   }
 
   protected void initialize() {
@@ -29,17 +29,17 @@ public class ElevatorVerticalCommand extends CommandBase {
   }
 
   protected boolean isFinished() {
-    led.setLEDLightColor(0.77); // green
-    return (elevatorVertical.checkOnTargetSetpoint() || oi.getElevatorEmergencyStopButton());
+    return false;
   }
 
   protected void end() {
     SmartDashboard.putString("DB/String 1", "Running Elevator Command");
-    elevatorHoldPosition = elevatorDistance;
+    elevatorVertical.setYElevatorMotor(0);
   }
 
   protected void interrupted() {
     SmartDashboard.putString("DB/String 1", "Running Elevator Command");
+    elevatorVertical.setYElevatorMotor(0);
     // elevatorButton.whenPressed(new ElevatorCommandGroup());
   }
 }

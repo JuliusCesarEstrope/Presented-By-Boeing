@@ -7,12 +7,13 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
+import frc.robot.commands.ElevatorHoldVerticalCommand;
 import frc.robot.utilities.RobotLog;
 
 public class ElevatorVerticalSubsystem extends Subsystem {
   static TalonSRX verticalYElevatorMotor;
 
-  static int tolerance = 5;
+  static int tolerance = 1000;
 
   public ElevatorVerticalSubsystem(int verticalYElevatorMotorPort, double[] YElevatorEncoderPIDValues){
     if (Constants.elevatorVerticalEnabled){
@@ -87,7 +88,7 @@ public class ElevatorVerticalSubsystem extends Subsystem {
 
   public void initDefaultCommand() {
     if (Constants.elevatorVerticalEnabled){
-    //setDefaultCommand(new ElevatorSetpointCommand(Constants.defaultElevatorPosition));
+    setDefaultCommand(new ElevatorHoldVerticalCommand());
     }
   }
 
