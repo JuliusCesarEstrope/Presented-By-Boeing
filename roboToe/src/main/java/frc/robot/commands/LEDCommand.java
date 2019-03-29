@@ -9,7 +9,6 @@ public class LEDCommand extends CommandBase {
   Timer blinkTimer;
   public LEDCommand(Timer matchTimer) {
     requires(led);
-    this.matchTimer = new Timer();
     this.matchTimer = matchTimer;
     blinkTimer = new Timer();
   }
@@ -40,7 +39,7 @@ public class LEDCommand extends CommandBase {
         blinkTimer.reset();
       }
       
-    } else if(matchTimer.get() >= 105 && matchTimer.get() <=110) {
+    } else if(matchTimer.get() >= 120 && matchTimer.get() <=125) {
       if(turnBlue) {
         led.setLEDLightColor(0.87);
       } else if(otherColor) {

@@ -88,7 +88,7 @@ public class ElevatorVerticalSubsystem extends Subsystem {
 
   public void initDefaultCommand() {
     if (Constants.elevatorVerticalEnabled){
-    setDefaultCommand(new ElevatorHoldVerticalCommand());
+    //setDefaultCommand(new ElevatorHoldVerticalCommand());
     }
   }
 

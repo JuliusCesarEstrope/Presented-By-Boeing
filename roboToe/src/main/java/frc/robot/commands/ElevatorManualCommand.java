@@ -31,14 +31,18 @@ public class ElevatorManualCommand extends CommandBase {
       }
     }
 
-    if (((oi.getElevatorVerticalAxis()) < 0) && (elevatorVertical.getVerticalElevatorEncoder() <= Constants.elevatorVerticalMax)
-    || (((oi.getElevatorVerticalAxis()) > 0) && (elevatorVertical.getVerticalElevatorEncoder() >= Constants.elevatorVerticalMin))) {
-      elevatorVertical.setYElevatorMotor(0);
-} else {
-    if(elevatorHorizontal.getlimitSwitch() && oi.getElevatorHorizontalAxis() < 0)
-      elevatorHorizontal.setXElevatorMotor(0);
-    else
+    if(oi.getElevatorOverride()){
       elevatorHorizontal.setXElevatorMotor(oi.getElevatorHorizontalAxis());
+      elevatorVertical.setYElevatorMotor(oi.getElevatorVerticalAxis());
+    }
+    else if (((oi.getElevatorVerticalAxis()) < 0) && (elevatorVertical.getVerticalElevatorEncoder() <= Constants.elevatorVerticalMax)
+      || (((oi.getElevatorVerticalAxis()) > 0) && (elevatorVertical.getVerticalElevatorEncoder() >= Constants.elevatorVerticalMin))) {
+      elevatorVertical.setYElevatorMotor(0);
+    }else {
+      if(elevatorHorizontal.getlimitSwitch() && oi.getElevatorHorizontalAxis() < 0)
+        elevatorHorizontal.setXElevatorMotor(0);
+      else
+        elevatorHorizontal.setXElevatorMotor(oi.getElevatorHorizontalAxis());
     elevatorVertical.setYElevatorMotor(oi.getElevatorVerticalAxis());
     }
   }

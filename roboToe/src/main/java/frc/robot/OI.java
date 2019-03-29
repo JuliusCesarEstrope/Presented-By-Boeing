@@ -37,7 +37,7 @@ public class OI {
   JoystickButton dynamicBraking;
 
   // Elevator Buttons
-  JoystickButton elevatorButton;
+  Trigger elevatorOverrideButton;
   JoystickButton elevatorEmergencyStopButton;
   JoystickButton manualElevatorButton;
   Trigger elevatorAutoClimb;
@@ -112,6 +112,12 @@ public class OI {
       }
     };
 
+    elevatorOverrideButton = new Trigger() {
+      public boolean get() {
+        return (leftJoyStick.getRawButton(8) && leftJoyStick.getRawButton(9));
+      }
+    };
+
     ballShoot = new Trigger() {
 
       public boolean get() {
@@ -161,6 +167,10 @@ public class OI {
 
   public boolean getBallShootButton() {
     return ballShootButton.get();
+  }
+
+  public boolean getElevatorOverride(){
+    return elevatorOverrideButton.get();
   }
 
   public double getleftYAxis() {

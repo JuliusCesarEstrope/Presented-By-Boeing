@@ -8,13 +8,13 @@ public class LEDLightSubsystem extends Subsystem {
   static Spark LEDLight;
 
   public LEDLightSubsystem() {
-    if (Constants.wristEnabled){
+    if (Constants.LEDLightEnabled){
     LEDLight = new Spark(0);
     }
   }
 
   public void setLEDLightColor(double Speed) {
-    if (Constants.wristEnabled){
+    if (Constants.LEDLightEnabled){
     LEDLight.set(Speed);
     }
   }
@@ -23,10 +23,9 @@ public class LEDLightSubsystem extends Subsystem {
 
 
 
-  // Blue nothing align(default), Green isfully aligned, red not aligned, yellow is close to align but not yet
 
   public void initDefaultCommand() {
-    if (Constants.wristEnabled){
+    if (Constants.LEDLightEnabled){
     }
   }
 
