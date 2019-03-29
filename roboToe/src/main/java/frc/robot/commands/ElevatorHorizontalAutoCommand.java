@@ -22,17 +22,17 @@ public class ElevatorHorizontalAutoCommand extends CommandBase {
   protected void execute() {
    elevatorHorizontal.setXElevatorMotor(.4);
 
-  if (Constants.elevatorHorizontalNone == elevatorHorizontal.getXElevatorEncoder()) {
+  if (elevatorHorizontal.getXElevatorEncoder() < Constants.elevatorHorizontalFast) {
     elevatorHorizontal.setXElevatorMotor(.6);
 
-  } else if (Constants.elevatorHorizontalFast == elevatorHorizontal.getXElevatorEncoder()) {
+  } else if (elevatorHorizontal.getXElevatorEncoder() >= Constants.elevatorHorizontalFast && elevatorHorizontal.getXElevatorEncoder() < Constants.elevatorHorizontalSlow) {
     elevatorHorizontal.setXElevatorMotor(.4);
 
-  } else if (Constants.elevatorHorizontalSlow == elevatorHorizontal.getXElevatorEncoder()) {
+  } else if (elevatorHorizontal.getXElevatorEncoder() >= Constants.elevatorHorizontalSlow && elevatorHorizontal.getXElevatorEncoder() < Constants.elevatorHorizontalStop) {
     elevatorHorizontal.setXElevatorMotor(.2);
     drive.setBoth(.4, .4);
 
-  } else if (Constants.elevatorHorizontalStop == elevatorHorizontal.getXElevatorEncoder()) {
+  } else if (elevatorHorizontal.getXElevatorEncoder() >= Constants.elevatorHorizontalStop) {
     elevatorHorizontal.setXElevatorMotor(0);
 
    } SmartDashboard.putBoolean("X Elevator Sensor:", elevatorHorizontal.getlimitSwitch());

@@ -8,14 +8,14 @@ public class ManualCommand extends CommandBase {
 
   public ManualCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(fourBar);
+    
     requires(wrist);
   }
 
   protected void initialize() {
     RobotLog.putMessage("Running ManualCommand");
     // send pid to correct motors
-    fourBar.setBothFourBarMotor(0, 0);
+    
     wrist.setBothWristMotor(0, 0);
   }
 

@@ -5,21 +5,21 @@ import frc.robot.Constants;
 import frc.robot.OI;
 import frc.robot.subsystems.BooperSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.ElevatorAssistSubsystem;
 import frc.robot.subsystems.ElevatorHorizontalSubsystem;
 import frc.robot.subsystems.ElevatorVerticalSubsystem;
-import frc.robot.subsystems.FourBarSubsystem;
 import frc.robot.subsystems.LEDLightSubsystem;
 import frc.robot.subsystems.RollerSubsystem;
 import frc.robot.subsystems.WristSubsystem;
 import frc.robot.utilities.RobotLog;
-import frc.robot.subsystems.ElevatorAssistSubsystem;
+
 public abstract class CommandBase extends Command {
 
   public static OI oi;
   public static LEDLightSubsystem led;
   public static DriveSubsystem drive;
   public static WristSubsystem wrist;
-  public static FourBarSubsystem fourBar;
+  //public static FourBarSubsystem fourBar;
   public static BooperSubsystem booper;
   public static RollerSubsystem roller;
   public static ElevatorVerticalSubsystem elevatorVertical;
@@ -35,8 +35,8 @@ public abstract class CommandBase extends Command {
       Constants.gyroPort, Constants.frontSensor, Constants.rightSensor, Constants.backSensor,
       Constants.leftSensor, Constants.circumferenceOfWheels, Constants.ticksOfEncoder,
       Constants.driveRotationPIDValues);
-    fourBar = new FourBarSubsystem(Constants.leftFourBarMotorPort, Constants.rightFourBarMotorPort,
-        Constants.rightBarEncoderPort, Constants.leftBarEncoderPort, Constants.gyroPort, Constants.fourBarPIDValues);
+    //fourBar = new FourBarSubsystem(Constants.leftFourBarMotorPort, Constants.rightFourBarMotorPort,
+      //  Constants.rightBarEncoderPort, Constants.leftBarEncoderPort, Constants.gyroPort, Constants.fourBarPIDValues);
     roller = new RollerSubsystem(Constants.rollerMotor);
     booper = new BooperSubsystem(Constants.booperPorts);
     wrist = new WristSubsystem(Constants.leftWristMotorPort, Constants.rightWristMotorPort, Constants.wristPIDValues);

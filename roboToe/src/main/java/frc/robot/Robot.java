@@ -13,10 +13,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.autonomi.AutonInput;
 import frc.robot.commands.CommandBase;
-//import frc.robot.commands.LEDCommand;
-import frc.robot.utilities.RobotLog;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -133,7 +130,6 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }*/
 
-    SmartDashboard.putString("DB/String 1", "" + CommandBase.fourBar.getRightBarEncoder());
     SmartDashboard.putString("DB/String 2", "" + CommandBase.wrist.getLeftWristEncoder());
     SmartDashboard.putString("DB/String 3", "" + CommandBase.elevatorVertical.getVerticalElevatorEncoder());
     SmartDashboard.putString("DB/String 5", "" + CommandBase.elevatorHorizontal.getlimitSwitch());
