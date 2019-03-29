@@ -3,8 +3,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
-import frc.robot.commands.CommandBase;
 import frc.robot.commands.DriveStraight;
+import frc.robot.commands.ElevatorAssistCommand;
 import frc.robot.commands.ElevatorCommandGroup;
 import frc.robot.commands.ElevatorWristCommandGroup;
 import frc.robot.commands.ManualCommand;
@@ -98,6 +98,8 @@ public class OI {
     //Vision ALign Button
     visionAlignButton = new JoystickButton(leftJoyStick, 2);
 
+    driveStraightButton = new JoystickButton(rightJoyStick, 1);
+
     // Fourbar and Wrist + Elevator button positions
     // fourBarAngleButton = new JoystickButton(gamePad, 22); //22 = temporary
     // number, MUST CHANGE!!
@@ -140,7 +142,7 @@ public class OI {
     wristDownButton.whileHeld(new WristCommand(Constants.wristDownSetPoint));
     ballShoot.whileActive(new WristCommand(Constants.wristShootSetPoint));
     driveStraightButton.whileHeld(new DriveStraight());
-    elevatorAssistButton.toggleWhenActive(new );
+    elevatorAssistButton.toggleWhenActive(new ElevatorAssistCommand());
     //visionAlignButton.whenPressed(new VisionAlignCommandGroup());
 
     // fourBarTestButton.whenPressed(new

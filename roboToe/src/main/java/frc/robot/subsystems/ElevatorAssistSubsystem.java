@@ -1,9 +1,10 @@
 package frc.robot.subsystems;
 
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
-import frc.robot.commands.BooperCommand;
+import frc.robot.commands.ElevatorAssistInCommand;
 import frc.robot.utilities.RobotLog;
 
 public class ElevatorAssistSubsystem extends Subsystem {
@@ -29,5 +30,6 @@ public class ElevatorAssistSubsystem extends Subsystem {
   }
  
   public void initDefaultCommand() {
+    setDefaultCommand(new ElevatorAssistInCommand());
   }
 }

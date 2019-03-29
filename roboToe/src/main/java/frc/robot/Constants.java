@@ -32,6 +32,7 @@ public class Constants {
 
   /** BEGIN SOLENOIDS **/
   public static final int[] booperPorts = { 0, 1 };
+  public static final int[] elevatorAssistPorts = {2, 3};
   /** END SOLENOIDS **/
 
   /** BEGIN ANALOG INPUTS **/
@@ -83,7 +84,7 @@ public class Constants {
 
   // Elevator Max & Min
   public static final double elevatorVerticalMax = 0; 
-  public static final double elevatorVerticalMin = -188800;
+  public static final double elevatorVerticalMin = -170000;
 
   // Elevator Voltage
   public static final double elevatorHorizontalNone = 0;
@@ -112,16 +113,12 @@ public class Constants {
   //Wrist stuff
   public static final int[] leftWristEncoderPort = {6, 7};
   public static final int[] rightWristEncoderPort = {8, 9};
-  public static int wristDownSetPoint = -34780;//0 ticks
+  public static int wristDownSetPoint = -36000;//0 ticks
   public static int wristMidSetPoint = (28*((4096/360)*(45))); //14,336 ticks
-  public static int wristUpSetPoint = -8400; 
+  public static int wristUpSetPoint = -2100; 
   public static final double defaultWristPosition = 0;
   public static final double[] wristPIDValues = {.25, 0, 0, 0};
-  public static final double wristShootSetPoint = -12790;
-
-  //Counter Weight Stuff
-  public static final int counterWeightMotorPort = 5;
-  public static boolean counterWeightAutomaticTriggerable = false;
+  public static final double wristShootSetPoint = -12000;
 
   public static final double defaultElevatorPosition = 0;
   // FIGURE OUT WHAT VALUE IS SUPPOSED TO BE

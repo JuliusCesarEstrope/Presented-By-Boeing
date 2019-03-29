@@ -13,7 +13,6 @@ import frc.robot.subsystems.RollerSubsystem;
 import frc.robot.subsystems.WristSubsystem;
 import frc.robot.utilities.RobotLog;
 import frc.robot.subsystems.ElevatorAssistSubsystem;
-
 public abstract class CommandBase extends Command {
 
   public static OI oi;
@@ -43,8 +42,9 @@ public abstract class CommandBase extends Command {
     wrist = new WristSubsystem(Constants.leftWristMotorPort, Constants.rightWristMotorPort, Constants.wristPIDValues);
     elevatorVertical = new ElevatorVerticalSubsystem(Constants.verticalElevatorMotor, Constants.elevatorEncoderPIDValues);
     elevatorHorizontal = new ElevatorHorizontalSubsystem(Constants.XElevatorMotorPort, Constants.defaultElevatorPosition, Constants.XElevatorEncoderPIDValues);
-    oi = new OI();
     elevatorAssist = new ElevatorAssistSubsystem(Constants.elevatorAssistPorts);
+    oi = new OI();
+    
     //led.setLEDLightColor(.87); // Blue
     wrist.ResetEncoder();
     elevatorVertical.resetElevatorEncoder();

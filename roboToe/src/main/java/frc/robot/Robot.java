@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.autonomi.AutonInput;
 import frc.robot.commands.CommandBase;
-import frc.robot.commands.LEDCommand;
+//import frc.robot.commands.LEDCommand;
 import frc.robot.utilities.RobotLog;
 
 /**
@@ -29,7 +29,7 @@ public class Robot extends TimedRobot {
 
   Command m_autonomousCommand;
   Timer matchTimer = new Timer();
-  Command LEDCommand = new LEDCommand(matchTimer);
+  //Command LEDCommand = new LEDCommand(matchTimer);
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   CommandBase commandBase;
 
@@ -120,7 +120,7 @@ public class Robot extends TimedRobot {
     }
     matchTimer.start();
 
-    LEDCommand.start();
+    //LEDCommand.start();
   }
 
   /**
