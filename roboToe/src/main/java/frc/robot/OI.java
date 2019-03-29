@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 import frc.robot.commands.DriveStraight;
 import frc.robot.commands.DynamicBrakingCommand;
 import frc.robot.commands.ElevatorAssistCommand;
-import frc.robot.commands.ElevatorCommandGroup;
+import frc.robot.commands.ElevatorAutoTest;
 import frc.robot.commands.ElevatorWristCommandGroup;
 import frc.robot.commands.ManualCommand;
 import frc.robot.commands.WristCommand;
@@ -83,10 +83,9 @@ public class OI {
     booperButton = new JoystickButton(gamePad, 8);
 
     // Elevator Buttons
-    elevatorButton = new JoystickButton(gamePad, 10);
     elevatorEmergencyStopButton = new JoystickButton(leftJoyStick, 11);
     manualElevatorButton = new JoystickButton(gamePad, 12);
-    //elevatorTest = new JoystickButton(gamePad, )
+    elevatorTest = new JoystickButton(gamePad, 10);
 
     // Test Buttons
     fourBarTestButton = new JoystickButton(rightJoyStick, 8);
@@ -145,6 +144,7 @@ public class OI {
     };
 
     //elevatorAutoClimb.whenActive(new ElevatorCommandGroup());
+    //elevatorTest.toggleWhenPressed(new ElevatorAutoTest());
     manualOverrideButton.whileHeld(new ManualCommand());
     zeroEncoderTrigger.whenActive(new ZeroEncoderCommand());
     manualElevatorButton.toggleWhenPressed(new ElevatorWristCommandGroup());

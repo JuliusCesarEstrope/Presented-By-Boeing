@@ -74,7 +74,7 @@ public class Constants {
 
   // Elevator Max & Min
   public static final double elevatorVerticalMax = 0; 
-  public static final double elevatorVerticalMin = -170000;
+  public static final double elevatorVerticalMin = 177500;
 
   // Elevator Voltage
   public static final double elevatorHorizontalNone = 0;

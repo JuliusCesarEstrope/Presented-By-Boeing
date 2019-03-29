@@ -11,5 +11,9 @@ public class ElevatorAutoTest extends CommandGroup {
 
   
     addSequential(new ElevatorVerticalCommand(Constants.elevatorVerticalMin));
+    addSequential(new WaitCommand(0.5));
+    addParallel(new ElevatorHorizontalAutoCommand());
+    addSequential(new Drive4Time(3, -0.6)); 
+    
   }
 }

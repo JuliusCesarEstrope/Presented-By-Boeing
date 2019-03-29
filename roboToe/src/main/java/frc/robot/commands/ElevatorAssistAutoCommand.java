@@ -16,6 +16,7 @@ public class ElevatorAssistAutoCommand extends CommandBase {
   }
 
   protected boolean isFinished() {
+    
     return true;
   }
 

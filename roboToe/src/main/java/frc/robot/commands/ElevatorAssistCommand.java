@@ -10,6 +10,7 @@ public class ElevatorAssistCommand extends CommandBase {
   protected void initialize() {
     RobotLog.putMessage("Running ElevatorAssistCommand");
     elevatorAssist.setBooperForward();
+    
   }
 
   protected void execute() {

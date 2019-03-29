@@ -27,7 +27,7 @@ public class ElevatorVerticalSubsystem extends Subsystem {
     verticalYElevatorMotor.config_kI(0, YElevatorEncoderPIDValues[1]);
     verticalYElevatorMotor.config_kD(0, YElevatorEncoderPIDValues[2]);
     verticalYElevatorMotor.config_kF(0, YElevatorEncoderPIDValues[3]);
-    verticalYElevatorMotor.setSensorPhase(false);
+    verticalYElevatorMotor.setSensorPhase(true);
     // Change above to true to invert sensor readout
 
     RobotLog.putMessage("Running ElevatorVerticalSubsystem");
