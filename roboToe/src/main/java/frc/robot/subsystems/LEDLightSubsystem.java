@@ -33,7 +33,7 @@ public class LEDLightSubsystem extends Subsystem {
         else if (matchTime - 0.5 % 1 < 0.5)
           LEDLight.set(0);
       }else
-        LEDLight.set(color);
+        LEDLight.set(0.61);
     }
   }
 

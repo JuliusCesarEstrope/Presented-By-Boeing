@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.CommandBase;
+import frc.robot.subsystems.LEDLightSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -117,7 +118,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-
+    CommandBase.led.setLEDLightColor(0.87);
     //LEDCommand.start();
   }
 
@@ -135,6 +136,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putString("DB/String 2", "" + CommandBase.wrist.getLeftWristEncoder());
     SmartDashboard.putString("DB/String 3", "" + CommandBase.elevatorVertical.getVerticalElevatorEncoder());
     SmartDashboard.putString("DB/String 5", "" + CommandBase.elevatorHorizontal.getlimitSwitch());
+    SmartDashboard.putString("DB/String 4", "" + CommandBase.ultra.getUltrasonic());
     Scheduler.getInstance().run();
   }
 

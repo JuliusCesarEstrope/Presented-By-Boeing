@@ -10,6 +10,7 @@ import frc.robot.subsystems.ElevatorHorizontalSubsystem;
 import frc.robot.subsystems.ElevatorVerticalSubsystem;
 import frc.robot.subsystems.LEDLightSubsystem;
 import frc.robot.subsystems.RollerSubsystem;
+import frc.robot.subsystems.UltrasonicSubsystem;
 import frc.robot.subsystems.WristSubsystem;
 import frc.robot.utilities.RobotLog;
 
@@ -27,6 +28,7 @@ public abstract class CommandBase extends Command {
   public static double turnAngle;
   public static ElevatorAssistSubsystem elevatorAssist;
   public static double elevatorHoldPosition;
+  public static UltrasonicSubsystem ultra;
 
   public static void init() {
     RobotLog.init();
@@ -45,6 +47,7 @@ public abstract class CommandBase extends Command {
     elevatorVertical = new ElevatorVerticalSubsystem(Constants.verticalElevatorMotor, Constants.elevatorEncoderPIDValues);
     elevatorHorizontal = new ElevatorHorizontalSubsystem(Constants.XElevatorMotorPort, Constants.defaultElevatorPosition, Constants.XElevatorEncoderPIDValues);
     elevatorAssist = new ElevatorAssistSubsystem(Constants.elevatorAssistPorts);
+    ultra = new UltrasonicSubsystem(Constants.ultrasonicPort);
     oi = new OI();
     
     //led.setLEDLightColor(.87); // Blue

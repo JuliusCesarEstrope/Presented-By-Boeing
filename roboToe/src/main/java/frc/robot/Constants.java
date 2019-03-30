@@ -38,6 +38,7 @@ public class Constants {
   /** BEGIN ANALOG INPUTS **/
   // Gyros
   public static final int gyroPort = 0;
+  public static final int ultrasonicPort = 1;
 
   /** END ANALOG INPUTS **/
 
@@ -126,6 +127,8 @@ public class Constants {
   public static double fourbarSafeWristPosition = 0;
   public static double wristMaxPosition = 0;
   public static double wristMinPosition = 0;
+  public static double ultrasonicAttack = 0;///////////////////////////////////////////////////////////////
+  public static double ultrasonicVertical = 0;/////////////////////////////////////////////////////////////
 
   //Auton Constants
   public static final double level2Length = 48;
