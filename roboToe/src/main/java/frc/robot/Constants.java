@@ -4,7 +4,7 @@ public class Constants {
   // Subsystem Enabled States
   public static final boolean wristEnabled = true;
   public static final boolean rollerEnabled = true;
-  public static final boolean LEDLightEnabled = false;
+  public static final boolean LEDLightEnabled = true;
   public static final boolean fourBarEnabled = false;
   public static final boolean elevatorVerticalEnabled = true;
   public static final boolean elevatorHorizontalEnabled = true;
@@ -127,8 +127,8 @@ public class Constants {
   public static double fourbarSafeWristPosition = 0;
   public static double wristMaxPosition = 0;
   public static double wristMinPosition = 0;
-  public static double ultrasonicAttack = 0;///////////////////////////////////////////////////////////////
-  public static double ultrasonicVertical = 0;/////////////////////////////////////////////////////////////
+  public static double[] ultrasonicAttack = {0, 0};///////////////////////////////////////////////////////////////
+  public static double[] ultrasonicVertical = {0, 0};/////////////////////////////////////////////////////////////
 
   //Auton Constants
   public static final double level2Length = 48;

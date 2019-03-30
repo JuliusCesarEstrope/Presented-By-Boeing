@@ -18,22 +18,22 @@ public class LEDLightSubsystem extends Subsystem {
   public void setLEDLightColor(double color) {
     if (Constants.LEDLightEnabled){
 
-      matchTime = Robot.matchTimer.get();
+      matchTime = Robot.matchTimer.get() + 15;
       if(matchTime > 90 && matchTime < 93){
         LEDLight.set(0.67);
         if(matchTime > 91 && matchTime < 92)
-        LEDLight.set(0);
+        LEDLight.set(0.99);
       }else if(matchTime > 105 && matchTime < 108){
         LEDLight.set(0.61);
         if(matchTime > 106 && matchTime < 107)
-        LEDLight.set(0);
+        LEDLight.set(0.99);
       }else if(matchTime > 130){
         if(matchTime % 1 < 0.5)
           LEDLight.set(0.61);
-        else if (matchTime - 0.5 % 1 < 0.5)
-          LEDLight.set(0);
+        else 
+          LEDLight.set(0.99);
       }else
-        LEDLight.set(0.61);
+        LEDLight.set(color);
     }
   }
 

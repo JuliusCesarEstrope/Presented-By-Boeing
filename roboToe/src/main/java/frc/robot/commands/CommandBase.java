@@ -50,7 +50,7 @@ public abstract class CommandBase extends Command {
     ultra = new UltrasonicSubsystem(Constants.ultrasonicPort);
     oi = new OI();
     
-    //led.setLEDLightColor(.87); // Blue
+    led.setLEDLightColor(.87); // Blue
     wrist.ResetEncoder();
     elevatorVertical.resetElevatorEncoder();
     

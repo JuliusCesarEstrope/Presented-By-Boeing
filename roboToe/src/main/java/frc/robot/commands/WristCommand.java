@@ -2,6 +2,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants;
+import frc.robot.Robot;
 
 public class WristCommand extends CommandBase {
 
@@ -18,6 +20,11 @@ public class WristCommand extends CommandBase {
 
   protected void initialize() {
     timer.start();
+
+    if(wristSetPoint == Constants.wristShootSetPoint)
+      Robot.onAttackPosition = true;
+    else
+      Robot.onAttackPosition = false;
     // Set point
     // Send PID to correct motors
     // wrist.setRightWristPosition(wristSetPoint);

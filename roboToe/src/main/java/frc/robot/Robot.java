@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.CommandBase;
-import frc.robot.subsystems.LEDLightSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,6 +29,8 @@ public class Robot extends TimedRobot {
   //Command LEDCommand = new LEDCommand(matchTimer);
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   CommandBase commandBase;
+  public static boolean onAttackPosition;
+  private double ultrasonicPosition;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -40,8 +41,10 @@ public class Robot extends TimedRobot {
     //m_chooser.setDefaultOption("Default Auto", new Auton());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-    CommandBase.init();
     matchTimer = new Timer();
+    onAttackPosition = false; 
+    CommandBase.init();
+    CommandBase.led.setLEDLightColor(0.87);
   }
 
   /**
@@ -65,6 +68,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    
   }
 
   @Override
@@ -99,7 +103,6 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
     }
-    matchTimer.start();
   }
 
   /**
@@ -118,8 +121,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    CommandBase.led.setLEDLightColor(0.87);
-    //LEDCommand.start();
+    matchTimer.start();
   }
 
   /**
@@ -137,7 +139,20 @@ public class Robot extends TimedRobot {
     SmartDashboard.putString("DB/String 3", "" + CommandBase.elevatorVertical.getVerticalElevatorEncoder());
     SmartDashboard.putString("DB/String 5", "" + CommandBase.elevatorHorizontal.getlimitSwitch());
     SmartDashboard.putString("DB/String 4", "" + CommandBase.ultra.getUltrasonic());
+    SmartDashboard.putString("DB/String 9", "" + matchTimer.get());
     Scheduler.getInstance().run();
+
+    ultrasonicPosition = CommandBase.ultra.getUltrasonic();
+    if(onAttackPosition)
+      if(ultrasonicPosition > Constants.ultrasonicAttack[0] && ultrasonicPosition < Constants.ultrasonicAttack[1])
+        CommandBase.led.setLEDLightColor(0.77);
+      else
+        CommandBase.led.setLEDLightColor(0.87);
+    else
+      if(ultrasonicPosition > Constants.ultrasonicVertical[0] && ultrasonicPosition < Constants.ultrasonicVertical[1])
+        CommandBase.led.setLEDLightColor(0.77);
+      else
+        CommandBase.led.setLEDLightColor(0.87);
   }
 
   /**
