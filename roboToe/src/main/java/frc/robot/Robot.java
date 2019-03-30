@@ -149,10 +149,14 @@ public class Robot extends TimedRobot {
       else
         CommandBase.led.setLEDLightColor(0.87);
     else
-      if(ultrasonicPosition > Constants.ultrasonicVertical[0] && ultrasonicPosition < Constants.ultrasonicVertical[1])
+      if(ultrasonicPosition > Constants.ultrasonicVertical[0] && ultrasonicPosition < Constants.ultrasonicVertical[1]){
+        SmartDashboard.putBoolean("DB/LED 0",  true);
         CommandBase.led.setLEDLightColor(0.77);
-      else
+      }
+      else{
         CommandBase.led.setLEDLightColor(0.87);
+        SmartDashboard.putBoolean("DB/LED 0",  false);
+      }
   }
 
   /**

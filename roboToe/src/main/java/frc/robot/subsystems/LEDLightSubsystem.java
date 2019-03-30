@@ -20,7 +20,7 @@ public class LEDLightSubsystem extends Subsystem {
 
       matchTime = Robot.matchTimer.get() + 15;
       if(matchTime > 90 && matchTime < 93){
-        LEDLight.set(0.67);
+        LEDLight.set(0.91);
         if(matchTime > 91 && matchTime < 92)
         LEDLight.set(0.99);
       }else if(matchTime > 105 && matchTime < 108){

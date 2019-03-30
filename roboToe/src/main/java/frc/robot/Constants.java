@@ -128,7 +128,7 @@ public class Constants {
   public static double wristMaxPosition = 0;
   public static double wristMinPosition = 0;
   public static double[] ultrasonicAttack = {0, 0};///////////////////////////////////////////////////////////////
-  public static double[] ultrasonicVertical = {0, 0};/////////////////////////////////////////////////////////////
+  public static double[] ultrasonicVertical = {25, 34};/////////////////////////////////////////////////////////////
 
   //Auton Constants
   public static final double level2Length = 48;

@@ -69,7 +69,7 @@ public class RollerCommand extends CommandBase {
       roller.setRollerMotor(0.40);
     }
     else if(shootRollerBall) {
-      roller.setRollerMotor(-1.00);
+      roller.setRollerMotor(-0.80);
     }
   }
 
