@@ -25,7 +25,7 @@ import frc.robot.commands.CommandBase;
 public class Robot extends TimedRobot {
 
   Command m_autonomousCommand;
-  Timer matchTimer = new Timer();
+  public static Timer matchTimer;
   //Command LEDCommand = new LEDCommand(matchTimer);
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   CommandBase commandBase;
@@ -40,6 +40,7 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
     CommandBase.init();
+    matchTimer = new Timer();
   }
 
   /**
@@ -97,6 +98,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
     }
+    matchTimer.start();
   }
 
   /**
@@ -115,7 +117,6 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    matchTimer.start();
 
     //LEDCommand.start();
   }

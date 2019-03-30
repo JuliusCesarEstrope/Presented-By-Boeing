@@ -14,6 +14,7 @@ public class ElevatorAssistSubsystem extends Subsystem {
     if (Constants.elevatorVerticalEnabled){
     booper = new DoubleSolenoid(booperPorts[0], booperPorts[1]);
     RobotLog.putMessage("Running ElevatorAssistSubsystem");
+    
     }
   }
 
