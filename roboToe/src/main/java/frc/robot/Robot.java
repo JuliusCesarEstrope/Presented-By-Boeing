@@ -138,11 +138,11 @@ public class Robot extends TimedRobot {
     SmartDashboard.putString("DB/String 2", "" + CommandBase.wrist.getLeftWristEncoder());
     SmartDashboard.putString("DB/String 3", "" + CommandBase.elevatorVertical.getVerticalElevatorEncoder());
     SmartDashboard.putString("DB/String 5", "" + CommandBase.elevatorHorizontal.getlimitSwitch());
-    SmartDashboard.putString("DB/String 4", "" + CommandBase.ultra.getUltrasonic());
+    //SmartDashboard.putString("DB/String 4", "" + CommandBase.ultra.getUltrasonic());
     SmartDashboard.putString("DB/String 9", "" + matchTimer.get());
     Scheduler.getInstance().run();
 
-    ultrasonicPosition = CommandBase.ultra.getUltrasonic();
+    //ultrasonicPosition = CommandBase.ultra.getUltrasonic();
     if(onAttackPosition)
       if(ultrasonicPosition > Constants.ultrasonicAttack[0] && ultrasonicPosition < Constants.ultrasonicAttack[1])
         CommandBase.led.setLEDLightColor(0.77);

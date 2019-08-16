@@ -4,12 +4,12 @@ import frc.robot.utilities.RobotLog;
 
 public class ElevatorAssistAutoCommand extends CommandBase {
   public ElevatorAssistAutoCommand() {
-    requires(elevatorAssist);
+   // requires(elevatorAssist);
   }
 
   protected void initialize() {
     RobotLog.putMessage("Running ElevatorAssistCommand");
-    elevatorAssist.setBooperForward();
+   // elevatorAssist.setBooperForward();
   }
 
   protected void execute() {

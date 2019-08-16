@@ -8,6 +8,7 @@ public class ElevatorAssistCommand extends CommandBase {
   }
 
   protected void initialize() {
+  
     RobotLog.putMessage("Running ElevatorAssistCommand");
     elevatorAssist.setBooperForward();
   }
@@ -24,6 +25,6 @@ public class ElevatorAssistCommand extends CommandBase {
   }
 
   protected void interrupted() {
-    elevatorAssist.setBooperReverse();
+   elevatorAssist.setBooperReverse();
   }
 }

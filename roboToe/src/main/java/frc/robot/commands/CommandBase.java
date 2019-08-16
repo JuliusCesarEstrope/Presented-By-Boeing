@@ -47,6 +47,7 @@ public abstract class CommandBase extends Command {
     elevatorVertical = new ElevatorVerticalSubsystem(Constants.verticalElevatorMotor, Constants.elevatorEncoderPIDValues);
     elevatorHorizontal = new ElevatorHorizontalSubsystem(Constants.XElevatorMotorPort, Constants.defaultElevatorPosition, Constants.XElevatorEncoderPIDValues);
     elevatorAssist = new ElevatorAssistSubsystem(Constants.elevatorAssistPorts);
+    // elevatorAssist = new ElevatorAssistSubsystem(Constants.elevatorAssistPorts);
     ultra = new UltrasonicSubsystem(Constants.ultrasonicPort);
     oi = new OI();
     
